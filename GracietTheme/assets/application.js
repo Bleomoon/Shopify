@@ -27,5 +27,17 @@ function openSearch()
 
 function openUser()
 {
-    
+    const userBar = document.querySelector('.user');
+    const userBarBtn = document.querySelector('.header-icons-user');
+
+    if(userBar.classList.contains('open'))
+    {
+        userBar.classList.remove('open');
+        userBarBtn.innerHTML = '<i class="fas fa-user"></i>';
+    }
+    else
+    {
+        userBar.classList.add('open');
+        userBarBtn.innerHTML = '<i class="fas fa-times"></i>';
+    }
 }
