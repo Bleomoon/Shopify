@@ -12,9 +12,9 @@
   {{ 'application.js' | asset_url | script_tag }}
 </head>
 <body>
-    
-    { % section 'header' %}
-    
+  
+  {% section 'header' %}
+
   {% for link in linklists.main-menu.links %}
     {% assign child_list_handle = link.title | handleize %}
     {% if linklists[child_list_handle].links != blank %}
@@ -42,5 +42,8 @@
   <main role="main">
     {{ content_for_layout }}
   </main>
+
+  {% section 'footer' %}
+
 </body>
 </html>
