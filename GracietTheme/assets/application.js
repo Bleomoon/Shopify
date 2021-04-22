@@ -1,4 +1,4 @@
-function openMenu(){
+function openMenuNav(){
     const navbar = document.querySelector('.navbar');
     const navbarBtn = document.querySelector('.navbar-toggler');
 
@@ -13,4 +13,19 @@ function openMenu(){
         navbar.classList.add('open');
         navbarBtn.innerHTML = '<i class="fas fa-times"></i>'
     }
+}
+
+function openPanier()
+{
+    ;
+}
+
+function openSearch()
+{
+
+}
+
+function openUser()
+{
+    
 }
