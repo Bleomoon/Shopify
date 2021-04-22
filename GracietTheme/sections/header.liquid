@@ -1,6 +1,7 @@
 <header class="header">
 	Je suis le header
 	<nav class="header-navbar">
+		<button class"navbar-toggler"><i class="fas fa-bars"></i></button>
 		<div class="navbar-group">
 			<ul>
 				<li><a href="https://gracietboutiquetpe.myshopify.com/"> SylvieSStrohl </a> </li>
@@ -13,31 +14,25 @@
 		</div>
 	</nav>
 
-	<div class="header-search">
+	//Ici la classe qui gere les bouttons panier, search et connexion
+	<div class="navbar-icons">
+		//boutton qui va afficher une bar de navigation
 		<button>
-			search
-		</button>
-
-		<a href="/cart">
 			<i class="fas fa-search"></i>
-		</a>
-	</div>
-
-	<div class="header-basket">
-		<button>
-			Panier
 		</button>
-		<a href="/cart">
+
+		//boutton qui va afficher une liste avec les objets du paniers
+		//et si clique envoie sur le panier
+		<button> 
 			<i class="fas fa-shopping-basket"></i>
-		</a>
-	</div>
+		</button>
 
-	<div> class="header-connect">
+		//boutton qui affiche se conecter ou se déconnecter
 		<button>
-			Connect
+			<i class="fas fa-user"></i>
 		</button>
 		<a href="/cart">
-			<i class="fas fa-user"></i>
+			
 		</a>
 	</div>
 </header>
