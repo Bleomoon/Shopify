@@ -1,10 +1,16 @@
+{% comment %}L'ensemble du code du HEADER {% endcomment %}
 <header class="header">
 	Je suis le header
+	{% comment %}Le logo du site qui redirige vers l'accueil{% endcomment %}
+	<div class="header-logo">
+		<a href="https://gracietboutiquetpe.myshopify.com/"> Sylvie Strohl INTEMPORELE </a>
+	</div>
+
+	{% comment %} Ici la barre de navigation qui affichera les bouttons vers les autres pages {% endcomment %}
 	<nav class="header-navbar">
 		<button class"navbar-toggler"><i class="fas fa-bars"></i></button>
 		<div class="navbar-group">
 			<ul>
-				<li><a href="https://gracietboutiquetpe.myshopify.com/"> SylvieSStrohl </a> </li>
 				<li><a href="https://gracietboutiquetpe.myshopify.com/pages/sacs-a-main"> SACS A MAIN </a> </li>
 				<li><a href="https://gracietboutiquetpe.myshopify.com/pages/accessoires"> ACCESSOIRES </a> </li>
 				<li><a href="https://gracietboutiquetpe.myshopify.com/collections"> COLLECTIONS </a> </li>
@@ -14,20 +20,20 @@
 		</div>
 	</nav>
 
-	//Ici la classe qui gere les bouttons panier, search et connexion
-	<div class="navbar-icons">
+	{% comment %} Ici la classe qui gere les bouttons panier, search et connexion {% endcomment %}
+	<div class="header-icons">
 		{% comment %} boutton qui va afficher une bar de navigation {% endcomment %}
 		<button>
 			<i class="fas fa-search"></i>
 		</button>
 
-		//boutton qui va afficher une liste avec les objets du paniers
-		//et si clique envoie sur le panier
+		
+		{% comment %} boutton qui va afficher une liste avec les objets du paniers et si clique envoie sur le panier {% endcomment %}
 		<button> 
 			<i class="fas fa-shopping-basket"></i>
 		</button>
 
-		//boutton qui affiche se conecter ou se déconnecter
+		{% comment %} boutton qui affiche se conecter ou se déconnecter {% endcomment %}
 		<button>
 			<i class="fas fa-user"></i>
 		</button>
