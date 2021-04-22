@@ -60,14 +60,14 @@ $screen-xlarge: 1200px;
 }
 
 .navbar-item{
-    display: block;
+    display: inline-block;
     padding: 10px;
 }
 
 /*Fonction qand on clique sur la navbar*/
 .navbar.open{
     width:100%;
-    left:50%;
+    left:0;
     background:#EEE;
 }
 
@@ -95,7 +95,7 @@ $screen-xlarge: 1200px;
 
 .user.open{
     width:100%;
-    left:100%;
+    left:0;
     justify-content: flex-end;
     background: #EEE;
 }
@@ -127,7 +127,7 @@ $screen-xlarge: 1200px;
 /*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
 Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 
-@media screen and (min-width:0px) and (max-width:576px)
+@media screen and (min-width:576px)
 {
 
     .header-icons{
