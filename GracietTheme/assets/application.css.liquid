@@ -5,8 +5,10 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 $font-size:1rem;
 
 /*Les taille de medias */
-
-
+$screen-small: 576px;
+$screen-medium: 760px;
+$screen-large: 1024px;
+$screen-xlarge: 1200px;
 
 /* pour les icones */
 .fas {
@@ -52,6 +54,7 @@ $font-size:1rem;
     width:0;
     left:-999px;
     display:block;
+    transition : left 0.7s;
     position:absolute;
     top:100%;
 }
@@ -79,6 +82,7 @@ $font-size:1rem;
 .user{
     width:0;
     left:-999px;
+    transition : right 0.7s;
     display:block;
     position:absolute;
     top:100%;
@@ -92,5 +96,18 @@ $font-size:1rem;
 .user.open{
     width:100%;
     left:0;
+    justify-content: flex-end;
     background: #EEE;
+}
+
+/*Si taille de l'écran moyen*/
+@media screen and (min-width:$screen-medium)
+{
+    .navbar-toggler{
+        display: none;
+    }
+    .navbar{
+        position: relative;
+        left:0;
+    }
 }
