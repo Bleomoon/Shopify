@@ -67,7 +67,7 @@ $screen-xlarge: 1200px;
 /*Fonction qand on clique sur la navbar*/
 .navbar.open{
     width:100%;
-    left:0;
+    left:50%;
     background:#EEE;
 }
 
@@ -95,7 +95,7 @@ $screen-xlarge: 1200px;
 
 .user.open{
     width:100%;
-    left:0;
+    left:100%;
     justify-content: flex-end;
     background: #EEE;
 }
@@ -123,7 +123,7 @@ $screen-xlarge: 1200px;
 /*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
 Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 */
-@media screen and (max-width:576px)
+@media screen and (min-width:0px) and (max-width:576px)
 {
 
     .header-icons{
@@ -139,7 +139,7 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
         padding: 10px;
     }
 
-    .smallScreen-user{
+    .smallScreen{
         width:0;
         left:-999px;
         transition : left 0.1s;
@@ -151,5 +151,12 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     .smallScreen-item{
         display:block;
         padding:10px;
+    }
+
+    .smallScree.open{
+        width:100%;
+        left:100%;
+        justify-content: flex-end;
+        background: #EEE;
     }
 }
