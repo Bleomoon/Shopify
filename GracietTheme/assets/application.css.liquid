@@ -5,12 +5,6 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 $font-size:1rem;
 $font-family: sans-serif;
 
-/*Les taille de medias */
-$screen-small: 576px;
-$screen-medium: 760px;
-$screen-large: 1024px;
-$screen-xlarge: 1200px;
-
 /* pour les icones */
 .fas {
     font-size: $font-size;
@@ -31,85 +25,92 @@ $screen-xlarge: 1200px;
 }
 
 /*CSS du HEADER*/
-.header {
-    font-size: $font-size;
-    background: #EEE;
-    position: sticky;
-    top: 0;
-    align-items: center;
-    display: flex;
-}
+@media screen and (max-width:760px){
 
-.header-logo {
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-}
+    .header {
+        font-size: $font-size;
+        background: #EEE;
+        position: sticky;
+        top: 0;
+        align-items: center;
+        display: flex;
+    }
 
-.header-navbar {
-    display: ruby;
-    flex: 1;
-}
+    .header-logo {
+        display: flex;
+        flex: 1;
+        justify-content: flex-start;
+    }
 
-.navbar-toggler {
-    cursor: pointer;
-    justify-content: flex-end;
-    background: none;
-    border: none;
-}
+    .header-navbar {
+        display: ruby;
+        flex: 1;
+    }
 
-.navbar {
-    width: 0;
-    left: -999px;
-    display: block;
-    transition: left 0.7s;
-    position: absolute;
-    top: 100%;
-}
+    .navbar-toggler {
+        cursor: pointer;
+        justify-content: flex-end;
+        background: none;
+        border: none;
+    }
 
-.navbar-item {
-    display: inline-block;
-    padding: 10px;
-}
+    .navbar {
+        width: 0;
+        left: -999px;
+        display: block;
+        transition: left 0.7s;
+        position: absolute;
+        top: 100%;
+    }
 
-/*Fonction qand on clique sur la navbar*/
-.navbar.open {
-    width: 100%;
-    left: 0;
-    background: #EEE;
-}
+    .navbar-item {
+        display: inline-block;
+        padding: 10px;
+    }
 
-.header-icons {
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-    padding: 10px
-}
+    /*Fonction qand on clique sur la navbar*/
+    .navbar.open {
+        width: 100%;
+        left: 0;
+        background: #EEE;
+    }
 
-.header-icons-Ref{
-    background: none;
-    border: none;
-}
+    .header-icons {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        padding: 10px
+    }
 
-.user {
-    width: 0;
-    left: -999px;
-    transition: left 0.1s;
-    display: block;
-    position: absolute;
-    top: 100%;
-}
+    .header-icons-Ref{
+        background: none;
+        border: none;
+    }
 
-.user-item {
-    display: block;
-    padding: 10px;
-}
+    .user {
+        width: 0;
+        left: -999px;
+        transition: left 0.1s;
+        display: block;
+        position: absolute;
+        top: 100%;
+    }
 
-.user.open {
-    width: 100%;
-    left: 0;
-    justify-content: flex-end;
-    background: #EEE;
+    .user-item {
+        display: block;
+        padding: 10px;
+    }
+
+    .user.open {
+        width: 100%;
+        left: 0;
+        justify-content: flex-end;
+        background: #EEE;
+    }
+
+    .menu-smallScreen {
+        display: none;
+    }
 }
 
 /*Si taille de l'écran moyen*/
@@ -174,6 +175,7 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     .smallScreen-item{
         display:block;
         padding:10px;
+        justify-content: flex-end;
     }
 
     .smallScreen.open{
