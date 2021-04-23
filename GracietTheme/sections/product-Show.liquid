@@ -1,12 +1,46 @@
 <div class="productShow">
   <div class="productImage">
-    <img src="">
+    <a class="aRef" href={{ section.settings.poductLink }}><img src=""></a>
   </div>
   <div class="productText">
-    <h3><a class="productTitle" href=lien>PRODUCT NAME</a></h3><br>
-    <p class="productPrice">Price</p>
-    <p class="producDesc">Description</p>
-    <button><i class="fas fa-shopping-basket"></i></button>
+    <h3><a class="productTitle" href=lien> {{ <section.settings.productName }} </a></h3><br>
+    <p class="productPrice"> {{ <section.settings.productPrice }} </p>
+    <p class="producDesc"> {{ <section.settings.productDescription }} </p>
+    <button><a class="aRef" href={{ section.settings.poductLink }}><i class="fas fa-shopping-basket"></i></a></button>
   </div>
 </div>>
 
+{% schema %}
+  "name":"Show Product"
+  "settings": [
+  {
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label":"Image",
+    },
+    {
+      "type": "texte",
+      "id": "productName",
+      "label":"Nom du produit",
+      "default": "Nom du produit"
+    },
+    {
+      "type": "texte",
+      "id": "productPrice",
+      "label": "Prix du produit",
+      "default": "150,00 "
+    },
+    {
+      "type": "texte",
+      "id": "productDescription",
+      "label":"Description du produit",
+      "default": "Description du produit"
+    },
+    {
+      "type": "link",
+      "id": "poductLink",
+    },
+  }
+  ]
+{% endschema %}
