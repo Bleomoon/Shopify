@@ -1,13 +1,13 @@
 <div class="productShow">
+  <h3><a class="productTitle" href=""> {{ section.settings.productName }} </a></h3><br>
   {% for block in section.blocks %}
     <div class="productImage">
-      <a class="aRef" href={{ block.poductLink }}><img src=""></a>
+      <a class="aRef" href=""><img src=""></a>
     </div>
     <div class="productText">
-      <h3><a class="productTitle" href=lien> {{ section.productName }} </a></h3><br>
-      <p class="productPrice"> {{ section.productPrice }} </p>
-      <p class="producDesc"> {{ section.productDescription }} </p>
-      <button><a class="aRef" href={{ section.poductLink }}><i class="fas fa-shopping-basket"></i></a></button>
+      <p class="productPrice"> {{ section.settings.productPrice }} </p>
+      <p class="producDesc"> {{ section.settings.productDescription }} </p>
+      <button><a class="aRef" href=""><i class="fas fa-shopping-basket"></i></a></button>
     </div>
   {% endfor %}
 </div>>
@@ -15,17 +15,19 @@
 {% schema %}
 {
   "name":"Show Product",
+  "settings": [
+    {
+      "type":"text",
+      "id" :"productName",
+      "label" : "Description du produit",
+      "default" : "Description du produit"  
+    }
+  ],
   "max_blocks": 5,
   "blocks": [
     {
     "type":"text",
     "name":"productShow"[
-        {
-          "type":"text",
-          "id" :"productName",
-          "label" : "Description du produit",
-          "default" : "Description du produit"
-        },
         {
         "type":"text",
         "id" :"productPrice",
@@ -39,7 +41,7 @@
         "default" : "Description du produit"
         },
         {
-        "type":"url",
+        "type":"text",
         "id" :"poductLink",
         }
       ]
