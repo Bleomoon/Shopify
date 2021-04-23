@@ -1,5 +1,5 @@
 /*Reset Css */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 
 /* variables */
 $font-size:1rem;
@@ -16,117 +16,119 @@ $screen-xlarge: 1200px;
     font-size: $font-size;
 }
 
-.body{
+.body {
     font-size: $font-size * 5;
 }
 
 
 /*CSS du HEADER*/
-.header{
+.header {
     font-size: $font-size;
     background: #EEE;
-    position:sticky;
-    top:0;
+    position: sticky;
+    top: 0;
     align-items: center;
-    display:flex;
-    button, a {
+    display: flex;
+
+    button,
+    a {
         background: none;
         border: none;
         color: #333;
-        text-decoration:none;
+        text-decoration: none;
     }
 }
 
-.header-logo{
+.header-logo {
     display: flex;
-    flex:1;
+    flex: 1;
     justify-content: flex-start;
 }
 
-.header-navbar{
+.header-navbar {
     display: flex;
-    flex:1;
+    flex: 1;
 }
 
-.navbar-toggler{
+.navbar-toggler {
     cursor: pointer;
     justify-content: flex-end;
 }
 
-.navbar{
-    width:0;
-    left:-999px;
-    display:block;
-    transition : left 0.7s;
-    position:absolute;
-    top:100%;
+.navbar {
+    width: 0;
+    left: -999px;
+    display: block;
+    transition: left 0.7s;
+    position: absolute;
+    top: 100%;
 }
 
-.navbar-item{
+.navbar-item {
     display: inline-block;
     padding: 10px;
 }
 
 /*Fonction qand on clique sur la navbar*/
-.navbar.open{
-    width:100%;
-    left:0;
-    background:#EEE;
+.navbar.open {
+    width: 100%;
+    left: 0;
+    background: #EEE;
 }
 
 
-.header-icons{
+.header-icons {
     display: flex;
-    flex:1;
+    flex: 1;
     justify-content: flex-end;
-    padding:10px
+    padding: 10px
 }
 
-.user{
-    width:0;
-    left:-999px;
-    transition : left 0.1s;
-    display:block;
-    position:absolute;
-    top:100%;
+.user {
+    width: 0;
+    left: -999px;
+    transition: left 0.1s;
+    display: block;
+    position: absolute;
+    top: 100%;
 }
 
-.user-item{
-    display:block;
-    padding:10px;
+.user-item {
+    display: block;
+    padding: 10px;
 }
 
-.user.open{
-    width:100%;
-    left:0;
+.user.open {
+    width: 100%;
+    left: 0;
     justify-content: flex-end;
     background: #EEE;
 }
 
 /*Si taille de l'écran moyen*/
-@media screen and (min-width:760px)
-{
-    .navbar-toggler{
+@media screen and (min-width:760px) {
+    .navbar-toggler {
         display: none;
     }
-    .navbar{
+
+    .navbar {
         position: relative;
-        left:0;
-        transition:none;
-        width:100%;
-        display:block;
+        left: 0;
+        transition: none;
+        width: 100%;
+        display: block;
     }
 
-    .navbar-item 
-    {
+    .navbar-item {
         display: inline-flex;
         padding: 10px;
     }
 
-    .menu-smallScreen{
-        display:: none;
+    .menu-smallScreen {
+        display: : none;
     }
 }
+
 /*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
 Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 
@@ -172,32 +174,45 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 
 
 /*CSS du FOOTER*/
-.footer{
-    display:inline-block;
+.footer {
+    display: flex;
+    top: 0;
+    align-items: : center;
     $font-size: $font-size;
-    $font-family:$font-family;
-    button {
+    $font-family: $font-family;
+
+    button,
+    a {
         background: none;
         border: none;
+        text-decoration: none;
+        color: black;
     }
 }
 
-.topFooter{
-
+.topFooter {
+    display: inline-block;
+    flex: 1;
 }
 
-.topFooter-contact{
-
+.topFooter-contact {
+    display: flex;
+    justify-content: ;
+    flex: 1;
 }
 
-.topFooter-Newsletter{
-
+.topFooter-Newsletter {
+    display: flex;
+    flex: 1;
 }
 
-.topFooter-Paiement{
-
+.topFooter-Paiement {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
 }
 
-.botFooter{
-
+.botFooter {
+    display: inline-block;
+    flex: 1;
 }
