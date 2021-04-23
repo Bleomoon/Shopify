@@ -2,7 +2,7 @@
   <h3><a class="productTitle" href=""> {{ section.settings.productName }} </a></h3><br>
   {% for block in section.blocks %}
     <div class="productImage">
-      <a class="aRef" href=""><img src=""></a>
+
     </div>
     <div class="productText">
       <p class="productPrice"> {{ block.settings.productPrice }} </p>
@@ -26,7 +26,7 @@
   "max_blocks": 5,
   "blocks": [
     {
-    "type":"text",
+    "type":"product",
     "name":"productShow",
     "settings" : [
         {
