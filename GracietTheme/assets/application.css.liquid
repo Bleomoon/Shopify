@@ -20,6 +20,14 @@ $screen-xlarge: 1200px;
     font-size: $font-size * 5;
 }
 
+.a {
+    text-decoration: none;
+}
+
+.button {
+    background: none;
+    border: none;
+}
 
 /*CSS du HEADER*/
 .header {
@@ -181,17 +189,10 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     $font-size: $font-size;
     $font-family: $font-family;
     position: sticky;
-    button,
-    a {
-        background: none;
-        border: none;
-        text-decoration: none;
-        color: black;
-    }
 }
 
 .topFooter {
-    display: inline-flex;
+    display: inline-bloc;
     width:33%;
     padding-bottom: 10px;
     flex: 1;
@@ -223,8 +224,4 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     display: block;
     justify-content: center;
     flex: 1;
-}
-
-.botFooter-item{
-    text-decoration: none;
 }
