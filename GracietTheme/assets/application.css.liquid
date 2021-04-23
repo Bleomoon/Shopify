@@ -79,7 +79,6 @@ $screen-xlarge: 1200px;
     background: #EEE;
 }
 
-
 .header-icons {
     display: flex;
     flex: 1;
@@ -115,8 +114,15 @@ $screen-xlarge: 1200px;
 
 /*Si taille de l'écran moyen*/
 @media screen and (min-width:760px) {
+    .header-navbar{
+        display: flex;
+        justify-content: flex-end;
+        flex:1;
+    }
+
     .navbar-toggler {
         display: none;
+        justify-content: flex-end;
     }
 
     .navbar {
@@ -215,4 +221,15 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 .botFooter {
     justify-content: center;
     flex: 1;
+}
+
+@media screen and (min-width:576px)
+{
+    .footer{
+        display:grid;
+    }
+    .topFooter{
+        grid-template-columns : repeat(1, 1fr);
+        grid-row:3;
+    }
 }
