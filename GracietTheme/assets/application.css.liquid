@@ -25,48 +25,6 @@ $font-family: sans-serif;
 }
 
 /*CSS du HEADER*/
-/*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
-Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
-*/
-@media screen and (max-width:576px)
-{
-
-    .header-icons{
-        display: none;
-    }
-    .header-navbar{
-        display: none;
-    }
-
-    .menu-smallScreen
-    {
-        display: flex;
-        padding: 10px;
-    }
-
-    .smallScreen{
-        width:0;
-        left:-999px;
-        transition : left 0.1s;
-        display:block;
-        position:absolute;
-        top:100%;
-    }
-
-    .smallScreen-item{
-        display:block;
-        padding:10px;
-        justify-content: flex-end;
-    }
-
-    .smallScreen.open{
-        width:100%;
-        left:0;
-        justify-content: flex-end;
-        background: #EEE;
-    }
-}
-
 @media screen and (max-width:760px){
 
     .header {
@@ -152,6 +110,79 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 
     .menu-smallScreen {
         display: none;
+    }
+}
+
+/*Si taille de l'écran moyen*/
+@media screen and (min-width:760px) {
+    .header-navbar{
+        display: flex;
+        justify-content: flex-end;
+        flex:1;
+    }
+
+    .navbar-toggler {
+        display: none;
+        justify-content: flex-end;
+    }
+
+    .navbar {
+        position: relative;
+        left: 0;
+        transition: none;
+        width: 100%;
+        display: block;
+    }
+
+    .navbar-item {
+        display: inline-flex;
+        padding: 10px;
+    }
+
+    .menu-smallScreen {
+        display: none;
+    }
+}
+
+/*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
+Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
+*/
+@media screen and (max-width:576px)
+{
+
+    .header-icons{
+        display: none;
+    }
+    .header-navbar{
+        display: none;
+    }
+
+    .menu-smallScreen
+    {
+        display: flex;
+        padding: 10px;
+    }
+
+    .smallScreen{
+        width:0;
+        left:-999px;
+        transition : left 0.1s;
+        display:block;
+        position:absolute;
+        top:100%;
+    }
+
+    .smallScreen-item{
+        display:block;
+        padding:10px;
+        justify-content: flex-end;
+    }
+
+    .smallScreen.open{
+        width:100%;
+        left:0;
+        justify-content: flex-end;
+        background: #EEE;
     }
 }
 
