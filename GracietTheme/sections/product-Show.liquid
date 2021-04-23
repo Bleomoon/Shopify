@@ -13,33 +13,36 @@
 {% schema %}
 {
   "name":"Show Product"
-  "settings": [
-    {
-      
+  "productName": [
       {
-        "type": "text",
-        "id": "productName",
-        "label":"Nom du produit",
-        "default": "Nom du produit"
-      },
-      {
-        "type": "text",
-        "id": "productPrice",
-        "label": "Prix du produit",
-        "default": "150,00 "
-      },
-      {
-        "type": "text",
-        "id": "productDescription",
-        "label":"Description du produit",
-        "default": "Description du produit"
-      },
-      {
-        "type": "url",
-        "id": "poductLink",
+        "type":"text",
+        "id" :"productName",
+        "label" : "Description du produit",
+        "default" : "Description du produit"
       }
-    }
-  ],
+    ],
+    "productPrice": [
+      {
+        "type":"text",
+        "id" :"productPrice",
+        "label" : "Prix du produit",
+        "default" : "80000"
+      }
+    ],
+    "productDescription": [
+      {
+        "type":"text",
+        "id" :"productDescription",
+        "label" : "Description du produit",
+        "default" : "Description du produit"
+      }
+    ],
+    "poductLink": [
+      {
+        "type":"url",
+        "id" :"poductLink",
+      }
+    ],
   "presets": [
     {
       "name": "Show Product",
