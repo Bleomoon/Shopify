@@ -183,43 +183,39 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 
 /*CSS du FOOTER*/
 .footer {
-    display: inline-block;
+    display: grid;
     top: 0;
     align-items: : center;
-    $font-size: $font-size;
-    $font-family: $font-family;
+    font-size: $font-size;
+    font-family: $font-family;
     position: sticky;
+    text-align: justify;
 }
 
 .topFooter {
-    display: inline-block;
-    width:33%;
+    display: grid;
     padding-bottom: 10px;
+    grid-row:1/2
 }
 
 .topFooter-contact {
-    justify-content: flex-start;
+    grid-column: 1/3;
     button {
         padding-left: 10px;
     }
 }
 
 .topFooter-Newsletter {
-    display: grid;
-}
-
-.form_newsletter_button{
-    background-color: black;
-    color: white;
+    grid-column:2/3;
 }
 
 .topFooter-Paiement {
-    justify-content: flex-end;
+    grid-column:3/3;
 }
 
 .botFooter {
-    width:100%;
     display: block;
     justify-content: center;
     flex: 1;
+    grid-row: 2/2;
 }
