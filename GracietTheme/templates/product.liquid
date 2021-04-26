@@ -72,6 +72,16 @@
         <i class="fas fa-chevron-left"></i>
       </a></button>
     </div>
+    <div class="ficheProduct-associateProduct">
+      <a>Produits associes <i class="fas fa-plus"></i></a>
+      <div class="ficheProduct-associateProduct-products">
+        {% for images in product.images %}
+            <a href="{{ image.src | img_url: 'large' }}">
+              <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+            </a>
+        {% endfor %}
+      </div>
+    </div>
   </div>
   
   
