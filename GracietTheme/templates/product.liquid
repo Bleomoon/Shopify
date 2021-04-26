@@ -5,10 +5,11 @@
 
   {%comment%} Zone sur les images {%endcomment%}
   <div class="ficheProduct-Img">
-    <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
+    <img class="ficheProduit-BigImg" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
     <div class="ficheProduct-SousImg">
+      {%assign nbImg = 0%}
       {% for image in product.images %}
-      <a href="{{ image.src | img_url: 'large' }}">
+      <a class="ficheProduct-SousImg-{%increment nbImg%}" href="{{ image.src | img_url: 'large' }}">
         <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
       </a>
       {% endfor %}
