@@ -76,7 +76,7 @@
     <div class="ficheProduct-associateProduct">
       <button class="ficheProduct-associateProduct-Btn" onclick=AssociateProductClick()>Produits associes <i class="fas fa-plus"></i></button>
       <div class="ficheProduct-associateProduct-products">
-        {%assign associatePnbImg%}
+        {%assign associatePnbImg = 0%}
         {% for image in product.images %}
             <a class="associateProduct-products-{% increment associatePnbImg %}" href="{{ image.src | img_url: 'large' }}">
               <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
