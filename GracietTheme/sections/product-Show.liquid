@@ -5,8 +5,10 @@
 
     </div>
     <div class="productText">
-      <p class="productPrice"> {{ block.settings.productPrice }} </p>
-      <p class="producDesc"> {{ block.settings.productDescription }} </p>
+      <p class="productPrice">productPrice</p>
+      <p class="producDesc">productDesc</p>
+      {{ block.settings.productPrice }}
+      {{ block.settings.productDescription }}
       <button><a class="aRef" href=""><i class="fas fa-shopping-basket"></i></a></button>
     </div>
   {% endfor %}
