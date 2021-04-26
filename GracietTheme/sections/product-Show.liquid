@@ -20,37 +20,31 @@
 </div>
 
 {% schema %}
-{
-  "name":"Show Product",
-  "settings": [
-    {
-      "type":"text",
-      "id" :"productName",
-      "label" : "Description du produit",
-      "default" : "Description du produit"  
-    },
-    {
-      "type":"text",
-      "id" :"productPrice",
-      "label" : "Prix du produit",
-      "default" : "80000"
-    },
-    {
-      "type":"text",
-      "id" :"productDescription",
-      "label" : "Description du produit",
-      "default" : "Description du produit"
-    },
-    {
-      "type":"text",
-      "id" :"poductLink",
-    }
-  ],
-  "presets": [
   {
-  "name": "Show Product",
-  "category":"Contenu"
+    "name": "Show Product",
+    "settings": [
+      {
+        "type":"text",
+        "id" :"productName",
+        "label" : "Description du produit",
+        "default" : "Description du produit"  
+      },
+      {
+        "type":"text",
+        "id" :"productPrice",
+        "label" : "Prix du produit",
+        "default" : "80000"
+      },
+      {
+        "type":"richtext",
+        "id" :"productDescription",
+        "label" : "Description du produit",
+        "default" : "Description du produit"
+      },
+      {
+        "type":"text",
+        "id" :"poductLink",
+      }
+    ]
   }
-  ]
-}
 {% endschema %}
