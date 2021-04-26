@@ -249,6 +249,38 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 }
 
 /*CSS de la fiche d'un produit*/
+.ficheProduct{
+    display: grid;
+    position: flex;
+}
+
+.ficheProduct-SousImg{
+    grid-column:1;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: grid;
+}
+
+.ficheProduct-SousImg-0{
+    grid-row:1;
+}
+
+.ficheProduct-SousImg-1{
+    grid-row:2;
+}
+
+.ficheProduct-SousImg-2{
+    grid-row:3;
+}
+
+.ficheProduct-SousImg-3{
+    grid-row:4;
+}
+
+.ficheProduct-SousImg-4{
+    grid-row:5;
+}
+
 .ficheProduct-associateProduct{
     grid-row:5;
 }
@@ -300,13 +332,10 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     justify-content: end;
 }
 
+
+/*Taille écran a partir de 0 à 760px*/
 @media screen and (max-width:760px)
 {
-    .ficheProduct{
-        display: grid;
-        position: flex;
-    }
-
     .ficheProduct-Img{
         display: grid;
         grid-column: 1/4;
@@ -317,32 +346,6 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     .ficheProduit-BigImg{
         grid-column: 2;
         grid-row: 1/5;
-    }
-
-    .ficheProduct-SousImg{
-        grid-column:1;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    .ficheProduct-SousImg-0{
-        grid-row:1;
-    }
-
-    .ficheProduct-SousImg-1{
-        grid-row:2;
-    }
-
-    .ficheProduct-SousImg-2{
-        grid-row:3;
-    }
-
-    .ficheProduct-SousImg-3{
-        grid-row:4;
-    }
-
-    .ficheProduct-SousImg-4{
-        grid-row:5;
     }
 
     .ficheProduct-Contenu{
@@ -378,6 +381,5 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     .ficheProduct-associateProduct{
         display:none;
     }
-
-
 }
+
