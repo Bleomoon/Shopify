@@ -115,16 +115,11 @@
   <h2>VOUS AIMEREZ AUSSI...</h2>
   <div class="listProduit">
     {% assign myType = product.type %}
-    {% for item in products %}
-      <p>{{item.description }}</p>
-      {% if item.type == myType %}
-        {% assign myIMG = item.featured_image | default: item.featured_image %}
-
-        <img class="ficheProduit-BigImg" src="{{ myIMG | img_url: 'large' }}"
-          alt="{{ myIMG.alt | escape }}" id="ProductPhotoImg">
-      {% endif %}
+    {% for type in product.types %}
+      {% for product in type.product %}
+        <p>{{product.title }}</p>
+      {% endfor %}
     {% endfor %}
-   
   </div>
 </div>
 
