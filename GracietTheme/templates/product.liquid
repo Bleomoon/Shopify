@@ -115,10 +115,10 @@
 <div class="listProductLike">
   <h2>VOUS AIMEREZ AUSSI...</h2>
   <div class="listProduit">
-    {% for type in products.type}
-      {% if type = product.type %}
+    {% for type in products.type %}
+      {% if type == product.type %}
         {% form "product", product %}
-        
+          <p>OUI</p>
         {% endform %}
       {% endif %}
     {% endfor %}
