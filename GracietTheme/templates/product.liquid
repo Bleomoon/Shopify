@@ -115,8 +115,8 @@
   <h2>VOUS AIMEREZ AUSSI...</h2>
   <div class="listProduit">
     {% assign myType = product.type %}
-    {% for type in product.types %}
-      {% for product in type.product %}
+    {% for product_type in product.all_types %}
+      {% for product in product_type %}
         <p>{{product.title }}</p>
       {% endfor %}
     {% endfor %}
