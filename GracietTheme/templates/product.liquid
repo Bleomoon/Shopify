@@ -117,7 +117,7 @@
     {% assign myType = product.type %}
     {% for product in all_types.product %}
       {% if myType == product.type %}
-        <p>{{product.title }}</p>
+        <h1>{{ product.description }}</h1>
       {% endif %}
     {% endfor %}
   </div>
