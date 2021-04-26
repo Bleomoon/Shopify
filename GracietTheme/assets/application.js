@@ -75,3 +75,18 @@ function AssociateProductClick(){
         associateProductsBtn.innerHTML = '<i class="fas fa-minus"></i>'
     }
 }
+
+function infosComplementairesProduct(){
+    const infosComp = document.querySelector('.infosComplementairesProduct-Show');
+    const infosCompBtn = document.querySelector('.infosComplementairesProduct-Btn');
+
+    /*Si on appuie sur produits associés*/
+    if (infosComp.contains('open')) {
+        infosComp.remove('open');
+        infosCompBtn.innerHTML = 'Description';
+    }
+    else {
+        infosComp.add('open');
+        infosCompBtn.innerHTML = 'Informations Complémentaires'
+    }
+}

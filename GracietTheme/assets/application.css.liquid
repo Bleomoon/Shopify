@@ -315,12 +315,13 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 }
 
 .infosComplementairesProduct-Titre{
-    display:grid;
+    grid-row: 1;
     grid-column: 1;
 }
 
 .infosComplementairesProduct-paragraphe{
-    grid-column:2/4;
+    grid-row:2;
+    display: grid;
 }
 
 .infosComplementairesProduct-p{
@@ -380,6 +381,25 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 
     .ficheProduct-associateProduct{
         display:none;
+    }
+        
+    .infosComplementairesProduct-Titre{
+        display:grid;
+        grid-column: 1;
+    }
+
+    .infosComplementairesProduct-paragraphe{
+        grid-column:2/4;
+        display: grid;
+    }
+
+    .infosComplementairesProduct-p{
+        grid-row:1;
+    }
+
+    .infosComplementairesProduct-Btn{
+        grid-row:2;
+        justify-content: end;
     }
 }
 

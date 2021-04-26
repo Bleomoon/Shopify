@@ -94,17 +94,15 @@
 <br><br><br>
 <div class="infosComplementairesProduct">
   <div class="infosComplementairesProduct-Titre">
-    <h3>Description</h3> <br>
-    <h3>Informations supplémentaires</h3>
+    <button class="infosComplementairesProduct-Btn" onclick=infosComplementairesProduct()>Informations supplémentaires</button>
+    <div class="infosComplementairesProduct-Show">
+     <p>I'm SHOWING THE INFORMATION of </p>
+    </div>
   </div>
   <div class="infosComplementairesProduct-paragraphe">
     <div class="infosComplementairesProduct-p">
       <p>
-        Effet de mode ou pas, ce motif camouflage m’a plu immédiatement. J’ai adoré ce
-        joli jacquard de laine tissé de nuances de beaux bleus et de beaux gris. Il a
-        été bien agréable de le marier aux cuirs bleu roi et gris souris. Une fermeture
-        éclair vient fermer le sac. Le rabat est maintenu par un fermoir tourniquet
-        métallique Finition Nickel.
+        {{ product.description }}
       </p>
     </div>
     <div class="infosComplementairesProduct-Btn">
