@@ -114,9 +114,10 @@
 <div class="listProductLike">
   <h2>VOUS AIMEREZ AUSSI...</h2>
   <div class="listProduit">
-    {% for type in products.type %}
-      {% if type == product.type %}
-        {% assign myIMG = products.featured_image | default: products.featured_image %}
+    {% assign myType = product.type %}
+    {% for item in products %}
+      {% if item.type == myType %}
+        {% assign myIMG = item.featured_image | default: item.featured_image %}
 
         <img class="ficheProduit-BigImg" src="{{ myIMG | img_url: 'large' }}"
           alt="{{ myIMG.alt | escape }}" id="ProductPhotoImg">
