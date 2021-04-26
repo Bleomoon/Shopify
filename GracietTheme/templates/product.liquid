@@ -20,6 +20,17 @@
     {%comment%} Zone sur le titre {%endcomment%}
     <h1>{{ product.title }}</h1>
 
+    {%comment%} Zone des bouttons pour changer d'articles {%endcomment%}
+    <div class="ficheProduct-OtherArticle">
+      <button class="buttonRef"><a class="aRef" href="">
+          <i class="fas fa-chevron-right"></i>
+        </a></button>
+    
+      <button class="buttonRef"><a class="aRef" href="">
+          <i class="fas fa-chevron-left"></i>
+        </a></button>
+    </div>
+
     {%comment%} Zone sur la description du produit {%endcomment%}
     <div class="ficheProduct-Desc">{{ product.description }}</div>
 
@@ -61,17 +72,8 @@
         <i class="fab fa-instagram"></i>
       </a></button>
     </div>
-    {%comment%} Zone des produit associés {%endcomment%}
-    {%comment%} Zone des bouttons pour changer d'articles {%endcomment%}
-    <div class="ficheProduct-OtherArticle">
-      <button class="buttonRef"><a class="aRef" href="">
-        <i class="fas fa-chevron-right"></i>
-      </a></button>
 
-      <button class="buttonRef"><a class="aRef" href="">
-        <i class="fas fa-chevron-left"></i>
-      </a></button>
-    </div>
+    {%comment%} Zone des produit associés {%endcomment%}
     <div class="ficheProduct-associateProduct">
       <button class="ficheProduct-associateProduct-Btn" onclick=AssociateProductClick()>Produits associes <i class="fas fa-plus"></i></button>
       <div class="ficheProduct-associateProduct-products">
