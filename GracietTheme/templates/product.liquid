@@ -100,6 +100,7 @@
   <div class="infosComplementairesProduct-paragraphe">
     <div class="infosComplementairesProduct-p">
       <p>
+        {{ product.type }}
         {{ product.description }}
       </p>
     </div>
@@ -114,9 +115,14 @@
 <div class="listProductLike">
   <h2>VOUS AIMEREZ AUSSI...</h2>
   <div class="listProduit">
-    {% form "product", product, id: "listProduitLike-ProductId", class="custom-class", data-example:"100" %}
-      <h2>I'm a FORM</h2>
-    {% endform %}
+    {% for type in products.type}
+      {% if type = product.type %}
+        {% form "product", product %}
+        
+        {% endform %}
+      {% endif %}
+    {% endfor %}
+   
   </div>
 </div>
 
