@@ -5,13 +5,11 @@
 
   {%comment%} Zone sur les images {%endcomment%}
   <div class="ficheProduct-Img">
-    <div class="ficheProduit-BigImg">
-      <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
-    </div>
+    <img class="ficheProduit-BigImg" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
     <div class="ficheProduct-SousImg">
-      {%assign nbImg = 0%}
+      {%assign ficheProductnbImg = 0%}
       {% for image in product.images %}
-      <a class="ficheProduct-SousImg-{%increment nbImg%}" href="{{ image.src | img_url: 'large' }}">
+      <a class="ficheProduct-SousImg-{%increment ficheProductnbImg%}" href="{{ image.src | img_url: 'large' }}">
         <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
       </a>
       {% endfor %}
@@ -21,7 +19,7 @@
   {%comment%} Zone sur le contenu de la fiche produit {%endcomment%}
   <div class="ficheProduct-Contenu">
     {%comment%} Zone sur le titre {%endcomment%}
-    <h1>{{ product.title }}</h1>
+    <h1 class="ficheProduct-Contenu-Title">{{ product.title }}</h1>
 
     {%comment%} Zone des bouttons pour changer d'articles {%endcomment%}
     <div class="ficheProduct-OtherArticle">
@@ -38,7 +36,7 @@
     <div class="ficheProduct-Desc">{{ product.description }}</div>
 
     {%comment%} Zone sur le contenu personnalisé : prix/quantity etc {%endcomment%}
-    <div>
+    <div class="ficheProduct-personnalise">
       <form action="/cart/add" method="post" enctype="multipart/form-data"
         id="AddToCartForm">
         <select name="id" id="productSelect">
@@ -80,8 +78,9 @@
     <div class="ficheProduct-associateProduct">
       <button class="ficheProduct-associateProduct-Btn" onclick=AssociateProductClick()>Produits associes <i class="fas fa-plus"></i></button>
       <div class="ficheProduct-associateProduct-products">
+        {%assign associatePnbImg%}
         {% for image in product.images %}
-            <a href="{{ image.src | img_url: 'large' }}">
+            <a class="associateProduct-products-{% increment associatePnbImg %}" href="{{ image.src | img_url: 'large' }}">
               <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
             </a>
         {% endfor %}
