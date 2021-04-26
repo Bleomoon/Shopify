@@ -116,6 +116,7 @@
   <div class="listProduit">
     {% assign myType = product.type %}
     {% for item in products %}
+      <p>{{item.description }}</p>
       {% if item.type == myType %}
         {% assign myIMG = item.featured_image | default: item.featured_image %}
 
