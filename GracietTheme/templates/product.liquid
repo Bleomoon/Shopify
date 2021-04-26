@@ -49,15 +49,15 @@
 
     {%comment%} Zone des logos Facebook/Twitter/Instagram {%endcomment%}
     <div class="ficheProduct-Logos">
-      <button> <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F">
+      <button class="buttonRef"> <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F">
         <i class="fab fa-facebook"></i>
       </a></button>
     
-      <button><a href="http://twitter.com/share?text=http://OLIVIA%2090&url=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F"> 
+      <button class="buttonRef"><a href="http://twitter.com/share?text=http://OLIVIA%2090&url=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F"> 
         <i class="fab fa-twitter"></i>
       </a></button>
     
-      <button> <a href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F&media=https://sylvie-strohl.com/wp-content/uploads/2019/12/OLIVIA-90-FACE-SANS-M2TAL.jpg&description=http://OLIVIA%2090">
+      <button class="buttonRef"> <a href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F&media=https://sylvie-strohl.com/wp-content/uploads/2019/12/OLIVIA-90-FACE-SANS-M2TAL.jpg&description=http://OLIVIA%2090">
         <i class="fab fa-instagram"></i>
       </a></button>
     </div>
@@ -73,9 +73,9 @@
       </a></button>
     </div>
     <div class="ficheProduct-associateProduct">
-      <a>Produits associes <i class="fas fa-plus"></i></a>
+      <button class="ficheProduct-associateProduct-Btn" onclick=AssociateProductClick()>Produits associes <i class="fas fa-plus"></i></button>
       <div class="ficheProduct-associateProduct-products">
-        {% for images in product.images %}
+        {% for image in product.images %}
             <a href="{{ image.src | img_url: 'large' }}">
               <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
             </a>
@@ -88,11 +88,11 @@
 </div>
 
 <div class="infosComplementairesProduct">
-  <div>
+  <div class="infosComplementairesProduct-Titre">
     <h3>Description</h3> <br>
     <h3>Informations supplémentaires</h3>
   </div>
-  <div>
+  <div class="infosComplementairesProduct-paragraphe">
     <div>
       <p>
         Effet de mode ou pas, ce motif camouflage m’a plu immédiatement. J’ai adoré ce
@@ -103,7 +103,7 @@
       </p>
     </div>
     <div>
-      <button>Entretien</button>
+      <button class="buttonRef" style="border:black;"><i class="fas fa-cart-plus"></i></i> Entretien</button>
     </div>
   </div>
 </div>
