@@ -36,8 +36,7 @@
     <div class="ficheProduct-Desc">{{ product.description }}</div>
 
     {%comment%} Zone sur le contenu personnalisé : prix/quantity etc {%endcomment%}
-    <div class="ficheProduct-personnalise">
-      <form action="/cart/add" method="post" enctype="multipart/form-data"
+      <form class="ficheProduct-personnalise" action="/cart/add" method="post" enctype="multipart/form-data"
         id="AddToCartForm">
         <select name="id" id="productSelect">
           {% for variant in product.variants %}
@@ -57,7 +56,6 @@
         <input type="number" id="Quantity" name="quantity" value="1" min="1">
         <button type="submit" name="add" id="AddToCart">Add to cart</button>
       </form>
-    </div>
 
     {%comment%} Zone des logos Facebook/Twitter/Instagram {%endcomment%}
     <div class="ficheProduct-Logos">
