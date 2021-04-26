@@ -1,7 +1,7 @@
 <div class="productShow">
   {{ section.settings.productName }}
-  {{ section.blocks.settings.productPrice }}
-  {{ section.blocks.settings.productDescription }}
+  {{ section.settings.productPrice }}
+  {{ section.settings.productDescription }}
   {%comment%}
   <h3><a class="productTitle" href="">  </a></h3><br>
   {% for block in section.blocks %}
@@ -28,38 +28,29 @@
       "id" :"productName",
       "label" : "Description du produit",
       "default" : "Description du produit"  
-    }
-  ],
-  "max_blocks": 5,
-  "blocks": [
+    },
     {
-    "type":"product",
-    "name":"productShow",
-    "settings" : [
-        {
-        "type":"text",
-        "id" :"productPrice",
-        "label" : "Prix du produit",
-        "default" : "80000"
-        },
-        {
-        "type":"text",
-        "id" :"productDescription",
-        "label" : "Description du produit",
-        "default" : "Description du produit"
-        },
-        {
-        "type":"text",
-        "id" :"poductLink",
-        }
-      ]
+      "type":"text",
+      "id" :"productPrice",
+      "label" : "Prix du produit",
+      "default" : "80000"
+    },
+    {
+      "type":"text",
+      "id" :"productDescription",
+      "label" : "Description du produit",
+      "default" : "Description du produit"
+    },
+    {
+      "type":"text",
+      "id" :"poductLink",
     }
   ],
   "presets": [
-    {
-      "name": "Show Product",
-      "category":"Contenu"
-    }
+  {
+  "name": "Show Product",
+  "category":"Contenu"
+  }
   ]
 }
 {% endschema %}
