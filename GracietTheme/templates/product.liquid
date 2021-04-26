@@ -21,31 +21,31 @@
     <h1>{{ product.title }}</h1>
 
     {%comment%} Zone sur la description du produit {%endcomment%}
-    <div>{{ product.description }}</div>
+    <div class="ficheProduct-Desc">{{ product.description }}</div>
 
-    <form action="/cart/add" method="post" enctype="multipart/form-data"
-      id="AddToCartForm">
-      <select name="id" id="productSelect">
-        {% for variant in product.variants %}
-        {% if variant.available %}
-        <option value="{{ variant.id }}">
-          {{ variant.title }} - {{ variant.price | money_with_currency }}
-        </option>
-        {% else %}
-        <option disabled="disabled">
-          {{ variant.title }} - sold out
-        </option>
-        {% endif %}
-        {% endfor %}
-      </select>
-      {{ current_variant.price | money }}
-      <label for="Quantity">quantity</label>
-      <input type="number" id="Quantity" name="quantity" value="1" min="1">
-      <button type="submit" name="add" id="AddToCart">Add to cart</button>
-    </form>
-
-    {%comment%} Zone sur le prix {%endcomment%}
-    {%comment%} Zone du boutton ajouter au panier {%endcomment%}
+    {%comment%} Zone sur le contenu personnalisé : prix/quantity etc {%endcomment%}
+    <div>
+      <form action="/cart/add" method="post" enctype="multipart/form-data"
+        id="AddToCartForm">
+        <select name="id" id="productSelect">
+          {% for variant in product.variants %}
+          {% if variant.available %}
+          <option value="{{ variant.id }}">
+            {{ variant.title }} - {{ variant.price | money_with_currency }}
+          </option>
+          {% else %}
+          <option disabled="disabled">
+            {{ variant.title }} - sold out
+          </option>
+          {% endif %}
+          {% endfor %}
+        </select>
+        {{ current_variant.price | money }}
+        <label for="Quantity">quantity</label>
+        <input type="number" id="Quantity" name="quantity" value="1" min="1">
+        <button type="submit" name="add" id="AddToCart">Add to cart</button>
+      </form>
+    </div>
 
     {%comment%} Zone des logos Facebook/Twitter/Instagram {%endcomment%}
     <div class="ficheProduct-Logos">
@@ -77,6 +77,33 @@
   
 </div>
 
+<div class="infosComplementairesProduct">
+  <div>
+    <h3>Description</h3> <br>
+    <h3>Informations supplémentaires</h3>
+  </div>
+  <div>
+    <div>
+      <p>
+        Effet de mode ou pas, ce motif camouflage m’a plu immédiatement. J’ai adoré ce
+        joli jacquard de laine tissé de nuances de beaux bleus et de beaux gris. Il a
+        été bien agréable de le marier aux cuirs bleu roi et gris souris. Une fermeture
+        éclair vient fermer le sac. Le rabat est maintenu par un fermoir tourniquet
+        métallique Finition Nickel.
+      </p>
+    </div>
+    <div>
+      <button>Entretien</button>
+    </div>
+  </div>
+</div>
 
-
+<div class="listProductLike">
+  <h2>VOUS AIMEREZ AUSSI...</h2>
+  <div class="listProduit">
+    {% form "product", product, id: "listProduitLike-ProductId", class="custom-class", data-example:"100" %}
+      <h2>I'm a FORM</h2>
+    {% endform %}
+  </div>
+</div>
 
