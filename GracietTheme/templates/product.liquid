@@ -100,7 +100,6 @@
   <div class="infosComplementairesProduct-paragraphe">
     <div class="infosComplementairesProduct-p">
       <p>
-        {{ product.type }}
         {{ product.description }}
       </p>
     </div>
@@ -117,9 +116,10 @@
   <div class="listProduit">
     {% for type in products.type %}
       {% if type == product.type %}
-        {% form "product", product %}
-          <p>OUI</p>
-        {% endform %}
+        {% assign myIMG = products.featured_image | default: products.featured_image %}
+
+        <img class="ficheProduit-BigImg" src="{{ myIMG | img_url: 'large' }}"
+          alt="{{ myIMG.alt | escape }}" id="ProductPhotoImg">
       {% endif %}
     {% endfor %}
    
