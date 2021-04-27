@@ -54,16 +54,17 @@ $font-family: sans-serif;
 }
 
 .searchbox-content{
-    display:flex;
+    display:none;
     position:absolute;
     justify-content: flex-end;
     width:100%;
     left:0;
     top:100%;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    &.show{
-        display:none;
-    }
+}
+
+.searchbox-content.show{
+    display:flex;
 }
 
 .user {
