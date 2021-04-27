@@ -64,15 +64,15 @@ function AssociateProductClick(){
     const associateProductBtn = document.querySelector('.associateProductBtn');
 
     /*Si on appuie sur produits associés*/
-    if (ficheProduct_associateProduct_products.contains('open'))
+    if (associateProduct.contains('open'))
     {
-        ficheProduct_associateProduct_products.remove('open');
-        ficheProduct_associateProduct_Btn.innerHTML = 'Produits associes <i class="fas fa-plus"></i>';
+        associateProduct.remove('open');
+        associateProductBtn.innerHTML = 'Produits associes <i class="fas fa-plus"></i>';
     }
     else
     {
-        ficheProduct_associateProduct_products.add('open');
-        ficheProduct_associateProduct_Btn.innerHTML = 'Produits associes <i class="fas fa-minus"></i>'
+        associateProduct.add('open');
+        associateProductBtn.innerHTML = 'Produits associes <i class="fas fa-minus"></i>'
     }
 }
 
