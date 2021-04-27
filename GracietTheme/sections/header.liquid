@@ -39,6 +39,8 @@
 				<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Connexion">SE DECONNECTER </a> </li>
 			{% else %}
 				{% for link in linklists.Connexion.links %}
+					<li class="smallScreen-item"><a class="aRef" href="{{ customer_login_link }}">Connecxion
+					</a> </li>
 					<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
 				{% endfor %}
 			{% endif %}
