@@ -60,19 +60,19 @@ function openMenuNavSmallScreen(){
 }
 
 function AssociateProductClick(){
-    const associateProducts = document.querySelector('.ficheProduct-associateProduct-products');
-    const associateProductsBtn = document.querySelector('.ficheProduct-associateProduct-Btn');
+    const ficheProduct_associateProduct_products = document.querySelector('.ficheProduct-associateProduct-products');
+    const ficheProduct_associateProduct_Btn = document.querySelector('.ficheProduct-associateProduct-Btn');
 
     /*Si on appuie sur produits associés*/
-    if (associateProducts.contains('open'))
+    if (ficheProduct_associateProduct_products.contains('open'))
     {
-        associateProducts.remove('open');
-        associateProductsBtn.innerHTML = 'Produits associes <i class="fas fa-plus"></i>';
+        ficheProduct_associateProduct_products.remove('open');
+        ficheProduct_associateProduct_Btn.innerHTML = 'Produits associes <i class="fas fa-plus"></i>';
     }
     else
     {
-        associateProducts.add('open');
-        associateProductsBtn.innerHTML = 'Produits associes <i class="fas fa-minus"></i>'
+        ficheProduct_associateProduct_products.add('open');
+        ficheProduct_associateProduct_Btn.innerHTML = 'Produits associes <i class="fas fa-minus"></i>'
     }
 }
 
