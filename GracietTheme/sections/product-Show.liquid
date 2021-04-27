@@ -2,8 +2,9 @@
 <div class="productShow">  
   <a class="aRef" href="{{ section.settings.productLink }}">
     <div class="product-img">
-    <img id="{{ section.id }}" class="product-img" onmouseout="changeImageProduct({{ section.id }}, {{ section.setting.imgProduct1 }})" 
-      onmouseover="changeImageProduct({{ section.id }}, {{ section.setting.imgProduct2 }})" 
+    <img id="{{ section.id }}" class="product-img" 
+      onmouseout="changeImageProduct({{ section.id }}, {{ section.settings.imgProduct1 }})" 
+      onmouseover="changeImageProduct({{ section.id }}, {{ section.settings.imgProduct2 }})" 
       src="{{ section.settings.imgProduct1 | img_url: "300x300" }}"
         alt="ProductImg">
     </div>
