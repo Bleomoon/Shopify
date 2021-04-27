@@ -116,12 +116,14 @@
 <div class="listProductLike">
   <h2>VOUS AIMEREZ AUSSI...</h2>
   <div class="listProduit">
+    {%comment%}
     {% assign myType = product.type %}
     {% for product in all_types.product %}
       {% if myType == product.type %}
         <p>{{ product.description }}</p>
       {% endif %}
     {% endfor %}
+    {%endcomment%}
   </div>
 </div>
 
