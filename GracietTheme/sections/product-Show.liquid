@@ -1,8 +1,9 @@
 <div class="productShow">
+  {%comment%}
   {{ section.settings.productName }}
   {{ section.settings.productPrice }}
   {{ section.settings.productDescription }}
-  {%comment%}
+  
   <h3><a class="productTitle" href="">  </a></h3><br>
   {% for block in section.blocks %}
     <div class="productImage">
@@ -17,8 +18,19 @@
     </div>
   {% endfor %}
   {%endcomment%}
+  
+  <ul>
+    <li>
+      <img src="" alt="">
+      <div class="product-details">
+        <h3> Nom du produit</h3>
+        <p>Prix du produit</p>
+      </div>
+    </li>
+  </ul>
 </div>
 
+{%comment%}
 {% schema %}
   {
     "name": "Show Product",
@@ -49,3 +61,4 @@
     ]
   }
 {% endschema %}
+{%endcomment%}
