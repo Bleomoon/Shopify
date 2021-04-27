@@ -20,7 +20,7 @@
 	{% comment %} Ici la classe qui gere les bouttons panier, search et connexion {% endcomment %}
 	<div class="header-icons">
 		{% comment %} boutton qui va afficher une bar de navigation {% endcomment %}
-		<button class="header-icons-Ref">
+		<button onclick=openSearch(); class="header-icons-search">
 			<i class="fas fa-search"></i>
 		</button>
 
@@ -62,5 +62,8 @@
 		</ul>
 	</div>
 
+	<div id="searchbox" class="searchbox-content">
+		Rechercher <button onclick=openSearch(); class="btn-close"><li class="fas fa-times"></li></button>
+	</div>
 </header>
 </br></br></br>

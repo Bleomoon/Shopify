@@ -17,6 +17,7 @@ $font-family: sans-serif;
 .buttonRef {
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 .aRef {
@@ -24,10 +25,7 @@ $font-family: sans-serif;
     color:black;
 }
 
-.header-icons-Ref{
-        background: none;
-        border: none;
-    }
+
 
 /*CSS du HEADER*/
 .header {
@@ -37,6 +35,35 @@ $font-family: sans-serif;
     top: 0;
     align-items: center;
     display: flex;
+}
+
+.header-logo{
+    padding-left: 10px;
+}
+
+.header-icons-Ref{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header-icons-search{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.searchbox-content{
+    display:none;
+    position:absolute;
+    justify-content: flex-end;
+    width:100%;
+    left:0;
+    top:100%;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    &.show{
+        display:flex;
+    }
 }
 
 .user {
@@ -137,7 +164,8 @@ $font-family: sans-serif;
         left: 0;
         transition: none;
         width: 100%;
-        display: block;
+        display: flex;
+        justify-content: center;
     }
 
     .navbar-item {

@@ -22,7 +22,7 @@ function openPanier()
 
 function openSearch()
 {
-
+    document.getElementById('searchbox').classList.toggle('show');
 }
 
 function openUser()
