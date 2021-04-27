@@ -85,11 +85,15 @@
   </ul>
 </div>
 
-{%comment%}
 {% schema %}
   {
     "name": "Show Product",
     "settings": [
+      {
+        "id":"imgProduct",
+        "type":"image_picker",
+        "label":"Image of your product"
+      },
       {
         "id" :"productName",
         "type":"text",
@@ -110,14 +114,12 @@
       },
       {
         "id" :"poductLink",
-        "type":"text",
+        "type":"url",
         "label" : "Product Link"
       }
     ]
   }
 {% endschema %}
-{%endcomment%}
-
 
 Img1
 Img2
