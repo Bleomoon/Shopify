@@ -70,12 +70,13 @@
 
 	{%comment%} Ici on gère le recherche sur le site un form search {% endcomment%}
 	<div id="searchbox" class="searchbox-content">
-		<div class="searchbox-search"></div>
+		
 			<form action="/search" class="search-bar" role="search">
+				<div class="searchbox-search"></div>
 					<input type="text" class="search-input">
 					<button class="searchbox-Btn"><i class="fas fa-search"></i></button>
+				</div>
 			</form>
-		</div>
 		<button onclick=openSearch(); class="btn-close"><li class="fas fa-times"></li></button>
 	</div>
 </header>
