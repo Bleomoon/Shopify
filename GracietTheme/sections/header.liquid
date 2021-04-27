@@ -33,10 +33,9 @@
 			<i class="fas fa-user"></i>
 		</button>
 		<ul class="user">
-			<li class="user-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/mon-compte">MON COMPTE </a> </li>
-			<li class="user-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/connexion">SE DECONNECTER </a> </li>
-			<li class="user-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/connexion">SE CONNECTER </a> </li>
-			<li class="user-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/inscription">S'INSCRIRE </a> </li>
+			{% for link in linklists.Connexion.links %}
+				<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
+			{% endfor %}
 		</ul>
 	</div>
 
@@ -46,17 +45,20 @@
 			<i class="fas fa-bars"></i>
 		</button>
 		<ul class="smallScreen">
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/sacs-a-main"> SACS A MAIN </a> </li>
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/accessoires"> ACCESSOIRES </a> </li>
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/collections"> COLLECTIONS </a> </li>
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/sylvie-strohl"> /SYLVIE STROHL </a> </li>
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/blog"> BLOG </a> </li>
+			{% for link in linklists.Connexion.links %}
+				<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
+			{% endfor %}
+
+			{% if shop.customer_accounts_enabled %}
+				<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/mon-compte">MON COMPTE </a> </li>
+				<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/Connexion">SE DECONNECTER </a> </li>
+			{% else %}
+				{% for link in linklists.Connexion.links %}
+				<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
+				{% endfor %}
+			{% endif %}
 			<li class="smallScreen-item"><button class="header-icons-search"><i class="fas fa-search"></i></button></li>
 			<li class="smallScreen-item"><button class="header-icons-Ref"><i class="fas fa-shopping-basket"></i></button></li>
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/mon-compte">MON COMPTE </a> </li>
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/connexion">SE DECONNECTER </a> </li>
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/connexion">SE CONNECTER </a> </li>
-			<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/inscription">S'INSCRIRE </a> </li>
 		</ul>
 	</div>
 
