@@ -1,98 +1,33 @@
-<div class="productShow">
-  {%comment%}
-  {{ section.settings.productName }}
-  {{ section.settings.productPrice }}
-  {{ section.settings.productDescription }}
-  
-  <h3><a class="productTitle" href="">  </a></h3><br>
-  {% for block in section.blocks %}
-    <div class="productImage">
-
+{%comment%} Le html d'un produit {%endcomment%}
+<div class="productShow">  
+  <a class="aRef" href="{{ section.settings.productLink }}">
+    <div class="product-img">
+    <img id="{{ section.id }}" class="product-img" onmouseout="changeImageProduct({{ section.id }}, {{ section.setting.imgProduct1 }})" 
+      onmouseover="changeImageProduct({{ section.id }}, {{ section.setting.imgProduct2 }})" 
+      src="{{ section.settings.imgProduct1 | img_url: "300x300" }}"
+        alt="ProductImg">
     </div>
-    <div class="productText">
-      <p class="productPrice">productPrice</p>
-      <p class="producDesc">productDesc</p>
-      {{ block.settings.productPrice }}
-      {{ block.settings.productDescription }}
-      <button><a class="aRef" href=""><i class="fas fa-shopping-basket"></i></a></button>
+    <div class="product-details">
+      <h3 class="product-details-Nom">{{ section.settings.productName }}</h3>
+      <p class="product-details-Prix">{{ section.settings.productPrice }}</p>
     </div>
-  {% endfor %}
-  {%endcomment%}
-  
-  <ul class="productShow-ul">
-    <li class="product-li-item-0">
-      <a class="aRef" href="X">
-        <div class="product-img">
-          <img class="product-img-0" onmouseout="this.src='https:/\/sylvie-strohl.com/wp-content/uploads/2019/12/sac_%C3%A0_main_marine_rouge-CELIA_n%C2%B02-HIVER-CAPE_COD-Sylvie_Strohl-face-700x700.jpg';" 
-          onmouseover='this.src="https:/\/sylvie-strohl.com/produit/olivia-n56/";'
-          src="https://sylvie-strohl.com/wp-content/uploads/2019/12/sac_%C3%A0_main_marine_rouge-CELIA_n%C2%B02-HIVER-CAPE_COD-Sylvie_Strohl-face-700x700.jpg"
-            alt="ProductImg">
-        </div>
-        <div class="product-details">
-          <h3 class="product-details-Nom">Nom du produit</h3>
-          <p class="product-details-Prix">Prix du produit</p>
-        </div>
-      </a>
-    </li>
-    <li class="product-li-item-1">
-      <a class="aRef" href="X">
-      <div class="product-img">
-        <img class="product-img-0"
-          src="https://sylvie-strohl.com/wp-content/uploads/2019/12/sac_%C3%A0_main_marine_rouge-CELIA_n%C2%B02-HIVER-CAPE_COD-Sylvie_Strohl-face-700x700.jpg"
-          alt="ProductImg">
-        <button>
-          <li class="fa-shopping-basket"></li>
-        </button>
-      </div>
-      <div class="product-details">
-          <h3 class="product-details-Nom">Nom du produit</h3>
-          <p class="product-details-Prix">Prix du produit</p>
-      </div>
-      </a>
-    </li>
-    <li class="product-li-item-2">
-      <a class="aRef" href="X">
-        <div class="product-img">
-          <img class="product-img-2"
-            src="https://sylvie-strohl.com/wp-content/uploads/2019/12/sac_%C3%A0_main_marine_rouge-CELIA_n%C2%B02-HIVER-CAPE_COD-Sylvie_Strohl-face-700x700.jpg"
-            alt="ProductImg">
-          <button>
-            <li class="fa-shopping-basket"></li>
-          </button>
-        </div>
-        <div class="product-details">
-          <h3 class="product-details-Nom">Nom du produit</h3>
-          <p class="product-details-Prix">Prix du produit</p>
-        </div>
-      </a>
-    </li>
-    <li class="product-li-item-3">
-      <a class="aRef" href="X">
-        <div class="product-img">
-          <img class="product-img-3"
-            src="https://sylvie-strohl.com/wp-content/uploads/2019/12/sac_%C3%A0_main_marine_rouge-CELIA_n%C2%B02-HIVER-CAPE_COD-Sylvie_Strohl-face-700x700.jpg"
-            alt="ProductImg">
-          <button>
-        <li class="fa-shopping-basket"></li>
-        </button>
-        </div>
-        <div class="product-details">
-          <h3 class="product-details-Nom">Nom du produit</h3>
-          <p class="product-details-Prix">Prix du produit</p>
-        </div>
-      </a>
-    </li>
-  </ul>
+  </a>
 </div>
 
+{%comment%} Le schema qui décrit un produit {%endcomment%}
 {% schema %}
   {
     "name": "Show Product",
     "settings": [
       {
-        "id":"imgProduct",
+        "id":"imgProduct1",
         "type":"image_picker",
-        "label":"Image of your product"
+        "label":"First Image of your product"
+      },
+      {
+      "id":"imgProduct2",
+      "type":"image_picker",
+      "label":"Second Image of your product"
       },
       {
         "id" :"productName",
@@ -120,11 +55,3 @@
     ]
   }
 {% endschema %}
-
-Img1
-Img2
-
-Titre
-Description
-Prix
-link

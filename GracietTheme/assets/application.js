@@ -77,3 +77,8 @@ function infosComplementairesProduct(){
         infosCompBtn.innerHTML = 'Informations Complémentaires'
     }
 }
+
+
+function changeImageProduct(id, src){
+    document.getElementById(id).src = src;
+}
