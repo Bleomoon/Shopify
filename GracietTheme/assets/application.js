@@ -28,7 +28,7 @@ function openSearch()
 function openUser()
 {
     const userBar = document.querySelector('.user');
-    const userBarBtn = document.querySelector('.header-icons-user');
+    const userBarBtn = document.querySelector('.header-icons-Ref');
 
     if(userBar.classList.contains('open'))
     {
