@@ -67,12 +67,12 @@ function AssociateProductClick(){
     if (associateProducts.contains('open'))
     {
         associateProducts.remove('open');
-        associateProductsBtn.innerHTML = '<i class="fas fa-plus"></i>';
+        associateProductsBtn.innerHTML = 'Produits associes <i class="fas fa-plus"></i>';
     }
     else
     {
         associateProducts.add('open');
-        associateProductsBtn.innerHTML = '<i class="fas fa-minus"></i>'
+        associateProductsBtn.innerHTML = 'Produits associes <i class="fas fa-minus"></i>'
     }
 }
 
