@@ -79,6 +79,6 @@ function infosComplementairesProduct(){
 }
 
 
-function changeImageProduct(id, src){
-    document.getElementById(id).src = src;
+function changeImageProduct(id, source){
+    document.getElementById(id).src = source;
 }
