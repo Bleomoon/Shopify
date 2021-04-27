@@ -24,7 +24,7 @@
 
 		
 		{% comment %} boutton qui va afficher une liste avec les objets du paniers et si clique envoie sur le panier {% endcomment %}
-		<button class="header-icons-Ref"> 
+		<button class="header-icons-cart"> 
 			<i class="fas fa-shopping-basket"></i>
 		</button>
 
@@ -51,7 +51,7 @@
 			<i class="fas fa-bars"></i>
 		</button>
 		<ul class="smallScreen">
-			{% for link in linklists.Connexion.links %}
+			{% for link in linklists.main-menu.links %}
 				<li class="smallScreen-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
 			{% endfor %}
 
@@ -64,12 +64,19 @@
 				{% endfor %}
 			{% endif %}
 			<li class="smallScreen-item"><button class="header-icons-search"><i class="fas fa-search"></i></button></li>
-			<li class="smallScreen-item"><button class="header-icons-Ref"><i class="fas fa-shopping-basket"></i></button></li>
+			<li class="smallScreen-item"><button class="header-icons-cart"><i class="fas fa-shopping-basket"></i></button></li>
 		</ul>
 	</div>
 
+	{%comment%} Ici on gère le recherche sur le site un form search {% endcomment%}
 	<div id="searchbox" class="searchbox-content">
-		Rechercher <button onclick=openSearch(); class="btn-close"><li class="fas fa-times"></li></button>
+		<form action="/search" class="search-bar" role="search">
+			<div class="searchbox-search">
+				<input type="text" class="search-input">
+				<button class="searchbox-Btn"></button>
+			</div>
+		</form>
+		<button onclick=openSearch(); class="btn-close"><li class="fas fa-times"></li></button>
 	</div>
 </header>
 </br></br></br>
