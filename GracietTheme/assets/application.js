@@ -60,8 +60,8 @@ function openMenuNavSmallScreen(){
 }
 
 function AssociateProductClick(){
-    const ficheProduct_associateProduct_products = document.querySelector('.ficheProduct-associateProduct-products');
-    const ficheProduct_associateProduct_Btn = document.querySelector('.ficheProduct-associateProduct-Btn');
+    const associateProduct = document.querySelector('.associateProduct');
+    const associateProductBtn = document.querySelector('.associateProductBtn');
 
     /*Si on appuie sur produits associés*/
     if (ficheProduct_associateProduct_products.contains('open'))

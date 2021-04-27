@@ -76,8 +76,8 @@
 
     {%comment%} Zone des produit associés {%endcomment%}
     <div class="ficheProduct-associateProduct">
-      <button class="ficheProduct-associateProduct-Btn" onclick=AssociateProductClick();>Produits associes <i class="fas fa-plus"></i></button>
-      <ul class="ficheProduct-associateProduct-products">
+      <button class="associateProductBtn" onclick=AssociateProductClick();>Produits associes <i class="fas fa-plus"></i></button>
+      <ul class="associateProduct">
         {%assign associatePnbImg = 0%}
         {% for image in product.images %}
             <li class="associateProduct-products-{% increment associatePnbImg %}"><a href="{{ image.src | img_url: 'large' }}">
