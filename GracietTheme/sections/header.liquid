@@ -2,7 +2,7 @@
 <header class="header">
 	{% comment %}Le logo du site qui redirige vers l'accueil{% endcomment %}
 	<div class="header-logo">
-		<a href="https://gracietboutiquetpe.myshopify.com/"> Sylvie Strohl INTEMPORELE </a>
+		{{ section.settings.logo }}
 	</div>
 
 	{% comment %} Ici la barre de navigation qui affichera les bouttons vers les autres pages {% endcomment %}
@@ -80,3 +80,17 @@
 	</div>
 </header>
 </br></br></br>
+
+{% schema %}
+{
+	"name":"header",
+	"class":"section-header",
+	"settings": [
+		{
+			"type":"image_picker",
+			"id":"logo",
+			"label":"logo"
+		}
+	]
+}
+{% endschema %}
