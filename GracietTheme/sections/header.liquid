@@ -33,9 +33,15 @@
 			<i class="fas fa-user"></i>
 		</button>
 		<ul class="user">
-			{% for link in linklists.Connexion.links %}
-				<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
-			{% endfor %}
+			{% if shop.customer_accounts_enabled %}
+				<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/mon-compte">MON COMPTE
+					</a> </li>
+				<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Connexion">SE DECONNECTER </a> </li>
+			{% else %}
+				{% for link in linklists.Connexion.links %}
+					<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
+				{% endfor %}
+			{% endif %}
 		</ul>
 	</div>
 
@@ -46,15 +52,15 @@
 		</button>
 		<ul class="smallScreen">
 			{% for link in linklists.Connexion.links %}
-				<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
+				<li class="smallScreen-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
 			{% endfor %}
 
 			{% if shop.customer_accounts_enabled %}
-				<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/mon-compte">MON COMPTE </a> </li>
-				<li class="smallScreen-item"><a href="https://gracietboutiquetpe.myshopify.com/pages/Connexion">SE DECONNECTER </a> </li>
+				<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/mon-compte">MON COMPTE </a> </li>
+				<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Connexion">SE DECONNECTER </a> </li>
 			{% else %}
 				{% for link in linklists.Connexion.links %}
-				<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
+					<li class="smallScreen-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
 				{% endfor %}
 			{% endif %}
 			<li class="smallScreen-item"><button class="header-icons-search"><i class="fas fa-search"></i></button></li>
