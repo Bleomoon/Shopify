@@ -60,20 +60,7 @@ function openMenuNavSmallScreen(){
 }
 
 function AssociateProductClick(){
-    const associateProduct = document.querySelector('.associateProduct');
-    const associateProductBtn = document.querySelector('.associateProductBtn');
-
-    /*Si on appuie sur produits associés*/
-    if (associateProduct.contains('open'))
-    {
-        associateProduct.remove('open');
-        associateProductBtn.innerHTML = 'Produits associes <i class="fas fa-plus"></i>';
-    }
-    else
-    {
-        associateProduct.add('open');
-        associateProductBtn.innerHTML = 'Produits associes <i class="fas fa-minus"></i>'
-    }
+    document.getElementById('associateProduct').classList.toggle('open');
 }
 
 function infosComplementairesProduct(){
