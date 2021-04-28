@@ -2,10 +2,8 @@
 <div> {{ page.content }} </div>
 
 <div>
-  {% for collection in collections %}
-  {% for product in collection.products %}
-    <p>{{ product.type }}<p>
-    <p>{{ product.title }}<p>
+  {% for product_type in shop.types %}
+    {{ product_type | link_to_type }}
   {% endfor %}
-  {% endfor %}
+  
 </div>
