@@ -2,7 +2,7 @@
 <div> {{ page.content }} </div>
 
 <div>
-  {% for product in all_products["test2"].title %}
-    <p>{{ all_products["test2"].type }}</p>
+  {% for types in product.type %}
+    <p>{{ types }}</p>
   {% endfor %}
 </div>
