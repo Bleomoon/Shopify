@@ -3,7 +3,10 @@
 
 <div>
   {% for product_type in shop.types %}
-    {{ product_type | link_to_type }}
+    {{ product_type | link_to_type }}<br>
   {% endfor %}
   
+  {% for product in shop %}
+    <p>{{ product.title }}</p>
+  {%endfor%}
 </div>
