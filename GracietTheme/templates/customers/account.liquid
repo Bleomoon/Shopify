@@ -1,8 +1,8 @@
 <!-- /templates/customers/account.liquid -->
 
-{% if customer.address %}
-  {%for adresse in customer.adresses %}
-    <p>{{ customer.address }}</p>
+{% if customer.default_address %}
+  {%for address in customer_address %}
+    <p>{{ customer_address.address }}</p>
   {%endfor%}
 {%endif%}
 {% if customer.default_address %}
