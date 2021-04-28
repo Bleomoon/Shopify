@@ -17,6 +17,18 @@
   
   {% section 'header' %}
 
+  {% if shop.customer_accounts_enabled %}
+    {% if customer  %}
+      <a href="/account">Your Account</a>
+      {% else %}
+      {{ 'Log in' | customer_login_link }}
+      {% if shop.customer_accounts_optional %}
+        <span>or</span>
+        {{ 'Create an account' | customer_register_link }}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
   <main role="main">
     {{ content_for_layout }}
   </main>
