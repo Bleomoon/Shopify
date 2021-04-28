@@ -3,7 +3,7 @@
 <div class="connexion">
   <h1 class="h1Title">Connexion</h1><br><br>
   <div class="identification">
-    <h2 class="h2Title">S'identifier</h2><br><
+    <h2 class="h2Title">S'identifier</h2><br>
     <br>
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
@@ -39,7 +39,7 @@
         <input class="textInput" type="email" name="email" /><br><br>
       </div>
       <div class="submitButton">
-        <input type="submit" value="Envoyer" />
+        <input class="submitButtonRef" type="submit" value="Envoyer" />
       </div>
     {% endform %}
   </div>
