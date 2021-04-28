@@ -1,7 +1,7 @@
 <!-- /templates/customers/register.liquid -->
 {%comment%} Ici la description html de lapage d'inscription {%endcomment%}
 <div class="inscription">
-  <h1 class="h1Title">Inscription</h1><br>
+  <h1 class="h1Title">Inscription</h1><br><br>
   {% form 'create_customer' %}
   {{ form.errors | default_errors }}
   <div class="inscription-Prenom">
