@@ -2,8 +2,8 @@
 
 {% if customer.default_address %}
   
-    <p>{{ customer.address1 }}</p>
-    <p>{{ customer.address2 }}</p>
+    <p>{{ customer.customer_address.address1 }}</p>
+    <p>{{ customer.customer_address.address2 }}</p>
   
 {%endif%}
 {% if customer.default_address %}
