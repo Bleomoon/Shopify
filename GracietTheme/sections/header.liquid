@@ -37,7 +37,7 @@
 			<ul class="user">
 				{% comment %} Si utilisateur connecté {% endcomment %}
 				{% if customer  %} 
-					<li class="navbar-item">{{'Mon Compte' | customer_account_link }}  </li>
+					<li class="navbar-item">{{ 'Mon Compte' | customer_account_link }}</li>
 					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Connexion">SE DECONNECTER </a> </li>
 				{% else %}
 					<li class="navbar-item">{{ 'Connexion' | customer_login_link }}</li>
