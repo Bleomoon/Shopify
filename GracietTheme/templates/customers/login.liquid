@@ -3,7 +3,7 @@
 <div class="connexion">
   <h1 class="h1Title">Connexion</h1><br><br>
   <div class="identification">
-    <h2 class="h2Title">S'identifier</h2><br><br>
+    <h2 class="h2Title">S'identifier</h2><br><
     <br>
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
@@ -21,14 +21,17 @@
       <div class="identification-submit">
         <input id="identification-checkbox" type="checkbox"/>
         <label for="customer_checkbox">Se souvenir de moi</label><br><br>
-        <input class="submitButton" type="submit" value="Connexion"/>
+        
       </div>
 
+      <div class="submitButton">
+        <input type="submit" value="Connexion" />
+      </div>
     {% endform %}
   </div>
 
   <div class="forgotPassword"> 
-    <h2>Mot de passe perdu ?</h2><br>
+    <h2 class="h2Title">Mot de passe perdu ?</h2>
     {% form 'recover_customer_password' %}
       {{ form.errors | default_errors }}
       <div class="forgotPassword-email">
@@ -36,10 +39,8 @@
         <input class="textInput" type="email" name="email" /><br><br>
       </div>
       <div class="submitButton">
-        <input  type="submit" value="Envoyer" />
+        <input type="submit" value="Envoyer" />
       </div>
-      
-      
     {% endform %}
   </div>
 </div>
