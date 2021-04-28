@@ -10,7 +10,7 @@
       
       <div class="identification-id">
         <label for="customer_email">Nom d’utilisateur ou adresse e-mail*</label><br>
-        <input class="textInput" type="email" name="customer[email]" /><br><br>
+        <input class="textInput" type="email" name="customer[email]" /><br><br><br>
       </div>
       
       <div class="identification-password">
@@ -21,7 +21,7 @@
       <div class="identification-submit">
         <input id="identification-checkbox" type="checkbox"/>
         <label for="customer_checkbox">Se souvenir de moi</label><br><br>
-        <input type="submit" value="Connexion"/>
+        <input class="submitButton" type="submit" value="Connexion"/>
       </div>
 
     {% endform %}
@@ -31,9 +31,15 @@
     <h2>Mot de passe perdu ?</h2><br>
     {% form 'recover_customer_password' %}
       {{ form.errors | default_errors }}
-      <label for="customer_email">Adresse e-mail</label><br>
-      <input class="textInput" type="email" name="email" /><br><br>
-      <input type="submit" value="Envoyer" />
+      <div class="forgotPassword-email">
+        <label for="customer_email">Adresse e-mail</label><br>
+        <input class="textInput" type="email" name="email" /><br><br>
+      </div>
+      <div class="submitButton">
+        <input  type="submit" value="Envoyer" />
+      </div>
+      
+      
     {% endform %}
   </div>
 </div>
