@@ -38,10 +38,10 @@
 				{% comment %} Si utilisateur connecté {% endcomment %}
 				{% if customer  %} 
 					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Mon-Compte">Mon compte</a></li>
-					<li class="navbar-item">{{ 'Deconnexion' | customer_logout_link }} SE DECONNECTER </li>
+					<li class="navbar-item"><a class="aRef" href="{{ customer_logout_link }}">Deconnexion</a></li>
 				{% else %}
-					<li class="navbar-item">{{ 'Connexion' | customer_login_link }}</li>
-					<li class="navbar-item">{{ 'Inscription' | customer_register_link }}</li>
+					<li class="navbar-item"><a class="aRef" href="{{ customer_login_link }}">Connexion</a></li>
+					<li class="navbar-item"><a class="aRef" href="{{ customer_register_link }}">Inscription</a></li>
 				{% endif %}
 			</ul>
 		{% endif %}
@@ -60,10 +60,10 @@
 			{% if shop.customer_accounts_enabled %}
 				{% if customer %}
 					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Mon-Compte">Mon compte</a></li>
-					<li class="smallScreen-item">{{ 'Deconnexion' | customer_logout_link }} </li>
+					<li class="smallScreen-item"><a class="aRef" href="{{ customer_logout_link }}">Deconnexion</a> </li>
 				{% else %}
-					<li class="smallScreen-item">{{ 'Connexion' | customer_login_link }}</li>
-					<li class="smallScreen-item">{{ 'Inscription' | customer_register_link }}</li>
+					<li class="smallScreen-item"><a class="aRef" href="{{ customer_login_link }}">Connexion</a></li>
+					<li class="smallScreen-item"><a class="aRef" href="{{ customer_register_link }}">Inscription</a></li>
 				{% endif %}
 			{% endif %}
 			<li class="smallScreen-item"><button class="header-icons-search"><i class="fas fa-search"></i></button></li>
