@@ -1,25 +1,25 @@
 <!-- /templates/customers/login.liquid -->
 {% comment %} Ici le de la page de connexion, elle comprend le html du mot de passe oublié {% endcomment %}
 <div class="connexion">
-  <h1>Connexion</h1>
+  <h1 class="Bigtitle">Connexion</h1><br>
   <div class="identification">
-    <h2>S'identifier</h2>
+    <h2>S'identifier</h2><br>
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
       
       <div class="identification-id">
-        <label for="customer_email">Nom d’utilisateur ou adresse e-mail *</label>
+        <label for="customer_email">Nom d’utilisateur ou adresse e-mail *</label><br>
         <input type="email" name="customer[email]" />
       </div>
       
       <div class="identification-password">
-        <label for="customer_password">Mot de passe*</label>
+        <label for="customer_password">Mot de passe*</label><br>
         <input type="password" name="customer[password]" />
       </div>
       
       <div class="identification-submit">
-        <input id="identification-checkbox" type="checkbox"/>
-        <label for="customer_checkbox">Se souvenir de moi</label>
+        <input id="identification-checkbox" type="checkbox"/><br>
+        <label for="customer_checkbox">Se souvenir de moi</label><br>
         <input type="submit" value="Connexion"/>
       </div>
 
@@ -27,16 +27,12 @@
   </div>
 
   <div class="forgotPassword"> 
-    <h2>Mot de passe perdu ?</h2>
+    <h2>Mot de passe perdu ?</h2><br>
     {% form 'recover_customer_password' %}
-    
-    {{ form.errors | default_errors }}
-    
-    <label for="customer_email">Email Address</label>
-    <input type="email" name="email" />
-    
-    <input type="submit" value="Submit" />
-    
+      {{ form.errors | default_errors }}
+      <label for="customer_email">Adresse e-mail</label><br>
+      <input type="email" name="email" /><br>
+      <input type="submit" value="Envoyer" />
     {% endform %}
   </div>
 </div>
