@@ -37,7 +37,7 @@
 			<ul class="user">
 				{% comment %} Si utilisateur connecté {% endcomment %}
 				{% if customer  %} 
-					<li class="navbar-item">{{ 'Mon Compte' | customer_account_link }}</li>
+					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Mon-Compte">Mon compte</a></li>
 					<li class="navbar-item">{{ 'Deconnexion' | customer_logout_link }} SE DECONNECTER </li>
 				{% else %}
 					<li class="navbar-item">{{ 'Connexion' | customer_login_link }}</li>
@@ -59,7 +59,7 @@
 
 			{% if shop.customer_accounts_enabled %}
 				{% if customer %}
-					<li class="smallScreen-item">{{'Mon Compte' | customer_account_link }} </li>
+					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Mon-Compte">Mon compte</a></li>
 					<li class="smallScreen-item">{{ 'Deconnexion' | customer_logout_link }} </li>
 				{% else %}
 					<li class="smallScreen-item">{{ 'Connexion' | customer_login_link }}</li>
