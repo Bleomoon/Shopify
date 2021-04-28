@@ -5,7 +5,8 @@
   {% for product_type in shop.types %}
     {{ product_type | link_to_type }}<br>
   {% endfor %}
-  
+</div>
+<div>
   {% for product in shop %}
     <p>{{ product.title }}</p>
   {%endfor%}
