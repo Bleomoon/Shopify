@@ -2,7 +2,9 @@
 <div> {{ page.content }} </div>
 
 <div>
+  {% for collection in collections %}
   {% for product in collection.products %}
     <p>{{ product.type }}<p>
+  {% endfor %}
   {% endfor %}
 </div>
