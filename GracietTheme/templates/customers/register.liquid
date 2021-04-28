@@ -1,24 +1,31 @@
 <!-- /templates/customers/register.liquid -->
-<div class="Inscription">
-  <h1>Insciption</h1>
+{%comment%} Ici la description html de lapage d'inscription {%endcomment%}
+<div class="inscription">
+  <h1 class="h1Title">Inscription</h1><br>
+  {% form 'create_customer' %}
+  {{ form.errors | default_errors }}
+  <div class="inscription-Prenom">
+    <label for="first_name">Prénom</label><br>
+    <input class="textInput" type="text" value="" name="customer[first_name]" size="30" /><br>
+  </div>
 
+  <div class="inscription-Nom">
+    <label for="last_name">Nom</label><br>
+    <input class="textInput" type="text" value="" name="customer[last_name]" size="30" /><br>
+  </div>
+
+  <div class="inscription-Email">
+    <label for="email">Adresse e-mail</label><br>
+    <input class="textInput" type="email" value="" name="customer[email]" size="30" /><br>
+  </div>
+
+  <div class="inscription-MotdePasse">
+    <label for="password">Mot de passe</label><br>
+    <input class="textInput" type="password" value="" name="customer[password]" size="30" /><br>
+  </div>
+
+  <div class="inscription-submitButton">
+    <input class="submitButtonRef" type="submit" value="Crée un compte" />
+  </div>
+  {% endform %}
 </div>
-{% form 'create_customer' %}
-
-{{ form.errors | default_errors }}
-
-<label for="first_name">First Name</label>
-<input type="text" value="" name="customer[first_name]" size="30" />
-
-<label for="last_name">Last Name</label>
-<input type="text" value="" name="customer[last_name]" size="30" />
-
-<label for="email">Email Address</label>
-<input type="email" value="" name="customer[email]" size="30" />
-
-<label for="password">Password</label>
-<input type="password" value="" name="customer[password]" size="30" />
-
-<input type="submit" value="Create" />
-
-{% endform %}
