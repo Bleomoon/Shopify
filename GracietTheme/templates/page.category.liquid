@@ -3,6 +3,9 @@
 
 <div>
   {% for product_type in shop.types %}
+    {% for product in product_type  %}
+      {{ product.title }}
+    {% endfor %}
     {{ product_type | link_to_type }}<br>
   {% endfor %}
 </div>
