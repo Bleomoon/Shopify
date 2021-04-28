@@ -1,20 +1,20 @@
 <!-- /templates/customers/login.liquid -->
 {% comment %} Ici le de la page de connexion, elle comprend le html du mot de passe oublié {% endcomment %}
 <div class="connexion">
-  <h1 class="Bigtitle">Connexion</h1><br><br>
+  <h1 class="h1Title">Connexion</h1><br><br>
   <div class="identification">
-    <h2>S'identifier</h2><br><br>
+    <h2 class="h2Title">S'identifier</h2><br><br><br>
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
       
       <div class="identification-id">
-        <label for="customer_email">Nom d’utilisateur ou adresse e-mail *</label><br>
-        <input class="textInput" type="email" name="customer[email]" /><br>
+        <label for="customer_email">Nom d’utilisateur ou adresse e-mail*</label><br>
+        <input class="textInput" type="email" name="customer[email]" /><br><br>
       </div>
       
       <div class="identification-password">
         <label for="customer_password">Mot de passe*</label><br>
-        <input type="password" name="customer[password]" /><br>
+        <input type="password" name="customer[password]" /><br><br>
       </div>
       
       <div class="identification-submit">
