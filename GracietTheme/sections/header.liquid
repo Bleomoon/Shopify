@@ -33,16 +33,18 @@
 			<i class="fas fa-user"></i>
 		</button>
 		<ul class="user">
+			{% comment %} Si connexion acrtiver dans les parametres {% endcomment %}
 			{% if shop.customer_accounts_enabled %}
-				<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/mon-compte">MON COMPTE
-					</a> </li>
-				<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Connexion">SE DECONNECTER </a> </li>
-			{% else %}
-				{% for link in linklists.Connexion.links %}
-					<li class="smallScreen-item"><a class="aRef" href="{{ customer_login_link }}">Connecxion
-					</a> </li>
-					<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
-				{% endfor %}
+				{% comment %} Si utilisateur connecté {% endcomment %}
+				{% if customer  %} 
+					<li class="navbar-item">{{'Mon Compte' | customer_account_link }}  </li>
+					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Connexion">SE DECONNECTER </a> </li>
+				{% else %}
+					{% for link in linklists.Connexion.links %}
+						<li class="navbar-item">{{ 'Connexion' | customer_login_link }}</li>
+						<li class="navbar-item">{{ 'Inscription' | customer_register_link }}</li>
+					{% endfor %}
+				{% endif %}
 			{% endif %}
 		</ul>
 	</div>
