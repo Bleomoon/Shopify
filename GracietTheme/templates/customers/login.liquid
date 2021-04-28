@@ -25,11 +25,11 @@
       </div>
 
       <div class="submitButton">
-        <input type="submit" value="Connexion" />
+        <input class="buttonRef" type="submit" value="Connexion" />
       </div>
     {% endform %}
   </div>
-
+  
   <div class="forgotPassword"> 
     <h2 class="h2Title">Mot de passe perdu ?</h2>
     {% form 'recover_customer_password' %}
@@ -39,7 +39,7 @@
         <input class="textInput" type="email" name="email" /><br><br>
       </div>
       <div class="submitButton">
-        <input class="submitButtonRef" type="submit" value="Envoyer" />
+        <input class="buttonRef" type="submit" value="Envoyer" />
       </div>
     {% endform %}
   </div>
