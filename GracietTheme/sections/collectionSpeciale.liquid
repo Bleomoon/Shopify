@@ -58,14 +58,17 @@ Elle a un nom, une image et un url {%endcomment%}
     .collectionSpeciale{
         display:grid;
         grid-gap:10px;
+        grid-template-columns:repeat(4,1fr);
     }
     .collectionSpeciale-img{
-        grid-column:1;
+        grid-column:2;
+        text-align:end;
     }
     .collectionSpeciale-contenu{
         display:grid;
-        grid-column:2;
+        grid-column:3;
         grid-gap:10px;
+        text-align:start;
     }
     .collectionSpeciale-contenu-h2{
         grid-row:1;
