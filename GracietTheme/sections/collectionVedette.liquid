@@ -1,0 +1,58 @@
+{%comment%} Ici le html d'affichage d'une collection {%endcomment%}
+<div class="collectionSpeciale">
+    <div class="collectionSpeciale-img">
+        <img src="{{ section.settings.collectionImg | img_url: "300x300"}}">
+    </div>
+    <div class="collectionSpeciale-contenu">
+        <h2 class="collectionSpeciale-contenu-h2">{{ section.settings.collectionTitle }}</h2>
+        <span class="collectionSpeciale-div-a"><a class="collectionSpeciale-a" href="{{ section.settings.collectionUrl }}">En savoir plus</a></span>
+    </div>
+</div>
+
+
+{%comment%} Ici le schema d'une collection 
+Elle a un nom, une image et un url {%endcomment%}
+{% schema %}
+    {
+        "name":"Collection en Vedette",
+        "settings": [
+            {
+                "id":"collectionTitle",
+                "type":"text",
+                "label":"Nom de la Collection",
+                "default":"Nom de ma collection"
+            },
+            {
+                "id":"collectionImg",
+                "type":"image_picker",
+                "label":"Image de la collection"
+            },
+            {
+                "id":"collectionUrl",
+                "type":"url",
+                "label":"Url de la Collection"
+            }
+        ],
+        "presets":[
+            {
+                "name":"Collection en Vedette",
+                "category":"Collection"
+            }
+        ]
+    }
+{% endschema %}
+
+
+{%comment%} Ici le style css de colelctionShow {%endcomment%}
+{% style %}
+    .collectionSpeciale{
+        
+    }
+    .collectionSpeciale-img{
+        
+    }
+    .collectionSpeciale-contenu{
+        
+    }
+    
+{% endstyle %}
