@@ -42,6 +42,8 @@ Elle a un nom, une image et un url {%endcomment%}
 {%comment%} Ici le style css de colelctionShow {%endcomment%}
 {% style %}
     .collectionSpeciale{
+        width:auto;
+        background-repeat:none;
         background-image:url("{{ section.settings.collectionImg | img_url }}");
     }
 {% endstyle %}
