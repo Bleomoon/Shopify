@@ -14,7 +14,7 @@
             {% for collection in collections %}
                 
                 <div style="grid-row:{{ numLigne }}; grid-column:{{numColonne}};" class="contenu-showOneCollection">
-                    <a href="{{ collection.url }}">
+                    <a class="aRef" href="{{ collection.url }}">
                         {% if collection.image %}
                             <div class="oneCollection-img">
                                 <img src="{{ collection.image | img_url: 'medium' }}">
@@ -49,10 +49,19 @@
         display:grid;
         grid-template-columns:repeat(5,1fr);
         grid-gap:10px;
+        justify-content:center;
     }
 
     .contenu-noCollections{
         grid-column:3;
         grid-row:1;
+    }
+
+    .oneCollection-img{
+
+    }
+
+    .oneCollection-title{
+        
     }
 {% endstyle %}
