@@ -1,9 +1,9 @@
-<h1>{{ page.title }}</h1>
-<div>{{ page.collectionsShow.content }}</div>
+<h1>{{ pages.collectionsShow.title }}</h1>
+<div>{{ pages.collectionsShow.content }}</div>
 {%comment%} Ici un modele de page qui affiche l'ensemble des colllections {%endcomment%}
 <div class="ShowAllCollections">
     <div class="ShowAllCollections-title">
-        <h1>{{ page.title }}</h1>
+        <h1>{{ pages.collectionsShow.title }}</h1>
     </div>
     <div class="ShowAllCollections-contenu">
         {% if shop.collections_count == 0 %}
