@@ -79,10 +79,16 @@ Elle a un nom, une image et un url {%endcomment%}
         border:solid;
         color:black;
         background-color=white;
+        grid-template-columns:repeat(4,1fr);
     }
+     .collectionSpeciale-a.a{
+         grid-column:4;
+     }
     .collectionSpeciale-a:hover{
         background-color:black;
-        color:white;
         border:none;
+    }
+    .collectionSpeciale-a:hover.a{
+        color:white;
     }
 {% endstyle %}
