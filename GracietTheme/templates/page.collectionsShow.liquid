@@ -9,8 +9,10 @@
                 <h2>Il n'existe encore aucune collecton</h2>
             </div>
         {% else %}
-            {% increment numColonne %} {% increment numColonne %} {%comment%} On met le numCol a 2 {%endcomment%}
-            {% increment numLigne %}{%comment%} On met le numLigne a 1 {%endcomment%}
+            {% capture _ %} {%comment%} Permet de capturer la sortie {%endcomment%}
+                {% increment numColonne %} {% increment numColonne %} {%comment%} On met le numCol a 2 {%endcomment%}
+                {% increment numLigne %}{%comment%} On met le numLigne a 1 {%endcomment%}
+            {% endcapture %}
             {% for collection in collections %}
                 
                 <div style="grid-row:{{ numLigne }}; grid-column:{{numColonne}};" class="contenu-showOneCollection">
@@ -26,14 +28,16 @@
                     </a>
                 </div>
 
-                {%comment%} Gestion de l'affichage ligne col des collections {%endcomment%}
-                {%if numColonne == 4 %}
-                    {% increment numLigne %} {%comment%} On increment NumLigne {%endcomment%}
-                    {%comment%} On met NumCol a 2 {%endcomment%}
-                    {% decrement numColonne %} {% decrement numColonne %} 
-                {% else %}
-                    {% increment numColonne %} {%comment%} On increment NumCol {%endcomment%}
-                {% endif %}
+                {% capture _ %}
+                    {%comment%} Gestion de l'affichage ligne col des collections {%endcomment%}
+                    {%if numColonne == 4 %}
+                        {% increment numLigne %} {%comment%} On increment NumLigne {%endcomment%}
+                        {%comment%} On met NumCol a 2 {%endcomment%}
+                        {% decrement numColonne %} {% decrement numColonne %} 
+                    {% else %}
+                        {% increment numColonne %} {%comment%} On increment NumCol {%endcomment%}
+                    {% endif %}
+                {% endcapture %}
             {% endfor %}
         {% endif %}
     </div> 
