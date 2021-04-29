@@ -1,11 +1,11 @@
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
-<div class="collectionSpeciale">
-    <div class="collectionSpeciale-img">
+<div class="collectionVedette">
+    <div class="collectionVedette-img">
         <img src="{{ section.settings.collectionImg | img_url: "300x300"}}">
     </div>
-    <div class="collectionSpeciale-contenu">
-        <h2 class="collectionSpeciale-contenu-h2">{{ section.settings.collectionTitle }}</h2>
-        <span class="collectionSpeciale-div-a"><a class="collectionSpeciale-a" href="{{ section.settings.collectionUrl }}">En savoir plus</a></span>
+    <div class="collectionVedette-contenu">
+        <h2 class="collectionVedette-contenu-h2">{{ section.settings.collectionTitle }}</h2>
+        <div class="collectionVedette-div-a"><a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">En savoir plus</a></div>
     </div>
 </div>
 
@@ -45,13 +45,13 @@ Elle a un nom, une image et un url {%endcomment%}
 
 {%comment%} Ici le style css de colelctionShow {%endcomment%}
 {% style %}
-    .collectionSpeciale{
+    .collectionVedette{
+        width:100%;
+    }
+    .collectionVedette-img{
         
     }
-    .collectionSpeciale-img{
-        
-    }
-    .collectionSpeciale-contenu{
+    .collectionVedette-contenu{
         
     }
     
