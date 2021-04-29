@@ -9,9 +9,9 @@
                 <h2>Il n'existe encore aucune collecton</h2>
             </div>
         {% else %}
+            {% increment numColonne %} {% increment numColonne %} {%comment%} On met le numCol a 2 {%endcomment%}
             {% for collection in collections %}
-                {% assign numLigne = 1 %}
-                {% assign numColonne = 2 %}
+                
                 <div style="grid-row:{{ numLigne }}; grid-column:{{numColonne}};" class="contenu-showOneCollection">
                     <a href="{{ collection.url }}">
                         {% if collection.image %}
@@ -27,10 +27,11 @@
 
                 {%comment%} Gestion de l'affichage ligne col des collections {%endcomment%}
                 {%if numColonne == 4 %}
-                    {% assign numColonne = 2 %}
-                    {% increment numLigne %}
+                    {% increment numLigne %} {%comment%} On increment NumLigne {%endcomment%}
+                    {%comment%} On met NumCol a 2 {%endcomment%}
+                    {% decrement numColonne %} {% decrement numColonne %} 
                 {% else %}
-                    {% increment numColonne %}
+                    {% increment numColonne %} {%comment%} On increment NumCol {%endcomment%}
                 {% endif %}
             {% endfor %}
         {% endif %}
