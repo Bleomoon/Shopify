@@ -6,11 +6,8 @@
     <div class="collectionSpeciale-contenu">
         <h2 class="collectionSpeciale-contenu-h2">{{ section.settings.collectionTitle }}</h2>
         <p class="collectionSpeciale-contenu-p">{{ section.settings.collectionDesc }}</p>
-        <button class="collectionSpecialeButton"><a href="{{ section.settings.collectionUrl }}">En savoir plus</a></button>
-
+        <div onmouseenter="" class="collectionSpeciale-a"><a class="aRef" href="{{ section.settings.collectionUrl }}">En savoir plus</a></div>
     </div>
-
-    
 </div>
 
 
@@ -77,7 +74,15 @@ Elle a un nom, une image et un url {%endcomment%}
     .collectionSpeciale-contenu-p{
         grid-row:2;
     }
-    .collectionSpecialeButton{
+    .collectionSpeciale-a{
         grid-row:3;
+        border:solid;
+        color:black;
+        background-color=white;
+    }
+    .collectionSpeciale-a:hover{
+        background-color:black;
+        color:white;
+        border:none;
     }
 {% endstyle %}
