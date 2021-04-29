@@ -10,6 +10,7 @@
             </div>
         {% else %}
             {% increment numColonne %} {% increment numColonne %} {%comment%} On met le numCol a 2 {%endcomment%}
+            {% increment numLigne %}{%comment%} On met le numLigne a 1 {%endcomment%}
             {% for collection in collections %}
                 
                 <div style="grid-row:{{ numLigne }}; grid-column:{{numColonne}};" class="contenu-showOneCollection">
@@ -42,12 +43,12 @@
     .ShowAllCollections{
         font-family: cursive;
         font-weight: bold;
-        display:grid;
     }
 
     .ShowAllCollections-contenu{
         display:grid;
-        grid-column:1/5;
+        grid-template-columns:repeat(5,1fr);
+        grid-gap:10px;
     }
 
     .contenu-noCollections{
