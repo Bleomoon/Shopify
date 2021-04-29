@@ -15,7 +15,7 @@ Elle a un nom, une image et un url {%endcomment%}
             {
                 "id":"collectionTitle",
                 "type":"text",
-                "label":"Nom de la Colelction",
+                "label":"Nom de la Collection",
                 "default":"Nom de ma collection"
             },
             {
@@ -32,7 +32,7 @@ Elle a un nom, une image et un url {%endcomment%}
         "presets":[
             {
                 "name":"Collection Speciale",
-                "categorie":"Collection"
+                "category":"Collection"
             }
         ]
     }
@@ -42,6 +42,6 @@ Elle a un nom, une image et un url {%endcomment%}
 {%comment%} Ici le style css de colelctionShow {%endcomment%}
 {% stylesheet %}
     .collectionSpeciale{
-        background-image:url("{{ section.settings.collectionImg }}");
+        background-image:url("{{ section.settings.collectionImg | img_url: "medium" }}");
     }
 {% endstylesheet %}
