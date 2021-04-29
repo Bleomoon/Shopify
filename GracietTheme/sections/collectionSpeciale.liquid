@@ -6,7 +6,7 @@
     <div class="collectionSpeciale-contenu">
         <h2 class="collectionSpeciale-contenu-h2">{{ section.settings.collectionTitle }}</h2>
         <p class="collectionSpeciale-contenu-p">{{ section.settings.collectionDesc }}</p>
-        <div onmouseenter="" class="collectionSpeciale-div-a"><a class="collectionSpeciale-a" href="{{ section.settings.collectionUrl }}">En savoir plus</a></div>
+        <span onmouseenter="" class="collectionSpeciale-div-a"><a class="collectionSpeciale-a" href="{{ section.settings.collectionUrl }}">En savoir plus</a></span>
     </div>
 </div>
 
@@ -56,6 +56,8 @@ Elle a un nom, une image et un url {%endcomment%}
         display:grid;
         grid-gap:10px;
         grid-template-columns:repeat(4,1fr);
+        margin-top:25px;
+        margin-bottom:25px;
     }
     .collectionSpeciale-img{
         grid-column:2;
@@ -84,6 +86,9 @@ Elle a un nom, une image et un url {%endcomment%}
         background-color:white;
         border:solid;
         text-align:center;
+        text-decoration:none;
+        color:black;
+        width:auto;
     }
     .collectionSpeciale-a:hover{
         background-color:black;
