@@ -1,5 +1,4 @@
 {%comment%} Ici un modele de page qui affiche l'ensemble des colllections {%endcomment%}
-{% paginate collections by 3 %}
 <div class="ShowAllCollections">
     <div class="ShowAllCollections-title">
         <h1>{{ pages.collectionsShow.title }}</h1>
@@ -11,7 +10,9 @@
             </div>
         {% else %}
             {% for collection in collections %}
-                <div class="contenu-showOneCollection">
+                {% assign numLigne = 1 %}
+                {% assign numColonne = 2 %}
+                <div style="grid-row:{{ numLigne }}; grid-column:{{numColonne}};" class="contenu-showOneCollection">
                     <a href="{{ collection.url }}">
                         {% if collection.image %}
                             <div class="oneCollection-img">
@@ -23,15 +24,33 @@
                         </div>
                     </a>
                 </div>
+
+                {%comment%} Gestion de l'affichage ligne col des collections {%endcomment%}
+                {%if numColonne == 4 %}
+                    {% assign numColonne = 2 %}
+                    {% increment numLigne %}
+                {% else %}
+                    {% increment numColonne %}
+                {% endif %}
             {% endfor %}
         {% endif %}
     </div> 
 </div>
 
-{% endpaginate %}
-
 {% style %}
     .ShowAllCollections{
-        font-size:50px;
+        font-family: cursive;
+        font-weight: bold;
+        display:grid;
+    }
+
+    .ShowAllCollections-contenu{
+        display:grid;
+        grid-column:1/5;
+    }
+
+    .contenu-noCollections{
+        grid-column:3;
+        grid-row:1;
     }
 {% endstyle %}
