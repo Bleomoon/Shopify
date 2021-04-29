@@ -1,11 +1,9 @@
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
 <div class="collectionVedette">
-    <div class="collectionVedette-img">
-        <img src="{{ section.settings.collectionImg | img_url: "300x300"}}">
-    </div>
     <div class="collectionVedette-contenu">
-        <h2 class="collectionVedette-contenu-h2">{{ section.settings.collectionTitle }}</h2>
-        <div class="collectionVedette-div-a"><a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">En savoir plus</a></div>
+        <h2 class="collectionVedette-h2">COLLECTION</h2>
+        <h1 class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
+        <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
     </div>
 </div>
 
@@ -47,12 +45,26 @@ Elle a un nom, une image et un url {%endcomment%}
 {% style %}
     .collectionVedette{
         width:100%;
-    }
-    .collectionVedette-img{
-        
+        height:auto;
+        background-image:url("{{ section.settings.collectionImg | img_url }}");
+        background-repeat:no-repeat;
+        background-attachment: scroll, local;
     }
     .collectionVedette-contenu{
-        
+        display:grid;
+        position:absolute;
+        justify-content:start;
     }
-    
+    .collectionVedette-contenu-h1{
+        font-size:large;
+    }
+    .collectionVedette-contenu-h2{
+        font-size:x-large;
+    }
+    .collectionVedette-a{
+        background:none;
+        text-decoration:none;
+        color:white;
+        border: 2px solid white;
+    }
 {% endstyle %}
