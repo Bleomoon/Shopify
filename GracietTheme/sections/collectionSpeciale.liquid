@@ -1,8 +1,7 @@
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
 <div class="collectionSpeciale">
-    <div class="buttonCollectionSpeciale">
-        <button><a href="{{ section.settings.collectionUrl }}">{{ section.settings.collectionTitle }}</a></button>
-    </div>
+    <img class="collectionSpecialeImg" src="section.settings.collectionImg | img_url: "300x300"}}">
+    <button class="collectionSpecialeButton"><a href="{{ section.settings.collectionUrl }}">{{ section.settings.collectionTitle }}</a></button>
 </div>
 
 
@@ -42,8 +41,15 @@ Elle a un nom, une image et un url {%endcomment%}
 {%comment%} Ici le style css de colelctionShow {%endcomment%}
 {% style %}
     .collectionSpeciale{
-        width:auto;
-        background-repeat:none;
-        background-image:url("{{ section.settings.collectionImg | img_url }}");
+        
+    }
+    .collectionSpecialeImg{
+        background-repeat:no-repeat;
+        position: relative;
+        z-index:1;
+    }
+    .collectionSpecialeButton{
+        position: relative;
+        z-index:2;
     }
 {% endstyle %}
