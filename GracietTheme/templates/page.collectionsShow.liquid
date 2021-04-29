@@ -1,4 +1,5 @@
 {%comment%} Ici un modele de page qui affiche l'ensemble des colllections {%endcomment%}
+{% paginate collections by 3 %}
 <div class="ShowAllCollections">
     <div class="ShowAllCollections-title">
         <h1>{{ pages.collectionsShow.title }}</h1>
@@ -27,8 +28,10 @@
     </div> 
 </div>
 
+{% endpaginate %}
+
 {% style %}
     .ShowAllCollections{
-        font-sze:50px;
+        font-size:50px;
     }
 {% endstyle %}
