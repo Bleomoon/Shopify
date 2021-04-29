@@ -1,6 +1,6 @@
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
 <div class="collectionSpeciale">
-    <img class="collectionSpecialeImg" src="section.settings.collectionImg | img_url: "300x300"}}">
+    <img class="collectionSpecialeImg" src="{{ section.settings.collectionImg | img_url: "300x300"}}">
     <button class="collectionSpecialeButton"><a href="{{ section.settings.collectionUrl }}">{{ section.settings.collectionTitle }}</a></button>
 </div>
 
