@@ -1,2 +1,5 @@
 product.Quoi? :
 https://www.shopify.com/partners/blog/89205510-how-to-use-all_products-in-a-shopify-theme
+
+Les types sur les schema:
+https://shopify.dev/docs/themes/settings

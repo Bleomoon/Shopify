@@ -1,0 +1,46 @@
+{%comment%} Ici le html d'affichage d'une collection {%endcomment%}
+<div class="collectionSpeciale">
+    <div class="buttonCollectionSpeciale">
+        <button><a href="{{ section.settings.collectionUrl }}">{{ section.settings.collectionTitle }}</a></button>
+    </div>
+</div>
+
+
+{%comment%} Ici le schema d'une collection 
+Elle a un nom, une image et un url {%endcomment%}
+{% schema %}
+{
+    "name":"Collection Speciale",
+    "settings": [
+        {
+            "id":"collectionTitle",
+            "type":"image_picker",
+            "label":"Nom de la Colelction",
+            "default":"Nom de ma collection",
+        },
+        {
+            "id":"collectionImg",
+            "type":"image_picker",
+            "label":"Image de la collection",
+        },
+        {
+            "id":"collectionUrl",
+            "type":"url",
+        }
+    ],
+    "presets":[
+    {
+        "name":"Collection Speciale",
+        "categorie":"Collection"
+    }
+    ]
+}
+{% endschema %}
+
+
+{%comment%} Ici le style css de colelctionShow {%endcomment%}
+{% stylesheet %}
+    .collectionSpeciale{
+        background-image:url("{{ section.settings.collectionImg }}");
+    }
+{% endstylesheet %}
