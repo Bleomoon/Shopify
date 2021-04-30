@@ -11,7 +11,7 @@
       </div>
     {% else %} {%comment%} Si boutton {%endcomment%}
       <div style="grid-row:{{ block.settings.positionLigneBoutton }}; grid-column:{{ block.settings.positionColonneBoutton }};" class="composeButton">
-        <a class="aRef" href="{{ block.settings.urlButton }}"><button style="font-size:{{ block.settings.tailleTexteButton }};color:{{ block.settings.couleurTextButton }};">  </button></a>
+        <a class="aRef" href="{{ block.settings.urlButton }}"><button class="buttonRef" style="font-size:{{ block.settings.tailleTexteButton }};color:{{ block.settings.couleurTextButton }};"> {{ block.settings.textButton }}  </button></a>
       </div>
     {% endif %}
   {% endfor %}
@@ -82,7 +82,7 @@
           "type":"richtext",
           "id":"description",
           "label":"Description",
-          "default":"<p>Mon titre</p>"
+          "default":"<p>Ma Description</p>"
         },
         {
           "id":"positionLigneDescription",
@@ -156,12 +156,12 @@
     display:grid;
   }
   .composeTitle{
-
+    width:max-content;
   }
   .composeDescription{
-
+    width:max-content;
   }
   .composeButton{
-
+    width:max-content;
   }
 {% endstyle %}

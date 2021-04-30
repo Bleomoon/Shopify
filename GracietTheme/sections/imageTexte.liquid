@@ -1,0 +1,138 @@
+{%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
+<div class="imageTexte">
+  {% if section.settings.rightLeft == true %}
+    {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
+  {% else %}
+    {% assign numCol = 1 %} {% assign numColTexte = 2 %}
+  {% endif %}
+  <div style="grid-column: {{ numCol }};" class="imageTexte-img">
+    <img class="imageTexte-Image" src= {{ section.settings.image | img_url:"555x"}}>
+  </div>
+  <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
+    <h1 style="color:{{ section.settings.couleurTitle }};font-size={{ section.settings.tailleTitre }};"></h1>
+    {% for block in sections.blocks %}
+      {% if block.type == 'composeSubTitle' %}
+        <h2 style="color:{{ block.settings.couleurSubTitle }};font-size={{ section.settings.tailleSubTitre }};"> {{ block.settings.subTitle }} </h2>
+      {% else %}
+        <p style="color:{{ block.settings.couleurTexte }};font-size={{ section.settings.tailleTexte }};"> {{ block.settings.text }}</p>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+
+{%comment%} Ici le schema d'un texte et d'une image
+Elle a une image un titre, avec choix taille et couleur et checkbox pour selectionner a droite ou a gauche
+Puis si l'utilisateur le veux, rajoute sous-titres avec taille et couleur
+richtext avec choix couleurs et tailles textes {%endcomment%}
+{% schema %}
+{
+  "name":"imageTexte",
+  "settings":[
+    {
+      "id":"title",
+      "type":"text",
+      "label":"Titre",
+      "default":"Mon titre"
+    },
+    {
+      "type": "color",
+      "id": "couleurTitle",
+      "label": "Couleur du titre",
+      "default": "#d35400"
+    },
+    {
+      "type": "text",
+      "id": "tailleTitre",
+      "label": "taille du titre",
+      "default": "75"
+    },
+    {
+      "id":"image",
+      "type":"image_picker",
+      "label":"Mon image",
+    },
+    {
+      "id":"rightLeft",
+      "type":"checkbox",
+      "label":"Image a droite ?",
+      "default" : false
+    }
+  ],
+  "max_blocks":8,
+  "blocks":[
+    {
+      "type":"composeSubTitle",
+      "name":"composeSubTitle",
+      "settings":[
+        {
+          {
+            "id":"subTitle",
+            "type":"text",
+            "label":"Sous-titre",
+            "default":"Mon sous titre"
+          },
+          {
+            "type": "color",
+            "id": "couleurSubTitle",
+            "label": "Couleur du sous titre",
+            "default": "#d35400"
+          },
+          {
+            "type": "text",
+            "id": "tailleSubTitre",
+            "label": "taille du sous titre",
+            "default": "75"
+          }
+        }
+      ]
+    },
+    {
+      "type":"composeTexte",
+      "name":"composeTexte",
+      "settings":[
+        {
+          {
+            "id":"text",
+            "type":"richtext",
+            "label":"Texte",
+            "default":"Mon texte"
+          },
+          {
+            "type": "color",
+            "id": "couleurTexte",
+            "label": "Couleur du texte",
+            "default": "#d35400"
+          },
+          {
+            "type": "text",
+            "id": "tailleTexte",
+            "label": "taille du texte",
+            "default": "75"
+          }
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "category":"Presentation",
+      "name": "Image et texte"
+    }
+  ]
+}
+{% endschema %}
+
+
+{%comment%} Ici le style css de colelctionShow {%endcomment%}
+{% style %}
+  .imageTexte{
+    display:grid;
+  }
+  .imageTexte-Image{
+    height:auto;
+  }
+  .imageTexte-texte{
+    display:grid;
+  }
+{% endstyle %}
