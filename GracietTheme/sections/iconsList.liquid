@@ -14,11 +14,11 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
 {% schema %}
 {
   "name":"iconsList",
+  "max_blocks":4,
   "blocks":[
   {
-    "type":"oneIcons",
+    "type":"Icons",
     "name":"oneIcons",
-    "limit":4,
     "settings":[
       {
         "type":"text",
@@ -36,7 +36,7 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
         "id":"titleSize",
         "label":"Taille du titre",
         "default":"11"
-      },
+      }
     ]
   }],
   "presets":[
