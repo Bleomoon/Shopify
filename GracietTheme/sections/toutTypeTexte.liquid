@@ -1,5 +1,5 @@
 {%comment%} Ici le html d'affichage {%endcomment%}
-<div class="toutTypeTexte">
+<div style="grid-template-columns:repeat({{section.settings.nbColonne}},1fr); grid-template-rows:repeat({{{{section.settings.nbLigne}}}},1fr);" class="toutTypeTexte">
   {% for block in section.blocks %}
     {% if block.type == 'composeTitle' %} {%comment%} Si Text {%endcomment%}
       <div style="grid-row:{{ block.settings.positionLigneTitre }}; grid-column:{{ block.settings.positionColonneTitre }};" class="composeTitle">
