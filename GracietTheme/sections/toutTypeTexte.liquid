@@ -17,10 +17,46 @@
       "default":"<p>Une description</p>"
     },
     {
+      "id":"positionLigneGeneralDescription",
+      "type":"Number",
+      "label":"Numero de ligne du texte",
+      "default":1
+    },
+    {
+      "id":"positionColonneGeneralDescription",
+      "type":"Number",
+      "label":"Numero de colonne du texte",
+      "default":1
+    },
+    {
       "id":"generalButtonText",
       "type":"text",
       "label":"Mon texte de boutton",
       "default":"Un text de boutton"
+    },
+    {
+      "id":"positionLigneGeneralButton",
+      "type":"Number",
+      "label":"Numero de ligne du button",
+      "default":2
+    },
+    {
+      "id":"positionColonneGeneralButton",
+      "type":"Number",
+      "label":"Numero de colonne du button",
+      "default":2
+    },
+    {
+      "id":"nbColonne",
+      "type":"Number",
+      "label":"Nombre de colonne",
+      "default":5
+    },
+    {
+      "id":"nbLigne",
+      "type":"Number",
+      "label":"Nombre de ligne",
+      "default":5
     }
   ],
   "blocks":[
@@ -34,6 +70,43 @@
           "label":"Titre",
           "default":"Mon titre"
         },
+        
+        {
+          "type":"checkbox",
+          "id":"checkboxRichText",
+          "label":"Une description ?"
+        },
+        {
+          "type":"richtext",
+          "id":"DescriptionOfTexte",
+          "label":"Ma description",
+          "default":"<p>Une description</p>"
+        },
+        {
+          "type":"checkbox",
+          "id":"checkboxButton",
+          "label":"Un boutton ?"
+        },
+        {
+          "type":"text",
+          "id":"ButtonText",
+          "label":"Mon texte de boutton"
+        }
+      ]
+    }
+  ],
+  "blocks":[
+    {
+      "type":"compose",
+      "name":"composeTexte",
+      "settings":[
+        {
+          "type":"text",
+          "id":"title",
+          "label":"Titre",
+          "default":"Mon titre"
+        },
+        
         {
           "type":"checkbox",
           "id":"checkboxRichText",
