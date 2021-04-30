@@ -2,8 +2,8 @@
 <div class="collectionVedetteFirst">
     <div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
         <div class="collectionVedette-contenu">
-            <h2 style="color: '{{section.settings.color_borders}}'" class="collectionVedette-h2">COLLECTION</h2>
-            <h1 style="color: '{{section.settings.color_borders}}'" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
+            <h2 style="color: {{section.settings.color_borders}}" class="collectionVedette-h2">COLLECTION</h2>
+            <h1 style="color: {{section.settings.color_borders}}" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
             <div class="collectionVedette-div-a" ><a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a></div>
         </div>
     </div>
@@ -74,11 +74,13 @@ Elle a un nom, une image et un url {%endcomment%}
         font-size:xx-large;
         grid-row:4;
         font-weight:900;
+        width:max-content;
     }
     .collectionVedette-h2{
         font-size:x-large;
         grid-row:3;
         font-weight:700;
+        width:max-content;
     }
     .collectionVedette-div-a{
         grid-row:5;
