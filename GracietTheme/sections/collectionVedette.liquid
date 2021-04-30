@@ -8,7 +8,7 @@
     <div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
     <div style="grid-column: {{ positionOfMyContent }}" class="collectionVedette-contenu">
             <h2 style="font-size:{{section.settings.tailleTitre1 | append:'px'}}; color: {{section.settings.color_borders}}" class="collectionVedette-h2">COLLECTION</h2>
-            <h1 style="font-size:{{section.settings.tailleTitre1 | append:'px'}}; color: {{section.settings.color_borders}}" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
+            <h1 style="font-size:{{section.settings.tailleTitre2 | append:'px'}}; color: {{section.settings.color_borders}}" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
             <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}"><span class="collectionVedette-span-a">Decouvrir</span></a>
         </div>
     </div>
@@ -106,13 +106,14 @@ Elle a un nom, une image et un url {%endcomment%}
         width:max-content;
     }
     .collectionVedette-span-a{
-        
+        border: 2px solid white;
+        right:0;
+        position:relative;
     }
     .collectionVedette-a{
         background:none;
         text-decoration:none;
         color:white;
-        border: 2px solid white;
         grid-row:5;
         display:grid;
         justify-content:center;
