@@ -1,7 +1,7 @@
 {%comment%} Le html  de notre bloc {%endcomment%}
 <div class="iconsList">
   {%for block in section.blocks %}
-    {% increment myColonne %}
+    {% capture _ %}{% increment myColonne %} {% endcapture %}
     <div style="grid-column: {{ myColonne }};" class="icons">
       <img src="{{ block.settings.icons | img_url: '300x300' }}">
     <h2 style="font-size:{{ block.settings.titleSize | append:'px' }}">{{ block.settings.title }}</h2>
@@ -55,5 +55,6 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
   .icons{
     display:grid;
     justify-content:center;
+    grid-row:1;
   }
 {% endstyle %}
