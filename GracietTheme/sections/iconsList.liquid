@@ -1,8 +1,7 @@
 {%comment%} Le html  de notre bloc {%endcomment%}
 <div class="iconsList">
   {%for block in section.blocks %}
-    {% capture _ %}{% increment myColonne %} {% endcapture %}
-    <div style="grid-column: {{ myColonne }};" class="icons">
+    <div class="icons">
       <img class="icons-img" src="{{ block.settings.icons | img_url: '300x300' }}">
       <h2 class="icons-h2" style="font-size:{{ block.settings.titleSize | append:'px' }}">{{ block.settings.title }}</h2>
     </div>
@@ -51,6 +50,8 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
 {% style %}
   .iconsList{
     display:grid;
+    grid-template-columns:repeat(1,1fr);
+    grid-template-rows:repeat(4,1fr);
   }
   .icons{
     display:grid;
@@ -75,21 +76,12 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
       grid-template-columns:repeat(2,1fr);
       grid-template-rows:repeat(2,1fr);
     }
-    .icones{
-      {% if myColonne == 2 %}
-        {%capture _ %} {% decrement myColonne %}  {% endcapture %}
-        grid-row:2;
-      {% endif %}
-    }
   }
 
   @media screen and (max-width:600px) {
     .iconsList{
       grid-template-columns:repeat(1,1fr);
       grid-template-rows:repeat(4,1fr);
-    }
-    .icones{
-      grid-row: {{ myColonne }};
     }
   }
 {% endstyle %}
