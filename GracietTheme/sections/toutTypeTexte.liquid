@@ -11,42 +11,6 @@
   "max_blocks":8,
   "settings":[
     {
-      "id":"generalDescription",
-      "type":"richtext",
-      "label":"Ma description",
-      "default":"<p>Une description</p>"
-    },
-    {
-      "id":"positionLigneGeneralDescription",
-      "type":"Number",
-      "label":"Numero de ligne du texte",
-      "default":1
-    },
-    {
-      "id":"positionColonneGeneralDescription",
-      "type":"Number",
-      "label":"Numero de colonne du texte",
-      "default":1
-    },
-    {
-      "id":"generalButtonText",
-      "type":"text",
-      "label":"Mon texte de boutton",
-      "default":"Un text de boutton"
-    },
-    {
-      "id":"positionLigneGeneralButton",
-      "type":"Number",
-      "label":"Numero de ligne du button",
-      "default":2
-    },
-    {
-      "id":"positionColonneGeneralButton",
-      "type":"Number",
-      "label":"Numero de colonne du button",
-      "default":2
-    },
-    {
       "id":"nbColonne",
       "type":"Number",
       "label":"Nombre de colonne",
@@ -61,8 +25,8 @@
   ],
   "blocks":[
     {
-      "type":"compose",
-      "name":"composeTexte",
+      "type":"composeTitle",
+      "name":"composeTitle",
       "settings":[
         {
           "type":"text",
@@ -70,64 +34,90 @@
           "label":"Titre",
           "default":"Mon titre"
         },
-        
         {
-          "type":"checkbox",
-          "id":"checkboxRichText",
-          "label":"Une description ?"
+          "type": "color",
+          "id": "color_borders",
+          "label": "Couleur du titre",
+          "default": "#d35400"
         },
         {
-          "type":"richtext",
-          "id":"DescriptionOfTexte",
-          "label":"Ma description",
-          "default":"<p>Une description</p>"
+          "type": "text",
+          "id": "tailleTitre",
+          "label": "taille du titre",
+          "default": "75"
         },
         {
-          "type":"checkbox",
-          "id":"checkboxButton",
-          "label":"Un boutton ?"
+          "id":"positionLigneTitre",
+          "type":"Number",
+          "label":"Numero de ligne du titre",
+          "default":1
         },
         {
-          "type":"text",
-          "id":"ButtonText",
-          "label":"Mon texte de boutton"
-        }
+          "id":"positionLigneTitre",
+          "type":"Number",
+          "label":"Numero de colonne du titre",
+          "default":1
+        },
       ]
-    }
-  ],
-  "blocks":[
+    },
     {
-      "type":"compose2",
-      "name":"composeTexte2",
+      "type":"composeDescription",
+      "name":"composeDescription",
       "settings":[
-        {
-          "type":"text",
-          "id":"title",
-          "label":"Titre",
-          "default":"Mon titre"
-        },
-        
-        {
-          "type":"checkbox",
-          "id":"checkboxRichText",
-          "label":"Une description ?"
-        },
-        {
-          "type":"richtext",
-          "id":"DescriptionOfTexte",
-          "label":"Ma description",
-          "default":"<p>Une description</p>"
-        },
-        {
-          "type":"checkbox",
-          "id":"checkboxButton",
-          "label":"Un boutton ?"
-        },
-        {
-          "type":"text",
-          "id":"ButtonText",
-          "label":"Mon texte de boutton"
-        }
+      {
+        "type":"richtext",
+        "id":"description",
+        "label":"Description",
+        "default":"Mon titre"
+      },
+      {
+        "id":"positionLigneDescription",
+        "type":"Number",
+        "label":"Numero de ligne de la description",
+        "default":1
+      },
+      {
+      "id":"positionLigneDescription",
+      "type":"Number",
+      "label":"Numero de colonne de la description",
+      "default":1
+      },
+      ]
+    },
+    {
+      "type":"composeButton",
+      "name":"composeButton",
+      "settings":[
+      {
+        "type":"text",
+        "id":"textButton",
+        "label":"Texte de mon boutton",
+        "default":"Texte de boutton"
+      },
+      {
+        "type": "color",
+        "id": "color_borders",
+        "label": "Couleur du texte du boutton",
+        "default": "#d35400"
+      },
+      {
+        "type": "text",
+        "id": "tailleTexteButton",
+        "label": "taille du texte du boutton",
+        "default": "75"
+      },
+      {
+        "id":"positionLigneBoutton",
+        "type":"Number",
+        "label":"Numero de ligne du boutton",
+        "default":1
+      },
+      {
+        "id":"positionLigneBoutton",
+        "type":"Number",
+        "label":"Numero de colonne du boutton",
+        "default":1
+      },
       ]
     }
   ],
