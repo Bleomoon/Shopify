@@ -4,7 +4,7 @@
     {% capture _ %}{% increment myColonne %} {% endcapture %}
     <div style="grid-column: {{ myColonne }};" class="icons">
       <img src="{{ block.settings.icons | img_url: '300x300' }}">
-    <h2 style="font-size:{{ block.settings.titleSize | append:'px' }}">{{ block.settings.title }}</h2>
+      <h2 class="icons-h2" style="font-size:{{ block.settings.titleSize | append:'px' }}">{{ block.settings.title }}</h2>
     </div>
   {%endfor%}
 </div>
@@ -56,5 +56,8 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
     display:grid;
     justify-content:center;
     grid-row:1;
+  }
+  .icons-h2{
+    width:max-content;
   }
 {% endstyle %}
