@@ -4,7 +4,7 @@
         <div class="collectionVedette-contenu">
             <h2 class="collectionVedette-h2">COLLECTION</h2>
             <h1 class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
-            <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
+            <div class="collectionVedette-div-a" ><a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a></div>
         </div>
     </div>
 </div>
@@ -72,11 +72,13 @@ Elle a un nom, une image et un url {%endcomment%}
         grid-row:3;
         color:#d35400;
     }
+    .collectionVedette-div-a{
+        grid-row:5;
+    }
     .collectionVedette-a{
         background:none;
         text-decoration:none;
         color:white;
-        grid-row:5;
         border: 2px solid white;
     }
 {% endstyle %}
