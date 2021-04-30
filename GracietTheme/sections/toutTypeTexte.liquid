@@ -1,0 +1,75 @@
+{%comment%} Ici le html d'affichage {%endcomment%}
+<div class="toutTypeTexte">
+
+</div>
+
+
+{%comment%} Ici le schema {%endcomment%}
+{% schema %}
+{
+  "name":"toutTypeTexte",
+  "max_blocks":8,
+  "settings":[
+    {
+      "id":"generalDescription",
+      "type":"text",
+      "label":"Ma description",
+      "default":"Une description"
+    },
+    {
+      "id":"generalButtonText",
+      "type":"text",
+      "label":"Mon texte de boutton",
+      "default":"Un text de boutton"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"compose",
+      "name":"composeTexte",
+      "settings":[
+        {
+          "type":"text",
+          "id":"title",
+          "label":"Titre",
+          "default":"Mon titre"
+        },
+        {
+          "type":"checkbox",
+          "id":"checkboxRichText",
+          "label":"Une description ?"
+        },
+        {
+          "type":"richtext",
+          "id":"DescriptionOfTexte",
+          "label":"Ma description",
+          "default":"Une description"
+        },
+        {
+          "type":"checkbox",
+          "id":"checkboxButton",
+          "label":"Un boutton ?"
+        },
+        {
+          "type":"text",
+          "id":"ButtonText",
+          "label":"Mon texte de boutton"
+        }
+      ]
+    }
+  ],
+  "presets":[
+  {
+    "cateory":"Texte",
+    "name":"Tout texte"
+  }]
+}
+
+{% endschema %}
+
+{%comment%} Ici le style {%endcomment%}
+{% style %}
+  .toutTypeTexte{
+
+  }
+{% endstyle %}
