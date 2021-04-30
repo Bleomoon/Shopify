@@ -45,13 +45,13 @@ Elle a un nom, une image et un url {%endcomment%}
 {%comment%} Ici le style css de colelctionShow {%endcomment%}
 {% style %}
     .collectionVedetteFirst{
-        position:fixed;
+        
     }
     .collectionVedette{
         position:sticky;
         height:auto;
         background-image: url("{{ section.settings.collectionImg | img_url:"medium" }}"); 
-        background-repeat:no-repeat;
+        
         background-attachment: scroll, local;
         grid-template-columns:repeat(7,1fr);
         grid-template-rows:repeat(7,1fr);
