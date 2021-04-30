@@ -1,6 +1,6 @@
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
 <div class="collectionVedetteFirst">
-    <div class="collectionVedette">
+    <div style="background-image: url('{{ section.settings.collectionImg | img_url:'1024x500' }}');" class="collectionVedette">
         <div class="collectionVedette-contenu">
             <h2 class="collectionVedette-h2">COLLECTION</h2>
             <h1 class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
@@ -49,8 +49,7 @@ Elle a un nom, une image et un url {%endcomment%}
     }
     .collectionVedette{
         position:sticky;
-        height:inherit;
-        background-image: url("{{ section.settings.collectionImg | img_url:"1024x500" }}"); 
+        height:inherit; 
         background-position:center;
         background-attachment: scroll, local;
         grid-template-columns:repeat(7,1fr);
@@ -66,14 +65,18 @@ Elle a un nom, une image et un url {%endcomment%}
         font-size:xx-large;
         grid-row:4;
         color:#d35400;
+        font-weight:900;
     }
     .collectionVedette-h2{
         font-size:x-large;
         grid-row:3;
         color:#d35400;
+        font-weight:700;
     }
     .collectionVedette-div-a{
         grid-row:5;
+        display:grid;
+        justify-content:center;
     }
     .collectionVedette-a{
         background:none;
