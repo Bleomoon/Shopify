@@ -1,9 +1,9 @@
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
 <div class="collectionVedetteFirst">
     {% if section.settings.RightLeft == true %} {%comment%} Alors a droite{%endcomment%}
-        {{% assign positionOfMyContent = 5 %}} 
+        {% assign positionOfMyContent = 5 %}
     {% else %} {%comment%} sinon a gauche {%endcomment%}
-        {{% assign positionOfMyContent = 3 %}}
+        {% assign positionOfMyContent = 3 %}
     {% endif %}
     <div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
     <div style="gris-column: {{ positionOfMyContent }}" class="collectionVedette-contenu">
