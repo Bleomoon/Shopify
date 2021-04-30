@@ -46,14 +46,16 @@ Elle a un nom, une image et un url {%endcomment%}
     .collectionVedette{
         width:100%;
         height:auto;
-        background-image: url("{{ section.settings.collectionImg | img_url }}"); 
+        background-image: url("{{ section.settings.collectionImg | img_url:"medium" }}"); 
         background-repeat:no-repeat;
         background-attachment: scroll, local;
+        grid-template-columns:repeat(7,1fr);
     }
     .collectionVedette-contenu{
         display:grid;
         position:absolute;
         justify-content:start;
+        grid-column:2/3;
     }
     .collectionVedette-contenu-h1{
         font-size:large;
