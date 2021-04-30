@@ -1,9 +1,14 @@
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
 <div class="collectionVedetteFirst">
+    {% if section.settings.RightLeft == true %} {%comment%} Alors a droite{%endcomment%}
+        {{% assign positionOfMyContent = 5 %}} 
+    {% else %} {%comment%} sinon a gauche {%endcomment%}
+        {{% assign positionOfMyContent = 3 %}}
+    {% endif %}
     <div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
-        <div class="collectionVedette-contenu">
-            <h2 style="color: {{section.settings.color_borders}}" class="collectionVedette-h2">COLLECTION</h2>
-            <h1 style="color: {{section.settings.color_borders}}" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
+    <div style="gris-column: {{ positionOfMyContent }}" class="collectionVedette-contenu">
+            <h2 style="font-size:{{section.settings.tailleTitre1}}; color: {{section.settings.color_borders}}" class="collectionVedette-h2">COLLECTION</h2>
+            <h1 style="font-size:{{section.settings.tailleTitre1}}; color: {{section.settings.color_borders}}" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
             <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}"><span class="collectionVedette-span-a">Decouvrir</span></a>
         </div>
     </div>
@@ -36,6 +41,24 @@ Elle a un nom, une image et un url {%endcomment%}
                 "id": "color_borders",
                 "label": "Title colors",
                 "default": "#d35400"
+            },
+            {
+            "type": "number",
+            "id": "tailleTitre1",
+            "label": "taille du titre 1",
+            "default": 1
+            },
+            {
+            "type": "number",
+            "id": "tailleTitre2",
+            "label": "taille du titre 2",
+            "default": 1
+            },
+            {
+            "type": "checkbox",
+            "id": "RightLeft",
+            "default": true,
+            "label": "Position du texte"
             }
         ],
         "presets":[
@@ -69,7 +92,6 @@ Elle a un nom, une image et un url {%endcomment%}
     }
     .collectionVedette-contenu{
         display:grid;
-        grid-column:3;
         grid-row:3/5;
     }
     .collectionVedette-h1{
@@ -79,7 +101,6 @@ Elle a un nom, une image et un url {%endcomment%}
         width:max-content;
     }
     .collectionVedette-h2{
-        font-size:x-large;
         grid-row:3;
         font-weight:700;
         width:max-content;
