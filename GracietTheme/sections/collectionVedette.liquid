@@ -6,9 +6,9 @@
         {% assign positionOfMyContent = 3 %}
     {% endif %}
     <div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
-    <div style="gris-column: {{ positionOfMyContent }}" class="collectionVedette-contenu">
-            <h2 style="font-size:{{section.settings.tailleTitre1}}; color: {{section.settings.color_borders}}" class="collectionVedette-h2">COLLECTION</h2>
-            <h1 style="font-size:{{section.settings.tailleTitre1}}; color: {{section.settings.color_borders}}" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
+    <div style="grid-column: {{ positionOfMyContent }}" class="collectionVedette-contenu">
+            <h2 style="font-size:{{section.settings.tailleTitre1 | 'px'}}; color: {{section.settings.color_borders}}" class="collectionVedette-h2">COLLECTION</h2>
+            <h1 style="font-size:{{section.settings.tailleTitre1 | 'px'}}; color: {{section.settings.color_borders}}" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
             <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}"><span class="collectionVedette-span-a">Decouvrir</span></a>
         </div>
     </div>
