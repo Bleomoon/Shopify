@@ -54,22 +54,29 @@ Elle a un nom, une image et un url {%endcomment%}
         background-repeat:no-repeat;
         background-attachment: scroll, local;
         grid-template-columns:repeat(7,1fr);
+        grid-template-rows:repeat(7,1fr);
         display:grid;
     }
     .collectionVedette-contenu{
         display:grid;
-        grid-column:2/3;
+        grid-column:3;
+        grid-row:3/5;
     }
     .collectionVedette-contenu-h1{
-        font-size:x-large;
+        font-size:xx-large;
+        grid-row:4;
+        color:#d35400;
     }
     .collectionVedette-contenu-h2{
-        font-size:large;
+        font-size:x-large;
+        grid-row:3;
+        color:#d35400;
     }
     .collectionVedette-a{
         background:none;
         text-decoration:none;
         color:white;
+        grid-row:5;
         border: 2px solid white;
     }
 {% endstyle %}
