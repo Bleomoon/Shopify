@@ -4,7 +4,7 @@
     {% increment myColonne %}
     <div style="grid-column: '{{ myColonne }}';" class="icons">
       <img src="{{ block.settings.icons }}">
-      <h2>{{ block.settings.title }}</h2>
+    <h2 style="{{ block.settings.titleSize | append:'px' }}">{{ block.settings.title }}</h2>
     </div>
   {%endfor%}
 </div>
@@ -30,7 +30,13 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
         "type":"image_picker",
         "id":"icons",
         "label":"L'icone",
-      }
+      },
+      {
+        "type":"text",
+        "id":"titleSize",
+        "label":"Taille du titre",
+        "default":"11"
+      },
     ]
   }],
   "presets":[
