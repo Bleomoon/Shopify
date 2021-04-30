@@ -75,6 +75,12 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
       grid-template-columns:repeat(2,1fr);
       grid-template-row:repeat(2,1fr);
     }
+    .icones{
+      {% if myColonne == 2 %}
+        {%capture _ %} {% decrement myColonne %}  {% endcapture %}
+        grid-row:2;
+      {% endif %}
+    }
   }
 
   @media screen and (max-width:600px) {
