@@ -8,7 +8,7 @@
                 <div class="productFilter-show">
                     {%comment%} Affiche les filtres disponibles {%endcomment%}
                     {% for option in product.options %}
-                        
+
                     {% endfor %}
                     <p>Je suis un filtre</p>
                 </div>
@@ -66,13 +66,14 @@
         grid-template-columns:repeat(2,1fr);
         grid-template-rows:repeat(1,1fr);
         display:grid;
+        
     }
 
     
     .productShowFilter-Filter-1{
         grid-column:1;
         display:grid;
-        justify-content:start;
+        width:max-content;
         grid-template-columns:repeat(4,1fr);
     }
 
