@@ -13,14 +13,16 @@
             <button onclick=openFilters()><i class="fas fa-plus"></i>Filtres</button>
             
             <i class="fas fa-minus">Filtres</i>
-            <button onclick={% assign myLayout = 1 %}><i class="sf-icon-atelier-shop-standard"></i></button>
-            <button onclick={% assign myLayout = 2 %}><i class="sf-icon-atelier-shop-list"></i></button>
-            <button onclick={% assign myLayout = 3 %}><i class="sf-icon-atelier-shop-grid"></i></button>
+            <button onclick={% assign myLayout = 1 %}><i class="fas fa-th-large"></i></button>
+            <button onclick={% assign myLayout = 2 %}><i class="fas fa-list"></i></button>
+            <button onclick={% assign myLayout = 3 %}><i class="fas fa-th"></i></button>
         </div>
         <div class="productShowFilter-Filter-2">
             <select name="sort_by">
-                {% for option in collection.sort_options %}
-                  <option value="{{ option.value }}">{{ option.name }}</option>
+                {% for collection in collections %}
+                    {% for option in collection.sort_options %}
+                        <option value="{{ option.value }}">{{ option.name }}</option>
+                    {% endfor %}
                 {% endfor %}
             </select>
         </div>
