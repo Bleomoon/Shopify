@@ -1,0 +1,82 @@
+{%comment%} Un templates d'un page montrant des produits avec en plus un filtre au dessus {%endcomment%}
+{%comment%} L'html de la page {%endcomment%}
+<div class="productShowFilter">
+    <div class="productShowFilter-Filter">
+        <div class="productShowFilter-Filter-1">
+            <div class="productFilter"></div>
+                <button ><i class="fas fa-plus"></i>Filtres</button>
+                <div class="productFilter-show">
+
+                </div>
+            </div>
+            <button onclick=openFilters()><i class="fas fa-plus"></i>Filtres</button>
+            
+            <i class="fas fa-minus">Filtres</i>
+            <button onclick={% assign myLayout = 1 %}><i class="sf-icon-atelier-shop-standard"></i></button>
+            <button onclick={% assign myLayout = 2 %}><i class="sf-icon-atelier-shop-list"></i></button>
+            <button onclick={% assign myLayout = 3 %}><i class="sf-icon-atelier-shop-grid"></i></button>
+        </div>
+        <div class="productShowFilter-Filter-2">
+            <select name="sort_by">
+                {% for option in collection.sort_options %}
+                  <option value="{{ option.value }}">{{ option.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="productShowFilter-Filter-open">
+
+    </div>
+    <div class="productShowFilter-Products">
+        {% for collection in collections %}
+            {%for product in collection.products %}
+                {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
+                {%if myLayout == 1%} {%comment%} Puis on affiche le produit selon la layout {%endcomment%}
+                    <div class="oneProduct-Standard">
+                        {{ product | img_url }}
+                    </div>
+                {%elsif myLayout == 2%}{%comment%} Puis on affiche le produit selon la layout {%endcomment%}
+                    <div class="oneProduct-List">
+
+                    </div>
+                {%else %}{%comment%} Puis on affiche le produit selon la layout {%endcomment%}
+                    <div class="oneProduct-Grid">
+
+                    </div>
+                {%endif %}               
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+{%comment%} Ici le style css de la page {%endcomment%}
+{% style %}
+    .productShowFilter{
+
+    }
+
+    .productShowFilter-Filter{
+        border:solid;
+        border-color:black;
+        border-right:none;
+        border-left:none;
+        grid-template-columns:repeat(2,1fr);
+        grid-template-rows:repeat(1,1fr);
+    }
+
+    .productShowFilter-Filter-1{
+        grid-column:1;
+    }
+    .productShowFilter-Filter-2{
+        grid-column:2;
+    }
+
+    .productShowFilter-Filter-open{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .productShowFilter-Products{
+
+    }
+{% endstyle %}

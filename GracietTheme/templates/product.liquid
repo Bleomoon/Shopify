@@ -54,9 +54,13 @@
         {{ current_variant.price | money }}
         <label for="Quantity">quantity</label>
         <input type="number" id="Quantity" name="quantity" value="1" min="1">
-          <label for="Random">Random</label>
-          <input type="number" id="Random" name="random" value="1" min="1">
+        {%include 'champ-personnalise-Motifs' %}
+        {%include 'champ-personnalise-Couleurs' %}
+        {%include 'champ-personnalise-Textures' %}
+        {%include 'champ-personnalise-Taille' %}
+        {%include 'champ-personnalise-Saisons' %}
         <button type="submit" name="add" id="AddToCart">Add to cart</button>
+        
       </form>
 
     {%comment%} Zone des logos Facebook/Twitter/Instagram {%endcomment%}
@@ -113,18 +117,16 @@
 
 <br><br><br>
 
+{% comment %} On fait une boucle de 1 a 4 et on ajoute les 4 premiers produits {% endcomment %}
 <div class="listProductLike">
   <h2>VOUS AIMEREZ AUSSI...</h2>
   <div class="listProduit">
-    {%comment%}
-    {% assign myType = product.type %}
-    {% for product in all_types.product %}
-      {% if myType == product.type %}
-        <p>{{ product.description }}</p>
+    {% assign myCollection = product.Collections %}
+    {% for i in (1..4) %}
+      {% if myCollection.next_product %}
+        {{ 'Next product' | link_to: collection.next_product.url, collection.next_product.title }}
       {% endif %}
     {% endfor %}
-    {%endcomment%}
-  </div>
 </div>
 
 <br><br><br>

@@ -82,3 +82,8 @@ function infosComplementairesProduct(){
 function changeImageProduct(id, source){
     document.getElementById(id).src = source;
 }
+
+
+function openFilters(){
+    document.getElementById('productFilter').classList.toggle('show');
+}
