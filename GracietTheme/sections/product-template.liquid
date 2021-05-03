@@ -23,11 +23,11 @@
   
       {%comment%} Zone des bouttons pour changer d'articles {%endcomment%}
       <div class="ficheProduct-OtherArticle">
-        <button class="buttonRef" style="grid-row:1;"><a class="aRef" href="">
+        <button class="buttonRef" style="grid-row:1;"><a class="aRef" href={{ collection.next_product.url }}>
             <i class="fas fa-chevron-right"></i>
           </a></button>
       
-        <button class="buttonRef" style="grid-row:2;"><a class="aRef" href="">
+        <button class="buttonRef" style="grid-row:2;"><a class="aRef" href={{ collection.previous_product.url }}>
             <i class="fas fa-chevron-left"></i>
           </a></button>
       </div>
@@ -54,6 +54,9 @@
           {{ current_variant.price | money }}
           <label for="Quantity">quantity</label>
           <input type="number" id="Quantity" name="quantity" value="1" min="1">
+          {% for option in product.options %}
+            LOPTION ICIC : {{ option }}
+        {% endfor %}
           {%include 'champ-personnalise-Motifs' %}
           {%include 'champ-personnalise-Couleurs' %}
           {%include 'champ-personnalise-Textures' %}
