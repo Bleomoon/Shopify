@@ -10,7 +10,7 @@
   </div>
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
     <h1 style="color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre }};">{{section.settings.title }}</h1>
-    {% for block in sections.blocks %}
+    {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
         <h2 style="color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre }};"> {{ block.settings.subTitle }} </h2>
       {% else %}
