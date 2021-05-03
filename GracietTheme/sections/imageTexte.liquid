@@ -3,18 +3,18 @@
   {% if section.settings.rightLeft == true %}
     {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
   {% else %}
-    {% assign numCol = 1 %} {% assign numColTexte = 2 %}
+    {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
   {% endif %}
-  <div style="grid-column: {{ numCol }};" class="imageTexte-img">
+  <div style="grid-column: {{ numColImg }};" class="imageTexte-img">
     <img class="imageTexte-Image" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
-    <h1 style="color:{{ section.settings.couleurTitle }};font-size={{ section.settings.tailleTitre }};"></h1>
+    <h1 style="color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre }};"></h1>
     {% for block in sections.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        <h2 style="color:{{ block.settings.couleurSubTitle }};font-size={{ section.settings.tailleSubTitre }};"> {{ block.settings.subTitle }} </h2>
+        <h2 style="color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre }};"> {{ block.settings.subTitle }} </h2>
       {% else %}
-        <p style="color:{{ block.settings.couleurTexte }};font-size={{ section.settings.tailleTexte }};"> {{ block.settings.text }}</p>
+        <p style="color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte }};"> {{ block.settings.text }}</p>
       {% endif %}
     {% endfor %}
   </div>
@@ -65,7 +65,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "type":"composeSubTitle",
       "name":"composeSubTitle",
       "settings":[
-        {
           {
             "id":"subTitle",
             "type":"text",
@@ -84,7 +83,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
             "label": "taille du sous titre",
             "default": "75"
           }
-        }
       ]
     },
     {
@@ -92,24 +90,22 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "name":"composeTexte",
       "settings":[
         {
-          {
-            "id":"text",
-            "type":"richtext",
-            "label":"Texte",
-            "default":"Mon texte"
-          },
-          {
-            "type": "color",
-            "id": "couleurTexte",
-            "label": "Couleur du texte",
-            "default": "#d35400"
-          },
-          {
-            "type": "text",
-            "id": "tailleTexte",
-            "label": "taille du texte",
-            "default": "75"
-          }
+          "id":"text",
+          "type":"richtext",
+          "label":"Texte",
+          "default":"Mon texte"
+        },
+        {
+          "type": "color",
+          "id": "couleurTexte",
+          "label": "Couleur du texte",
+          "default": "#d35400"
+        },
+        {
+          "type": "text",
+          "id": "tailleTexte",
+          "label": "taille du texte",
+          "default": "75"
         }
       ]
     }
