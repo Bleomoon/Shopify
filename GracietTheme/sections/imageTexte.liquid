@@ -1,5 +1,5 @@
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
-<div class="imageTexte">
+<div style="background-color: {{ secton.settings.couleurFond }};" class="imageTexte">
   {% if section.settings.rightLeft == true %}
     {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
   {% else %}
@@ -57,6 +57,12 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "type":"checkbox",
       "label":"Image a droite ?",
       "default" : false
+    },
+    {
+      "type": "color",
+      "id": "couleurFond",
+      "label": "Couleur du fond",
+      "default": "#ffffff"
     }
   ],
   "max_blocks":8,
