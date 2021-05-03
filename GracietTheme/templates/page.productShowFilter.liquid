@@ -28,26 +28,27 @@
     <div class="productShowFilter-Filter-open">
 
     </div>
-    <div class="productShowFilter-Products">
-        {% for collection in collections %}
-            {%for product in collection.products %}
-                {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
-                {%if myLayout == 1%} {%comment%} Puis on affiche le produit selon la layout {%endcomment%}
-                    <div class="oneProduct-Standard">
-                        {{ product | img_url }}
-                    </div>
-                {%elsif myLayout == 2%}{%comment%} Puis on affiche le produit selon la layout {%endcomment%}
-                    <div class="oneProduct-List">
 
-                    </div>
-                {%else %}{%comment%} Puis on affiche le produit selon la layout {%endcomment%}
-                    <div class="oneProduct-Grid">
-
-                    </div>
-                {%endif %}               
-            {% endfor %}
+    {%if myLayout == 1%} {%comment%} Puis on affiche le produit selon la layout {%endcomment%}
+        <div class="oneProduct-Standard">
+    {%elsif myLayout == 2%}{%comment%} Puis on affiche le produit selon la layout {%endcomment%}
+        <div class="oneProduct-List">
+    {%else %}{%comment%} Puis on affiche le produit selon la layout {%endcomment%}
+        <div class="oneProduct-Grid">
+    {%endif %}  
+    {% for collection in collections %}
+        {%for product in collection.products %}
+            {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
+            {% for option in product.options %}
+                {%if option == myOptions %}
+                    <div class="oneProduct-img"> <img src="{{ product | img_url }}"> </div>
+                    <div class="oneProduct-h2"> <h2>{{ product.title }}</h2> </div>
+                    <div class="oneProduct-desc"> <p>{{ product.description }}</p> </div>
+                    <div class="oneProduct-price"> <p>{{ product.price }}</p> </div>
+                {%endif %} 
+            {% endfor %}       
         {% endfor %}
-    </div>
+    {% endfor %}
 </div>
 
 {%comment%} Ici le style css de la page {%endcomment%}
@@ -85,7 +86,72 @@
         grid-template-columns:repeat(4,1fr);
     }
 
-    .productShowFilter-Products{
+    .oneProduct-Standard{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .oneProduct-Standard.oneProduct-img{
 
     }
+    .oneProduct-Standard.oneProduct-h2{
+
+    }
+    .oneProduct-Standard.oneProduct-desc{
+
+    }
+    .oneProduct-Standard.oneProduct-price{
+
+    }
+    .oneProduct-List{
+        display:grid;
+        grid-template-columns:repeat(1,1fr);
+    }
+
+    .oneProduct-List.oneProduct-img{
+
+    }
+    .oneProduct-List.oneProduct-h2{
+
+    }
+    .oneProduct-List.oneProduct-desc{
+
+    }
+    .oneProduct-List.oneProduct-price{
+
+    }
+    .oneProduct-Grid{
+        display:grid;
+        grid-template-columns:repeat(5,1fr);
+    }
+
+    .oneProduct-Grid.oneProduct-img{
+
+    }
+    .oneProduct-Grid.oneProduct-h2{
+
+    }
+    .oneProduct-Grid.oneProduct-desc{
+
+    }
+    .oneProduct-Grid.oneProduct-price{
+
+    }
+    @media screen and (max-width:1060px) {
+        .oneProduct-Standard{
+            grid-template-columns:repeat(2,1fr);
+        }
+        .oneProduct-Grid{
+            grid-template-columns:repeat(3,1fr);
+        }
+      }
+    
+      @media screen and (max-width:600px) {
+        .oneProduct-Standard{
+            grid-template-columns:repeat(1,1fr);
+        }
+        .oneProduct-Grid{
+            grid-template-columns:repeat(1,1fr);
+        }
+      }
 {% endstyle %}

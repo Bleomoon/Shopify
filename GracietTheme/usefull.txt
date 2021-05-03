@@ -3,3 +3,8 @@ https://www.shopify.com/partners/blog/89205510-how-to-use-all_products-in-a-shop
 
 Les types sur les schema:
 https://shopify.dev/docs/themes/settings
+
+https://polaris.shopify.com/
+App?:
+clé API: e2457420aee05cd8bd800c8ff51ac8c3
+clé secrète api : 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
