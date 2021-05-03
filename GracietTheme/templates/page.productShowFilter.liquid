@@ -10,12 +10,12 @@
                      <p>Je suis un filtre</p>
                 </div>
             </div>
-            <button onclick=openFilters()><i class="fas fa-plus"></i>Filtres</button>
+            <button class="buttonRef" onclick=openFilters()><i class="fas fa-plus"></i>Filtres</button>
             
             <i class="fas fa-minus">Filtres</i>
-            <button onclick={% assign myLayout = 1 %}><i class="fas fa-th-large"></i></button>
-            <button onclick={% assign myLayout = 2 %}><i class="fas fa-list"></i></button>
-            <button onclick={% assign myLayout = 3 %}><i class="fas fa-th"></i></button>
+            <button class="buttonRef" onclick={% assign myLayout = 1 %}><i class="fas fa-th-large"></i></button>
+            <button class="buttonRef" onclick={% assign myLayout = 2 %}><i class="fas fa-list"></i></button>
+            <button class="buttonRef" onclick={% assign myLayout = 3 %}><i class="fas fa-th"></i></button>
         </div>
         <div class="productShowFilter-Filter-2">
             <select name="sort_by">
@@ -69,6 +69,9 @@
         display:grid;
     }
 
+    .productFilter{
+        display:none;
+    }
     .productShowFilter-Filter-1{
         grid-column:1;
         display:grid;
