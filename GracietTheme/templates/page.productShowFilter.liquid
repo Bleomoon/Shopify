@@ -25,7 +25,7 @@
         {% for collection in collections %}
             {% for product in collection.products %} 
                 {% for product_option in product.options_with_values %}
-                    {% assign myProduct = product_option.name | split: ' _ ' %}
+                    {% assign myProduct = product_option.name | split: '' %}
                     {% unless myOptions contains myProduct %}
                         <select id={{ myProduct }} name="oneFilter">
                             {% for value in product_option.values %}
