@@ -37,10 +37,15 @@
         LA
         
         {% assign myBettterOption = myOptions | split: ', ' %}
-        {{ myBettterOption | uniq | join: ", " }} C I <br> <br>
+        {% assign myBB = {{ myBettterOption | uniq | join: ", " }} %}
+         C I <br> <br>
         
-        
-
+        <br>
+        im the new strings
+        {% for s in myBB %} 
+            {{s}} <br>
+        {% endfor %}
+        and the end
         
         <select name="oneFilter">
            
