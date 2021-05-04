@@ -20,11 +20,11 @@
     </div>
 
     <div class="productFilter">
-        {% assign allProOption = "" |
+        {% assign allProOption = ""
         {% for collection in collections %}
             {% for product in collection.products %}
                 {% for product_option in product.options_with_values %}
-                    concat: {{ product_option.name }} |
+                    | concat: {{ product_option.name }}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
