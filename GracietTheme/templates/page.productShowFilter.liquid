@@ -26,16 +26,17 @@
         {% for collection in collections %}
             {% for product in collection.products %}
              
-                    {{ myOptions | concat: product.options_with_values }}
+                    {{ myOptions | concat: product.options_with_values | join ", "}}
                     
            
             {% endfor %}
         {% endfor %}
 <br><br>
+
         <p>{{ myOptions }}</p>
         {{ myOptions| split: ", " }}
         {% assign myBettterOption = myOptions | split: ", " %}
-        {% for s in myBettterOption %}
+        {% for s in myOptions %}
             {{ s }}
         {% endfor %}
         LA {{ myBettterOption | uniq | join: ", " }} C I<br><br>
