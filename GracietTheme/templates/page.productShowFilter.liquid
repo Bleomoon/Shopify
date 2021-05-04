@@ -42,7 +42,7 @@
         {%comment%} Ici on supprime les doublons {%endcomment%}
         {% assign allOption = myOptions | split: ', ' | uniq | join: ", " %}
         
-        {%comment%} Ici on Crée les selects {%endcomment%}
+        {%comment%} Ici on Crée les selects 
         <br>Je suis ici<br>
         {% for pO in Product.options %}
             {{ pO }}
@@ -65,7 +65,8 @@
            
                 <option value="i">Oui</option>
           
-        </select>
+        </select>{%endcomment%}
+        
         {%comment%} Affiche les filtres disponibles
         {% for collection in collections %}
             {% for product in collection.products %}
