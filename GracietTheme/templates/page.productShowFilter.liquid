@@ -23,9 +23,11 @@
         {%comment%} Affiche les filtres disponibles {%endcomment%}
         {% for collection in collections %}
             {% for product in collection.products %}
-                <button class="oneFilter">
-                    <option value="{{ product.variants }}">{{ product.variants }}</option>
-                </button>
+                {% for variant in product.variants %}
+                    <button class="oneFilter">
+                        <option value="{{ variant.id }}">{{ variant.id }}</option>
+                    </button>
+                {% endfor %}
             {% endfor %}
         {% endfor %}
     </div>
