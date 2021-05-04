@@ -35,6 +35,7 @@
         {% assign allOption = myOptions | split: ', ' | uniq | join: ", " %}
         
         {%comment%} Ici on Crée les selects {%endcomment%}
+        <br>Je suis ici<br>
         {% assign myOptions = '' | split '' %}
         {% for collection in collections %}
             {% for product in collection.products %}
@@ -45,7 +46,7 @@
                 {% endfor %}
             {% endfor %}
         {% endfor %}
-
+<br>
         <select name="oneFilter">
            
                 <option value="i">Oui</option>
