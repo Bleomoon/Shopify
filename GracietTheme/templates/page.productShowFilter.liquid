@@ -22,17 +22,17 @@
     <div class="productFilter">
         {% assign numOption = 1 %}
         {% assign isIn = false %}
-    
+        {% assign myOptions = '' | split '' %}
         {% for collection in collections %}
             {% for product in collection.products %} 
-                     {{  product.options_with_values }}
-             
-                    
-           
+                {% for product_option in product.options_with_values %}
+                    {% assign myProduct = product_option.name | split: ', ' %}
+                    {% assign myOptions = myOptions | concat: myProduct %}
+                {% endfor %}
             {% endfor %}
         {% endfor %}
 <br><br>
-        {% assign myOptions = collection.products.options_with_values | join ", " %}
+        
         <p>{{ myOptions }}</p>
         
         LA
