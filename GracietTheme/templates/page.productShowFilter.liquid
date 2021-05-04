@@ -6,8 +6,12 @@
             <div class="productFilter">
                 <div class="productFilter-show">
                     {%comment%} Affiche les filtres disponibles {%endcomment%}
-                    {% for option in product.options %}
-
+                    {% for collection in collections %}
+                        {% for option in collection.sort_options %}
+                            <button class="oneFilter">
+                                {{ option.name }}
+                            </button>
+                        {% endfor %}
                     {% endfor %}
                     <p>Je suis un filtre</p>
                 </div>
@@ -91,6 +95,11 @@
         grid-row:2;
         grid-template-columns:repeat(4,1fr);
         display:grid;
+        grid-gap:25px;
+    }
+    .oneFilter{
+        color:white;
+        background-color:black;
     }
     .productShowFilter-Filter-2{
         grid-column:2;
