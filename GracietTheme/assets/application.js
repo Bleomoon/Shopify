@@ -85,11 +85,10 @@ function openFilters(){
     
     if (productFilter.contains('open')){
         productFilter.remove('open');
-        productFilter.innerHTML ='<i class="fas fa-minus"></i> Filtres';
+        productFilterBtn.innerHTML ='<i class="fas fa-minus"></i> Filtres';
     }
     else{
         productFilter.add('open');
         productFilterBtn.innerHTML = '<i class="fas fa-plus"></i> Filtres';
     }
-    document.getElementById('productFilter').classList.toggle('show');
 }

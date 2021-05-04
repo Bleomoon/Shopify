@@ -3,7 +3,7 @@
 <div class="productShowFilter">
     <div class="productShowFilter-Filter">
         <div class="productShowFilter-Filter-1">
-            <div class="productFilter open">
+            <div class="productFilter">
                 <div class="productFilter-show">
                     {%comment%} Affiche les filtres disponibles {%endcomment%}
                     {% for option in product.options %}
@@ -78,6 +78,9 @@
 
     .productFilter{
         display:none;
+    }
+    .productFilter.open{
+        display:grid;
     }
     .productFilter-show{
         grid-row:2;
