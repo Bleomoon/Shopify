@@ -46,19 +46,29 @@
 
     {%comment%} Puis on affiche le produit selon le layout qui déterminer avec changeClassOfLayout {%endcomment%}
     <div id="myLayout" class="oneProduct-Standard">
-    {% for collection in collections %}
-        {%for product in collection.products %}
-            {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
-            {% for option in product.options %}
-                {%if option == myOptions %}
-                    <div class="oneProduct-img"> <img src="{{ product | img_url }}"> </div>
-                    <div class="oneProduct-h2"> <h2>{{ product.title }}</h2> </div>
-                    <div class="oneProduct-desc"> <p>{{ product.description }}</p> </div>
-                    <div class="oneProduct-price"> <p>{{ product.price }}</p> </div>
-                {%endif %} 
-            {% endfor %}       
+        {% for collection in collections %}
+            {%for product in collection.products %}
+                {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
+                
+                    <div class="oneProduct-img"> 
+                        <img src="{{ product | img_url }}"> 
+                    </div>
+                    
+                    <div class="oneProduct-h2">
+                        <h2>{{ product.title }}</h2>
+                    </div>
+                    
+                    <div class="oneProduct-desc"> 
+                        <p>{{ product.description }}</p>
+                    </div>
+                    
+                    <div class="oneProduct-price"> 
+                        <p>{{ product.price }}</p> 
+                    </div>
+                         
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    </div>
 </div>
 
 {%comment%} Ici le style css de la page {%endcomment%}
