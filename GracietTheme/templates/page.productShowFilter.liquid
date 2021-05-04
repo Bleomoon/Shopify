@@ -25,7 +25,7 @@
             {% for product in collection.products %}
                 {% for variant in product.variants %}
                     <button class="oneFilter">
-                        <option value="{{ variant.id }}">{{ variant.id }}</option>
+                        <option value="{{ variant.id }}">{{ variant.title }}</option>
                     </button>
                 {% endfor %}
             {% endfor %}
