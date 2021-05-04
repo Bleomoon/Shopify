@@ -22,7 +22,7 @@
     <div class="productFilter">
         {% assign numOption = 1 %}
         {% assign isIn = false %}
-        {% assign myOptions = [] %}
+    
         {% for collection in collections %}
             {% for product in collection.products %} 
                      {{  product.options_with_values }}
