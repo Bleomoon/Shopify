@@ -36,17 +36,12 @@
         
         {%comment%} Ici on Crée les selects {%endcomment%}
         <br>Je suis ici<br>
-        {% assign myOptions = '' | split '' %}
-        {% for collection in collections %}
-            {% for product in collection.products %}
-                {% for product_option in product.options_with_values %}
+                {% for pO in allOption %}
                 <br>
-                    {% for value in product_option.values %}
+                    {% for value in pO.values %}
                         {{ value }}
                     {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        {% endfor %}
 <br>
         <select name="oneFilter">
            
