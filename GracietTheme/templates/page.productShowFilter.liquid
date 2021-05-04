@@ -20,18 +20,26 @@
     </div>
 
     <div class="productFilter">
-        {% for variant in variants%}
-            {%if variant.available%}
-                {% increment nbOption %} 
-            {%endif %}
+        {% for collection in collections %}
+            {% for product in collection.products %}
+                {% for product_option in product.options_with_values %}
+                    <select name="oneFilter">
+                        <option value="{{ product_option.name }}">{{ product_option.name }}</option>
+                    </select>
+                {% endfor %}
+            {% endfor %}
         {% endfor %}
         {%comment%}{% capture _ %}{% endcapture %} Affiche les filtres disponibles {%endcomment%}
         {% for collection in collections %}
             {% for product in collection.products %}
                 {% for variant in product.variants %}
+                    {% for option in variants.options %}
                     <select name="oneFilter">
                         <option value="{{ variant.id }}">{{ variant.id }}</option>
+                        <option value="{{ variant.id }}">{{ variant.id }}</option>
+                        <option value="{{ variant.id }}">{{ variant.id }}</option>
                     </select>
+                    {% endfor %}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
