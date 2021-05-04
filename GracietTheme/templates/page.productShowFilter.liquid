@@ -20,15 +20,19 @@
     </div>
 
     <div class="productFilter">
-        {% assign allProOption = {{ collections.products.options_with_values.name }} %}
-        LA{{ allProOption }}ICI <br>
+        {% assign numOption = 1 %}
+        {% assign isIn = false %}
+        {% assign myOptions = "" %}
         {% for collection in collections %}
             {% for product in collection.products %}
                 {% for product_option in product.options_with_values %}
-                    {{ product_option.name }}
+                    {{ myOptions : concat: {{ product_option.name }} | join: "," }}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
+
+        LA{{ myOptions | uniq }}ICI <br>
+        
         
 
         
@@ -37,7 +41,7 @@
                 <option value="{{ allProOption.[i] }}">{{ allProOption.[i] }}</option>
             {% endfor %}
         </select>
-        {%comment%}{% capture _ %}{% endcapture %} Affiche les filtres disponibles {%endcomment%}
+        {%comment%} Affiche les filtres disponibles {%endcomment%}
         {% for collection in collections %}
             {% for product in collection.products %}
                 {% for variant in product.variants %}
