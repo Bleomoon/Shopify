@@ -36,12 +36,22 @@
         
         {%comment%} Ici on Crée les selects {%endcomment%}
         <br>Je suis ici<br>
-                {% for pO in allOption %}
-                <br>
-                    {% for value in pO.values %}
-                        {{ value }}
+        {% for pO in Product.options %}
+            {{ pO }}
+        {% endfor %}
+        {% for pO in allOption %}
+            <select id={{ pO }} name="oneFilter">
+                {% for collection in collections %}
+                    {% for product in collection.products %}
+                        {% for product_option in product.options_with_values %}
+                            {% for value in product_option.values %}
+                                {{ value }}
+                            {% endfor %}
+                        {% endfor %}
                     {% endfor %}
                 {% endfor %}
+            </select>
+        {% endfor %}
 <br>
         <select name="oneFilter">
            
