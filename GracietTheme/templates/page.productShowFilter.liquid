@@ -17,19 +17,19 @@
                 {% endfor %}
             </select>
         </div>
-        <div class="productFilter">
-            {%comment%} Affiche les filtres disponibles {%endcomment%}
-            {% for collection in collections %}
-                {% for option in collection.sort_options %}
-                    <button class="oneFilter">
-                        {{ option.name }}
-                    </button>
-                {% endfor %}
-            {% endfor %}
-            <p>Je suis un filtre</p>
-        </div>
     </div>
 
+    <div class="productFilter">
+        {%comment%} Affiche les filtres disponibles {%endcomment%}
+        {% for collection in collections %}
+        {% for option in collection.sort_options %}
+        <button class="oneFilter">
+            {{ option.name }}
+        </button>
+        {% endfor %}
+        {% endfor %}
+        <p>Je suis un filtre</p>
+    </div>
     {%if myLayout == 1%} {%comment%} Puis on affiche le produit selon la layout {%endcomment%}
         <div class="oneProduct-Standard">
     {%elsif myLayout == 2%}{%comment%} Puis on affiche le produit selon la layout {%endcomment%}
@@ -55,7 +55,7 @@
 {%comment%} Ici le style css de la page {%endcomment%}
 {% style %}
     .productShowFilter{
-
+        display:grid;
     }
 
     .productShowFilter-Filter{
@@ -66,7 +66,7 @@
         grid-template-columns:repeat(2,1fr);
         grid-template-rows:repeat(2,1fr);
         display:grid;
-        
+        grid-row:1;
     }
 
     
@@ -84,6 +84,7 @@
         display:grid;
         grid-gap:25px;
         left: -999px;
+        position:absolute;
     }
     .productFilter.open{
         left:0;
