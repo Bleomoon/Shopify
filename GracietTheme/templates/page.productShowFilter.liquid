@@ -3,23 +3,10 @@
 <div class="productShowFilter">
     <div class="productShowFilter-Filter">
         <div class="productShowFilter-Filter-1">
-            
             <button class="productFilterBtn" onclick=openFilters()><i class="fas fa-plus"></i> Filtres</button>
-            
             <button class="buttonRef" onclick={% assign myLayout = 1 %}><i class="fas fa-th-large"></i></button>
             <button class="buttonRef" onclick={% assign myLayout = 2 %}><i class="fas fa-list"></i></button>
             <button class="buttonRef" onclick={% assign myLayout = 3 %}><i class="fas fa-th"></i></button>
-        </div>
-        <div class="productFilter">
-            {%comment%} Affiche les filtres disponibles {%endcomment%}
-            {% for collection in collections %}
-            {% for option in collection.sort_options %}
-            <button class="oneFilter">
-                {{ option.name }}
-            </button>
-            {% endfor %}
-            {% endfor %}
-            <p>Je suis un filtre</p>
         </div>
         <div class="productShowFilter-Filter-2">
             <select name="sort_by">
@@ -29,6 +16,17 @@
                     {% endfor %}
                 {% endfor %}
             </select>
+        </div>
+        <div class="productFilter">
+            {%comment%} Affiche les filtres disponibles {%endcomment%}
+            {% for collection in collections %}
+                {% for option in collection.sort_options %}
+                    <button class="oneFilter">
+                        {{ option.name }}
+                    </button>
+                {% endfor %}
+            {% endfor %}
+            <p>Je suis un filtre</p>
         </div>
     </div>
 
@@ -66,7 +64,7 @@
         border-right:none;
         border-left:none;
         grid-template-columns:repeat(2,1fr);
-        grid-template-rows:repeat(1,1fr);
+        grid-template-rows:repeat(2,1fr);
         display:grid;
         
     }
@@ -81,6 +79,7 @@
 
     .productFilter{
         grid-row:2;
+        grid-column:1/4;
         grid-template-columns:repeat(4,1fr);
         display:grid;
         grid-gap:25px;
