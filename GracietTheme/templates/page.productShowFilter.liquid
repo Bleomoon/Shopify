@@ -25,9 +25,8 @@
         {% for collection in collections %}
             {% for product in collection.products %} 
                 {% for product_option in product.options_with_values %}
-                    {% assign myValues = myOptions | split: ', ' %}
                     {% assign myProduct = product_option.name | split: ' _ ' %}
-                    {% if myOptions contains myProduct %}
+                    {% unless myOptions contains myProduct %}
                         <select id={{ myProduct }} name="oneFilter">
                             {% for value in product_option.values %}
                                 <option value="{{ value }}">{{ value }}</option>
@@ -66,7 +65,7 @@
                 <option value="i">Oui</option>
           
         </select>{%endcomment%}
-        
+
         {%comment%} Affiche les filtres disponibles
         {% for collection in collections %}
             {% for product in collection.products %}
