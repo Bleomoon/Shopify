@@ -49,7 +49,7 @@
         {% for collection in collections %}
             {%for product in collection.products %}
                 {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
-                
+                <div class="oneProduct">
                     <div class="oneProduct-img"> 
                         <img src="{{ product | img_url }}"> 
                     </div>
@@ -65,7 +65,7 @@
                     <div class="oneProduct-price"> 
                         <p>{{ product.price }}</p> 
                     </div>
-                         
+                </div>
             {% endfor %}
         {% endfor %}
     </div>
