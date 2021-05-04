@@ -4,9 +4,12 @@
     <div class="productShowFilter-Filter">
         <div class="productShowFilter-Filter-1">
             <button class="productFilterBtn" onclick=openFilters()><i class="fas fa-plus"></i> Filtres</button>
-            <button class="buttonRef" onclick={{ myLayout = 1 }}><i class="fas fa-th-large"></i></button>
-            <button class="buttonRef" onclick={{ myLayout = 2 }}><i class="fas fa-list"></i></button>
-            <button class="buttonRef" onclick={{ myLayout = 3 }}><i class="fas fa-th"></i></button>
+            <button class="buttonRef" onclick={% if myLayout == 3 %}{% decrement myLayout %} {% decrement myLayout %} {% elsif myLayout == 2 %} {% decrement myLayout %} {%endif%}>
+                <i class="fas fa-th-large"></i></button>
+            <button class="buttonRef" onclick={% if myLayout == 1 %}{% increment myLayout %} {% elsif myLayout == 3 %} {% decrement myLayout %} {%endif%}>
+                <i class="fas fa-list"></i></button>
+            <button class="buttonRef" onclick={% if myLayout == 1 %}{% increment myLayout %} {% increment myLayout %} {% elsif myLayout == 2 %}  {% increment myLayout %} {%endif%}>
+                <i class="fas fa-th"></i></button>
         </div>
         <div class="productShowFilter-Filter-2">
             <select name="sort_by">
