@@ -25,9 +25,10 @@
         {% assign myOptions = "" %}
         {% for collection in collections %}
             {% for product in collection.products %}
-             
-                    {{ myOptions = myOptions | concat: product.options_with_values }}
-             
+                {% for product_option in product.options_with_values %}
+                    {{ myOptions | append: ", "}}
+                    {{ myOptions | append: product_option.name }}
+                {% endfor %}
             {% endfor %}
         {% endfor %}
 
