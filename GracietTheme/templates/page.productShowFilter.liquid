@@ -20,7 +20,7 @@
     </div>
 
     <div class="productFilter">
-        {% assign allProOption = {{ collections.products.options_with_values }} %}
+        {% assign allProOption = {{ collections.products.options_with_values.product_option.name }} %}
         LA{{ allProOption }}ICI <br>
         {% for collection in collections %}
             {% for product in collection.products %}
