@@ -3,8 +3,7 @@
 <div class="productShowFilter">
     <div class="productShowFilter-Filter">
         <div class="productShowFilter-Filter-1">
-            <div class="productFilter">
-                <button ><i class="fas fa-minus"></i> Filtres</button>
+            <div class="productFilter open">
                 <div class="productFilter-show">
                     {%comment%} Affiche les filtres disponibles {%endcomment%}
                     {% for option in product.options %}
@@ -13,7 +12,7 @@
                     <p>Je suis un filtre</p>
                 </div>
             </div>
-            <button class="buttonRef" onclick=openFilters()><i class="fas fa-plus"></i> Filtres</button>
+            <button class="productFilterBtn" onclick=openFilters()><i class="fas fa-plus"></i> Filtres</button>
             
             <button class="buttonRef" onclick={% assign myLayout = 1 %}><i class="fas fa-th-large"></i></button>
             <button class="buttonRef" onclick={% assign myLayout = 2 %}><i class="fas fa-list"></i></button>

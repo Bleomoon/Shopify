@@ -79,11 +79,17 @@ function infosComplementairesProduct(){
 }
 
 
-function changeImageProduct(id, source){
-    document.getElementById(id).src = source;
-}
-
-
 function openFilters(){
+    const productFilterBtn = document.querySelector('.productFilterBtn');
+    const productFilter = document.querySelector('.productFilter');
+    
+    if (productFilter.contains('open')){
+        productFilter.remove('open');
+        productFilter.innerHTML ='<i class="fas fa-minus"></i> Filtres';
+    }
+    else{
+        productFilter.add('open');
+        productFilterBtn.innerHTML = '<i class="fas fa-plus"></i> Filtres';
+    }
     document.getElementById('productFilter').classList.toggle('show');
 }
