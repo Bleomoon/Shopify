@@ -78,7 +78,6 @@ function infosComplementairesProduct(){
     }
 }
 
-
 function openFilters(){
     const productFilterBtn = document.querySelector('.productFilterBtn');
     const productFilter = document.querySelector('.productFilter');
@@ -91,4 +90,14 @@ function openFilters(){
         productFilter.add('open');
         productFilterBtn.innerHTML = '<i class="fas fa-plus"></i> Filtres';
     }
+}
+
+function changeClassOfLayout(id, i)
+{
+    if(i == 1)
+        document.getElementById(id).classList.add('oneProduct-Standard');
+    else if(i == 2)
+        document.getElementById(id).classList.add('oneProduct-List');
+    else
+        document.getElementById(id).classList.add('oneProduct-Grid');
 }
