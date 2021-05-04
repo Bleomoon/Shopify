@@ -27,65 +27,18 @@
                 {% for product_option in product.options_with_values %}
                     {% assign myProduct = product_option.name | split: '' %}
                     {% assign valtest = myOptions | split: ', ' | uniq %}
-                    <br> ValTEST: {{ valtest }} <br> Thr product : {{myProduct }} <br> mOPTIONS {{ myOptions }}<br>
                     {% unless valtest contains product_option.name or product_option.name == 'Title' %}
-                        <select id={{ myProduct }} name="oneFilter">
+                        <select id={{ product_option.name }} name="oneFilter">
+                            <option value="{{ product_option.name }}">{{ product_option.name }}</option>
                             {% for value in product_option.values %}
                                 <option value="{{ value }}">{{ value }}</option>
                             {% endfor %}
                         </select>
-                    {% endunless %}{%comment%}
-                    {% unless valtest contains myProduct and product_option.name == 'Default Title' %}
-                        
-                    {% endunless %}{%endcomment%}
+                    {% endunless %}
                     {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
-        
-        {%comment%} Ici on supprime les doublons {%endcomment%}
-        {% assign allOption = myOptions | split: ', ' | uniq | join: ", " %}
-        
-        {%comment%} Ici on Crée les selects 
-        <br>Je suis ici<br>
-        {% for pO in Product.options %}
-            {{ pO }}
-        {% endfor %}
-        {% for pO in allOption %}
-            <select id={{ pO }} name="oneFilter">
-                {% for collection in collections %}
-                    {% for product in collection.products %}
-                        {% for product_option in product.options_with_values %}
-                            {% for value in product_option.values %}
-                                {{ value }}
-                            {% endfor %}
-                        {% endfor %}
-                    {% endfor %}
-                {% endfor %}
-            </select>
-        {% endfor %}
-<br>
-        <select name="oneFilter">
-           
-                <option value="i">Oui</option>
-          
-        </select>{%endcomment%}
-
-        {%comment%} Affiche les filtres disponibles
-        {% for collection in collections %}
-            {% for product in collection.products %}
-                {% for variant in product.variants %}
-                    {% for option in variants.options %}
-                    <select name="oneFilter">
-                        <option value="{{ variant.id }}">{{ variant.id }}</option>
-                        <option value="{{ variant.id }}">{{ variant.id }}</option>
-                        <option value="{{ variant.id }}">{{ variant.id }}</option>
-                    </select>
-                    {% endfor %}
-                {% endfor %}
-            {% endfor %}
-        {% endfor %}
-        {%endcomment%}
     </div>
     {%if myLayout == 1%} {%comment%} Puis on affiche le produit selon la layout {%endcomment%}
         <div class="oneProduct-Standard">
@@ -153,6 +106,8 @@
     .oneFilter{
         color:white;
         background-color:black;
+        -moz-appearance: none;
+        border: none;
     }
     .productShowFilter-Filter-2{
         grid-column:2;
