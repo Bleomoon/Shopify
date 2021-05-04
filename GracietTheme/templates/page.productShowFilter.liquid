@@ -32,6 +32,8 @@
             {% endfor %}
         {% endfor %}
 <br><br>
+        {{ myOptions }}
+        {{ myOptions| split: ", " }}
         {% assign myBettterOption = myOptions | split: ", " %}
         {% for s in myBettterOption %}
             {{ s }}
