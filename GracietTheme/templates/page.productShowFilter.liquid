@@ -20,15 +20,13 @@
     </div>
 
     <div class="productFilter">
-        {% for collection in collections %}
-            {% for product in collection.products %}
-                {% for product_option in product.options_with_values %}
-                    <select name="oneFilter">
-                        <option value="{{ product_option.name }}">{{ product_option.name }}</option>
-                    </select>
-                {% endfor %}
+     
+        {% assign allProOption = collections.products.options_with_values %}
+        <select name="oneFilter">
+            {% for product_option in allProOption %}
+                <option value="{{ product_option.name }}">{{ product_option.name }}</option>
             {% endfor %}
-        {% endfor %}
+        </select>
         {%comment%}{% capture _ %}{% endcapture %} Affiche les filtres disponibles {%endcomment%}
         {% for collection in collections %}
             {% for product in collection.products %}
