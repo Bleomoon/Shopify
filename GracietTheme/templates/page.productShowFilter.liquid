@@ -37,13 +37,13 @@
         LA
         
         {% assign allOption = myOptions | split: ', ' | uniq | join: ", " %}
-    
+        {% %}
          C I <br> <br>
         
         <br>
-        {{ myOptions }}
+        {{ allOption }}
         im the new strings
-        {% for s in myOptions %} 
+        {% for s in allOption %} 
             {{s}} <br>
         {% endfor %}
         and the end
