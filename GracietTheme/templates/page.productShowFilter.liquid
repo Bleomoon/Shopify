@@ -32,7 +32,8 @@
             {% endfor %}
         {% endfor %}
 
-        LA{{ myOptions}}ICI <br>
+        {% assign myBettterOption = myOptions| split: ", " %}
+        LA {{ myBettterOption | uniq | join: ", " }} CI <br>
         
         
 
