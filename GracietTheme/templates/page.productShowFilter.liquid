@@ -28,7 +28,7 @@
                     {% assign myProduct = product_option.name | split: '' %}
                     {% assign valtest = myOptions | split: ', ' | uniq %}
                     <br> ValTEST: {{ valtest }} <br> Thr product : {{myProduct }} <br> mOPTIONS {{ myOptions }}
-                    {% if valtest contains product_option.name %}
+                    {% if valtest contains product_option.name or product_option.name == 'Title' %}
                     {% else %}
                         <select id={{ myProduct }} name="oneFilter">
                             {% for value in product_option.values %}
@@ -39,7 +39,7 @@
                     {% unless valtest contains myProduct and product_option.name == 'Default Title' %}
                         
                     {% endunless %}{%endcomment%}
-                    {% assign myOptions = myOptions | concat: myProduct | join: ', '%}
+                    {% assign myOptions = myOptions | concat: myProduct%}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
