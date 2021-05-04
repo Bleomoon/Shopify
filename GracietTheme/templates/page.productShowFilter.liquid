@@ -3,7 +3,7 @@
 <div class="productShowFilter">
     <div class="productShowFilter-Filter">
         <div class="productShowFilter-Filter-1">
-            <button class="productFilterBtn" onclick=openFilters()><i class="fas fa-plus"></i> Filtres</button>
+            <button id="productFilterBtn" class="productFilterBtn" onclick=openFilters()><i class="fas fa-plus"></i> Filtres</button>
             <button class="buttonRef" onclick=changeClassOfLayout(1)>
                 <i class="fas fa-th-large"></i></button>
             <button class="buttonRef" onclick=changeClassOfLayout(2)>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="productFilter">
+    <div id="productFilter" class="productFilter">
         {%comment%} Ici on boucle pour récupéré tous les noms d'option {%endcomment%}
         {% assign myOptions = '' | split '' %}
         {% for collection in collections %}
@@ -106,8 +106,8 @@
         margin-top:10px;
         margin-left:15px;
         margin-right:15px;
-        /*left: -999px;
-        position:absolute;*/
+        left: -999px;
+        position:absolute;
     }
     .productFilter.open{
         left:0;
