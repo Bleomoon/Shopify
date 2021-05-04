@@ -26,7 +26,7 @@
             {% for product in collection.products %} 
                 {% for product_option in product.options_with_values %}
                     {% assign myProduct = product_option.name | split: '' %}
-                    {% assign valtest = myOptions | split: ', ' | uniq %}
+                    {% assign valtest = myOptions | uniq %}
                     <br> ValTEST: {{ valtest }} <br> Thr product : {{myProduct }} <br> mOPTIONS {{ myOptions }}
                     {% if valtest contains product_option.name or product_option.name == 'Title' %}
                     {% else %}
