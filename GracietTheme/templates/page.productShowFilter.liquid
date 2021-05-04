@@ -32,7 +32,7 @@
                                 <option value="{{ value }}">{{ value }}</option>
                             {% endfor %}
                         </select>
-                    {% endif %}
+                    {% endunless %}
                     {% assign myOptions = myOptions | concat: myProduct | join: ', '%}
                 {% endfor %}
             {% endfor %}
