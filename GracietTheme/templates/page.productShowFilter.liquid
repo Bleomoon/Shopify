@@ -22,13 +22,13 @@
     <div class="productFilter">
         {% assign numOption = 1 %}
         {% assign isIn = false %}
-        {% assign myOptions = "" %}
+        {% assign myOptions = [] %}
         {% for collection in collections %}
             {% for product in collection.products %}
-                {% for product_option in product.options_with_values %}
-                    {{ myOptions | append: product_option.name }}
-                    {{ myOptions | append: ", "}}
-                {% endfor %}
+             
+                    {{ myOptions | concat: product.options_with_values }}
+                    
+           
             {% endfor %}
         {% endfor %}
 <br><br>
@@ -48,7 +48,7 @@
                 <option value="{{ allProOption.[i] }}">{{ allProOption.[i] }}</option>
             {% endfor %}
         </select>
-        {%comment%} Affiche les filtres disponibles {%endcomment%}
+        {%comment%} Affiche les filtres disponibles
         {% for collection in collections %}
             {% for product in collection.products %}
                 {% for variant in product.variants %}
@@ -62,6 +62,7 @@
                 {% endfor %}
             {% endfor %}
         {% endfor %}
+        {%endcomment%}
     </div>
     {%if myLayout == 1%} {%comment%} Puis on affiche le produit selon la layout {%endcomment%}
         <div class="oneProduct-Standard">
