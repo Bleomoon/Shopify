@@ -24,18 +24,19 @@
         {% assign isIn = false %}
         {% assign myOptions = [] %}
         {% for collection in collections %}
-            {% for product in collection.products %}
+            {% for product in collection.products %} 
+                     {{  product.options_with_values }}
              
-                    {{ myOptions | concat: product.options_with_values | join ", "}}
                     
            
             {% endfor %}
         {% endfor %}
 <br><br>
-
+        {{% assign myOptions = collection.products.options_with_values | join ", " %}}
         <p>{{ myOptions }}</p>
         
         LA
+        
         {% for i in (0..myOptions | size ) %}
             {{ myOptions[i] }}
         {% endfor %}
