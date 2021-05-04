@@ -36,8 +36,8 @@
         <p>{{ myOptions }}</p>
         {{ myOptions| split: ", " }}
         {% assign myBettterOption = myOptions | split: ", " %}
-        {% for s in myOptions %}
-            {{ s }}
+        {% for i in (0..myOptions | size ) %}
+            {{ myOptions[i] }}
         {% endfor %}
         LA {{ myBettterOption | uniq | join: ", " }} C I<br><br>
         
