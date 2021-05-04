@@ -27,7 +27,8 @@
                 {% for product_option in product.options_with_values %}
                     {% assign myProduct = product_option.name | split: '' %}
                     {% assign valtest = myOptions | split: ', ' | uniq %}
-                    {% if myOptions contains product_option.name %}
+                    <br> ValTEST: {{ valtest }} <br> Thr product : {{myProduct }} <br> mOPTIONS {{ myOptions }}
+                    {% if valtest contains product_option.name %}
                     {% else %}
                         <select id={{ myProduct }} name="oneFilter">
                             {% for value in product_option.values %}
