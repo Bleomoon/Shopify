@@ -36,16 +36,16 @@
         <p>LALALA{{ myOptions }}OUIIII</p>
         LA
         
-        {% assign myBettterOption = myOptions | split: ', '}}
-        {{ myBettterOption | uniq | join: ", " }} C I<br><br>
+        {% assign myBettterOption = myOptions | split: ', ' %}
+        {{ myBettterOption | uniq | join: ", " }} C I <br> <br>
         
         
 
         
         <select name="oneFilter">
-            {% for i in (1..allProOption.size )%}
-                <option value="{{ allProOption.[i] }}">{{ allProOption.[i] }}</option>
-            {% endfor %}
+           
+                <option value="i">Oui</option>
+          
         </select>
         {%comment%} Affiche les filtres disponibles
         {% for collection in collections %}
