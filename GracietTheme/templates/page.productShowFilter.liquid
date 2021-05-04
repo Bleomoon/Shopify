@@ -51,7 +51,7 @@
                 {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
                 <div class="oneProduct">
                     <div class="oneProduct-img"> 
-                        <img src="{{ product | img_url: "300x300" }}"> 
+                        <img src="{{ product | img_url: "large" }}"> 
                     </div>
                     
                     <div class="oneProduct-h2">
@@ -166,6 +166,10 @@
         margin-left:5%;
         grid-gap:5%;
         grid-gap:5%;
+        .oneProduct{
+            display:grid;
+            grid-templates-column:2;    
+        }
     }
 
     .oneProduct-List.oneProduct{
@@ -184,6 +188,7 @@
     .oneProduct-List.oneProduct-price{
         grid-column:2/4;
     }
+
     .oneProduct-Grid{
         display:grid;
         grid-template-columns:repeat(5,1fr);
