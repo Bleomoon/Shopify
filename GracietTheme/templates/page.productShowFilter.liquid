@@ -32,7 +32,7 @@
             {% endfor %}
         {% endfor %}
 <br><br>
-        {{% assign myOptions = collection.products.options_with_values | join ", " %}}
+        {% assign myOptions = collection.products.options_with_values | join ", " %}
         <p>{{ myOptions }}</p>
         
         LA
