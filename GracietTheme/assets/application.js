@@ -82,12 +82,12 @@ function openFilters(){
     const productFilterBtn = document.getElementById('productFilterBtn');
     const productFilter = document.getElementById('productFilter');
     
-    if (productFilter.className.contains('open')){
-        productFilter.className.remove('open');
+    if (productFilter.classList.contains('open')){
+        productFilter.classList.remove('open');
         productFilterBtn.innerHTML ='<i class="fas fa-minus"></i> Filtres';
     }
     else{
-        productFilter.className.add('open');
+        productFilter.classList.add('open');
         productFilterBtn.innerHTML = '<i class="fas fa-plus"></i> Filtres';
     }
 }
