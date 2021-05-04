@@ -36,10 +36,8 @@
         <p>LALALA{{ myOptions }}OUIIII</p>
         LA
         
-        {% for i in (0..myOptions | size ) %}
-            {{ myOptions[i] }}
-        {% endfor %}
-       {{ myBettterOption | uniq | join: ", " }} C I<br><br>
+        {% assign myBettterOption = myOptions | split: ', '}}
+        {{ myBettterOption | uniq | join: ", " }} C I<br><br>
         
         
 
