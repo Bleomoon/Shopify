@@ -22,13 +22,12 @@
     <div class="productFilter">
         {%comment%} Affiche les filtres disponibles {%endcomment%}
         {% for collection in collections %}
-        {% for option in collection.sort_options %}
-        <button class="oneFilter">
-            {{ option.name }}
-        </button>
+            {% for product in collection.products %}
+                <button class="oneFilter">
+                    <option value="{{ product.variants }}">{{ product.variants }}</option>
+                </button>
+            {% endfor %}
         {% endfor %}
-        {% endfor %}
-        <p>Je suis un filtre</p>
     </div>
     {%if myLayout == 1%} {%comment%} Puis on affiche le produit selon la layout {%endcomment%}
         <div class="oneProduct-Standard">
@@ -80,12 +79,14 @@
     .productFilter{
         grid-template-columns:repeat(4,1fr);
         display:grid;
+        grid-row:2;
         grid-gap:25px;
         left: -999px;
         position:absolute;
     }
     .productFilter.open{
         left:0;
+        position:none;
     }
     .productFilterBtn{
         background:none;
