@@ -20,13 +20,18 @@
     </div>
 
     <div class="productFilter">
-        {%comment%} Affiche les filtres disponibles {%endcomment%}
+        {% for variant in variants%}
+            {%if variant.available%}
+                {% increment nbOption%} 
+            {%endif %}
+        {% endfor %}
+        {%comment%}{% capture _ %}{% endcapture %} Affiche les filtres disponibles {%endcomment%}
         {% for collection in collections %}
             {% for product in collection.products %}
                 {% for variant in product.variants %}
-                    <button class="oneFilter">
+                    <select name="oneFilter">
                         <option value="{{ variant.id }}">{{ variant.title }}</option>
-                    </button>
+                    </select>
                 {% endfor %}
             {% endfor %}
         {% endfor %}
