@@ -40,6 +40,7 @@
         {% for collection in collections %}
             {% for product in collection.products %}
                 {% for product_option in product.options_with_values %}
+                <br>
                     {% for value in product_option.values %}
                         {{ value }}
                     {% endfor %}
