@@ -36,14 +36,14 @@
         <p>LALALA{{ myOptions }}OUIIII</p>
         LA
         
-        {% assign myBettterOption = myOptions | split: ', ' %}
-        {% assign myBB = myBettterOption | uniq | join: ", " %}
+        {% assign allOption = myOptions | split: ', ' | uniq | join: ", " %}
+    
          C I <br> <br>
         
         <br>
-        {{ myBB }}
+        {{ myOptions }}
         im the new strings
-        {% for s in myBB %} 
+        {% for s in myOptions %} 
             {{s}} <br>
         {% endfor %}
         and the end
