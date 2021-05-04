@@ -22,7 +22,7 @@
     <div class="productFilter">
         {% for variant in variants%}
             {%if variant.available%}
-                {% increment nbOption%} 
+                {% increment nbOption %} 
             {%endif %}
         {% endfor %}
         {%comment%}{% capture _ %}{% endcapture %} Affiche les filtres disponibles {%endcomment%}
@@ -30,7 +30,7 @@
             {% for product in collection.products %}
                 {% for variant in product.variants %}
                     <select name="oneFilter">
-                        <option value="{{ variant.id }}">{{ variant.title }}</option>
+                        <option value="{{ variant.id }}">{{ variant.id }}</option>
                     </select>
                 {% endfor %}
             {% endfor %}
@@ -88,8 +88,8 @@
         display:grid;
         grid-row:2;
         grid-gap:25px;
-        left: -999px;
-        position:absolute;
+        /*left: -999px;
+        position:absolute;*/
     }
     .productFilter.open{
         left:0;
