@@ -26,8 +26,8 @@
         {% for collection in collections %}
             {% for product in collection.products %} 
                 {% for product_option in product.options_with_values %}
-                    {% assign myProduct = product_option.name | split: ', ' %}
-                    {% assign myOptions = myOptions | concat: myProduct %}
+                    {% assign myProduct = product_option.name | split: '' %}
+                    {% assign myOptions = myOptions | concat: myProduct | join: ', '%}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
