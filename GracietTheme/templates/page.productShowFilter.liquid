@@ -28,7 +28,7 @@
                     {% assign myProduct = product_option.name | split: '' %}
                     {% assign valtest = myOptions | split: ', ' | uniq %}
                     {% unless valtest contains product_option.name or product_option.name == 'Title' %}
-                        <select id="oneFilter" name={{ product_option.name }}>
+                        <select class="oneFilter" id={{ product_option.name }} name={{ product_option.name }}>
                             <option value="{{ product_option.name }}">{{ product_option.name }}</option>
                             {% for value in product_option.values %}
                                 <option value="{{ value }}">{{ value }}</option>
