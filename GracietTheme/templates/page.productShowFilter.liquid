@@ -26,12 +26,12 @@
         {% for collection in collections %}
             {% for product in collection.products %}
              
-                    {{ myOptions | concat: product.options_with_values }}
+                    {{ myOptions = myOptions | concat: product.options_with_values }}
              
             {% endfor %}
         {% endfor %}
 
-        LA{{ myOptions | uniq }}ICI <br>
+        LA{{ myOptions}}ICI <br>
         
         
 
