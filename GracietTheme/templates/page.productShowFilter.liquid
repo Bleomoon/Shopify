@@ -54,16 +54,18 @@
                         <img src="{{ product | img_url: "large" }}"> 
                     </div>
                     
-                    <div class="oneProduct-h2">
-                        <h2>{{ product.title }}</h2>
-                    </div>
-                    
-                    <div class="oneProduct-desc"> 
-                        <p>{{ product.description }}</p>
-                    </div>
-                    
-                    <div class="oneProduct-price"> 
-                        <p>{{ product.price }}</p> 
+                    <div class="oneProduct-texte">
+                        <div class="oneProduct-h2">
+                            <h2>{{ product.title }}</h2>
+                        </div>
+                        
+                        <div class="oneProduct-desc">
+                            <p>{{ product.description }}</p>
+                        </div>
+                        
+                        <div class="oneProduct-price">
+                            <p>{{ product.price }}</p>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
@@ -153,7 +155,7 @@
     .oneProduct-Standard .oneProduct-h2{
 
     }
-    .oneProduct-Standard .oneProduct-desc{
+    .oneProduct-Standard .oneProduct-texte .oneProduct-desc{
         display:none;
     }
     .oneProduct-Standard .oneProduct-price{
@@ -169,20 +171,27 @@
     }
 
     .oneProduct-List .oneProduct{
-
+        display:grid;
+        grid-template-columns:repeat(4,1fr)
     }
 
     .oneProduct-List .oneProduct-img{
         grid-column:1;
     }
-    .oneProduct-List .oneProduct-h2{
+
+    .oneProduct-List .oneProduct-texte{
         grid-column:2/4;
+        display:flex
     }
-    .oneProduct-List .oneProduct-desc{
-        grid-column:2/4;
+
+    .oneProduct-List .oneProduct-texte .oneProduct-h2{
+        
     }
-    .oneProduct-List .oneProduct-price{
-        grid-column:2/4;
+    .oneProduct-List .oneProduct-texte .oneProduct-desc{
+       
+    }
+    .oneProduct-List .oneProduct-texte .oneProduct-price{
+       
     }
 
     .oneProduct-Grid{
@@ -200,7 +209,7 @@
     .oneProduct-Grid .oneProduct-h2{
 
     }
-    .oneProduct-Grid .oneProduct-desc{
+    .oneProduct-Grid .oneProduct-texte .oneProduct-desc{
         display:none;
     }
     .oneProduct-Grid .oneProduct-price{
