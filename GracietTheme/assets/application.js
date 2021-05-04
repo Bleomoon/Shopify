@@ -92,12 +92,12 @@ function openFilters(){
     }
 }
 
-function changeClassOfLayout(id, i)
+function changeClassOfLayout(i)
 {
     if(i == 1)
-        document.getElementById(id).classList.add('oneProduct-Standard');
+        document.getElementById('myLayout').classList.add('oneProduct-Standard');
     else if(i == 2)
-        document.getElementById(id).classList.add('oneProduct-List');
+        document.getElementById('myLayout').classList.add('oneProduct-List');
     else
-        document.getElementById(id).classList.add('oneProduct-Grid');
+        document.getElementById('myLayout').classList.add('oneProduct-Grid');
 }
