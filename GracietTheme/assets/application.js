@@ -79,15 +79,15 @@ function infosComplementairesProduct(){
 }
 
 function openFilters(){
-    const productFilterBtn = document.querySelector('.productFilterBtn');
-    const productFilter = document.querySelector('.productFilter');
+    const productFilterBtn = document.getElementById('productFilterBtn');
+    const productFilter = document.getElementById('productFilter');
     
-    if (productFilter.contains('open')){
-        productFilter.remove('open');
+    if (productFilter.className.contains('open')){
+        productFilter.className.remove('open');
         productFilterBtn.innerHTML ='<i class="fas fa-minus"></i> Filtres';
     }
     else{
-        productFilter.add('open');
+        productFilter.className.add('open');
         productFilterBtn.innerHTML = '<i class="fas fa-plus"></i> Filtres';
     }
 }
