@@ -75,7 +75,7 @@
             {%endcomment%}
             <div class="oneProduct">
                 
-                <img class="oneProduct-img" src="{{ product | img_url }}">
+                <img class="oneProduct-img" src="{{ product | img_url: "large" }}">
                 
         
                 <div class="oneProduct-texte">
@@ -175,6 +175,10 @@
 
     .oneProduct-Standard .oneProduct-texte .oneProduct-desc{
         display:none;
+    }
+    
+    .oneProduct-Standard .oneProduct-img{
+        
     }
     
     .oneProduct-img{
