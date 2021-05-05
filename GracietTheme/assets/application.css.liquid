@@ -153,6 +153,313 @@ $font-family: sans-serif;
     color: black;
 }
 
+
+/*CSS du HEADER*/
+.header {
+    font-size: $font-size;
+    background: #EEE;
+    position: sticky;
+    top: 0;
+    align-items: center;
+    display: flex;
+}
+
+.header-logo {
+    padding-left: 10px;
+}
+
+.header-icons-Ref {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header-icons-search {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header-icons-cart {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Css du panier*/
+.showCart {
+    display: block;
+}
+
+.noItemInCart {
+    display: grid;
+}
+
+.ItemInCart {
+    display: grid;
+    grid-template-columns;
+    : repeat(7, 1fr);
+}
+
+.ItemImg {
+    grid-column: 1/2;
+}
+
+.ItemText {
+    grid-template-rows;
+    : repeat(3, 1fr);
+    display: grid;
+    grid-column: 3/6;
+}
+
+.ItemDelete {
+    grid-column: 7;
+}
+
+.ItemText-h3 {
+    grid-row: 1;
+}
+
+.ItemText-desc {
+    grid-row: 2;
+}
+
+.ItemText-prix {
+    grid-row: 3;
+}
+
+.goPanierItems {
+    display: grid;
+    grd-template-rows: repeat(3, 1fr);
+    grd-template-columns: repeat(2, 1fr);
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: none;
+    letter-spacing: 1px;
+}
+
+.goPanierItems-h2Tot {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.goPanierItems-h2Prix {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.goPanierItems-goPanier {
+    border: solid;
+    border-color: black;
+    border-width: thick;
+    background-color: none;
+    grid-column: 1/2;
+    grid-row: 2;
+}
+
+.goPanierItems-goFin {
+    background-color: black;
+    color: white;
+    grid-column: 1/2;
+    grid-row: 3;
+}
+
+/*Css du cart si smallscreen ?? */
+
+/* Css de la searchBow */
+.searchbox-content {
+    display: none;
+    position: absolute;
+    justify-content: flex-end;
+    width: 100%;
+    left: 0;
+    top: 100%;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.searchbox-search {
+    display: flex;
+    border: none;
+    width: 100%;
+}
+
+.search-bar {
+    background: none;
+    border: none;
+    width: 98%;
+}
+
+.search-input {
+    border: none;
+    width: 96%;
+}
+
+.btn-close {
+    display: flex;
+    justify-content: flex-end;
+    background: none;
+    border: none;
+    font-size: 25px;
+    width: 1%;
+}
+
+.searchbox-Btn {
+    border: none;
+    background: none;
+    font-size: 20px;
+    width: 2%;
+}
+
+.searchbox-content.show {
+    display: flex;
+}
+
+.user {
+    width: 0;
+    left: -999px;
+    transition: left 0.1s;
+    display: block;
+    position: absolute;
+    top: 100%;
+}
+
+.user-item {
+    display: block;
+
+    padding: 10px .user.open {
+    width: 100%;
+    left: 0;
+    justify-content: end;
+    background: #EEE;
+    display: grid;
+}
+
+.menu-smallScreen {
+    display: none;
+}
+
+@media screen and (max-width:900px) {
+    .header-logo {
+        display: flex;
+        flex: 1;
+        justify-content: flex-start;
+    }
+
+    .header-navbar {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1;
+    }
+
+    .navbar-toggler {
+        cursor: pointer;
+        justify-content: flex-end;
+        background: none;
+        border: none;
+    }
+
+    .navbar {
+        width: 0;
+        left: -999px;
+        display: block;
+        transition: left 0.7s;
+        position: absolute;
+        top: 100%;
+    }
+
+    .navbar-item {
+        display: inline-block;
+        padding: 10px;
+    }
+
+    /*Fonction qand on clique sur la navbar*/
+    .navbar.open {
+        width: 100%;
+        left: 0;
+        background: #EEE;
+    }
+
+    .header-icons {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        padding: 10px
+    }
+}
+
+/*Si taille de l'écran moyen*/
+@media screen and (min-width:900px) {
+    .header-navbar {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1;
+    }
+
+    .navbar-toggler {
+        display: none;
+        justify-content: flex-end;
+    }
+
+    .navbar {
+        position: relative;
+        left: 0;
+        transition: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar-item {
+        display: inline-flex;
+        padding: 10px;
+    }
+
+    .menu-smallScreen {
+        display: none;
+    }
+}
+
+/*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon
+compte)
+Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
+*/
+@media screen and (max-width:576px) {
+    .header-icons {
+        display: none;
+    }
+
+    .header-navbar {
+        display: none;
+    }
+
+    .menu-smallScreen {
+        display: flex;
+        padding: 10px;
+    }
+
+    .smallScreen {
+        width: 0;
+        left: -999px;
+        transition: left 0.1s;
+        display: block;
+        position: absolute;
+        top: 100%;
+    }
+
+    .smallScreen-item {
+        display: block;
+        padding: 10px;
+        justify-content: flex-end;
+    }
+
+    .smallScreen.open {
+        width: 100%;
+        left: 0;
+        justify-content: flex-end;
+        background: #EEE;
+    }
+}
+
 /*CSS du FOOTER*/
 .footer {
     margin-top: 5%;
