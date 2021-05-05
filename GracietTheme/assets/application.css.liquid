@@ -153,7 +153,6 @@ $font-family: sans-serif;
     color: black;
 }
 
-
 /*CSS du HEADER*/
 .header {
     font-size: $font-size;
@@ -266,7 +265,6 @@ $font-family: sans-serif;
 
 /*Css du cart si smallscreen ?? */
 
-/* Css de la searchBow */
 .searchbox-content {
     display: none;
     position: absolute;
@@ -325,8 +323,10 @@ $font-family: sans-serif;
 
 .user-item {
     display: block;
+    padding: 10px;
+}
 
-    padding: 10px .user.open {
+.user.open {
     width: 100%;
     left: 0;
     justify-content: end;
@@ -385,6 +385,8 @@ $font-family: sans-serif;
         justify-content: flex-end;
         padding: 10px
     }
+
+
 }
 
 /*Si taille de l'écran moyen*/
@@ -419,11 +421,11 @@ $font-family: sans-serif;
     }
 }
 
-/*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon
-compte)
+/*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
 Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 */
 @media screen and (max-width:576px) {
+
     .header-icons {
         display: none;
     }
