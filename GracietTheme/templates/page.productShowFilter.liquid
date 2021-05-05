@@ -39,6 +39,7 @@
                         </select>
                     {% endunless %}
                     {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
+                        <br><p>{{myProduct}}</p><br><p>{{valtest}}</p><br><p>{{myOptions}}</p><br>
                 {% endfor %}
             {% endfor %}
         {% endfor %}
