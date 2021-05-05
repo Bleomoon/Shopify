@@ -47,7 +47,6 @@
                         {% for product_option in product.options_with_values %}
                             {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
                                 {% for value in product_option.values %}
-                                    MY VALUE IN {{ value }} <br>
                                     {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
                                     {% unless listValue contains value %}
                                         <option value="{{ value }}">{{ value }}</option>
@@ -55,8 +54,6 @@
                                     {% assign allValue = allValue | append: ', ' | append: value %}
                                     {% assign listValue = allValue | split: ', ' | uniq %}
                                 {% endfor %}
-                                LIST VAL {{ listValue }} <br>
-                                ALL THE VAL {{ allValue }} <br>
                             {% endif %}
                         {%endfor%}
                     {%endfor%}
@@ -68,30 +65,40 @@
 
     {%comment%} Puis on affiche le produit selon le layout qui déterminer avec
     changeClassOfLayout {%endcomment%}
+    {% assign show = false%}
     <div id="myLayout" class="oneProduct-Standard">
         {% for collection in collections %}
             {%for product in collection.products %}
-            {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus
-            {%endcomment%}
-            <div class="oneProduct">
+                {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
+                {{ show = false }}
+                {%for oneOption in listOption %} {%comment%} parcours les options {%endcomment%}
+                    {% assign myOption = isSelected(oneOption) %}
+                    {% if myOption != oneOption %}
+                        {%for product_option in product.options_with_values %} {%comment%} parcours les options du produit {%endcomment%}
+                            {% if product_option.name == myOption %}
+                                {{ show = true }}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                {% if show %}
+                    <div class="oneProduct">
+                        <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
+                        <div class="oneProduct-texte">
+                            <div class="oneProduct-h2">
+                                <h2>{{ product.title }}</h2>
+                            </div>
                 
-                <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
+                            <div class="oneProduct-desc">
+                                <p>{{ product.description }}</p>
+                            </div>
                 
-        
-                <div class="oneProduct-texte">
-                    <div class="oneProduct-h2">
-                        <h2>{{ product.title }}</h2>
+                            <div class="oneProduct-price">
+                                <p>{{ product.price }}</p>
+                            </div>
+                        </div>
                     </div>
-        
-                    <div class="oneProduct-desc">
-                        <p>{{ product.description }}</p>
-                    </div>
-        
-                    <div class="oneProduct-price">
-                        <p>{{ product.price }}</p>
-                    </div>
-                </div>
-            </div>
+                {% endif %}
             {% endfor %}
         {% endfor %}
     </div>
