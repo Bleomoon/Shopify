@@ -102,10 +102,8 @@ function changeClassOfLayout(i)
         document.getElementById('myLayout').className = 'oneProduct-Grid';
 }
 
-function getSelected()
-{
-    document.getElementById(oneOption).options[mySelect.selectedIndex].value;
-    
 
-    return {{ shop.title }};
+function showCart()
+{
+    document.getElementById("showCart").style.display = "block";
 }
