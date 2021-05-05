@@ -34,39 +34,68 @@
                 {% endfor %}
             {% endfor %}
         {% endfor %}
-    </div>
 
-  On se met la
-    {% assign listValue = '' | split '' %}
-    {% assign allValue = '' | split '' %}
-    {%for oneOption in listOption %}
-        {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
-            <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
-            <option value="{{ oneOption }}">{{ oneOption }}</option>
-            {% for collection in collections %}
-                {% for product in collection.products %}
-                    {% for product_option in product.options_with_values %}
-                        {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
-                            {% for value in product_option.values %}
-                                MY VALUE IN {{ value }} <br>
-                                {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
-                                {% unless listValue contains value %}
-                                    <option value="{{ value }}">{{ value }}</option>
-                                {% endunless %}
-                                {% assign allValue = allValue | append: ', ' | append: value %}
-                                {% assign listValue = allValue | split: ', ' | uniq %}
-                            {% endfor %}
-                            LIST VAL {{ listValue }} <br>
-                            ALL THE VAL {{ allValue }} <br>
-                        {% endif %}
+        {%comment%} Ici on boucle pour récupéré toutes les valeurs de options {%endcomment%}
+        {% assign listValue = '' | split '' %}
+        {% assign allValue = '' | split '' %}
+        {%for oneOption in listOption %}
+            {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
+                <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+                <option value="{{ oneOption }}">{{ oneOption }}</option>
+                {% for collection in collections %}
+                    {% for product in collection.products %}
+                        {% for product_option in product.options_with_values %}
+                            {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
+                                {% for value in product_option.values %}
+                                    MY VALUE IN {{ value }} <br>
+                                    {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
+                                    {% unless listValue contains value %}
+                                        <option value="{{ value }}">{{ value }}</option>
+                                    {% endunless %}
+                                    {% assign allValue = allValue | append: ', ' | append: value %}
+                                    {% assign listValue = allValue | split: ', ' | uniq %}
+                                {% endfor %}
+                                LIST VAL {{ listValue }} <br>
+                                ALL THE VAL {{ allValue }} <br>
+                            {% endif %}
+                        {%endfor%}
                     {%endfor%}
                 {%endfor%}
-            {%endfor%}
-            </select>
-        {%endif%}
-    {%endfor%}
-    
-  </p> ICI la
+                </select>
+            {%endif%}
+        {%endfor%}
+    </div>
+
+    {%comment%} Puis on affiche le produit selon le layout qui déterminer avec
+    changeClassOfLayout {%endcomment%}
+    <div id="myLayout" class="oneProduct-Standard">
+        {% for collection in collections %}
+            {%for product in collection.products %}
+            {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus
+            {%endcomment%}
+            <div class="oneProduct">
+                <div class="oneProduct-img">
+                    <img src="{{ product | img_url: "large" }}">
+                </div>
+        
+                <div class="oneProduct-texte">
+                    <div class="oneProduct-h2">
+                        <h2>{{ product.title }}</h2>
+                    </div>
+        
+                    <div class="oneProduct-desc">
+                        <p>{{ product.description }}</p>
+                    </div>
+        
+                    <div class="oneProduct-price">
+                        <p>{{ product.price }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
 
 {%comment%} Ici le style css de la page {%endcomment%}
 {% style %}
