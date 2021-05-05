@@ -70,15 +70,14 @@
         {% for collection in collections %}
             {%for product in collection.products %}
                 {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
-                {{ show = false }}
+                {% capture _ %} {{ show = false }} {% endcapture %}
                 {%for oneOption in listOption %} {%comment%} parcours les options {%endcomment%}
-                    {% assign myOption = isSelected(oneOption) %}
-                    {{ isSelected(oneOption) }}
+                    {% assign myOption = <script>isSelected(oneOption) </script>%}
                     {% if myOption != oneOption %}
                         ici
                         {%for product_option in product.options_with_values %} {%comment%} parcours les options du produit {%endcomment%}
                             {% if product_option.name == myOption %}
-                                oui {{ show = true }}
+                                {% capture _ %} {{ show = true }} {% endcapture %}
                             {% endif %}
                         {% endfor %}
                     {% endif %}
