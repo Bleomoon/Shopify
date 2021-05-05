@@ -74,9 +74,10 @@
                 {%for oneOption in listOption %} {%comment%} parcours les options {%endcomment%}
                     {% assign myOption = isSelected(oneOption) %}
                     {% if myOption != oneOption %}
+                        ici
                         {%for product_option in product.options_with_values %} {%comment%} parcours les options du produit {%endcomment%}
                             {% if product_option.name == myOption %}
-                                {{ show = true }}
+                                oui {{ show = true }}
                             {% endif %}
                         {% endfor %}
                     {% endif %}
