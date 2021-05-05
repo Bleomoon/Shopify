@@ -6,7 +6,7 @@
     {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
   {% endif %}
   <div style="grid-column: {{ numColImg }};" class="imageTexte-img">
-    <img class="imageTexte-Image" src= {{ section.settings.image | img_url:"555x"}}>
+    <img class="imageTexte-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
     <h1 style="color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre }};">{{section.settings.title }}</h1>

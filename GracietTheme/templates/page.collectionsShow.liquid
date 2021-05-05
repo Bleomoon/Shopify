@@ -19,7 +19,7 @@
                     <a class="aRef" href="{{ collection.url }}">
                         {% if collection.image %}
                             <div class="oneCollection-img">
-                                <img src="{{ collection.image | img_url: 'medium' }}">
+                                <img alt="{{ collection.title  }}" src="{{ collection.image | img_url: 'medium' }}">
                             </div>
                         {% endif %}
                         <div class="oneCollection-title">

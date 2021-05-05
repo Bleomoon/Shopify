@@ -2,7 +2,7 @@
 <div class="productShow">  
   <a class="aRef" href="{{ section.settings.productLink }}">
     <div class="product-img">
-    <img id="{{ section.id }}" class="product-img" 
+    <img id="{{ section.id }}" alt="{{section.settings.productName }}" class="product-img" 
       onmouseout="this.src='{{ section.settings.imgProduct1 | img_url }}'" 
       onmouseover="this.src='{{ section.settings.imgProduct2 | img_url }}'" 
       src="{{ section.settings.imgProduct1 | img_url }}"

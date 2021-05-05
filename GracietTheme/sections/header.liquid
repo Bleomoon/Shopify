@@ -2,7 +2,7 @@
 <header class="header">
 	{% comment %}Le logo du site qui redirige vers l'accueil{% endcomment %}
 	<div class="header-logo">
-		<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/"><img src="{{ section.settings.logo | img_url: "300x300" }}" alt="{{ shop.name }}"></a>
+		<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/"><img alt="{{ shop.title }}" src="{{ section.settings.logo | img_url: "300x300" }}" alt="{{ shop.name }}"></a>
 	</div>
 
 	{% comment %} Ici la barre de navigation qui affichera les bouttons vers les autres pages {% endcomment %}

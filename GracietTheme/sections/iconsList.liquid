@@ -2,7 +2,7 @@
 <div class="iconsList">
   {%for block in section.blocks %}
     <div class="icons">
-      <img class="icons-img" src="{{ block.settings.icons | img_url: '300x300' }}">
+      <img class="icons-img" alt="{{ block.settings.title }}" src="{{ block.settings.icons | img_url: '300x300' }}">
       <h2 class="icons-h2" style="font-size:{{ block.settings.titleSize | append:'px' }}">{{ block.settings.title }}</h2>
     </div>
   {%endfor%}

@@ -5,7 +5,7 @@
   
     {%comment%} Zone sur les images {%endcomment%}
     <div class="ficheProduct-Img">
-      <img class="ficheProduit-BigImg" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
+      <img class="ficheProduit-BigImg" alt="{{ product.title }}" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
       <div class="ficheProduct-SousImg">
         {%assign ficheProductnbImg = 0%}
         {% for image in product.images %}
