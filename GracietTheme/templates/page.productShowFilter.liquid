@@ -47,15 +47,17 @@
                     {% for product_option in product.options_with_values %}
                         {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
                             {% for value in product_option.values %}
+                                MY VALUE IN {{ value }} <br>
                                 {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
                                 {% unless listValue contains value%}
                                     {% assign listValue = allValue | split: ', ' | uniq %}
                                     <option value="{{ value }}">{{ value }}</option>
-                                    MY VALUE IN {{ value }}<br>
-                                    ALL THE VAL {{ listValue }} <br>
+                                    
                                 {% endunless %}
                                 {% assign allValue = allValue | append: ', ' | append: value %}
                             {% endfor %}
+                            ALL THE VAL {{ listValue }} <br>
+                            ALL THE VAL {{ allValue }} <br>
                         {% endif %}
                     {%endfor%}
                 {%endfor%}
