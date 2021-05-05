@@ -25,7 +25,7 @@
 		
 		{% comment %} boutton qui va afficher une liste avec les objets du paniers et si clique envoie sur le panier {% endcomment %}
 		<button class="header-icons-cart">
-			<a onmouseover=showCart(); href="https://gracietboutiquetpe.myshopify.com/cart"><i class="fas fa-shopping-basket"></i></a>
+			<a class="aRef" onmouseover=showCart(); href="https://gracietboutiquetpe.myshopify.com/cart"><i class="fas fa-shopping-basket"></i></a>
 		</button>
 
 		{% comment %} Si connexion acrtiver dans les parametres {% endcomment %}
@@ -67,7 +67,7 @@
 				{% endif %}
 			{% endif %}
 			<li class="smallScreen-item"><button class="header-icons-search"><i class="fas fa-search"></i></button></li>
-			<li class="smallScreen-item"><a  onmouseover=showCart(); href="https://gracietboutiquetpe.myshopify.com/cart"><button class="header-icons-cart"><i class="fas fa-shopping-basket"></i></button></a></li>
+			<li class="smallScreen-item"><a  class="aRef" onmouseover=showCart(); href="https://gracietboutiquetpe.myshopify.com/cart"><button class="header-icons-cart"><i class="fas fa-shopping-basket"></i></button></a></li>
 		</ul>
 	</div>
 
@@ -83,11 +83,11 @@
 					{% for item in cart.items %}
 						<img class="ItemImg"></img>
 						<div class="ItemText">
-								<div class="ItemText-h3"><h3></h3></div>
-								<div class="ItemText-desc"><p></p></div>
-								<div class="ItemText-prix"><p></p></div>
+								<div class="ItemText-h3"><h3>{{ item.title }}</h3></div>
+								<div class="ItemText-desc"><p>{{ item.description }}</p></div>
+								<div class="ItemText-prix"><p>{{ item.price }}</p></div>
 						</div>
-						<button class="ItemDelete"><li class="fas fa-times"></li></button>
+						<button onclick=deleteItemFromCart(); class="ItemDelete"><li class="fas fa-times"></li></button>
 					{% endfor %}
 				</ul>
 			</div>
