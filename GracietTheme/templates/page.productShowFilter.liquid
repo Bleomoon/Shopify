@@ -247,17 +247,28 @@
     }
 
     @media screen and (max-width:1800px) {
+        .oneProduct-Standard{
+            grid-template-columns:repeat(3,1fr);
+        }
         .oneProduct-Grid{
             grid-template-columns:repeat(4,1fr);
+        }
+    }
+    @media screen and (max-width:1550px) {
+        .oneProduct-Grid{
+            grid-template-columns:repeat(3,1fr);
+        }
+    }
+    @media screen and (max-width:1300px) {
+        .oneProduct-Standard{
+            grid-template-columns:repeat(2,1fr);
         }
     }
     @media screen and (max-width:1200px) {
         .oneProduct-Standard{
             grid-template-columns:repeat(2,1fr);
         }
-        .oneProduct-Grid{
-            grid-template-columns:repeat(3,1fr);
-        }
+        
     }
     
     @media screen and (max-width:600px) {
