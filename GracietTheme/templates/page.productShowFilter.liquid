@@ -38,6 +38,7 @@
 
   On se met la
     {% assign listValue = '' | split '' %}
+    {% assign allValue = '' | split '' %}
     {%for oneOption in listOption %}
         {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
             <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
@@ -49,14 +50,13 @@
                             {% for value in product_option.values %}
                                 MY VALUE IN {{ value }} <br>
                                 {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
-                                {% unless listValue contains value%}
-                                    {% assign listValue = allValue | split: ', ' | uniq %}
+                                {% unless listValue contains value %}
                                     <option value="{{ value }}">{{ value }}</option>
-                                    
                                 {% endunless %}
                                 {% assign allValue = allValue | append: ', ' | append: value %}
+                                {% assign listValue = allValue | split: ', ' | uniq %}
                             {% endfor %}
-                            ALL THE VAL {{ listValue }} <br>
+                            LIST VAL {{ listValue }} <br>
                             ALL THE VAL {{ allValue }} <br>
                         {% endif %}
                     {%endfor%}
