@@ -74,9 +74,9 @@
             {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus
             {%endcomment%}
             <div class="oneProduct">
-                <div class="oneProduct-img">
-                    <img style="width:inherit;height:auto;" src="{{ product | img_url }}">
-                </div>
+                
+                <img class="oneProduct-img" style="width:inherit;height:auto;" src="{{ product | img_url: "5076x5076" }}">
+                
         
                 <div class="oneProduct-texte">
                     <div class="oneProduct-h2">
