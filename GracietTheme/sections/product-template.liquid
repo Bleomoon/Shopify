@@ -36,8 +36,8 @@
       <div class="ficheProduct-Desc">{{ product.description }}</div>
   
       {%comment%} Zone sur le contenu personnalisé : prix/quantity etc {%endcomment%}
-        <form class="ficheProduct-personnalise" action="/cart/add" method="post" enctype="multipart/form-data"
-          id="AddToCartForm">
+      {% form "product", product %}
+        <div class="ficheProduct-personnalise" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
           <select name="id" id="productSelect">
             {% for variant in product.variants %}
             {% if variant.available %}
@@ -64,8 +64,8 @@
           {%include 'champ-personnalise-Saisons' %}
           <button type="submit" name="add" id="AddToCart">Add to cart</button>
           
-        </form>
-  
+        </div>
+      {% endform %}
       {%comment%} Zone des logos Facebook/Twitter/Instagram {%endcomment%}
       <div class="ficheProduct-Logos">
         <button class="buttonRef"> <a class="aRef" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F">
