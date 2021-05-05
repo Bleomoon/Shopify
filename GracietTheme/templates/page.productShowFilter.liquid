@@ -45,10 +45,10 @@
         {% endfor %}
     </div>
 
-    {%comment%} Puis on affiche le produit selon le layout qui déterminer avec changeClassOfLayout
-    <div id="myLayout" class="oneProduct-Standard">
+    {%comment%} Puis on affiche le produit selon le layout qui déterminer avec changeClassOfLayout{%endcomment%}
+{%comment%} <div id="myLayout" class="oneProduct-Standard">
         {% for collection in collections %}
-            {%for product in collection.products %}{%endcomment%}
+            {%for product in collection.products %}
                 {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus 
                 <div class="oneProduct">
                     <div class="oneProduct-img"> 
