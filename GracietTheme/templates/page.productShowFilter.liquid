@@ -48,7 +48,7 @@
     {%comment%} Puis on affiche le produit selon le layout qui déterminer avec changeClassOfLayout{%endcomment%}
 {%comment%} <div id="myLayout" class="oneProduct-Standard">
         {% for collection in collections %}
-            {%for product in collection.products %}
+            {%for product in collection.products %}{%endcomment%}
                 {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus 
                 <div class="oneProduct">
                     <div class="oneProduct-img"> 
