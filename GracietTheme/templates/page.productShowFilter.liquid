@@ -29,9 +29,10 @@
             {% for product in collection.products %} 
                 {% for product_option in product.options_with_values %}
                     {% assign myProduct = product_option.name | split: '' %}
-                    {% assign valtest = myOptions | split: ', ' | uniq %}
-                    {% unless valtest contains product_option.name or product_option.name == 'Title' %}
-                        <select class="oneFilter" id={{ product_option.name }} name={{ product_option.name }}>
+                    {% assign listOption = myOptions | split: ', ' | uniq %}
+                    {% unless listOption contains product_option.name or product_option.name == 'Title' %}
+
+                    <select class="oneFilter" id={{ product_option.name }} name={{ product_option.name }}>
                             <option value="{{ product_option.name }}">{{ product_option.name }}</option>
                             {% for value in product_option.values %}
                                 <option value="{{ value }}">{{ value }}</option>
@@ -45,8 +46,29 @@
     </div>
 
   On se met la
-  <p>
-
+    {% assign listValue = '' | split '' %}
+    {%for oneOption in listOption %}
+        <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+        <option value="{{ oneOption }}">{{ oneOption }}</option>
+        {% for collection in collections %}
+            {% for product in collection.products %}
+                {% for product_option in product.options_with_values %}
+                    {% if product_option.name == oneOption and product_option.name != 'Title' %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
+                        {% for value in product_option.values %}
+                            {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
+                            {% unless listValue contains value%}
+                                {% assign listValue = myValue | split: ', ' | uniq %}
+                                <option value="{{ value }}">{{ value }}</option>
+                                MY VALUE IN {{ value }}<br>
+                                ALL THE VAL {{ listValue }} <br>
+                            {% endunless %}
+                        {% endfor %}
+                    {% endif %}
+                {%endfor%}
+            {%endfor%}
+        {%endfor%}
+        </select>
+    {%endfor%}
     {{ collections.products.options_with_values  }}
   </p> ICI la
 
