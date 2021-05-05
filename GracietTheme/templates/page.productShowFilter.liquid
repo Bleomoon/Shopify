@@ -74,7 +74,7 @@
                 {%for oneOption in listOption %} {%comment%} parcours les options {%endcomment%}
                     {% capture myOption %}<script>isSelected(oneOption) </script> {% endcapture %}
                     <p><script>isSelected(oneOption) </script></p> <br>
-                    {% if myOption = %} <script>isSelected(oneOption) </script>
+                    {% if myOption == %} <script>isSelected(oneOption) </script>
                         
                         {%for product_option in product.options_with_values %} {%comment%} parcours les options du produit {%endcomment%}
                             {% if product_option.name == myOption %}
