@@ -72,9 +72,9 @@
                 {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
                 {% capture _ %} {{ show = false }} {% endcapture %}
                 {%for oneOption in listOption %} {%comment%} parcours les options {%endcomment%}
-                    {% assign myOption = <script>isSelected(oneOption) </script>%}
+                    {% capture myOption %}<script>isSelected(oneOption) </script> {% endcapture %}
                     {% if myOption != oneOption %}
-                        ici
+                        
                         {%for product_option in product.options_with_values %} {%comment%} parcours les options du produit {%endcomment%}
                             {% if product_option.name == myOption %}
                                 {% capture _ %} {{ show = true }} {% endcapture %}
