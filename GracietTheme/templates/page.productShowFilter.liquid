@@ -75,7 +75,7 @@
             {%endcomment%}
             <div class="oneProduct">
                 
-                <img class="oneProduct-img" style="width:inherit;height:auto;" src="{{ product | img_url: "5076x5076" }}">
+                <img class="oneProduct-img" src="{{ product | img_url: "700x700" }}">
                 
         
                 <div class="oneProduct-texte">
@@ -176,9 +176,12 @@
     .oneProduct-Standard .oneProduct-texte .oneProduct-desc{
         display:none;
     }
+    
     .oneProduct-img{
-        width:inherit;
-        height:auto;
+        width:max-content;
+        height:max-content;
+        max-width:700px;
+        max-height:700px;
     }
 
     .oneProduct-List{
