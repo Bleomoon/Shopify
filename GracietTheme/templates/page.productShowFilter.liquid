@@ -75,7 +75,7 @@
             {%endcomment%}
             <div class="oneProduct">
                 
-                <img class="oneProduct-img" src="{{ product | img_url: "x370" }}">
+                <img class="oneProduct-img" src="{{ product | img_url: "370x" }}">
                 
         
                 <div class="oneProduct-texte">
@@ -164,6 +164,10 @@
         grid-template-columns:repeat(4,1fr);
     }
 
+    .oneProduct-img{
+        box-shadow: 10px 10px 100px gray;
+    }
+
     .oneProduct-Standard{
         display:grid;
         grid-template-columns:repeat(4,1fr);
@@ -178,11 +182,7 @@
     }
     
     .oneProduct-Standard .oneProduct-img{
-        
-    }
-    
-    .oneProduct-img{
-        box-shadow: 10px 10px 100px gray;
+        width: -moz-available;
     }
 
     .oneProduct-List{
@@ -205,7 +205,20 @@
 
     .oneProduct-List .oneProduct-texte{
         grid-column:2/5;
-        display:flex
+        display:flex;
+        font-family:cursive;
+    }
+
+    .oneProduct-List .oneProduct-h2{
+        text-align:center;
+    }
+
+    .oneProduct-List .oneProduct-desc{
+        text-aligne=:justify;
+    }
+
+    .oneProduct-List .oneProduct-price{
+        text-aligne=:justify;
     }
 
     .oneProduct-Grid{
@@ -219,6 +232,9 @@
 
     .oneProduct-Grid .oneProduct-texte .oneProduct-desc{
         display:none;
+    }
+    .oneProduct-Grid .oneProduct-img{
+        width: -moz-available;
     }
 
     @media screen and (max-width:1060px) {
