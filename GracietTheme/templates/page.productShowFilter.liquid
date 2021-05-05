@@ -73,6 +73,7 @@
                 {% capture _ %} {{ show = false }} {% endcapture %}
                 {%for oneOption in listOption %} {%comment%} parcours les options {%endcomment%}
                     {% capture myOption %}<script>isSelected(oneOption) </script> {% endcapture %}
+                    myOption = {{ myOption }} <br>
                     {% if myOption != oneOption %}
                         
                         {%for product_option in product.options_with_values %} {%comment%} parcours les options du produit {%endcomment%}
