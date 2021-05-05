@@ -75,7 +75,7 @@
             {%endcomment%}
             <div class="oneProduct">
                 
-                <img class="oneProduct-img" src="{{ product | img_url: "medium" }}">
+                <img class="oneProduct-img" src="{{ product | img_url }}">
                 
         
                 <div class="oneProduct-texte">
@@ -178,10 +178,7 @@
     }
     
     .oneProduct-img{
-        width:max-content;
-        height:max-content;
-        max-width:700px;
-        max-height:700px;
+        box-shadow: 10px 10px 100px gray;
     }
 
     .oneProduct-List{
