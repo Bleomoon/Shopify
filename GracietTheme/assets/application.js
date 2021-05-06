@@ -115,8 +115,30 @@ function onChangeSelectFilter(id){
     mySelect.addEventListener('change', function () {
         myId = mySelect.value;
 
-        /*On ajoute un eventListener en cas de changement*/
-        document.querySelectorAll('[id='+myId+']').forEach(e => e.style.display = "grid");
-        console.log('myId    => '+ myId);
+        /*On recupere tous les produits*/
+        var myProducts =  document.querySelectorAll('[id=oneProduct]');
+        /*On cherche les produits qui ont cette options*/
+        {% for collection in collections %}
+            {% for product in collection.products %}
+                {%for product_option in product.options_with_values %}
+                    if(myId == 'tous' && {{ product_option.name | json }} == mySelect.options[0].value)
+                    {
+                        var myProduct = {{ product.title | json }};
+                        document.getElementById(myProduct).style.display = 'grid';
+                    }
+                    else /*recherche les values des options des produits */
+                    {
+                        {% for value in product_option.values %}
+                            var myvalue = {{ value | json }};
+                            var myProduct = {{ product.title | json }};
+                            if( myvalue == myId)
+                                document.getElementById(myProduct).style.display = 'grid';
+                            else
+                            document.getElementById(myProduct).style.display = 'none';
+                        {% endfor %}
+                    }
+                {% endfor %}    
+            {% endfor %}
+        {% endfor %}
     })
 }

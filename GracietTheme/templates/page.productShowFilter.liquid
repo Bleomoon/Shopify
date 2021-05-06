@@ -71,7 +71,7 @@
     <div id="myLayout" class="oneProduct-Standard">
         {% for collection in collections %}
             {%for product in collection.products %}
-                    <div id="oneProduct" class="oneProduct">
+                    <div id={{ product.title }} class="oneProduct">
                         <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
                         <div class="oneProduct-texte">
                             <div class="oneProduct-h2">
@@ -92,11 +92,7 @@
     </div>
 </div>
 
-<p>Je suis unn texte</p>
-<script src='jquery-3.1.0.js'></script>
 <script>
-
-    
 </script>
 
 {%comment%} Ici le style css de la page {%endcomment%}
