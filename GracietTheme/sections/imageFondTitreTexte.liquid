@@ -4,9 +4,7 @@
     {% for block in section.blocks %}
       {% if block.type == 'composeTitle' %} {%comment%} Si titre {%endcomment%}
         <div style="grid-row: {{ block.settings.positionLigneTitre }}; grid-column: {{ block.settings.positionColonneTitre }}; font-size: {{ block.settings.tailleTitre | append: 'px' }}; font-style: {{ block.settings.fontTitre.style }}; font-family: {{ 'block.settings.fontTitre.family' }}; color: {{ block.settings.couleurTitle }};" class="imageFondTitre">
-          <h1>{{ block.settings.title }}</h1>
-          {{ block.settings.fontTitre.family }}
-          {{ block.settings.fontTitre.style }}
+          <h2>{{ block.settings.title }}</h2>
         </div>
       {% else %} {%comment%} Si texte {%endcomment%}
         <div style="{{ block.settings.positionLigneDescription }}; grid-column: {{ block.settings.positionColonneDescription }}; font-size: {{ block.settings.tailleTexte | append: 'px' }}; font-style: {{ block.settings.fontTexte.style }}; font-family: {{ 'block.settings.fontTexte.family' }}; color: {{ block.settings.couleurTexte }};" class="imageFondTexte">
@@ -148,13 +146,12 @@ Il a une image et titre,texte avec choix de la taille, du style de texte, de la 
   }
   .TitreEtTexte{
     display:grid;
-    width:max-content;
     text-align:center;
   }
   .imageFondTitre{
-    
+    width:max-content;
   }
   .imageFondTexte{
-
+    width:max-content;
   }
 {% endstyle %}
