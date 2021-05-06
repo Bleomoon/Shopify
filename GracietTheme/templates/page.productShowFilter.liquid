@@ -12,13 +12,13 @@
                 <i class="fas fa-th"></i></button>
         </div>
         <div class="productShowFilter-Filter-2">
-            <select name="sort_by">
+            <optgroup name="sort_by">
                 {% for collection in collections %}
                     {% for option in collection.sort_options %}
                         <option value="{{ option.value }}">{{ option.name }}</option>
                     {% endfor %}
                 {% endfor %}
-            </select>
+            </optgroup>
         </div>
     </div>
 
@@ -70,9 +70,7 @@
     <div id="myLayout" class="oneProduct-Standard">
         {% for collection in collections %}
             {%for product in collection.products %}
-                
-                
-                    <div class="oneProduct">
+                    <div id="oneProduct" class="oneProduct">
                         <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
                         <div class="oneProduct-texte">
                             <div class="oneProduct-h2">
@@ -88,7 +86,6 @@
                             </div>
                         </div>
                     </div>
-                
             {% endfor %}
         {% endfor %}
     </div>
@@ -97,9 +94,9 @@
 <p>Je suis unn texte</p>
 <script src='jquery-3.1.0.js'></script>
 <script>
-    $(document).ready(function(){
-        $('div').filter(':nth-children(odd)').css('background-color', 'blue');
-    });
+    
+
+
 </script>
 
 {%comment%} Ici le style css de la page {%endcomment%}

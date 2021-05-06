@@ -107,3 +107,16 @@ function showCart()
 {
     document.getElementById("showCart").style.display = "block";
 }
+
+function onChangeSelectFilter(id){
+    var mySelect = document.getElementById(id);
+
+    /*On ajoute un eventListener en cas de changement*/
+    mySelect.addEventListener('change', function () {
+        myId = mySelect.value;
+
+        /*On ajoute un eventListener en cas de changement*/
+        document.querySelectorAll('[id='+myId+']').forEach(e => e.style.display = "grid");
+        console.log('myId    => '+ myId);
+    })
+}
