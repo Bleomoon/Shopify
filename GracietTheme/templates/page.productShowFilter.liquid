@@ -93,7 +93,7 @@
 </div>
 
 <script>
-    vae myProducts = {{ collections.products | json }};
+    var myProducts = {{ collections.products | json }};
     myProducts.foreach(product =>  console.log('product    => '+ product));
     
     /*
