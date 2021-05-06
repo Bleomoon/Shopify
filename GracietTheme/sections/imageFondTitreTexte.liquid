@@ -1,5 +1,5 @@
 {%comment%} Ici le html d'affichage d'une image de fond avec du texte ou titre {%endcomment%}
-<div style="background-image: {{ section.settings.image | img_url: '5076x5076' }};" class="imageFond">
+<div alt="{{ section.settings.title }}" style="background-image: url('{{ section.settings.image | img_url:'5760x5760' }}');" class="imageFond">
   <div style="grid-template-columns: repeat( {{ section.settings.nbColonne }} ,1fr); grid-template-rows: repeat({{ section.settings.nbLigne }},1fr);" class="TitreEtTexte"> {%comment%} Notre grid {%endcomment%}
     {% for block in section.blocks %}
       {% if block.type == 'composeTitle' %} {%comment%} Si titre {%endcomment%}
@@ -14,7 +14,7 @@
     {% endfor %}
   </div>
 </div>
-
+url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');"
 {%comment%} Ici le schema d'une Image avec un titre ou du texte
 Il a une image et titre,texte avec choix de la taille, du style de texte, de la couleur et de la position de chacun {%endcomment%}
 {% schema %}
@@ -129,7 +129,7 @@ Il a une image et titre,texte avec choix de la taille, du style de texte, de la 
   "presets":[
     {
       "category":"Presentation",
-      "name": "Image de fond avec titre"
+      "name": "Image de fond avec titre ou texte"
     }
   ]
 }
