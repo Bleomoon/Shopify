@@ -6,6 +6,7 @@
         <div style="grid-row: {{ block.settings.positionLigneTitre }}; grid-column: {{ block.settings.positionColonneTitre }}; font-size: {{ block.settings.tailleTitre | append: 'px' }}; font-style: {{ block.settings.fontTitre.style }}; font-family: {{ block.settings.fontTitre.family }}; color: {{ block.settings.couleurTitle }};" class="imageFondTitre">
           <h1>{{ block.settings.title }}</h1>
           {{ block.settings.fontTitre.family }}
+          {{ block.settings.fontTitre.style }}
         </div>
       {% else %} {%comment%} Si texte {%endcomment%}
         <div style="{{ block.settings.positionLigneDescription }}; grid-column: {{ block.settings.positionColonneDescription }}; font-size: {{ block.settings.tailleTexte | append: 'px' }}; font-style: {{ block.settings.fontTexte.style }}; font-family: {{ block.settings.fontTexte.family }}; color: {{ block.settings.couleurTexte }};" class="imageFondTexte">
