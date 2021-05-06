@@ -112,16 +112,15 @@ function onChangeSelectFilter(id){
     var mySelect = document.getElementById(id);
 
     /*On ajoute un eventListener en cas de changement*/
-    mySelect.addEventListener('change', function () {
+
         myId = mySelect.value;
 
         /*On recupere tous les produits*/
-        var myProducts =  document.querySelectorAll('[id=oneProduct]');
+        var myProducts =  {{ collection.products | json }};
         /*On cherche les produits qui ont cette options*/
-        {% for collection in collections %}
-            {% for product in collection.products %}
-                {%for product_option in product.options_with_values %}
-                    if(myId == 'tous' && {{ product_option.name | json }} == mySelect.options[0].value)
+        myProducts.foreach(product => function(){
+            var myProductsOptions = {{ myProducts.product_option | json }};
+            if(myId == 'tous' && {{ product_option.name | json }} == mySelect.options[0].value)
                     {
                         var myProduct = {{ product.title | json }};
                         document.getElementById(myProduct).style.display = 'grid';
@@ -137,8 +136,6 @@ function onChangeSelectFilter(id){
                             document.getElementById(myProduct).style.display = 'none';
                         {% endfor %}
                     }
-                {% endfor %}    
-            {% endfor %}
-        {% endfor %}
-    });
+        });
+    
 }
