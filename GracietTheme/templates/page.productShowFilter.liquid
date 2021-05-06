@@ -40,7 +40,7 @@
         {% assign allValue = '' | split '' %}
         {%for oneOption in listOption %}
             {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
-                <select onchange=onChangeSelectFilter(); class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+                <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
                 <option value="{{ oneOption }}" disabled>{{ oneOption }}</option>
                 <option value="Tous">Tous</option>
                 {% for collection in collections %}
@@ -71,76 +71,26 @@
     <div id="myLayout" class="oneProduct-Standard">
         {% for collection in collections %}
             {%for product in collection.products %}
-                    <div id={{ product.id }} class="oneProduct">
-                        <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
-                        <div class="oneProduct-texte">
-                            <div class="oneProduct-h2">
-                                <h2>{{ product.title }}</h2>
-                            </div>
-                
-                            <div class="oneProduct-desc">
-                                <p>{{ product.description }}</p>
-                            </div>
-                
-                            <div class="oneProduct-price">
-                                <p>{{ product.price }}</p>
-                            </div>
+                <div id={{ product.id }} class="oneProduct">
+                    <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
+                    <div class="oneProduct-texte">
+                        <div class="oneProduct-h2">
+                            <h2>{{ product.title }}</h2>
+                        </div>
+            
+                        <div class="oneProduct-desc">
+                            <p>{{ product.description }}</p>
+                        </div>
+            
+                        <div class="oneProduct-price">
+                            <p>{{ product.price }}</p>
                         </div>
                     </div>
+                </div>
             {% endfor %}
         {% endfor %}
     </div>
 </div>
-
-<script>
-    
-    var myProducts = document.querySelectorAll('[id=oneProduct]');
-    myProducts.forEach(function(item, index, array) {
-        console.log(item, index);
-    });
-    myProducts.forEach(object =>  console.log('product    => '+ object.id));
-    console.log('myProduct    => '+ myProducts);
-    console.log('myProduct1    => '+ myProducts.item(0));
-    console.log('myProduct1id    => '+ myProducts.item(0).id);
-
-    for(let i =0; i< myProducts.length;i++)
-    {
-        console.log('myProduct    => '+ myProducts.item(i));
-        console.log('myProduct1id    => '+ myProducts.item(i).id);
-    }
-    /*
-    var mySelect = document.getElementById(id);
-    var myId,myProducts,myProductsOptions = null;
-*/
-    
-    /*On ajoute un eventListener en cas de changement*/
-    /*mySelect.addEventListener('change', function () {
-        myId = mySelect.value;*/
-
-        /*On recupere tous les produits*/
-        /*myProducts = {{ collections.products | json }};*/
-        /*On cherche les produits qui ont cette options*/
-       /* myProducts.foreach(product => {
-            myProductsOptions = {{ myProducts.product_option | json }};
-            if(myId == 'tous' && {{ myProductsOptions.name | json }} == mySelect.options[0].value)
-                    {
-                        var myProduct = {{ product.title | json }};
-                        document.getElementById(myProduct).style.display = 'grid';
-                    }
-                    else*/ /*recherche les values des options des produits */
-                 /*   {
-                        {% for value in product_option.values %}
-                            var myvalue = {{ value | json }};
-                            var myProduct = {{ product.title | json }};
-                            if( myvalue == myId)
-                                document.getElementById(myProduct).style.display = 'grid';
-                            else
-                            document.getElementById(myProduct).style.display = 'none';
-                        {% endfor %}
-                    }
-        });
-    });*/
-</script>
 
 {%comment%} Ici le style css de la page {%endcomment%}
 {% style %}
