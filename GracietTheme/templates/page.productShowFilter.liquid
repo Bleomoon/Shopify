@@ -40,7 +40,7 @@
         {% assign allValue = '' | split '' %}
         {%for oneOption in listOption %}
             {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
-                <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+                <select onchange=onChangeSelectFilter(); class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
                 <option value="{{ oneOption }}" disabled>{{ oneOption }}</option>
                 <option value="Tous">Tous</option>
                 {% for collection in collections %}
@@ -91,9 +91,6 @@
         {% endfor %}
     </div>
 </div>
-
-<script>
-</script>
 
 {%comment%} Ici le style css de la page {%endcomment%}
 {% style %}
