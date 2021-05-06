@@ -12,13 +12,13 @@
                 <i class="fas fa-th"></i></button>
         </div>
         <div class="productShowFilter-Filter-2">
-            <optgroup name="sort_by">
+            <select name="sort_by">
                 {% for collection in collections %}
                     {% for option in collection.sort_options %}
                         <option value="{{ option.value }}">{{ option.name }}</option>
                     {% endfor %}
                 {% endfor %}
-            </optgroup>
+            </select>
         </div>
     </div>
 
@@ -41,7 +41,8 @@
         {%for oneOption in listOption %}
             {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
                 <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
-                <option value="{{ oneOption }}">{{ oneOption }}</option>
+                <option value="{{ oneOption }}" disabled>{{ oneOption }}</option>
+                <option value="Tous">Tous</option>
                 {% for collection in collections %}
                     {% for product in collection.products %}
                         {% for product_option in product.options_with_values %}
@@ -94,9 +95,14 @@
 <p>Je suis unn texte</p>
 <script src='jquery-3.1.0.js'></script>
 <script>
+    var myProducts =  document.querySelectorAll('[id=oneProduct]').foreach(p => p.addEventListener('change', function () {
+        myId = mySelect1.value;
+        document.querySelectorAll('[id='+myId+']').forEach(e => e.style.display = "grid");
+        console.log('myId    => '+ myId);
+    }));
+    {% for collection in collections %}
+
     
-
-
 </script>
 
 {%comment%} Ici le style css de la page {%endcomment%}
