@@ -1,20 +1,20 @@
 {%comment%} Ici le html d'affichage d'une image de fond avec du texte ou titre {%endcomment%}
-<div alt="{{ section.settings.title }}" style="background-image: url('{{ section.settings.image | img_url:'5760x5760' }}');" class="imageFond">
+<div alt="{{ page.title }}" style="background-image: url('{{ section.settings.image | img_url:'5760x5760' }}');" class="imageFond">
   <div style="grid-template-columns: repeat( {{ section.settings.nbColonne }} ,1fr); grid-template-rows: repeat({{ section.settings.nbLigne }},1fr);" class="TitreEtTexte"> {%comment%} Notre grid {%endcomment%}
     {% for block in section.blocks %}
       {% if block.type == 'composeTitle' %} {%comment%} Si titre {%endcomment%}
-        <div style="grid-row: {{ block.settings.positionLigneTitre }}; grid-column: {{ block.settings.positionColonneTitre }}; font-size: {{ block.settings.tailleTitre | append: 'px' }}; font-style: {{ block.settings.fontTitre }} color: {{ block.settings.couleurTitle }};" class="imageFondTitre">
+        <div style="grid-row: {{ block.settings.positionLigneTitre }}; grid-column: {{ block.settings.positionColonneTitre }}; font-size: {{ block.settings.tailleTitre | append: 'px' }}; font-style: {{ block.settings.fontTitre }}; color: {{ block.settings.couleurTitle }};" class="imageFondTitre">
           <h1>{{ block.settings.title }}</h1>
         </div>
       {% else %} {%comment%} Si texte {%endcomment%}
-        <div style="{{ block.settings.positionLigneDescription }}; grid-column: {{ block.settings.positionColonneDescription }}; font-size: {{ block.settings.tailleTexte | append: 'px' }}; font-style: {{ block.settings.fontTexte }} color: {{ block.settings.couleurTexte }};" class="imageFondTexte">
+        <div style="{{ block.settings.positionLigneDescription }}; grid-column: {{ block.settings.positionColonneDescription }}; font-size: {{ block.settings.tailleTexte | append: 'px' }}; font-style: {{ block.settings.fontTexte }}; color: {{ block.settings.couleurTexte }};" class="imageFondTexte">
           {{ block.settings.description }}
         </div>
       {% endif %}
     {% endfor %}
   </div>
 </div>
-style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');"
+
 {%comment%} Ici le schema d'une Image avec un titre ou du texte
 Il a une image et titre,texte avec choix de la taille, du style de texte, de la couleur et de la position de chacun {%endcomment%}
 {% schema %}
@@ -141,14 +141,18 @@ Il a une image et titre,texte avec choix de la taille, du style de texte, de la 
   .imageFond{
     width:100%;
     height:auto;
+    background-repeat:no-repeat;
+    background-size:cover;
   }
   .TitreEtTexte{
     display:grid;
+    width:max-content;
+    text-align:center;
   }
   .imageFondTitre{
     
   }
-  .imageFondTTexte{
+  .imageFondTexte{
 
   }
 {% endstyle %}
