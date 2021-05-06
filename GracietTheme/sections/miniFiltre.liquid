@@ -29,7 +29,7 @@
         <br> 
     </select>
 
-    <table>
+    <tbody>
         <tr class="Pays">
             <br>  
             <th>Pays</th>
@@ -53,7 +53,7 @@
             <td>vieux</td>
             <br>
         </tr>
-    </table>
+    </tbody>
     
 
 </div>
@@ -61,7 +61,7 @@
 <script>
     $('.filter').change(function(){
     // on cache toutes les lignes
-    $('tr').hide();
+    $('tbody tr').hide();
       
     // on parcourt les différents filtres.
     var dataSelector = ""; // variable qui servira à stocker les filtres et leur valeur
