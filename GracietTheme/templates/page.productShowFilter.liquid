@@ -93,7 +93,11 @@
 </div>
 
 <script>
+    
     var myProducts = document.querySelectorAll('[id=oneProduct]');
+    myProducts.forEach(function(item, index, array) {
+        console.log(item, index);
+    });
     myProducts.forEach(object =>  console.log('product    => '+ object.id));
     console.log('myProduct    => '+ myProducts);
     console.log('myProduct1    => '+ myProducts[0]);
