@@ -98,7 +98,7 @@
 <script src='jquery-3.1.0.js'></script>
 <script>
     $(document).ready(function(){
-        $('p').eq(-1).css('color', 'red');
+        $('div').filter(':nth-children(odd)').css('background-color', 'blue');
     });
 </script>
 {%comment%} Ici le style css de la page {%endcomment%}
@@ -199,8 +199,10 @@
     }
 
     .oneProduct-Standard .oneProduct-img{
-        width: -moz-available;
+        width: 100%;
+        height: auto;
         margin: auto;
+        display:block;
     }
 
     .oneProduct-List{
@@ -258,8 +260,10 @@
         text-align:right;
     }
     .oneProduct-Grid .oneProduct-img{
-        width: -moz-available;
+        width: 100%;
+        height: auto;
         margin: auto;
+        display:block;
     }
 
     @media screen and (max-width:1860px) {
