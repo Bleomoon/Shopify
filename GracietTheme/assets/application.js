@@ -107,35 +107,3 @@ function showCart()
 {
     document.getElementById("showCart").style.display = "block";
 }
-
-function onChangeSelectFilter(id){
-    var mySelect = document.getElementById(id);
-
-    /*On ajoute un eventListener en cas de changement*/
-
-        myId = mySelect.value;
-
-        /*On recupere tous les produits*/
-        var myProducts =  {{ collection.products | json }};
-        /*On cherche les produits qui ont cette options*/
-        myProducts.foreach(product => function(){
-            var myProductsOptions = {{ myProducts.product_option | json }};
-            if(myId == 'tous' && {{ product_option.name | json }} == mySelect.options[0].value)
-                    {
-                        var myProduct = {{ product.title | json }};
-                        document.getElementById(myProduct).style.display = 'grid';
-                    }
-                    else /*recherche les values des options des produits */
-                    {
-                        {% for value in product_option.values %}
-                            var myvalue = {{ value | json }};
-                            var myProduct = {{ product.title | json }};
-                            if( myvalue == myId)
-                                document.getElementById(myProduct).style.display = 'grid';
-                            else
-                            document.getElementById(myProduct).style.display = 'none';
-                        {% endfor %}
-                    }
-        });
-    
-}

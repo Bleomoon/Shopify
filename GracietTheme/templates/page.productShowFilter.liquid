@@ -92,6 +92,39 @@
     </div>
 </div>
 
+<script>
+    var mySelect = document.getElementById(id);
+    var myId,myProducts,myProductsOptions = null;
+
+    /*On ajoute un eventListener en cas de changement*/
+    mySelect.addEventListener('change', function () {
+        myId = mySelect.value;
+
+        /*On recupere tous les produits*/
+        myProducts =  {{ collection.products | json }};
+        /*On cherche les produits qui ont cette options*/
+        myProducts.foreach(product => function(){
+            myProductsOptions = {{ myProducts.product_option | json }};
+            if(myId == 'tous' && {{ product_option.name | json }} == mySelect.options[0].value)
+                    {
+                        var myProduct = {{ product.title | json }};
+                        document.getElementById(myProduct).style.display = 'grid';
+                    }
+                    else /*recherche les values des options des produits */
+                    {
+                        {% for value in product_option.values %}
+                            var myvalue = {{ value | json }};
+                            var myProduct = {{ product.title | json }};
+                            if( myvalue == myId)
+                                document.getElementById(myProduct).style.display = 'grid';
+                            else
+                            document.getElementById(myProduct).style.display = 'none';
+                        {% endfor %}
+                    }
+        })
+    });
+</script>
+
 {%comment%} Ici le style css de la page {%endcomment%}
 {% style %}
     .productShowFilter{
