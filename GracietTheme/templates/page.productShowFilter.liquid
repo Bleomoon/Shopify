@@ -71,7 +71,7 @@
     <div id="myLayout" class="oneProduct-Standard">
         {% for collection in collections %}
             {%for product in collection.products %}
-                    <div id={{ product.title }} class="oneProduct">
+                    <div id={{ product.id }} class="oneProduct">
                         <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
                         <div class="oneProduct-texte">
                             <div class="oneProduct-h2">
@@ -93,7 +93,7 @@
 </div>
 
 <script>
-    document.querySelectorAll('[id=oneProduct]').forEach(product =>  console.log('product    => '+ product));;
+    document.querySelectorAll('[id=oneProduct]').forEach(product =>  console.log('product    => '+ product.id));;
     
     /*
     var mySelect = document.getElementById(id);
