@@ -100,8 +100,14 @@
     });
     myProducts.forEach(object =>  console.log('product    => '+ object.id));
     console.log('myProduct    => '+ myProducts);
-    console.log('myProduct1    => '+ myProducts[0]);
-    console.log('myProduct1id    => '+ myProducts[0].id);
+    console.log('myProduct1    => '+ myProducts.item(0));
+    console.log('myProduct1id    => '+ myProducts.item(0).id);
+
+    for(let i =0; i< myProducts.length;i++)
+    {
+        console.log('myProduct    => '+ myProducts.item(i));
+        console.log('myProduct1id    => '+ myProducts.item(i).id);
+    }
     /*
     var mySelect = document.getElementById(id);
     var myId,myProducts,myProductsOptions = null;
