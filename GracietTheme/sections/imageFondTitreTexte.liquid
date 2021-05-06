@@ -5,6 +5,7 @@
       {% if block.type == 'composeTitle' %} {%comment%} Si titre {%endcomment%}
         <div style="grid-row: {{ block.settings.positionLigneTitre }}; grid-column: {{ block.settings.positionColonneTitre }}; font-size: {{ block.settings.tailleTitre | append: 'px' }}; font-style: {{ block.settings.fontTitre }}; color: {{ block.settings.couleurTitle }};" class="imageFondTitre">
           <h1>{{ block.settings.title }}</h1>
+          {{ block.settings.fontTitre }}
         </div>
       {% else %} {%comment%} Si texte {%endcomment%}
         <div style="{{ block.settings.positionLigneDescription }}; grid-column: {{ block.settings.positionColonneDescription }}; font-size: {{ block.settings.tailleTexte | append: 'px' }}; font-style: {{ block.settings.fontTexte }}; color: {{ block.settings.couleurTexte }};" class="imageFondTexte">
