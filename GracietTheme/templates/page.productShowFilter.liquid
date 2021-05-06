@@ -45,7 +45,6 @@
                 <option value="Tous">Tous</option>
                 {% for collection in collections %}
                     {% for product in collection.products %}
-                    <br>Ici l'id : <p> {{ product.id }} </p> d'accord <br>
                         {% for product_option in product.options_with_values %}
                             {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
                                 {% for value in product_option.values %}
@@ -95,9 +94,10 @@
 
 <script>
     var myProducts = document.querySelectorAll('[id=oneProduct]');
-    myProducts.forEach(product =>  console.log('product    => '+ product.id));
+    myProducts.forEach(object =>  console.log('product    => '+ object.id));
     console.log('myProduct    => '+ myProducts);
     console.log('myProduct1    => '+ myProducts[0]);
+    console.log('myProduct1id    => '+ myProducts[0].id);
     /*
     var mySelect = document.getElementById(id);
     var myId,myProducts,myProductsOptions = null;
