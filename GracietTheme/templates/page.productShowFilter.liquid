@@ -93,8 +93,9 @@
 </div>
 
 <script>
-    document.querySelectorAll('[id=oneProduct]').forEach(product =>  console.log('product    => '+ product.id));;
-    
+    var myProducts = document.querySelectorAll('[id=oneProduct]');
+    myProducts.forEach(product =>  console.log('product    => '+ product.id));
+    console.log('myProduct    => '+ myProducts);
     /*
     var mySelect = document.getElementById(id);
     var myId,myProducts,myProductsOptions = null;
