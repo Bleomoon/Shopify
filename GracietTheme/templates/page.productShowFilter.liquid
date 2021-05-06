@@ -92,6 +92,20 @@
     </div>
 </div>
 
+<script>
+    var mySelect = document.getElementById(id);
+    var myId,myProducts,myProductsOptions = null;
+
+    /*On ajoute un eventListener en cas de changement*/
+    mySelect.addEventListener('change', function () {
+        myId = mySelect.value;
+
+        /*On recupere tous les produits*/
+        myProducts = {{ products | json }};
+        /*On cherche les produits qui ont cette options*/
+        
+    });
+</script>
 
 {%comment%} Ici le style css de la page {%endcomment%}
 {% style %}
