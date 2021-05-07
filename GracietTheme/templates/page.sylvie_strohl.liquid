@@ -2,8 +2,8 @@
 <div>{{ page.content }}</div>
 
 {% increment id %}
-{% assign mySid = ''%}
-{% mySid = id | downcase %}
+
+{% assign id = id | downcase %}
 {% section 'imageFondTitreTexte' | append: mySid  %}
 
 {% increment id %}
