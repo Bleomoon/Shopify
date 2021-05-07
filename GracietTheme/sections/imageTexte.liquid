@@ -187,15 +187,18 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     margin-bottom:25px;
     display:grid;
     justify-content:center;
-    grid-gap:10%;
+    grid-gap:1%;
+    grid-templates-column: repeat(4,1fr);
   }
   .imageTexte-Image{
     height:auto;
     grid-row:1;
+    grid-column:2;
   }
   .imageTexte-texte{
     display:grid;
     grid-row:1;
+    grid-column:3;
     text-align:center;
   }
 {% endstyle %}
