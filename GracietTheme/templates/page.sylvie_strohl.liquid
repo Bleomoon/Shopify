@@ -1,12 +1,22 @@
 <h1>{{ page.title }}</h1>
 <div>{{ page.content }}</div>
 
-{% section 'imageFondTitreTexte' %}
+{% increment id %}
 
-{% section 'imageTexte' %}
+{% section 'imageFondTitreTexte' | append: id  %}
 
-{% section 'imageTexte' %}
+{% increment id %}
 
-{% section 'toutTypeTexte' %}
+{% section 'imageTexte' | append: id  %}
 
-{% section 'iconsList' %}
+{% increment id %}
+
+{% section 'imageTexte' | append: id %}
+
+{% increment id %}
+
+{% section 'toutTypeTexte' | append: id %}
+
+{% increment id %}
+
+{% section 'iconsList' | append: id %}
