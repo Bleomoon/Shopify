@@ -3,9 +3,10 @@
 {% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
 {% assign h1_text_align = section.settings.titre_alignment %}
 {% assign h1_color = section.settings.couleurTitle%}
+{% assign bg_color = section.settings.couleurFond %}
 
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
-<div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte">
+<div id="{{ section.settings.title }}" class="imageTexte">
   {% if section.settings.rightLeft == true %}
     {% assign numColImg = 3 %} {% assign numColTexte = 2 %}
   {% else %}
@@ -17,13 +18,11 @@
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
     <h1 class="imageTexte-2-h1">
       {{section.settings.title }}
-      {{ 'section.settings.fontTitre.family' }}
-      {{ section.settings.fontTitre.family }}
     </h1>
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        <h2 style="text-align: {{ block.settings.subtitre_alignment }}; font-family: {{ block.settings.fontSousTitre.family }}; font-style: {{ block.settings.fontSousTitre.style }}; color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre| append:'px' }};"> 
-          {{ block.settings.subTitle }} 
+        <h2 style="text-align: {{ block.settings.subtitre_alignment }}; font-family: {{ block.settings.fontSousTitre.family }}; font-style: {{ block.settings.fontSousTitre.style }}; color: {{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre | append:'px' }};">
+          {{ block.settings.subTitle }}
         </h2>
       {% else %}
         <div style="text-align: {{ block.settings.text_alignment }}; font-family: {{ block.settings.fontTexte.family }}; font-style: {{ block.settings.fontTexte.style }}; color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte| append:'px' }};" >
@@ -198,6 +197,7 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     justify-content:center;
     grid-gap:1%;
     grid-template-columns: repeat(4,1fr);
+    background-color: {{ bg_color }};
   }
   .imageTexte-2-h1{
     font-style: {{ h1_font.style }};

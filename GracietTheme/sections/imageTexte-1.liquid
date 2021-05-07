@@ -1,3 +1,10 @@
+{%comment%} Ici la prise en compte du schema {%endcomment%}
+{% assign h1_font = section.settings.fontTitre | font_face %}
+{% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h1_text_align = section.settings.titre_alignment %}
+{% assign h1_color = section.settings.couleurTitle%}
+{% assign bg_color = section.settings.couleurFond %}
+
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
 <div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte">
   {% if section.settings.rightLeft == true %}
@@ -9,7 +16,7 @@
     <img class="imageTexte-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
-    <h1 style="text-align: {{ section.settings.titre_alignment }}; font-family: {{ 'section.settings.fontTitre.family' }}; font-style: {{ section.settings.fontTitre.style }}; color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre }};">
+    <h1 class="imageTexte-1-h1">
       {{section.settings.title }}
     </h1>
     {% for block in section.blocks %}
@@ -189,6 +196,14 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     justify-content:center;
     grid-gap:1%;
     grid-template-columns: repeat(4,1fr);
+  }
+  .imageTexte-1-h1{
+    font-style: {{ h1_font.style }};
+    font-weight: {{ h1_font.weight }};
+    font-family: {{ h1_font.family }};
+    font-size: {{ h1_font_size }};
+    text-align: {{ h1_text_align }};
+    color: {{ h1_color }};
   }
   .imageTexte-img{
     height:auto;
