@@ -3,20 +3,20 @@
 
 {% increment id %}
 
-{% section 'imageFondTitreTexte' | append: id  %}
+{% section 'imageFondTitreTexte' | append: id | downcase  %}
 
 {% increment id %}
 
-{% section 'imageTexte' | append: id  %}
+{% section 'imageTexte' | append: id | downcase  %}
 
 {% increment id %}
 
-{% section 'imageTexte' | append: id %}
+{% section 'imageTexte' | append: id | downcase %}
 
 {% increment id %}
 
-{% section 'toutTypeTexte' | append: id %}
+{% section 'toutTypeTexte' | append: id | downcase %}
 
 {% increment id %}
 
-{% section 'iconsList' | append: id %}
+{% section 'iconsList' | append: id | downcase %}
