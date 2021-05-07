@@ -1,3 +1,9 @@
+{%comment%} Icila prise en compte du schema {%endcomment%}
+{% assign h1_font = section.settings.fontTitre | font_face %}
+{% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h1_text_align = section.settings.titre_alignment %}
+{% assign h1_color = section.settings.couleurTitle%}
+
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
 <div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte">
   {% if section.settings.rightLeft == true %}
@@ -9,7 +15,7 @@
     <img class="imageTexte-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
-    <h1 style="font-weight:bold; text-align: {{ section.settings.titre_alignment }}; font-family: '{{ section.settings.fontTitre.family }}'; font-style: {{ section.settings.fontTitre.style }}; color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre | append:'px' }};">
+    <h1 class="imageTexte-2-h1">
       {{section.settings.title }}
       {{ 'section.settings.fontTitre.family' }}
       {{ section.settings.fontTitre.family }}
@@ -184,6 +190,13 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
 
 {%comment%} Ici le style css d'image et texte {%endcomment%}
 {% style %}
+  $font-style-h1: {{ h1_font.style }};
+  $font-weight-h1: {{ h1_font.style }};
+  $font-family-h1: {{ h1_font.style }};
+  $font-size-h1: {{ h1_font.style }};
+  $textalign-h1: {{ h1_text_align }};
+  $color-h1: {{ h1_color }};
+
   .imageTexte{
     margin-top:25px;
     margin-bottom:25px;
@@ -191,6 +204,14 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     justify-content:center;
     grid-gap:1%;
     grid-template-columns: repeat(4,1fr);
+  }
+  .imageTexte-2-h1{
+    font-style: $font-style-h1;
+    font-weight: $font-weight-h1;
+    font-family: $font-family-h1;
+    font-size: $font-size-h1;
+    text-align: $textalign-h1;
+    color: $color-h1;
   }
   .imageTexte-img{
     height:auto;
