@@ -230,4 +230,16 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     grid-row:1;
     text-align:center;
   }
+
+  @media screen and (max-width:1000px) {
+  .toutTypeTexte{
+  grid-template-columns:repeat(2,1fr);
+  }
+  }
+  
+  @media screen and (max-width:576px) {
+  .toutTypeTexte{
+  grid-template-columns:repeat(1,1fr);
+  }
+  }
 {% endstyle %}
