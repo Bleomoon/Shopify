@@ -1,5 +1,5 @@
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
-<div id="{{ section.id }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte">
+<div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte">
   {% if section.settings.rightLeft == true %}
     {% assign numColImg = 3 %} {% assign numColTexte = 2 %}
   {% else %}
