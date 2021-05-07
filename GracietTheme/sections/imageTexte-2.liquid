@@ -16,11 +16,11 @@
     </h1>
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        <h2 style="text-align: {{ block.settings.subtitre_alignment }}; font-family: {{ 'block.settings.fontSousTitre.family' }}; font-style: {{ block.settings.fontSousTitre.style }}; color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre| append:'px }};"> 
+        <h2 style="text-align: {{ block.settings.subtitre_alignment }}; font-family: {{ 'block.settings.fontSousTitre.family' }}; font-style: {{ block.settings.fontSousTitre.style }}; color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre| append:'px' }};"> 
           {{ block.settings.subTitle }} 
         </h2>
       {% else %}
-        <div style="text-align: {{ block.settings.text_alignment }}; font-family: {{ 'block.settings.fontTexte.family' }}; font-style: {{ block.settings.fontTexte.style }}; color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte| append:'px }};" >
+        <div style="text-align: {{ block.settings.text_alignment }}; font-family: {{ 'block.settings.fontTexte.family' }}; font-style: {{ block.settings.fontTexte.style }}; color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte| append:'px' }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}
