@@ -1,9 +1,9 @@
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
 <div id="{{ section.id }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte">
   {% if section.settings.rightLeft == true %}
-    {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
+    {% assign numColImg = 3 %} {% assign numColTexte = 2 %}
   {% else %}
-    {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
+    {% assign numColImg = 2 %} {% assign numColTexte = 3 %}
   {% endif %}
   <div style="grid-column: {{ numColImg }};" class="imageTexte-img">
     <img class="imageTexte-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
@@ -193,12 +193,10 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
   .imageTexte-img{
     height:auto;
     grid-row:1;
-    grid-column:2;
   }
   .imageTexte-texte{
     display:grid;
     grid-row:1;
-    grid-column:3;
     text-align:center;
   }
 {% endstyle %}
