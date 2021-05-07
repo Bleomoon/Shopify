@@ -23,9 +23,11 @@
       {% if block.type == 'composeSubTitle' %}
         <h2 style="text-align: {{ block.settings.subtitre_alignment }}; font: {{ block.settings.fontSousTitre }}; color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre }};"> 
           {{ block.settings.subTitle }} 
+          {{ 'block.settings.fontSousTitre' }}
+          {{ block.settings.fontSousTitre }}
         </h2>
       {% else %}
-        <div style="text-align: {{ block.settings.text_alignment }}; font: {{ block.settings.fontSousTitre }}; color:{{ block.settings.couleurTexte }}; font-size={{ block.settings.tailleTexte }};" >
+        <div style="text-align: {{ block.settings.text_alignment }}; font: {{ block.settings.fontTexte }}; color:{{ block.settings.couleurTexte }}; font-size={{ block.settings.tailleTexte }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}
