@@ -201,32 +201,39 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
 
 {%comment%} Ici le style css d'image et texte {%endcomment%}
 {% style %}
-.imageTexte{
-  margin-top:25px;
-  margin-bottom:25px;
-  display:grid;
-  justify-content:center;
-  grid-gap:1%;
-  grid-template-columns: repeat(4,1fr);
-}
-.imageTexte-1-h1{
-  font-style: {{ h1_font.style }};
-  font-weight: {{ h1_font.weight }};
-  font-family: {{ h1_font.family }};
-  font-size: {{ h1_font_size }};
-  text-align: {{ h1_text_align }};
-  color: {{ h1_color }};
-  width: max-content;
-}
-.imageTexte-img{
-  height:auto;
-  grid-row:1;
-}
-.imageTexte-texte{
-  margin-top:25px;
-  margin-bottom:25px;
-  display:grid;
-  grid-row:1;
-  text-align:center;
-}
+  .a{
+    text-decoration:none;
+    color:black;
+  }
+  a:hover{
+    color:gray;
+  }
+  .imageTexte{
+    margin-top:25px;
+    margin-bottom:25px;
+    display:grid;
+    justify-content:center;
+    grid-gap:1%;
+    grid-template-columns: repeat(4,1fr);
+  }
+  .imageTexte-1-h1{
+    font-style: {{ h1_font.style }};
+    font-weight: {{ h1_font.weight }};
+    font-family: {{ h1_font.family }};
+    font-size: {{ h1_font_size }};
+    text-align: {{ h1_text_align }};
+    color: {{ h1_color }};
+    width: max-content;
+  }
+  .imageTexte-img{
+    height:auto;
+    grid-row:1;
+  }
+  .imageTexte-texte{
+    margin-top:25px;
+    margin-bottom:25px;
+    display:grid;
+    grid-row:1;
+    text-align:center;
+  }
 {% endstyle %}
