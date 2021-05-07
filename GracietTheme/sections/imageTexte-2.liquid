@@ -25,7 +25,7 @@
           {{ block.settings.subTitle }}
         </h2>
       {% else %}
-        <div style="text-align: {{ block.settings.text_alignment }}; font-family: {{ block.settings.fontTexte.family }}; font-style: {{ block.settings.fontTexte.style }}; color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte| append:'px' }};" >
+        <div style="text-align: {{ block.settings.text_alignment }}; color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte| append:'px' }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}
