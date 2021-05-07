@@ -1,23 +1,12 @@
 <h1>{{ page.title }}</h1>
 <div>{{ page.content }}</div>
 
-{% increment id %}
+{% section 'imageFondTitreTexte' | append: "0"  %}
 
-{% assign id = id | downcase %}
-{% section 'imageFondTitreTexte' | append: id  %}
+{% section 'imageTexte' | append: "1" %}
 
-{% increment id %}
-{% assign id = id | downcase %}
-{% section 'imageTexte' | append: id %}
+{% section 'imageTexte' | append: "2" %}
 
-{% increment id %}
-{% assign id = id | downcase %}
-{% section 'imageTexte' | append: id %}
+{% section 'toutTypeTexte' | append: "3" %}
 
-{% increment id %}
-{% assign id = id | downcase %}
-{% section 'toutTypeTexte' | append: id %}
-
-{% increment id %}
-{% assign id = id | downcase %}
-{% section 'iconsList' | append: id %}
+{% section 'iconsList' | append: "4" %}
