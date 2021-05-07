@@ -190,12 +190,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
 
 {%comment%} Ici le style css d'image et texte {%endcomment%}
 {% style %}
-  $font-style-h1: {{ h1_font.style }};
-  $font-weight-h1: {{ h1_font.style }};
-  $font-family-h1: {{ h1_font.style }};
-  $font-size-h1: {{ h1_font.style }};
-  $textalign-h1: {{ h1_text_align }};
-  $color-h1: {{ h1_color }};
 
   .imageTexte{
     margin-top:25px;
@@ -206,12 +200,12 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     grid-template-columns: repeat(4,1fr);
   }
   .imageTexte-2-h1{
-    font-style: $font-style-h1;
-    font-weight: $font-weight-h1;
-    font-family: $font-family-h1;
-    font-size: $font-size-h1;
-    text-align: $textalign-h1;
-    color: $color-h1;
+    font-style: {{ h1_font.style }};
+    font-weight: {{ h1_font.weight }};
+    font-family: {{ h1_font.family }};
+    font-size: {{ h1_font_size }};
+    text-align: {{ h1_text_align }};
+    color: {{ h1_color }};
   }
   .imageTexte-img{
     height:auto;
