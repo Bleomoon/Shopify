@@ -9,7 +9,7 @@
     <img class="imageTexte-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
-    <h1 style="font-weight:bold; text-align: {{ section.settings.titre_alignment }}; font-family: {{ section.settings.fontTitre.family }}; font-style: {{ section.settings.fontTitre.style }}; color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre | append:'px' }};">
+    <h1 style="font-weight:bold; text-align: {{ section.settings.titre_alignment }}; font-family: '{{ section.settings.fontTitre.family }}'; font-style: {{ section.settings.fontTitre.style }}; color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre | append:'px' }};">
       {{section.settings.title }}
       {{ 'section.settings.fontTitre.family' }}
       {{ section.settings.fontTitre.family }}
