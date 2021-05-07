@@ -9,12 +9,18 @@
     <img class="imageTexte-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
-    <h1 style="color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre }};">{{section.settings.title }}</h1>
+    <h1 style="text-align: {{ titre_alignment }}; font-family: {{ block.settings.fontTitre.family }}; font-style: {{ block.settings.fontTitre.style }}; color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre }};">
+      {{section.settings.title }}
+    </h1>
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        <h2 style="color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre }};"> {{ block.settings.subTitle }} </h2>
+        <h2 style="text-align: {{ subtitre_alignment }}; font-family: {{ block.settings.fontSousTitre.family }}; font-style: {{ block.settings.fontSousTitre.style }}; color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre }};"> 
+          {{ block.settings.subTitle }} 
+        </h2>
       {% else %}
-        <p style="color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte }};"> {{ block.settings.text }}</p>
+        <div style="text-align: {{ text_alignment }}; font-family: {{ block.settings.fontSousTexte.family }}; font-style: {{ block.settings.fontSousTexte.style }}; color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte }};" >
+          {{ block.settings.text }}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
@@ -48,6 +54,12 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "default": "75"
     },
     {
+      "type": "font_picker",
+      "label": "style de texte",
+      "id": "fontTitre",
+      "default": "claire_news_n3"
+    },
+    {
       "id":"image",
       "type":"image_picker",
       "label":"Mon image"
@@ -63,6 +75,16 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "id": "couleurFond",
       "label": "Couleur du fond",
       "default": "#ffffff"
+    },
+    {
+      "type": "radio",
+      "id": "titre_alignment",
+      "options": [
+        { "value": "left", "label": "Gauche"},
+        { "value": "center", "label": "Milieu"},
+        { "value": "right", "label": "Droite"}
+      ],
+      "label": "Alignement du titre"
     }
   ],
   "max_blocks":8,
@@ -88,6 +110,22 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
             "id": "tailleSubTitre",
             "label": "taille du sous titre",
             "default": "75"
+          },
+          {
+            "type": "font_picker",
+            "label": "style de texte",
+            "id": "fontSousTitre",
+            "default": "claire_news_n3"
+          },
+          {
+            "type": "radio",
+            "id": "subtitre_alignment",
+            "options": [
+              { "value": "left", "label": "Gauche"},
+              { "value": "center", "label": "Milieu"},
+              { "value": "right", "label": "Droite"}
+            ],
+            "label": "Alignement du sous-titre"
           }
       ]
     },
@@ -112,6 +150,22 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
           "id": "tailleTexte",
           "label": "taille du texte",
           "default": "75"
+        },
+        {
+          "type": "font_picker",
+          "label": "style de texte",
+          "id": "fontTexte",
+          "default": "claire_news_n3"
+        },
+        {
+          "type": "radio",
+          "id": "text_alignment",
+          "options": [
+            { "value": "left", "label": "Gauche"},
+            { "value": "center", "label": "Milieu"},
+            { "value": "right", "label": "Droite"}
+          ],
+          "label": "Alignement du texte"
         }
       ]
     }
@@ -129,6 +183,8 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
 {%comment%} Ici le style css d'image et texte {%endcomment%}
 {% style %}
   .imageTexte{
+    margin-top:25px;
+    margin-bottom:25px;
     display:grid;
     justify-content:center;
     grid-gap:10%;

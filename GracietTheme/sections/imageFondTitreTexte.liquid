@@ -3,7 +3,7 @@
   <div style="grid-template-columns: repeat( {{ section.settings.nbColonne }} ,1fr); grid-template-rows: repeat({{ section.settings.nbLigne }},1fr);" class="TitreEtTexte"> {%comment%} Notre grid {%endcomment%}
     {% for block in section.blocks %}
       {% if block.type == 'composeTitle' %} {%comment%} Si titre {%endcomment%}
-        <div style="grid-row: {{ block.settings.positionLigneTitre }}; grid-column: {{ block.settings.positionColonneTitre }}; font-size: {{ block.settings.tailleTitre | append: 'px' }}; font-style: {{ block.settings.fontTitre.style }}; font-family: {{ block.settings.fontTitre.family }}; color: {{ block.settings.couleurTitle }};" class="imageFondTitre">
+        <div style="grid-row: {{ block.settings.positionLigneTitre }}; grid-column: {{ block.settings.positionColonneTitre }}; font-size: {{ block.settings.tailleTitre | append: 'px' }}; font-style: {{ block.settings.fontTitre.style }}; font-family: {{ 'block.settings.fontTitre.family' }}; color: {{ block.settings.couleurTitle }};" class="imageFondTitre">
           <h2>{{ block.settings.title }}</h2>
         </div>
       {% else %} {%comment%} Si texte {%endcomment%}
@@ -139,6 +139,8 @@ Il a une image et titre,texte avec choix de la taille, du style de texte, de la 
 {%comment%} Ici le style css de colelctionShow {%endcomment%}
 {% style %}
   .imageFond{
+    margin-top:25px;
+    margin-bottom:25px;
     width:100%;
     height:auto;
     background-repeat:no-repeat;
