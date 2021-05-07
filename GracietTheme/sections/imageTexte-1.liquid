@@ -23,10 +23,13 @@
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
         {% assign h2_font = block.settings.fontSousTitre | font_face %}
+        {% assign h2_font_weight = h2_font.weight %}
+        {% assign h2_font_family = h2_font.family %}
+        {% assign h2_font_style = h2_font.style %}
         {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
         {% assign h2_text_align = block.settings.subtitre_alignment %}
         {% assign h2_color = block.settings.couleurSubTitle%}
-        <h2 style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font-weight: {{ h2_font.weight }}; font-family: {{ h2_font.family }}; font-style: {{ h2_font.style }}; font-size:{{ h2_font_size }};"> 
+        <h2 style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font-weight: {{ h2_font_weight }}; font-family: {{ h2_font_family }}; font-style: {{ h2_font_style }}; font-size:{{ h2_font_size }};"> 
           
           {{ block.settings.subTitle }} 
           {{ 'block.settings.fontSousTitre' }}
