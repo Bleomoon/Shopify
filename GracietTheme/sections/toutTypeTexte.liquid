@@ -186,13 +186,27 @@
 
   @media screen and (max-width:1000px) {
     .toutTypeTexte{
-      grid-template-columns:repeat(2,1fr);s
+      grid-template-columns:repeat(2,1fr);
+      grid-template-rows: auto;
+    }
+    .composeTitle{
+      grid-template-columns:auto;
+      grid-template-rows: auto;
+    }
+    .composeDescription{{
+      grid-template-columns:auto;
+      grid-template-rows: auto;
+    }
+    .composeButton{
+      grid-template-columns:auto;
+      grid-template-rows: auto;
     }
   }
 
   @media screen and (max-width:576px) {
     .toutTypeTexte{
       grid-template-columns:repeat(1,1fr);
+      grid-template-rows: auto;
     }
   }
 {% endstyle %}
