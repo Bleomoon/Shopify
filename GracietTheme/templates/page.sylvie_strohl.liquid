@@ -7,7 +7,7 @@
 {% section 'imageFondTitreTexte' | append: mySid  %}
 
 {% increment id %}
-{% assign mySid = id | downcase %}
+{% assign id = id | downcase %}
 {% section 'imageTexte' | append: mySid %}
 
 {% increment id %}
