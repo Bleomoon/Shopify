@@ -3,12 +3,12 @@
 <div class="productShowFilter">
     <div class="productShowFilter-Filter">
         <div class="productShowFilter-Filter-1">
-            <button id="productFilterBtn" class="productFilterBtn" onclick=openFilters()><i class="fas fa-plus"></i> Filtres</button>
-            <button class="buttonRef" onclick=changeClassOfLayout(1)>
+            <button id="productFilterBtn" class="productFilterBtn" onclick=openFilters();><i class="fas fa-plus"></i> Filtres</button>
+            <button class="buttonRef" onclick=changeClassOfLayout(1);>
                 <i class="fas fa-th-large"></i></button>
-            <button class="buttonRef" onclick=changeClassOfLayout(2)>
+            <button class="buttonRef" onclick=changeClassOfLayout(2);>
                 <i class="fas fa-list"></i></button>
-            <button class="buttonRef" onclick=changeClassOfLayout(3)>
+            <button class="buttonRef" onclick=changeClassOfLayout(3);>
                 <i class="fas fa-th"></i></button>
         </div>
         <div class="productShowFilter-Filter-2">
@@ -41,7 +41,8 @@
         {%for oneOption in listOption %}
             {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
                 <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
-                <option value="{{ oneOption }}">{{ oneOption }}</option>
+                <option value="{{ oneOption }}" disabled>{{ oneOption }}</option>
+                <option value="Tous">Tous</option>
                 {% for collection in collections %}
                     {% for product in collection.products %}
                         {% for product_option in product.options_with_values %}
@@ -63,47 +64,29 @@
         {%endfor%}
     </div>
 
-    <p><script>getSelected();</script></p>
+    
     {%comment%} Puis on affiche le produit selon le layout qui déterminer avec
     changeClassOfLayout {%endcomment%}
     {% assign show = false%}
     <div id="myLayout" class="oneProduct-Standard">
         {% for collection in collections %}
             {%for product in collection.products %}
-                {%comment%} Ici on filtre en fonction de ce qu'il y a au dessus {%endcomment%}
-                {% capture _ %} {{ show = false }} {% endcapture %}
-                {%for oneOption in listOption %} {%comment%} parcours les options {%endcomment%}
-                    <script> valSelect = document.getElementById(oneOption).options[mySelect.selectedIndex].value; </script>
-                    My value : {{ valSelect }}
-                    {% capture myOption %}<script>isSelected(oneOption) </script> {% endcapture %}
-                    <p><script>isSelected(oneOption) </script></p> <br>
-                    {% if myOption == %} <script>isSelected(oneOption) </script>
-                        
-                        {%for product_option in product.options_with_values %} {%comment%} parcours les options du produit {%endcomment%}
-                            {% if product_option.name == myOption %}
-                                {% capture _ %} {{ show = true }} {% endcapture %}
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                {% endfor %}
-                {% if show %}
-                    <div class="oneProduct">
-                        <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
-                        <div class="oneProduct-texte">
-                            <div class="oneProduct-h2">
-                                <h2>{{ product.title }}</h2>
-                            </div>
-                
-                            <div class="oneProduct-desc">
-                                <p>{{ product.description }}</p>
-                            </div>
-                
-                            <div class="oneProduct-price">
-                                <p>{{ product.price }}</p>
-                            </div>
+                <div id={{ product.id }} class="oneProduct">
+                    <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
+                    <div class="oneProduct-texte">
+                        <div class="oneProduct-h2">
+                            <h2>{{ product.title }}</h2>
+                        </div>
+            
+                        <div class="oneProduct-desc">
+                            <p>{{ product.description }}</p>
+                        </div>
+            
+                        <div class="oneProduct-price">
+                            <p>{{ product.price }}</p>
                         </div>
                     </div>
-                {% endif %}
+                </div>
             {% endfor %}
         {% endfor %}
     </div>
@@ -207,7 +190,10 @@
     }
 
     .oneProduct-Standard .oneProduct-img{
-        width: -moz-available;
+        width: 100%;
+        height: auto;
+        margin: auto;
+        display:block;
     }
 
     .oneProduct-List{
@@ -265,7 +251,10 @@
         text-align:right;
     }
     .oneProduct-Grid .oneProduct-img{
-        width: -moz-available;
+        width: 100%;
+        height: auto;
+        margin: auto;
+        display:block;
     }
 
     @media screen and (max-width:1860px) {

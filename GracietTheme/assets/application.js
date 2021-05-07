@@ -102,7 +102,6 @@ function changeClassOfLayout(i)
         document.getElementById('myLayout').className = 'oneProduct-Grid';
 }
 
-
 function showCart()
 {
     document.getElementById("showCart").style.display = "block";
