@@ -8,16 +8,16 @@
 
 {% increment id %}
 {% assign id = id | downcase %}
-{% section 'imageTexte' | append: mySid %}
+{% section 'imageTexte' | append: id %}
 
 {% increment id %}
-{% assign mySid = id | downcase %}
-{% section 'imageTexte' | append: mySid %}
+{% assign id = id | downcase %}
+{% section 'imageTexte' | append: id %}
 
 {% increment id %}
-{% assign mySid = id | downcase %}
-{% section 'toutTypeTexte' | append: mySid %}
+{% assign id = id | downcase %}
+{% section 'toutTypeTexte' | append: id %}
 
 {% increment id %}
-{% assign mySid = id | downcase %}
-{% section 'iconsList' | append: mySid %}
+{% assign id = id | downcase %}
+{% section 'iconsList' | append: id %}
