@@ -2,21 +2,21 @@
 <div>{{ page.content }}</div>
 
 {% increment id %}
-{% assign mySid = id | abs %}
+{% assign mySid = id | downcase %}
 {% section 'imageFondTitreTexte' | append: mySid  %}
 
 {% increment id %}
-
+{% assign mySid = id | downcase %}
 {% section 'imageTexte' | append: mySid %}
 
 {% increment id %}
-
+{% assign mySid = id | downcase %}
 {% section 'imageTexte' | append: mySid %}
 
 {% increment id %}
-
+{% assign mySid = id | downcase %}
 {% section 'toutTypeTexte' | append: mySid %}
 
 {% increment id %}
-
+{% assign mySid = id | downcase %}
 {% section 'iconsList' | append: mySid %}
