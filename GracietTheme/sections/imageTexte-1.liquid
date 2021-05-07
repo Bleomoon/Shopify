@@ -25,10 +25,8 @@
         {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
         {% assign h2_text_align = block.settings.subtitre_alignment %}
         {% assign h2_color = block.settings.couleurSubTitle%}
-        <h2 style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font: {{ h2_font }}; font-size:{{ h2_font_size }};"> 
+        <h2 style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font: {{ 'h2_font' }}; font-size:{{ h2_font_size }};"> 
           {{ block.settings.subTitle }} 
-          {{ 'block.settings.fontSousTitre' }}
-          {{ block.settings.fontSousTitre }}
         </h2>
       {% else %}
         {% assign div_font = block.settings.fontTexte | font_face %}
