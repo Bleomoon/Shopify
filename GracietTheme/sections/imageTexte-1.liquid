@@ -21,19 +21,17 @@
     </h1>
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        {% assign h2_font = block.settings.fontSousTitre | font_face %}
         {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
         {% assign h2_text_align = block.settings.subtitre_alignment %}
         {% assign h2_color = block.settings.couleurSubTitle%}
-        <h2 style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font: {{ 'h2_font' }}; font-size:{{ h2_font_size }};"> 
+        <h2 style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font-size:{{ h2_font_size }};"> 
           {{ block.settings.subTitle }} 
         </h2>
       {% else %}
-        {% assign div_font = block.settings.fontTexte | font_face %}
         {% assign div_font_size = block.settings.tailleTexte | append:'px' %}
         {% assign div_text_align = block.settings.text_alignment %}
         {% assign div_color = block.settings.couleurTexte %}
-        <div style="text-align: {{ div_text_align }}; font-family: {{ div_font.family }}; font-style: {{ div_font.style }}; font-weight: {{ div_font.weight }} color:{{ div_color }}; font-size:{{ div_font_size }};" >
+        <div style="text-align: {{ div_text_align }}; color:{{ div_color }}; font-size:{{ div_font_size }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}
@@ -219,6 +217,8 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     grid-row:1;
   }
   .imageTexte-texte{
+    margin-top:25px;
+    margin-bottom:25px;
     display:grid;
     grid-row:1;
     text-align:center;
