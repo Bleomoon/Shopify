@@ -9,16 +9,16 @@
     <img class="imageTexte-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
-    <h1 style="text-align: {{ 'titre_alignment' }}; font-family: {{ 'block.settings.fontTitre.family' }}; font-style: {{ block.settings.fontTitre.style }}; color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre }};">
+    <h1 style="text-align: {{ section.settings.titre_alignment }}; font-family: {{ 'block.settings.fontTitre.family' }}; font-style: {{ block.settings.fontTitre.style }}; color:{{ section.settings.couleurTitle }}; font-size={{ section.settings.tailleTitre }};">
       {{section.settings.title }}
     </h1>
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        <h2 style="text-align: {{ 'subtitre_alignment' }}; font-family: {{ 'block.settings.fontSousTitre.family' }}; font-style: {{ block.settings.fontSousTitre.style }}; color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre }};"> 
+        <h2 style="text-align: {{ block.settings.subtitre_alignment }}; font-family: {{ 'block.settings.fontSousTitre.family' }}; font-style: {{ block.settings.fontSousTitre.style }}; color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre }};"> 
           {{ block.settings.subTitle }} 
         </h2>
       {% else %}
-        <div style="text-align: {{ 'text_alignment' }}; font-family: {{ 'block.settings.fontSousTexte.family' }}; font-style: {{ block.settings.fontSousTexte.style }}; color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte }};" >
+        <div style="text-align: {{ block.settings.text_alignment }}; font-family: {{ 'block.settings.fontSousTexte.family' }}; font-style: {{ block.settings.fontSousTexte.style }}; color:{{ block.settings.couleurTexte }}; font-size={{ section.settings.tailleTexte }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}
