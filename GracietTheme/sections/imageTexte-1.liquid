@@ -3,6 +3,7 @@
 {% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
 {% assign h1_text_align = section.settings.titre_alignment %}
 {% assign h1_color = section.settings.couleurTitle%}
+
 {% assign bg_color = section.settings.couleurFond %}
 
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
@@ -21,13 +22,22 @@
     </h1>
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        <h2 style="text-align: {{ block.settings.subtitre_alignment }}; font: {{ block.settings.fontSousTitre }}; color:{{ block.settings.couleurSubTitle }}; font-size={{ section.settings.tailleSubTitre }};"> 
+        {% assign h2_font = block.settings.fontSousTitre | font_face %}
+        {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
+        {% assign h2_text_align = block.settings.subtitre_alignment %}
+        {% assign h2_color = block.settings.couleurSubTitle%}
+        <h2 style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font-weight: {{ h2_font.weight }}; font-family: {{ h2_font.family }}; font-style: {{ h2_font.style }}; font-size:{{ h2_font_size }};"> 
+          
           {{ block.settings.subTitle }} 
           {{ 'block.settings.fontSousTitre' }}
           {{ block.settings.fontSousTitre }}
         </h2>
       {% else %}
-        <div style="text-align: {{ block.settings.text_alignment }}; font: {{ block.settings.fontTexte }}; color:{{ block.settings.couleurTexte }}; font-size={{ block.settings.tailleTexte }};" >
+        {% assign div_font = block.settings.fontTexte | font_face %}
+        {% assign div_font_size = block.settings.tailleTexte | append:'px' %}
+        {% assign div_text_align = block.settings.text_alignment %}
+        {% assign div_color = block.settings.couleurTexte %}
+        <div style="text-align: {{ div_text_align }}; font-family: {{ div_font.family }}; font-style: {{ div_font.style }}; font-weight: {{ div_font.weight }} color:{{ div_color }}; font-size:{{ div_font_size }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}
