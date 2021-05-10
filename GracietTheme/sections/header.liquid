@@ -128,15 +128,16 @@
 {% endschema %}
 
 <script>
+	let myCart = document.getElementById("header-icons-cart");
 	let showC = document.getElementById("showCart");
 	
-	showC.addEventListener("mouseover", function (event) {
+	myCart.addEventListener("mouseover", function () {
 			// on met l'accent sur la cible de mouseenter
-			event.target.style.display = "grid";
+			showC.style.display = "grid";
 		}, false);
 
-	showC.addEventListener("mouseout", function (event) {
+	myCart.addEventListener("mouseout", function () {
 			// on met l'accent sur la cible de mouseenter
-			event.target.style.display = "none";
+		  showC.style.display = "none";
 		}, false);
 </script>
