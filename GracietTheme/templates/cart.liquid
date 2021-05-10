@@ -51,14 +51,17 @@
 {% style %}
   .emptycart{
     display:grid;
+    grid-templates-columns: repeat(4, 1fr);
   }
 
   .emptycart-titre{
     text-align:center;
     font-family:cursive;
+    grid-column:1/4;
   }
 
   .emptycart-texte{
     font-family:cursive;
+    grid-column:2;
   }
 {% endstyle %}
