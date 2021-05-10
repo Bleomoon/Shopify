@@ -5,7 +5,7 @@
       <div class="myCart-products">
         <h3> Votre Choix ( {{ cart.item_count }} Articles)</h3>
         <div class="myProducts">
-          <table>
+          <table class="myProducts-table">
             <thead>
               <th class="myProducts-th">ARTICLE</th>
               <th class="myProducts-th">DESCRIPTIF</th>
@@ -154,11 +154,18 @@
     border:solid;
     border-left:none;
     border-right:none;
+    text-align:center;
   }
 
   .myProducts-td{
     border:solid;
     border-left:none;
     border-right:none;
+    text-align:center;
+    vertical-align:middle;
+  }
+
+  .myProducts-table{
+    width:100%;
   }
 {% endstyle %}
