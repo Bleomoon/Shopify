@@ -36,7 +36,7 @@
       <div class="ficheProduct-Desc">{{ product.description }}</div>
   
       {%comment%} Zone sur le contenu personnalisé : prix/quantity etc {%endcomment%}
-      {% form "product", product %}
+      {% form "product", item %}
         <div class="ficheProduct-personnalise" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
           <select name="id" id="productSelect">
             {% for variant in product.variants %}
