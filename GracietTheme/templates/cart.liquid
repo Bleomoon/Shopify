@@ -141,7 +141,28 @@
     }
   }
 
-  @media screen and (min-width:1000px) {
+  @media screen and (max-width:1200px) {
+    .myCart{
+      display:grid;
+      grid-template-columns: repeat(2,1fr);
+    }
+    
+    .myCart-products{
+      grid-column:1;
+      grid-row:1;
+    }
+    
+    .myCart-resume{
+      grid-column:2;
+      grid-row:1;
+    }
+    
+    .myProducts{
+      padding: 0;
+    }
+  }
+
+  @media screen and (min-width:1200px) {
     .myCart{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
