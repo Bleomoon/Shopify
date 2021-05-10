@@ -67,10 +67,12 @@
           </select>
           
         </div>
-        <h4 class="myCart-H4">Total</h4>
-        <h4 class="myCart-H4">{{ cart.total_price | money }}</h4>
-        <button class="commadenValider">Valier la commande</button>
-        <button class="continuerAchats">Continuer Mes Achats</button>
+        <div class="cartTotal">
+          <h4 class="H4-total">Total</h4>
+          <h4 class="H4-total-price">{{ cart.total_price | money }}</h4>
+          <button class="commandeValider">Valier la commande</button>
+          <button class="continuerAchats">Continuer Mes Achats</button>
+        </div>
       </div>
     </div>  
   </form>
@@ -146,42 +148,7 @@
   .myCart-products{
     grid-column:2;
   }
-  
-  .myCart-resume{
-    grid-column:3;
-  }
 
-  .resume-Frais{
-    display:grid;
-  }
-
-  .H4-subtotal{
-
-  }
-
-  .H4-subtotal-price{
-
-  }
-
-  .frais{
-
-  }
-
-  .H4-Expedition{
-
-  }
-
-  .Expedition-texte{
-    
-  }
-
-  .Expedition-select{
-
-  }
-
-  .myProducts{
-    padding-left:10px;
-  }
 
   .myProducts-th{
     border:solid;
@@ -201,5 +168,92 @@
   .myProducts-table{
     width:100%;
   }
+
+  .myCart-resume{
+    grid-column:3;
+    display:grid;
+  }
   
+  .resume-Frais{
+    display:grid;
+    paddin-top:25px;
+    padding-bottom:25px;
+    border:solid;
+    border-right:none;
+    border-left:none;
+  }
+  
+  .H4-subtotal{
+    grid-column:1;
+    grid-row:1;
+    font-family:cursive;
+    font-style: italic;
+  }
+  
+  .H4-subtotal-price{
+    grid-column:2;
+    grid-row:1;
+    text-align:right;
+    font-family:cursive;
+    font-style: italic;
+  }
+  
+  .frais{
+    grid-column:1/2;
+    grid-row:2/3;
+  }
+  
+  .H4-Expedition{
+    grid-column:1;
+    grid-row:4;
+    font-family:cursive;
+    font-style: italic;
+  }
+  
+  .Expedition-texte{
+    grid-column:2;
+    grid-row:4;
+    font-family:cursive;
+    font-style: italic;
+    font-weight:bold;
+  }
+  
+  .Expedition-select{
+    grid-column:2;
+    grid-row:4;
+  }
+
+  .cartTotal{
+    display:grid;
+  }
+
+  .H4-total{
+    font-family:cursive;
+    font-style: italic;
+    grid-row:1;
+    grid-column:1;
+  }
+
+  .H4-total-price{
+    font-family:cursive;
+    font-style: italic;
+    grid-row:1;
+    grid-column:2;
+  }
+  
+  .commandeValider{
+    grid-row:2;
+    grid-column:1/2;
+  }
+
+  .continuerAchats{
+    grid-row:3;
+    grid-column:1/2;
+  }
+
+  .myProducts{
+    padding-left:10px;
+  }
+  
+
 {% endstyle %}
