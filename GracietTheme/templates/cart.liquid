@@ -41,6 +41,24 @@
     </div>
   </form>
 {% else %}
-  <h2>cart</h2>
-  Cart is empty
+  <div class="emptycart">
+    <h1 class="emptycart-titre" >Mon Panier</h1>
+    <p class="emptycart-texte">Cart is empty</p>
+  </div>
+  
 {% endif %}
+
+{% style %}
+  .emptycart{
+    display:grid;
+  }
+
+  .emptycart-titre{
+    text-align:center;
+    font-family:cursive;
+  }
+
+  .emptycart-texte{
+    font-family:cursive;
+  }
+{% endstyle %}
