@@ -174,7 +174,7 @@ $font-family: sans-serif;
 /*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
 Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 */
-@media screen and (max-width:576px) {
+@media screen and (max-width:576px) {blo
     .header-navbar {
         display: none;
     }
@@ -428,56 +428,6 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     display: none;
 }
 
-@media screen and (max-width:900px) {
-    .header-logo {
-        display: flex;
-        flex: 1;
-        justify-content: flex-start;
-    }
-
-    .header-navbar {
-        display: flex;
-        justify-content: flex-end;
-        flex: 1;
-    }
-
-    .navbar-toggler {
-        cursor: pointer;
-        justify-content: flex-end;
-        background: none;
-        border: none;
-    }
-
-    .navbar {
-        width: 0;
-        left: -999px;
-        display: block;
-        transition: left 0.7s;
-        position: absolute;
-        top: 100%;
-    }
-
-    .navbar-item {
-        display: inline-block;
-        padding: 10px;
-    }
-
-    /*Fonction qand on clique sur la navbar*/
-    .navbar.open {
-        width: 100%;
-        left: 0;
-        background: #EEE;
-    }
-
-    .header-icons {
-        display: flex;
-        flex: 1;
-        justify-content: flex-end;
-        padding: 10px
-    }
-
-
-}
 
 /*CSS du FOOTER*/
 .footer {
