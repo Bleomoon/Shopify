@@ -1,5 +1,5 @@
 {%comment%} Le html  de notre bloc {%endcomment%}
-<div class="iconsList">
+<div class="iconsList" style="background-color: {{ section.settings.couleurFond }};">
   {%for block in section.blocks %}
     <div class="icons">
       <img class="icons-img" alt="{{ block.settings.title }}" src="{{ block.settings.icons | img_url: '300x300' }}">
@@ -35,6 +35,12 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
         "id":"titleSize",
         "label":"Taille du titre",
         "default":"11"
+      },
+      {
+      "type": "color",
+      "id": "couleurFond",
+      "label": "Couleur du fond",
+      "default": "#ffffff"
       }
     ]
   }],
