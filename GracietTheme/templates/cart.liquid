@@ -48,20 +48,21 @@
       </div>
       <div class="myCart-resume">
         <h3 class="myCart-H3"> Total Du Panier </h3>
-        <div>
-          <h4 class="myCart-H4">Sous-total</h4>
-          <h4 class="myCart-H4"> {{ cart.items_subtotal_price | money }} </h4>
-          <input type="checkbox">
-          <label>À domicile: <strong>10.00€</strong></label>
-          <p>(Confirmation de livraison par mail.)</p>
-          <input type="checkbox">
-          <label>À domicile sur RDV: <strong>14.50€</strong></label>
-          <p>(SMS la veille au soir avec 3 propositions d'horaires.)</p>
-          <p>Les options de livraison seront mises à jour lors de la commande.</p>
-
-          <h4 class="myCart-H4">Expédition</h4>
-          <h4 class="myCart-H4"><strong>Estimation des frais de livraison</strong></h4>
-          <select name="country">
+        <div class="resume-Frais">
+          <h4 class="H4-subtotal">Sous-total</h4>
+          <h4 class="H4-subtotal-price"> {{ cart.items_subtotal_price | money }} </h4>
+          <div class="frais">
+            <input type="checkbox">
+            <label>À domicile: <strong>10.00€</strong></label>
+            <p>(Confirmation de livraison par mail.)</p>
+            <input type="checkbox">
+            <label>À domicile sur RDV: <strong>14.50€</strong></label>
+            <p>(SMS la veille au soir avec 3 propositions d'horaires.)</p>
+            <p>Les options de livraison seront mises à jour lors de la commande.</p>
+          </div>
+          <h4 class="H4-Expedition">Expédition</h4>
+          <h4 class="Expedition-texte">Estimation des frais de livraison</h4>
+          <select class="Expedition-select" name="country">
             {{ country_option_tags }}
           </select>
           
@@ -73,7 +74,7 @@
       </div>
     </div>  
   </form>
-  {% section 'product-recommandations' %}
+  {% section 'products-recommandations' %}
 {% else %}
   <div class="emptycart">
     <h1 class="emptycart-titre" >Mon Panier</h1>
@@ -150,6 +151,34 @@
     grid-column:3;
   }
 
+  .resume-Frais{
+    display:grid;
+  }
+
+  .H4-subtotal{
+
+  }
+
+  .H4-subtotal-price{
+
+  }
+
+  .frais{
+
+  }
+
+  .H4-Expedition{
+
+  }
+
+  .Expedition-texte{
+    
+  }
+
+  .Expedition-select{
+
+  }
+
   .myProducts{
     padding-left:10px;
   }
@@ -172,4 +201,5 @@
   .myProducts-table{
     width:100%;
   }
+  
 {% endstyle %}
