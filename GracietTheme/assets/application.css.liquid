@@ -170,6 +170,10 @@ $font-family: sans-serif;
     padding-left: 10px;
 }
 
+
+/*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
+Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
+*/
 @media screen and (max-width:576px) {
     .header-navbar {
         display: none;
@@ -183,6 +187,29 @@ $font-family: sans-serif;
         grid-column: 2;
         grid-row: 1;
         text-align: right;
+        padding: 10px;
+    }
+
+    .smallScreen {
+        width: 0;
+        left: -999px;
+        transition: left 0.1s;
+        display: block;
+        position: absolute;
+        top: 100%;
+    }
+
+    .smallScreen-item {
+        display: block;
+        padding: 10px;
+        justify-content: flex-end;
+    }
+
+    .smallScreen.open {
+        width: 100%;
+        left: 0;
+        justify-content: flex-end;
+        background: #EEE;
     }
 }
 
@@ -197,7 +224,7 @@ $font-family: sans-serif;
         display: grid;
         grid-column: 3;
         grid-row: 1;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .menu-smallScreen {
@@ -465,46 +492,6 @@ $font-family: sans-serif;
     }
 }
 
-/*Un seul boutton menu regroupant, (connexion, crée compte) ou (déconnexion, mon compte) 
-Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
-*/
-@media screen and (max-width:576px) {
-
-    .header-icons {
-        display: none;
-    }
-
-    .header-navbar {
-        display: none;
-    }
-
-    .menu-smallScreen {
-        display: flex;
-        padding: 10px;
-    }
-
-    .smallScreen {
-        width: 0;
-        left: -999px;
-        transition: left 0.1s;
-        display: block;
-        position: absolute;
-        top: 100%;
-    }
-
-    .smallScreen-item {
-        display: block;
-        padding: 10px;
-        justify-content: flex-end;
-    }
-
-    .smallScreen.open {
-        width: 100%;
-        left: 0;
-        justify-content: flex-end;
-        background: #EEE;
-    }
-}
 
 /*CSS du FOOTER*/
 .footer {
