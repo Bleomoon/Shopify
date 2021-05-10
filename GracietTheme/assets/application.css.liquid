@@ -175,7 +175,7 @@ $font-family: sans-serif;
 Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 */
 
-@media screen and (max-width:900px) {
+@media screen and (min-width:900px) {
     .header-navbar {
         display: ruby;
         grid-column: 2;
@@ -189,9 +189,7 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .menu-smallScreen {
-        display: none;
-    }
+
 
     .navbar-toggler {
         display: none;
@@ -211,9 +209,13 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
         display: inline-flex;
         padding: 10px;
     }
+
+    .menu-smallScreen {
+        display: none;
+    }
 }
 
-@media screen and (max-width:576px) {
+@media screen and (max-width:900px) {
     .header-navbar {
         display: none;
     }
@@ -228,6 +230,8 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
         text-align: right;
         padding: 10px;
         display: grid;
+        margin: auto;
+        padding-left: 75%;
     }
 
     .smallScreen {
