@@ -104,5 +104,5 @@ function changeClassOfLayout(i)
 
 function showCart()
 {
-    document.getElementById("showCart").style.display = "block";
+    document.getElementById("showCart").style.display = "grid";
 }
