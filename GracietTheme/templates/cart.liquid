@@ -27,7 +27,7 @@
                   <a href="{{ item.url }}">{{ item.product.title }}</a>
                   
                 </td>
-                < class="myProducts-td">{{ item.price | money }}</>
+                <td class="myProducts-td">{{ item.price | money }}</td>
                 <td class="myProducts-td">
                   <input type="number" name="updates[]" id="updates_{{ item.key }}"
                       value="{{ item.quantity }}" min="0">
