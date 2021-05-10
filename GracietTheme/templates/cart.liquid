@@ -52,6 +52,7 @@
           <h4 class="H4-subtotal">Sous-total</h4>
           <h4 class="H4-subtotal-price"> {{ cart.items_subtotal_price | money }} </h4>
           <div class="frais">
+            {{ shipping_method.title }}<br>
             <input type="checkbox">
             <label>À domicile: <strong>10.00€</strong></label>
             <p>(Confirmation de livraison par mail.)</p>
@@ -208,6 +209,7 @@
     grid-row:4;
     font-family:cursive;
     font-style: italic;
+    margin-auto;
   }
   
   .Expedition-texte{
@@ -244,15 +246,21 @@
   .commandeValider{
     grid-row:2;
     grid-column:1/2;
+    text-align:center;
+    background-color:black;
+    color:white;
+    border:none;
   }
 
   .continuerAchats{
     grid-row:3;
     grid-column:1/2;
+    background:none;
+    border:none;
   }
 
   .myProducts{
-    padding-right:10px;
+    padding-right:25px;
   }
   
 
