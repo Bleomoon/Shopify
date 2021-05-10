@@ -3,7 +3,7 @@
   <form action="/cart" method="post" novalidate>
     <div class="myCart">
       <div class="myCart-products">
-        <h3> Votre Choix ( {{ cart.item_count }} Articles)</h3>
+        <h3 class="myCart-H3"> Votre Choix ( {{ cart.item_count }} Articles)</h3>
         <div class="myProducts">
           <table class="myProducts-table">
             <thead>
@@ -47,10 +47,10 @@
         </div>
       </div>
       <div class="myCart-resume">
-        <h3> Total Du Panier </h3>
+        <h3 class="myCart-H3"> Total Du Panier </h3>
         <div>
-          <h4>Sous-total</h4>
-          <h4> {{ cart.items_subtotal_price | money }} </h4>
+          <h4 class="myCart-H4">Sous-total</h4>
+          <h4 class="myCart-H4"> {{ cart.items_subtotal_price | money }} </h4>
           <input type="checkbox">
           <label>À domicile: <strong>10.00€</strong></label>
           <p>(Confirmation de livraison par mail.)</p>
@@ -59,15 +59,15 @@
           <p>(SMS la veille au soir avec 3 propositions d'horaires.)</p>
           <p>Les options de livraison seront mises à jour lors de la commande.</p>
 
-          <h4>Expédition</h4>
-          <h4><strong>Estimation des frais de livraison</strong></h4>
+          <h4 class="myCart-H4">Expédition</h4>
+          <h4 class="myCart-H4"><strong>Estimation des frais de livraison</strong></h4>
           <select name="country">
             {{ country_option_tags }}
           </select>
           
         </div>
-        <h4>Total</h4>
-        <h4>{{ cart.total_price | money }}</h4>
+        <h4 class="myCart-H4">Total</h4>
+        <h4 class="myCart-H4">{{ cart.total_price | money }}</h4>
         <button class="commadenValider">Valier la commande</button>
         <button class="continuerAchats">Continuer Mes Achats</button>
       </div>
@@ -131,6 +131,10 @@
       grid-column:1;
       grid-row:2;
     }
+
+    .myProducts{
+      padding: 0;
+    }
   }
 
   .myCart{
@@ -147,7 +151,7 @@
   }
 
   .myProducts{
-
+    padding-left:10px;
   }
 
   .myProducts-th{
