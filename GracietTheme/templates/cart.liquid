@@ -1,45 +1,82 @@
 {% if cart.item_count > 0 %}
-  <h1>cart</h1>
+  <h1>Mon Panier</h1>
   <form action="/cart" method="post" novalidate>
-    <table>
-      <thead>
-        <th colspan="2">Prod</th>
-        <th>Price</th>
-        <th>Qty</th>
-        <th>total</th>
-      </thead>
-      <tbody>
-        {% for item in cart.items %}
-          <tr>
-            <td>
-              <a href="{{ item.url | within: collections.all }}">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-              </a>
-            </td>
-            <td>
-              <a href="{{ item.url }}">{{ item.product.title }}</a>
-              {{ item.variant.title }}
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
-            </td>
-            <td>{{ item.price | money }}</td>
-            <td>
-              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-            </td>
-            <td>
-              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
-              {{ item.line_price | money }}
-              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="myCart">
+      <div class="myCart-products">
+        <h3> Votre Choix ( {{ cart.item_count }} Articles)</h3>
+        <div class="myProducts">
+          <table>
+            <thead>
+              <th>ARTICLE</th>
+              <th>DESCRIPTIF</th>
+              <th>PRIX UNITAIRE</th>
+              <th>QUANTITE</th>
+              <th>Sous-Total</th>
+              <th></th>
+            </thead>
+            <tbody>
+              {% for item in cart.items %}
+              <tr>
+                <td>
+                  <a href="{{ item.url | within: collections.all }}">
+                    <img src="{{ item | img_url: 'medium' }}"
+                      alt="{{ item.title | escape }}">
+                  </a>
+                </td>
+                <td>
+                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                  
+                </td>
+                <td>{{ item.price | money }}</td>
+                <td>
+                  <input type="number" name="updates[]" id="updates_{{ item.key }}"
+                      value="{{ item.quantity }}" min="0">
+                </td>
+                <td>
+                  {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+                  {{ item.line_price | money }}
+                  {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+                </td>
+                <td>
+                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><li class="fas fa-times"></li></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3> Total Du Panier </h3>
+        <div>
+          <h4>Sous-total</h4>
+          <h4> {{ cart.items_subtotal_price | money }} </h4>
+          <input type="checkbox">
+          <label>À domicile: <strong>10.00€</strong></label>
+          <p>(Confirmation de livraison par mail.)</p>
+          <input type="checkbox">
+          <label>À domicile sur RDV: <strong>14.50€</strong></label>
+          <p>(SMS la veille au soir avec 3 propositions d'horaires.)</p>
+          <p>Les options de livraison seront mises à jour lors de la commande.</p>
+
+          <h4>Expédition</h4>
+          <h4>Estimation des frais de livraison</h4>
+          <select name="country">
+            {{ country_option_tags }}
+          </select>
+          
+        </div>
+        <h4>Total</h4>
+        <h4>{{ cart.total_price | money }}</h4>
+        <button class="commadenValider">Valier la commande</button>
+        <button class="continuerAchats">Continuer Mes Achats</button>
+      </div>
+    </div>  
+    
     <div>
-      <p>sub total : {{ cart.total_price | money }}</p>
-      <button type="submit" name="update">Update</button>
-      <button type="submit" name="checkout">Checkout</button>
     </div>
   </form>
+  {% section 'product-recommandations' %}
 {% else %}
   <div class="emptycart">
     <h1 class="emptycart-titre" >Mon Panier</h1>
