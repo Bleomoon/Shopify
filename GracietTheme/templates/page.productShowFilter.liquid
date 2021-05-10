@@ -12,9 +12,7 @@
                 <i class="fas fa-th"></i></button>
         </div>
         <div class="productShowFilter-Filter-2">
-            {{ collections.general.sort_options }}
-            {{ collections.general.items_with_count }}
-            {{ collections.general.collection_label }}
+            
             <select name="sort_by">
                 {% for collection in collections %}
                     {% for option in collection.sort_options %}
@@ -24,7 +22,11 @@
             </select>
         </div>
     </div>
-
+<p>
+    {{ collections.general.sort_options }}
+    {{ collections.general.items_with_count }}
+    {{ collections.general.collection_label }}
+</p>
     <div id="productFilter" class="productFilter">
         {%comment%} Ici on boucle pour récupéré tous les noms d'options {%endcomment%}
         {% assign myOptions = '' | split '' %}
