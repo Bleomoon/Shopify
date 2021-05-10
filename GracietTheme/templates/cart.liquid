@@ -46,7 +46,7 @@
           </table>
         </div>
       </div>
-      <div>
+      <div class="myCart-resume">
         <h3> Total Du Panier </h3>
         <div>
           <h4>Sous-total</h4>
@@ -60,7 +60,7 @@
           <p>Les options de livraison seront mises à jour lors de la commande.</p>
 
           <h4>Expédition</h4>
-          <h4>Estimation des frais de livraison</h4>
+          <h4><strong>Estimation des frais de livraison</strong></h4>
           <select name="country">
             {{ country_option_tags }}
           </select>
@@ -72,9 +72,6 @@
         <button class="continuerAchats">Continuer Mes Achats</button>
       </div>
     </div>  
-    
-    <div>
-    </div>
   </form>
   {% section 'product-recommandations' %}
 {% else %}
@@ -101,5 +98,51 @@
   .emptycart-texte{
     font-family:cursive;
     grid-column:2;
+  }
+
+  @media screen and (max-width:1000px) {
+    .myCart{
+      display:grid;
+      grid-templates-columns: repeat(1,1fr);
+    }
+    
+    .myCart-products{
+      grid-column:1;
+      grid-row:1;
+    }
+
+    .myCart-resume{
+      grid-column:1;
+      grid-row:2;
+    }
+  }
+
+  .myCart{
+    display:grid;
+    grid-templates-columns: repeat(4, 1fr);
+  }
+
+  .myCart-products{
+    grid-column:2;
+  }
+  
+  .myCart-resume{
+    grid-column:3;
+  }
+
+  .myProducts{
+    
+  }
+
+  .myProducts .th{
+    border:solid;
+    border-left:none;
+    border-right:none;
+  }
+
+  .myProducts .td{
+    border:solid;
+    border-left:none;
+    border-right:none;
   }
 {% endstyle %}
