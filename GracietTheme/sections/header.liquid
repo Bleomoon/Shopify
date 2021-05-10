@@ -131,13 +131,7 @@
 	let myCart = document.getElementById("header-icons-cart");
 	let showC = document.getElementById("showCart");
 	
-	myCart.addEventListener("mouseover", function () {
-			// on met l'accent sur la cible de mouseenter
-			showC.style.display = "grid";
-		}, false);
+	myCart.addEventListener("mouseover", showC.style.display = "grid");
 
-	myCart.addEventListener("mouseout", function () {
-			// on met l'accent sur la cible de mouseenter
-		  showC.style.display = "none";
-		}, false);
+	myCart.addEventListener("mouseout", showC.style.display = "none");
 </script>
