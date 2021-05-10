@@ -1,5 +1,5 @@
 {% if cart.item_count > 0 %}
-  <h1>Mon Panier</h1>
+  <h1 class="myCart-H1">Mon Panier</h1>
   <form action="/cart" method="post" novalidate>
     <div class="myCart">
       <div class="myCart-products">
@@ -100,6 +100,22 @@
     grid-column:2;
   }
 
+  .myCart-H1{
+    text-align:center;
+    font-family:cursive;
+    font-weight:900;
+  }
+
+  .myCart-H3{
+    font-family:cursive;
+    font-style: italic;
+  }
+
+  .myCart-H4{
+    font-family:cursive;
+    font-style: italic;
+  }
+
   @media screen and (max-width:1000px) {
     .myCart{
       display:grid;
@@ -131,7 +147,7 @@
   }
 
   .myProducts{
-    
+
   }
 
   .myProducts .th{
