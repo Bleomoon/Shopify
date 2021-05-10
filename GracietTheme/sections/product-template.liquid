@@ -57,9 +57,21 @@
           <input type="number" id="Quantity" name="quantity" value="1" min="1">  
           </div>
           {%endcomment%}
-          <label for="Quantity">quantity</label>
-          <input type="number" id="Quantity" name="quantity" value={{ product.quantity }}>
-          <input type="submit" value="Add to cart" />
+        <form action="/cart/add" method="post" enctype="multipart/form-data">
+          <select name="id">
+            {% for variant in product.variants %}
+            {% if variant.available == true %}
+            <option value="{{variant.id}}"> {{ variant.title }} for
+              {{ variant.price | money_with_currency }}</option>
+            {% else %}
+            <option disabled="disabled"> {{ variant.title }} - sold out!</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+          <label >quantity</label>
+          <option value="{{ product.quantity }}">{{ product.quantity }}</option>
+          <input type="submit" name="add" id="add" value="Add to Cart" class="button">
+        </form>
         
       {% endform %}
       {%comment%} Zone des logos Facebook/Twitter/Instagram {%endcomment%}
