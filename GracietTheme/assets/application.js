@@ -106,3 +106,8 @@ function showCart()
 {
     document.getElementById("showCart").style.display = "grid";
 }
+
+function notShowCart()
+{
+    document.getElementById("showCart").style.display = "none";
+}

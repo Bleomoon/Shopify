@@ -24,7 +24,7 @@
 
 		
 		{% comment %} boutton qui va afficher une liste avec les objets du paniers et si clique envoie sur le panier {% endcomment %}
-		<button id="header-icons-cart" class="header-icons-cart">
+		<button onmouseover=showCart(); onemouseout=notShowCart(); id="header-icons-cart" class="header-icons-cart">
 			<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart"><i class="fas fa-shopping-basket"></i></a>
 		</button>
 
@@ -126,26 +126,3 @@
 	]
 }
 {% endschema %}
-
-<script>
-	let myCart = document.getElementById("header-icons-cart");
-	let showC = document.getElementById("showCart");
-
-
-	// Ce gestionnaire sera exécuté à chaque fois que le curseur
-	// se déplacera sur un autre élément de la liste
-	myCart.addEventListener("mouseover", function (event) {
-		// on met l'accent sur la cible de mouseover
-		document.getElementById("showCart").style.display = "grid";
-
-	}, false);
-
-	// Ce gestionnaire sera exécuté à chaque fois que le curseur
-	// se déplacera sur un autre élément de la liste
-	myCart.addEventListener("mouseout", function (event) {
-		// on met l'accent sur la cible de mouseout
-		document.getElementById("showCart").display = "none";
-
-	}, false);
-
-</script>
