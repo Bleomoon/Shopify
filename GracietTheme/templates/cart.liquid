@@ -52,11 +52,11 @@
           <h4 class="H4-subtotal">Sous-total</h4>
           <h4 class="H4-subtotal-price"> {{ cart.items_subtotal_price | money }} </h4>
           <div class="frais">
-            {{ shipping_method.title }}<br>
             <input type="checkbox">
             <label>À domicile: <strong>10.00€</strong></label>
             <p>(Confirmation de livraison par mail.)</p>
             <input type="checkbox">
+            <br>
             <label>À domicile sur RDV: <strong>14.50€</strong></label>
             <p>(SMS la veille au soir avec 3 propositions d'horaires.)</p>
             <p>Les options de livraison seront mises à jour lors de la commande.</p>
@@ -202,6 +202,7 @@
   .frais{
     grid-column:1/2;
     grid-row:2/3;
+    text-align:end;
   }
   
   .H4-Expedition{
