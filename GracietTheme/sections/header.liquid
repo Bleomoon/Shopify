@@ -130,8 +130,22 @@
 <script>
 	let myCart = document.getElementById("header-icons-cart");
 	let showC = document.getElementById("showCart");
-	
-	myCart.addEventListener("mouseover", showC.style.display = "grid");
 
-	myCart.addEventListener("mouseout", showC.style.display = "none");
+
+	// Ce gestionnaire sera exécuté à chaque fois que le curseur
+	// se déplacera sur un autre élément de la liste
+	myCart.addEventListener("mouseover", function (event) {
+		// on met l'accent sur la cible de mouseover
+		showC.style.display = "grid";
+
+	}, false);
+
+	// Ce gestionnaire sera exécuté à chaque fois que le curseur
+	// se déplacera sur un autre élément de la liste
+	myCart.addEventListener("mouseout", function (event) {
+		// on met l'accent sur la cible de mouseout
+		showC.style.display = "none";
+
+	}, false);
+
 </script>
