@@ -230,6 +230,25 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
     .menu-smallScreen {
         display: none;
     }
+
+    .navbar-toggler {
+        display: none;
+        justify-content: flex-end;
+    }
+
+    .navbar {
+        position: relative;
+        left: 0;
+        transition: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar-item {
+        display: inline-flex;
+        padding: 10px;
+    }
 }
 
 .header-icons-Ref {
@@ -459,39 +478,6 @@ Et Accueil, accessoires, collections, /Sylvie Strohl, Blog
 
 
 }
-
-/*Si taille de l'écran moyen*/
-@media screen and (min-width:900px) {
-    .header-navbar {
-        display: flex;
-        justify-content: flex-end;
-        flex: 1;
-    }
-
-    .navbar-toggler {
-        display: none;
-        justify-content: flex-end;
-    }
-
-    .navbar {
-        position: relative;
-        left: 0;
-        transition: none;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .navbar-item {
-        display: inline-flex;
-        padding: 10px;
-    }
-
-    .menu-smallScreen {
-        display: none;
-    }
-}
-
 
 /*CSS du FOOTER*/
 .footer {
