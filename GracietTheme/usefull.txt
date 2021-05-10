@@ -10,3 +10,6 @@ clé API: e2457420aee05cd8bd800c8ff51ac8c3
 clé secrète api : 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
 
 https://shopify.dev/concepts/shopify-introduction
+
+crée une application:
+https://shopify.dev/tutorials/build-a-shopify-app-with-node-and-react/build-your-user-interface-with-polaris
