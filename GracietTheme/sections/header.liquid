@@ -86,16 +86,17 @@
 			</div>
 			<ul class="ItemInCart">
 				{% for item in cart.items %}
-					<a class="ItemImg" href="{{ item.url | within: collections.all }}">
-						<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
-					</a>
-					<div class="ItemText">
-						<div class="ItemText-h3"><a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a></div>
-						<div class="ItemText-prix"><p>PRIX UNITAIRE {{ item.price | money }}</p></div>
-						<div class="ItemText-qte"><label>QUANTITE : {{ item.quantity }} </label></div>
-					</div>
-					<a class="ItemText-delete" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><li class="fas fa-times"></li></a>
-					
+					<li>
+						<a class="ItemImg" href="{{ item.url | within: collections.all }}">
+							<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+						</a>
+						<div class="ItemText">
+							<div class="ItemText-h3"><a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a></div>
+							<div class="ItemText-prix"><p>PRIX UNITAIRE {{ item.price | money }}</p></div>
+							<div class="ItemText-qte"><label>QUANTITE : {{ item.quantity }} </label></div>
+						</div>
+						<a class="ItemText-delete" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><li class="fas fa-times"></li></a>
+					</li>
 				{% endfor %}
 			</ul>
 		{% endif %}
