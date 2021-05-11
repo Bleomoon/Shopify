@@ -12,17 +12,19 @@
 {%comment%} Ici le html{%endcomment%}
 <div class="entretien">
     <div class="entretien-titre">
-
+        <h1>{{ section.settings.title }}</h1>
     </div>
     <div class="entretien-soustitre">
-
+        <h2>{{ section.settings.subtitle }}</h2>
     </div>
     {%for block in section.blocks %}
-        <p style="text-align: {{ block.settings.texte_alignment }}; color: {{ block.settings.text }}; font-size: {{ block.settings.tailletexte | 'px' }};"> {{ block.settings.text }} </p>
+        
     {% endfor %}
 </div>
 
-{%comment%} Ici le schéma du titre avec couleur, style, background-color etc {%endcomment%}
+{%comment%} 
+<p style="text-align: {{ block.settings.texte_alignment }}; color: {{ block.settings.text }}; font-size: {{ block.settings.tailletexte | 'px' }};"> {{ block.settings.text }} </p>
+Ici le schéma du titre avec couleur, style, background-color etc {%endcomment%}
 {% schema %}
 {
     "name":"Entretien Warning",
