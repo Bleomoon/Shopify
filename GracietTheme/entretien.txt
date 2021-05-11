@@ -1,0 +1,14 @@
+{
+        "type":"deuxIconeTexte",
+        "name":"Deux Icones et texte",
+        "settings":[
+        
+        ]
+    }
+    {
+        "type":"grostitre",
+        "name":"Gros Titre",
+        "settings":[
+            
+        ]
+    }
