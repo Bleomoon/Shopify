@@ -2,12 +2,12 @@
 {% assign h1_font = section.settings.fontTitre | font_face %}
 {% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
 {% assign h1_text_align = section.settings.titre_alignment %}
-{% assign h1_color = section.settings.couleurTitle%}
-{% assign h2_font = section.settings.fontTitre | font_face %}
-{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
-{% assign h2_text_align = section.settings.titre_alignment %}
-{% assign h2_color = section.settings.couleurTitle%}
-{% assign bg_color = section.settings.couleurFond %}
+{% assign h1_color = section.settings.couleurTitle %}
+{% assign h2_font = section.settings.fontsubTitre | font_face %}
+{% assign h2_font_size = section.settings.taillesubTitre | append:'px' %}
+{% assign h2_text_align = section.settings.subtitle_alignment %}
+{% assign h2_color = section.settings.couleursubTitle %}
+{% assign bg_color = section.settings.couleursubTitle %}
 
 {%comment%} Ici le html{%endcomment%}
 <div class="entretien">
@@ -17,9 +17,6 @@
     <div class="entretien-soustitre">
         <h2>{{ section.settings.subtitle }}</h2>
     </div>
-    {%for block in section.blocks %}
-        
-    {% endfor %}
 </div>
 
 {%comment%} Ici le schéma du titre avec couleur, style, background-color etc {%endcomment%}
