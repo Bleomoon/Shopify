@@ -54,13 +54,14 @@
                 </div>
             {% elsif block.type == 'IconeTexte' %} {%comment%} Si une icone et du texte {%endcomment%}
                 {% if block.settings.IconeTexteCadre == true %}
-                    {% assign blocIconeTexteCadre = "groove" %}
+                    {% assign blocIconeTexteCadre = "solid" %}
                 {% else %}
                     {% assign blocIconeTexteCadre = "none" %}
                 {% endif %}
-                <div style="border: {{ block.settings.blocIconeTexteCadre }}; background-color: {{ block.settings.IconeTexteCouleurFond }}" class="IconeTexte">
-                    <img alt="{{ block.settings.IconeTexteImage.alt }}" src={{ block.settings.IconeTexteImage | img_url:"medium"}} style="text-align: {{ block.settings.IconeTexte_alignmentIcone }}">
-
+                <div style="border: {{ blocIconeTexteCadre }}; background-color: {{ block.settings.IconeTexteCouleurFond }}" class="IconeTexte">
+                    <div style="text-align: {{ block.settings.IconeTexte_alignmentIcone }}">
+                        <img alt="{{ block.settings.IconeTexteImage.alt }}" src={{ block.settings.IconeTexteImage | img_url:"medium"}}>
+                    </div>
                     <h3 style="text-align: {{ block.settings.IconeTexte_alignmentTitre }}; color: {{ block.settings.IconeCouleurTitre }}; font-size: {{ block.settings.IconeTailletitre | append: 'px'  }};">
                         {{ block.settings.IconeTitre }}
                     </h3>
