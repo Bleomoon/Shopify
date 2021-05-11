@@ -72,7 +72,7 @@
 	</div>
 
 	{%comment%} Ici affiche {% endcomment%}
-	<div id="showCart" class="showCart" onmouseout="setTimeout(notShowCart,2000);">
+	<div id="showCart" class="showCart" onmouseover="showCart();" onmouseout="setTimeout(notShowCart,2000);">
 		{% if cart.item_count == 0 %}
 			<div class="noItemInCart">
 				<p>Votre panier est vide</p>
@@ -81,8 +81,8 @@
 			<div class="goPanierItems">
 				<h2 class="goPanierItems-h2Tot">TOTAL</h2>
 				<h2 class="goPanierItems-h2Prix">{{ cart.total_price | money }}</h2>
-				<button onmouseover="addOeil();" onmouseout="removeOeil();" id="goPanierItems-goPanier" class="goPanierItems-goPanier"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a></button>
-				<button onmouseover="addArrow();" onmouseout="removeArrow();" id="goPanierItems-goFin" class="goPanierItems-goFin"><a class="goPanierItems-goFin-A" href="paiement">FINALISER VOTRE COMMANDE</a></button>
+				<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart"><button onmouseover="addOeil();" onmouseout="removeOeil();" id="goPanierItems-goPanier" class="goPanierItems-goPanier">VOIR VOTRE PANIER</button></a>
+				<a class="goPanierItems-goFin-A" href="paiement"><button onmouseover="addArrow();" onmouseout="removeArrow();" id="goPanierItems-goFin" class="goPanierItems-goFin">FINALISER VOTRE COMMANDE</button></a>
 			</div>
 			<ul class="ItemsInCart">
 				{% for item in cart.items %}
