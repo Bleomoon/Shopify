@@ -81,25 +81,24 @@
 			<div class="ItemInCart">
 				<ul>
 					{% for item in cart.items %}
-						<a href="{{ item.url | within: collections.all }}">
+						<a class="ItemImg" href="{{ item.url | within: collections.all }}">
 							<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
 						</a>
 						<div class="ItemText">
 							<div class="ItemText-h3"><a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a></div>
-							<div class="ItemText-prix"><p>{{ item.price | money }}</p></div>
-							<div class="ItemText-qte"><label type="number" name="updates[]" id="updates_{{ item.key }}"
-								value="{{ item.quantity }}" min="0"></div>
-							
+							<div class="ItemText-prix"><p>PRIX UNITAIRE {{ item.price | money }}</p></div>
+							<div class="ItemText-qte"><label>QUANTITE : {{ item.quantity }} </label></div>
 						</div>
-						<button onclick=deleteItemFromCart(); class="ItemDelete"><li class="fas fa-times"></li></button>
+						<a class="ItemText-delete" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><li class="fas fa-times"></li></a>
+						
 					{% endfor %}
 				</ul>
 			</div>
 			<div class="goPanierItems">
 				<h2 class="goPanierItems-h2Tot">TOTAL</h2>
-				<h2 class="goPanierItems-h2Prix">{{ cart.total_price }}</h2>
-				<button class="goPanierItems-goPanier"><a href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a></button>
-				<button class="goPanierItems-goFin"><a href="paiement">FINALISER VOTRE COMMANDE</a></button>
+				<h2 class="goPanierItems-h2Prix">{{ cart.total_price | money }}</h2>
+				<button onmouseover=addOeil(); id="goPanierItems-goPanier" class="goPanierItems-goPanier"><a href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a></button>
+				<button onmouseover=addArrow(); id="goPanierItems-goFin" class="goPanierItems-goFin"><a href="paiement">FINALISER VOTRE COMMANDE</a></button>
 			</div>
 		{% endif %}
 	</div>

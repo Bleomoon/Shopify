@@ -111,3 +111,13 @@ function notShowCart()
 {
     document.getElementById("showCart").style.display = "none";
 }
+
+function addOeil()
+{
+    document.getElementById('goPanierItems-goPanier').innerHTML = 'VOIR VOTRE PANIER<i class="fas fa-eye"></i>'
+}
+
+function addArrow()
+{
+    document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE<i class="fas fa-arrow-right"></i>'
+}
