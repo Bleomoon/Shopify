@@ -82,11 +82,11 @@
 				<h2 class="goPanierItems-h2Tot">TOTAL</h2>
 				<h2 class="goPanierItems-h2Prix">{{ cart.total_price | money }}</h2>
 				<button onmouseover=addOeil(); id="goPanierItems-goPanier" class="goPanierItems-goPanier"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a></button>
-				<button onmouseover=addArrow(); id="goPanierItems-goFin" class="goPanierItems-goFin"><a class="aRef" href="paiement">FINALISER VOTRE COMMANDE</a></button>
+				<button onmouseover=addArrow(); id="goPanierItems-goFin" class="goPanierItems-goFin"><a class="goPanierItems-goFin-A" href="paiement">FINALISER VOTRE COMMANDE</a></button>
 			</div>
-			<ul class="ItemInCart">
+			<ul class="ItemsInCart">
 				{% for item in cart.items %}
-					<li>
+					<li class="ItemInCart">
 						<a class="ItemImg" href="{{ item.url | within: collections.all }}">
 							<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
 						</a>
