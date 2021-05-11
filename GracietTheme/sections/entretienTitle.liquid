@@ -1,13 +1,12 @@
 {%comment%} Ici on assigne les val du schéma {%endcomment%}
-{% assign h1_font = section.settings.fontTitre | font_face %}
 {% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
 {% assign h1_text_align = section.settings.titre_alignment %}
 {% assign h1_color = section.settings.couleurTitle%}
 {% assign bg_color = section.settings.couleurFond %}
 
 {%comment%} Ici le html{%endcomment%}
-<div class="entretienSubTitle-myTitle">
-    <h2 class="entretienSubTitle-myTitle-h1">{{ section.settings.title }}</h2>
+<div class="entretienTitle-myTitle">
+    <h2 class="entretienTitle-myTitle-h1">{{ section.settings.title }}</h2>
 </div>
 
 {%comment%} Ici le schéma du titre avec couleur, style, background-color etc {%endcomment%}
@@ -55,17 +54,14 @@
 
 {%comment%} Ici le style css{%endcomment%}
 {% style %}
-    .myTitle{
+    .entretienTitle-myTitle{
       margin-bottom:25px;
       margin-top:25px;
       background-color : {{ bg_color }};
     }
 
-    .myTitle-h1{
+    .entretienTitle-myTitle-h1{
         color: {{ h1_color }}
-        font-style: {{ h1_font.style }};
-        font-weight: {{ h1_font.weight }};
-        font-family: {{ h1_font.family }};
         font-size: {{ h1_font_size }};
         text-align: {{ h1_text_align }};
     }
