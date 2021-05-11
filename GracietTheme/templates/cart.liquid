@@ -19,12 +19,12 @@
               <tr>
                 <td class="myProducts-td">
                   <a href="{{ item.url | within: collections.all }}">
-                    <img src="{{ item | img_url: 'medium' }}"
+                    <img src="{{ item | img_url: 'small' }}"
                       alt="{{ item.title | escape }}">
                   </a>
                 </td>
-                <td class="myProducts-td">
-                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                <td class="titleProduct" class="myProducts-td">
+                  <a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a>
                   
                 </td>
                 <td class="myProducts-td">{{ item.price | money }}</td>
@@ -46,7 +46,7 @@
                   {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
                 </td>
                 <td class="myProducts-td">
-                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><li class="fas fa-times"></li></a>
+                  <a class="deleteProduct" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><li class="fas fa-times"></li></a>
                 </td>
               </tr>
               {% endfor %}
@@ -246,6 +246,13 @@
     border-right:none;
     text-align:center;
     vertical-align:middle;
+    margin:auto;
+    padding:10px;
+  }
+
+  .titleProduct{
+    font-family:cursive;
+    font-style: italic;
   }
 
   .productQuantity{
@@ -268,6 +275,15 @@
   .qte-moins{
     grid-column:1;
     grid-row:2;
+  }
+
+  .deleteProduct{
+    background:none;
+    color:gray;
+  }
+
+  .deleteProduct:hover{
+    color:black;
   }
 
   .myProducts-table{
