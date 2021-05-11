@@ -81,8 +81,8 @@
 			<div class="goPanierItems">
 				<h2 class="goPanierItems-h2Tot">TOTAL</h2>
 				<h2 class="goPanierItems-h2Prix">{{ cart.total_price | money }}</h2>
-				<a onmouseover="addOeil();" onmouseout="removeOeil();" id="goPanierItems-goPanier" class="goPanierItems-goPanier-A" href="https://gracietboutiquetpe.myshopify.com/cart"><button class="goPanierItems-goPanier">VOIR VOTRE PANIER</button></a>
-				<a onmouseover="addArrow();" onmouseout="removeArrow();" id="goPanierItems-goFin" class="goPanierItems-goFin-A" href="paiement"><button  class="goPanierItems-goFin">FINALISER VOTRE COMMANDE</button></a>
+				<a onmouseover="addOeil();" onmouseout="removeOeil();" id="goPanierItems-goPanier" class="goPanierItems-goPanier-A" href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a>
+				<a onmouseover="addArrow();" onmouseout="removeArrow();" id="goPanierItems-goFin" class="goPanierItems-goFin-A" href="paiement">FINALISER VOTRE COMMANDE</a>
 			</div>
 			<ul class="ItemsInCart">
 				{% for item in cart.items %}
