@@ -24,7 +24,7 @@
 
 		
 		{% comment %} boutton qui va afficher une liste avec les objets du paniers et si clique envoie sur le panier {% endcomment %}
-		<button onmouseover="showCart();" onmouseout="setTimeout(notShowCart,2000);" id="header-icons-cart" class="header-icons-cart">
+		<button onmouseover="showCart();" id="header-icons-cart" class="header-icons-cart">
 			<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart"><i class="fas fa-shopping-basket"></i></a>
 		</button>
 
@@ -72,7 +72,7 @@
 	</div>
 
 	{%comment%} Ici affiche {% endcomment%}
-	<div id="showCart" class="showCart">
+	<div id="showCart" class="showCart" onmouseout="setTimeout(notShowCart,2000);">
 		{% if cart.item_count == 0 %}
 			<div class="noItemInCart">
 				<p>Votre panier est vide</p>
@@ -81,8 +81,8 @@
 			<div class="goPanierItems">
 				<h2 class="goPanierItems-h2Tot">TOTAL</h2>
 				<h2 class="goPanierItems-h2Prix">{{ cart.total_price | money }}</h2>
-				<button onmouseover=addOeil(); id="goPanierItems-goPanier" class="goPanierItems-goPanier"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a></button>
-				<button onmouseover=addArrow(); id="goPanierItems-goFin" class="goPanierItems-goFin"><a class="goPanierItems-goFin-A" href="paiement">FINALISER VOTRE COMMANDE</a></button>
+				<button onmouseover="addOeil();" id="goPanierItems-goPanier" class="goPanierItems-goPanier"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a></button>
+				<button onmouseover="addArrow();" id="goPanierItems-goFin" class="goPanierItems-goFin"><a class="goPanierItems-goFin-A" href="paiement">FINALISER VOTRE COMMANDE</a></button>
 			</div>
 			<ul class="ItemsInCart">
 				{% for item in cart.items %}
