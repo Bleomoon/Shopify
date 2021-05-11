@@ -121,3 +121,13 @@ function addArrow()
 {
     document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE<i class="fas fa-arrow-right"></i>'
 }
+
+function removeOeil()
+{
+    document.getElementById('goPanierItems-goPanier').innerHTML = 'VOIR VOTRE PANIER'
+}
+
+function removeArrow()
+{
+    document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE'
+}
