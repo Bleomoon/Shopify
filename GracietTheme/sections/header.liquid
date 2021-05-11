@@ -91,9 +91,9 @@
 							<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
 						</a>
 						<div class="ItemText">
-							<div class="ItemText-h3"><a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a></div>
+							<div class="ItemText-h3"><p><a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a></p></div>
 							<div class="ItemText-prix"><p>PRIX UNITAIRE {{ item.price | money }}</p></div>
-							<div class="ItemText-qte"><label>QUANTITE : {{ item.quantity }} </label></div>
+							<div class="ItemText-qte"><p>QUANTITE : {{ item.quantity }} </p></div>
 						</div>
 						<a class="ItemText-delete" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><i class="fas fa-times"></i></a>
 					</li>
