@@ -22,7 +22,7 @@
             {% else %}
                 {% assign hasCadre = "none" %}
             {% endif %}
-            <div style="text-alignment: {{ block.settings.paragrapheTexte_alignment }}; font-size: {{ block.settings.paragrapheTailletexte | 'px' }}; color:{{ block.settings.paragrapheCouleurtexte }} ; border:{{ hasCadre }}; background-color: {{ block.settings.paragrapheCouleurFond }};">
+            <div style="text-alignment: {{ block.settings.paragrapheTexte_alignment }}; font-size: {{ block.settings.paragrapheTailletexte | append 'px' }}; color: {{ block.settings.paragrapheCouleurtexte }} ; border: {{ hasCadre }}; background-color: {{ block.settings.paragrapheCouleurFond }};">
                 <p>
                     {{ block.settings.unParagrapheText }}
                 </p>
@@ -35,18 +35,18 @@
             {% endif %}
             <div style="border:{{ deuxparagrapheCadre }}; background-color: {{ block.settings.deuxparagrapheCouleurFond }};" class="deuxParagraphe">
                 <div class="deuxParagraphes-premierParagraphe">
-                    <h3 style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
+                    <h3 style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre | append 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
                         {{ block.settings.deuxParagraphesTitre1 }} 
                     </h3>
-                    <p style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
+                    <p style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte | append 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
                         {{ block.settings.deuxParagraphesText1 }} 
                     </p>
                 </div>
                 <div class="deuxParagraphes-deuxiemeParagraphe">
-                    <h3 style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
+                    <h3 style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre | append 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
                         {{ block.settings.deuxParagraphesTitre2 }} 
                     </h3>
-                    <p style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
+                    <p style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte | append 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
                         {{ block.settings.deuxParagraphesText2 }} 
                     </p>
                 </div>
@@ -60,11 +60,11 @@
             <div style="border: {{ block.settings.IconeTexteCadre }}; background-color: {{ block.settings.IconeTexteCouleurFond }}" class="IconeTexte">
                 <img alt={{ block.settings.IconeTexteImage.alt }} src={{ block.settings.IconeTexteImage | img_url:"medium"}} style="text-alignment: {{ block.settings.IconeTexte_alignmentIcone }}">
 
-                <h3 style="text-alignment: {{ block.settings.IconeTexte_alignmentTitre }}; color: {{ block.settings.IconeCouleurTitre }}; font-size: {{ block.settings.IconeTailletitre }};">
+                <h3 style="text-alignment: {{ block.settings.IconeTexte_alignmentTitre }}; color: {{ block.settings.IconeCouleurTitre }}; font-size: {{ block.settings.IconeTailletitre | append 'px'  }};">
                     {{ block.settings.IconeTitre }}
                 </h3>
                 
-                <p style="text-alignment: {{ block.settings.IconeTexte_alignmentTexte }}; color: {{ block.settings.IconeCouleurtexte }}; font-size: {{ block.settings.IconeTailletexte }};">
+                <p style="text-alignment: {{ block.settings.IconeTexte_alignmentTexte }}; color: {{ block.settings.IconeCouleurtexte }}; font-size: {{ block.settings.IconeTailletexte | append 'px'  }};">
                     {{ block.settings.IconeTexte }}
                 </p>
             </div>
