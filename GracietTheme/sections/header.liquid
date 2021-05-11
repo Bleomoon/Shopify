@@ -81,11 +81,15 @@
 			<div class="ItemInCart">
 				<ul>
 					{% for item in cart.items %}
-						<img class="ItemImg"></img>
+						<a href="{{ item.url | within: collections.all }}">
+							<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+						</a>
 						<div class="ItemText">
-								<div class="ItemText-h3"><h3>{{ item.title }}</h3></div>
-								<div class="ItemText-desc"><p>{{ item.description }}</p></div>
-								<div class="ItemText-prix"><p>{{ item.price }}</p></div>
+							<div class="ItemText-h3"><a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a></div>
+							<div class="ItemText-prix"><p>{{ item.price | money }}</p></div>
+							<div class="ItemText-qte"><label type="number" name="updates[]" id="updates_{{ item.key }}"
+								value="{{ item.quantity }}" min="0"></div>
+							
 						</div>
 						<button onclick=deleteItemFromCart(); class="ItemDelete"><li class="fas fa-times"></li></button>
 					{% endfor %}

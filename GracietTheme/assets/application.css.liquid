@@ -220,6 +220,8 @@ $font-family: sans-serif;
     grid-template-rows: repeat(3, 1fr);
     display: grid;
     grid-column: 3/6;
+    font-family: cursive;
+    font-style: italic;
 }
 
 .ItemDelete {
@@ -230,12 +232,21 @@ $font-family: sans-serif;
     grid-row: 1;
 }
 
-.ItemText-desc {
+.ItemText-qte {
     grid-row: 2;
 }
 
 .ItemText-prix {
     grid-row: 3;
+}
+
+.ItemText-delete {
+    background:none;
+    color:gray;
+}
+
+.ItemText-delete:hover {
+    color:black;
 }
 
 .goPanierItems {
