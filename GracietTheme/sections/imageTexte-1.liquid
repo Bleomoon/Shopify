@@ -24,14 +24,14 @@
         {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
         {% assign h2_text_align = block.settings.subtitre_alignment %}
         {% assign h2_color = block.settings.couleurSubTitle%}
-        <h2 style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font-size:{{ h2_font_size }};"> 
+        <h2 style="text-align: {{ h2_text_align }}; color: {{ h2_color }}; font-size:{{ h2_font_size }};"> 
           {{ block.settings.subTitle }} 
         </h2>
       {% else %}
         {% assign div_font_size = block.settings.tailleTexte | append:'px' %}
         {% assign div_text_align = block.settings.text_alignment %}
         {% assign div_color = block.settings.couleurTexte %}
-        <div style="text-align: {{ div_text_align }}; color:{{ div_color }}; font-size:{{ div_font_size }};" >
+        <div style="text-align: {{ div_text_align }}; color: {{ div_color }}; font-size:{{ div_font_size }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}

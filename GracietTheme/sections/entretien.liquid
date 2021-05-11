@@ -1,9 +1,7 @@
 {%comment%} Ici la prise en compte du schema {%endcomment%}
-{% assign h1_font = section.settings.fontTitre | font_face %}
 {% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
 {% assign h1_text_align = section.settings.titre_alignment %}
 {% assign h1_color = section.settings.couleurTitle %}
-{% assign h2_font = section.settings.fontsubTitre | font_face %}
 {% assign h2_font_size = section.settings.taillesubTitre | append:'px' %}
 {% assign h2_text_align = section.settings.subtitle_alignment %}
 {% assign h2_color = section.settings.couleursubTitle %}
@@ -17,6 +15,86 @@
     <div class="entretien-soustitre">
         <h2>{{ section.settings.subtitle }}</h2>
     </div>
+    {% for block in section.blocks %}
+        {% if block.type == 'unParagraphe' %} {%comment%} Si un paragraphe {%endcomment%}
+            {% if block.settings.cadre == true %}
+                {% assign hasCadre = "groove" %}
+            {% else %}
+                {% assign hasCadre = "none" %}
+            {% endif %}
+            <div style="text-alignment: {{ block.settings.paragrapheTexte_alignment }}; font-size: {{ block.settings.paragrapheTailletexte | 'px' }}; color:{{ block.settings.paragrapheCouleurtexte }} ; border:{{ hasCadre }}; background-color: {{ block.settings.paragrapheCouleurFond }};">
+                <p>
+                    {{ block.settings.unParagrapheText }}
+                </p>
+            </div>
+        {% elsif block.type == 'deuxParagraphes' %} {%comment%} si deux paragraphes {%endcomment%}
+            {% if block.settings.deuxparagrapheCadre == true %}
+                {% assign deuxparagrapheCadre = "groove" %}
+            {% else %}
+                {% assign deuxparagrapheCadre = "none" %}
+            {% endif %}
+            <div style="border:{{ deuxparagrapheCadre }}; background-color: {{ block.settings.deuxparagrapheCouleurFond }};" class="deuxParagraphe">
+                <div class="deuxParagraphes-premierParagraphe">
+                    <h3 style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
+                        {{ block.settings.deuxParagraphesTitre1 }} 
+                    </h3>
+                    <p style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
+                        {{ block.settings.deuxParagraphesText1 }} 
+                    </p>
+                </div>
+                <div class="deuxParagraphes-deuxiemeParagraphe">
+                    <h3 style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
+                        {{ block.settings.deuxParagraphesTitre2 }} 
+                    </h3>
+                    <p style="text-alignment: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
+                        {{ block.settings.deuxParagraphesText2 }} 
+                    </p>
+                </div>
+            </div>
+        {% elsif block.type == 'IconeTexte' %} {%comment%} Si une icone et du texte {%endcomment%}
+            {% if block.settings.IconeTexteCadre == true %}
+                {% assign IconeTexteCadre = "groove" %}
+            {% else %}
+                {% assign IconeTexteCadre = "none" %}
+            {% endif %}
+            <div style="border: {{ block.settings.IconeTexteCadre }}; background-color: {{ block.settings.IconeTexteCouleurFond }}" class="IconeTexte">
+                <img alt={{ block.settings.IconeTexteImage.alt }} src={{ block.settings.IconeTexteImage | img_url:"medium"}} style="text-alignment: {{ block.settings.IconeTexte_alignmentIcone }}">
+
+                <h3 style="text-alignment: {{ block.settings.IconeTexte_alignmentTitre }}; color: {{ block.settings.IconeCouleurTitre }}; font-size: {{ block.settings.IconeTailletitre }};">
+                    {{ block.settings.IconeTitre }}
+                </h3>
+                
+                <p style="text-alignment: {{ block.settings.IconeTexte_alignmentTexte }}; color: {{ block.settings.IconeCouleurtexte }}; font-size: {{ block.settings.IconeTailletexte }};">
+                    {{ block.settings.IconeTexte }}
+                </p>
+            </div>
+        {% elsif block.type == 'deuxIconeTexte' %} {%comment%} Si deux icones {%endcomment%}
+            <div class="deuxIconeTexte">
+                <div class="deuxIconeTexte-PremierParagraphe">
+                    <img>
+                    <h3>
+
+                    </h3>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="deuxIconeTexte-PremierParagraphe">
+                    <img>
+                    <h3>
+
+                    </h3>
+                    <p>
+
+                    </p>
+                </div>
+            </div>
+        {% else %} {%comment%} Si un titre {%endcomment%}
+            <div>
+                <h2></h2>
+            </div>
+        {% endif %}
+    {% endfor %}
 </div>
 
 {%comment%} Ici le schéma du titre avec couleur, style, background-color etc {%endcomment%}
@@ -49,12 +127,6 @@
             "default": "25"
         },
         {
-            "type": "font_picker",
-            "label": "style du titre",
-            "id": "fontTitre",
-            "default": "claire_news_n3"
-        },
-        {
             "type": "radio",
             "id": "titre_alignment",
             "options": [
@@ -83,12 +155,6 @@
             "default": "25"
         },
         {
-            "type": "font_picker",
-            "label": "style du sous-titre",
-            "id": "fontsubTitre",
-            "default": "claire_news_n3"
-        },
-        {
             "type": "radio",
             "id": "subtitle_alignment",
             "options": [
@@ -102,37 +168,238 @@
     "max_blocks":20,
     "blocks":[
     {
-        "type":"warning",
-        "name":"warning",
+        "type":"unParagraphe",
+        "name":"un Paragraphe",
         "settings":[
             {
-                "id":"text",
-                "type":"text",
-                "label":"text",
-                "default":"Mon texte"
+                "id":"unParagrapheText",
+                "type":"richtext",
+                "label":"paragraphe",
+                "default":"<p>Mon texte</p>"
             },
             {
                 "type": "color",
-                "id": "couleurtexte",
+                "id": "paragrapheCouleurtexte",
                 "label": "Couleur du texte",
                 "default": "#d35400"
             },
             {
                 "type": "text",
-                "id": "tailletexte",
+                "id": "paragrapheTailletexte",
                 "label": "taille du texte",
                 "default": "75"
             },
             {
                 "type": "radio",
-                "id": "texte_alignment",
+                "id": "paragrapheTexte_alignment",
                 "options": [
                     { "value": "Left", "label": "Gauche"},
                     { "value": "Center", "label": "Milieu"},
                     { "value": "Right", "label": "Droite"}
                 ],
                 "label": "Alignement du texte"
+            },
+            {
+                "type": "color",
+                "id": "paragrapheCouleurFond",
+                "label": "Couleur du fond",
+                "default": "#ffffff"
+            },
+            {
+                "id":"cadre",
+                "type":"checkbox",
+                "label":"Ajouter un cadre au texte ?",
+                "default" : false
             }
+        ]
+    },
+    {
+        "type":"deuxParagraphes",
+        "name":"Deux Paragraphes",
+        "settings":[
+            {
+                "id":"deuxParagraphesText1",
+                "type":"richtext",
+                "label":"Texte premier paragraphe",
+                "default":"<p>Mon texte</p>"
+            },
+            {
+                "id":"deuxParagraphesTitre1",
+                "type":"text",
+                "label":"Titre premier paragraphe",
+                "default":"Mon titre"
+            },
+            {
+                "id":"deuxParagraphesText2",
+                "type":"richtext",
+                "label":"Texte deuxieme paragraphe",
+                "default":"<p>Mon texte</p>"
+            },
+            {
+                "id":"deuxParagraphesTitre2",
+                "type":"text",
+                "label":"Titre deuxieme paragraphe",
+                "default":"Mon titre"
+            },
+            {
+                "type": "color",
+                "id": "deuxparagrapheCouleurtexte",
+                "label": "Couleur des textes",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "deuxparagrapheCouleurTitre",
+                "label": "Couleur des titres",
+                "default": "#ffffff"
+            },
+            {
+                "type": "text",
+                "id": "deuxparagrapheTailletexte",
+                "label": "taille du texte",
+                "default": "15"
+            },
+            {
+                "type": "text",
+                "id": "deuxparagrapheTailletitre",
+                "label": "taille du titre",
+                "default": "25"
+            },
+            {
+                "type": "radio",
+                "id": "deuxparagrapheTexte_alignmentTexte",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement des textes"
+            },
+            {
+                "type": "radio",
+                "id": "deuxparagrapheTexte_alignmentTitre",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement des titres"
+            },
+            {
+                "type": "color",
+                "id": "deuxparagrapheCouleurFond",
+                "label": "Couleur du fond",
+                "default": "#ffffff"
+            },
+            {
+                "id":"deuxparagrapheCadre",
+                "type":"checkbox",
+                "label":"Ajouter un cadre au bloc ?",
+                "default" : false
+            }
+        ]
+    },
+    {
+        "type":"IconeTexte",
+        "name":"Icone et texte",
+        "settings":[
+            {
+                "id":"IconeTexteImage",
+                "type":"image_picker",
+                "label":"Mon image"
+            },
+            {
+                "id":"IconeTexte",
+                "type":"richtext",
+                "label":"Texte",
+                "default":"<p>Mon texte</p>"
+            },
+            {
+                "id":"IconeTitre",
+                "type":"text",
+                "label":"Titre",
+                "default":"Mon titre"
+            },
+            {
+                "type": "color",
+                "id": "IconeCouleurtexte",
+                "label": "Couleur du texte",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "IconeCouleurTitre",
+                "label": "Couleur du titre",
+                "default": "#ffffff"
+            },
+            {
+                "type": "text",
+                "id": "IconeTailletexte",
+                "label": "taille du texte",
+                "default": "15"
+            },
+            {
+                "type": "text",
+                "id": "IconeTailletitre",
+                "label": "taille du titre",
+                "default": "25"
+            },
+            {
+                "type": "radio",
+                "id": "IconeTexte_alignmentTexte",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement du texte"
+            },
+            {
+                "type": "radio",
+                "id": "IconeTexte_alignmentTitre",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement du titre"
+            },
+            {
+                "type": "radio",
+                "id": "IconeTexte_alignmentIcone",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement de l'image"
+            },
+            {
+                "type": "color",
+                "id": "IconeTexteCouleurFond",
+                "label": "Couleur du fond",
+                "default": "#ffffff"
+            },
+            {
+                "id":"IconeTexteCadre",
+                "type":"checkbox",
+                "label":"Ajouter un cadre au bloc ?",
+                "default" : false
+            }
+        ]
+    }
+    {
+        "type":"deuxIconeTexte",
+        "name":"Deux Icones et texte",
+        "settings":[
+        
+        ]
+    }
+    {
+        "type":"grostitre",
+        "name":"Gros Titre",
+        "settings":[
+            
         ]
     }
   ]
@@ -146,22 +413,18 @@
         margin-top:25px;
         border-style:groove;
         border-color: {{ bg_color }};
+        font-family: cursive;
+        font-style: italic;
     }
 
     .entretien-titre{
         color: {{ h1_color }};
-        font-style: {{ section.settings.fontTitre.style }};
-        font-weight: {{ section.settings.fontTitre.weight }};
-        font-family: {{ section.settings.fontTitre.family }};
         font-size: {{ h1_font_size }};
         text-align: {{ h1_text_align }};
     }
 
     .entretien-soustitre{
         color: {{ h2_color }};
-        font-style: {{ section.settings.fontsubTitre.style }};
-        font-weight: {{ section.settings.fontsubTitre.weight }};
-        font-family: {{ section.settings.fontsubTitre.family }};
         font-size: {{ h2_font_size }};
         text-align: {{ h2_text_align }};
     }
