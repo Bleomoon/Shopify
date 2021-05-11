@@ -1,0 +1,75 @@
+{%comment%} Ici la prise en compte du schema {%endcomment%}
+{% assign bg_color = section.settings.couleurFond %}
+
+{%comment%} Ici le html{%endcomment%}
+<div class="entretienWarning">
+    {%for block in section.blocks %}
+        <p style="text-align: {{ block.settings.texte_alignment }}; color: {{ block.settings.text }}; font-size: {{ block.settings.tailletexte | 'px' }};"> {{ block.settings.text }} </p>
+    {% endfor %}
+</div>
+
+{%comment%} Ici le schéma du titre avec couleur, style, background-color etc {%endcomment%}
+{% schema %}
+{
+    "name":"entretienWarning",
+    "settings":[
+        {
+            "type": "color",
+            "id": "couleurFond",
+            "label": "Couleur du fond",
+            "default": "#ffffff"
+        }
+    ],
+    "max_blocks":4,
+    "blocks":[
+    {
+        "type":"oneParagraphe",
+        "name":"oneParagraphe",
+        "settings":[
+            {
+                "id":"text",
+                "type":"text",
+                "label":"text",
+                "default":"Mon texte"
+            },
+            {
+                "type": "color",
+                "id": "couleurtexte",
+                "label": "Couleur du texte",
+                "default": "#d35400"
+            },
+            {
+                "type": "text",
+                "id": "tailletexte",
+                "label": "taille du texte",
+                "default": "75"
+            },
+            {
+                "type": "radio",
+                "id": "texte_alignment",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement du texte"
+            }
+        ]
+    }
+  ],
+  "presets":[
+    {
+      "category":"Presentation",
+      "name": "Bloc avec textes"
+    }
+  ]
+}
+{% endschema %}
+
+{%comment%} Ici le style css{%endcomment%}
+{% style %}
+    .entretienWarning{
+        border-style:groove;
+        border-color: {{ bg_color }};
+    }
+{% endstyle %}
