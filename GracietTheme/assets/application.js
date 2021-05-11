@@ -112,7 +112,7 @@ function notShowCart()
     setTimeout(function()
     { 
         document.getElementById("showCart").style.display = "none";
-    }, 2000);
+    }, 10000);
     
 }
 
