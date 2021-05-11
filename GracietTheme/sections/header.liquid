@@ -95,7 +95,7 @@
 							<div class="ItemText-prix"><p>PRIX UNITAIRE {{ item.price | money }}</p></div>
 							<div class="ItemText-qte"><label>QUANTITE : {{ item.quantity }} </label></div>
 						</div>
-						<a class="ItemText-delete" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><li class="fas fa-times"></li></a>
+						<a class="ItemText-delete" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><i class="fas fa-times"></i></a>
 					</li>
 				{% endfor %}
 			</ul>
