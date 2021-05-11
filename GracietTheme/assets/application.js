@@ -109,11 +109,7 @@ function showCart()
 
 function notShowCart()
 {
-    setTimeout(function()
-    { 
-        document.getElementById("showCart").style.display = "none";
-    }, 10000);
-    
+    document.getElementById("showCart").style.display = "none";
 }
 
 function addOeil()
