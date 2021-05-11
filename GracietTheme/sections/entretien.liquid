@@ -16,84 +16,86 @@
         <h2>{{ section.settings.subtitle }}</h2>
     </div>
     {% for block in section.blocks %}
-        {% if block.type == 'unParagraphe' %} {%comment%} Si un paragraphe {%endcomment%}
-            {% if block.settings.cadre == true %}
-                {% assign hasCadre = "groove" %}
-            {% else %}
-                {% assign hasCadre = "none" %}
+        <div class="entretien-block">
+            {% if block.type == 'unParagraphe' %} {%comment%} Si un paragraphe {%endcomment%}
+                {% if block.settings.cadre == true %}
+                    {% assign hasCadre = "groove" %}
+                {% else %}
+                    {% assign hasCadre = "none" %}
+                {% endif %}
+                <div style="text-align: {{ block.settings.paragrapheTexte_alignment }}; font-size: {{ block.settings.paragrapheTailletexte | append: 'px' }}; color: {{ block.settings.paragrapheCouleurtexte }} ; border: {{ hasCadre }}; background-color: {{ block.settings.paragrapheCouleurFond }};">
+                    <p>
+                        {{ block.settings.unParagrapheText }}
+                    </p>
+                </div>
+            {% elsif block.type == 'deuxParagraphes' %} {%comment%} si deux paragraphes {%endcomment%}
+                {% if block.settings.deuxparagrapheCadre == true %}
+                    {% assign deuxparagrapheCadre = "groove" %}
+                {% else %}
+                    {% assign deuxparagrapheCadre = "none" %}
+                {% endif %}
+                <div style="border:{{ deuxparagrapheCadre }}; background-color: {{ block.settings.deuxparagrapheCouleurFond }};" class="deuxParagraphe">
+                    <div class="deuxParagraphes-premierParagraphe">
+                        <h3 style="text-align: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre | append: 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
+                            {{ block.settings.deuxParagraphesTitre1 }} 
+                        </h3>
+                        <div style="text-align: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte | append: 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
+                            {{ block.settings.deuxParagraphesText1 }} 
+                        </div>
+                    </div>
+                    <div class="deuxParagraphes-deuxiemeParagraphe">
+                        <h3 style="text-align: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre | append: 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
+                            {{ block.settings.deuxParagraphesTitre2 }} 
+                        </h3>
+                        <div style="text-align: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte | append: 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
+                            {{ block.settings.deuxParagraphesText2 }} 
+                        </div>
+                    </div>
+                </div>
+            {% elsif block.type == 'IconeTexte' %} {%comment%} Si une icone et du texte {%endcomment%}
+                {% if block.settings.IconeTexteCadre == true %}
+                    {% assign IconeTexteCadre = "groove" %}
+                {% else %}
+                    {% assign IconeTexteCadre = "none" %}
+                {% endif %}
+                <div style="border: {{ block.settings.IconeTexteCadre }}; background-color: {{ block.settings.IconeTexteCouleurFond }}" class="IconeTexte">
+                    <img alt="{{ block.settings.IconeTexteImage.alt }}" src={{ block.settings.IconeTexteImage | img_url:"medium"}} style="text-align: {{ block.settings.IconeTexte_alignmentIcone }}">
+
+                    <h3 style="text-align: {{ block.settings.IconeTexte_alignmentTitre }}; color: {{ block.settings.IconeCouleurTitre }}; font-size: {{ block.settings.IconeTailletitre | append: 'px'  }};">
+                        {{ block.settings.IconeTitre }}
+                    </h3>
+                    
+                    <div style="text-align: {{ block.settings.IconeTexte_alignmentTexte }}; color: {{ block.settings.IconeCouleurtexte }}; font-size: {{ block.settings.IconeTailletexte | append: 'px'  }};">
+                        {{ block.settings.IconeTexte }}
+                    </div>
+                </div>
+            {% elsif block.type == 'deuxIconeTexte' %} {%comment%} Si deux icones {%endcomment%}
+                <div class="deuxIconeTexte">
+                    <div class="deuxIconeTexte-PremierParagraphe">
+                        <img>
+                        <h3>
+
+                        </h3>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div class="deuxIconeTexte-PremierParagraphe">
+                        <img>
+                        <h3>
+
+                        </h3>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            {% else %} {%comment%} Si un titre {%endcomment%}
+                <div>
+                    <h2></h2>
+                </div>
             {% endif %}
-            <div style="text-align: {{ block.settings.paragrapheTexte_alignment }}; font-size: {{ block.settings.paragrapheTailletexte | append: 'px' }}; color: {{ block.settings.paragrapheCouleurtexte }} ; border: {{ hasCadre }}; background-color: {{ block.settings.paragrapheCouleurFond }};">
-                <p>
-                    {{ block.settings.unParagrapheText }}
-                </p>
-            </div>
-        {% elsif block.type == 'deuxParagraphes' %} {%comment%} si deux paragraphes {%endcomment%}
-            {% if block.settings.deuxparagrapheCadre == true %}
-                {% assign deuxparagrapheCadre = "groove" %}
-            {% else %}
-                {% assign deuxparagrapheCadre = "none" %}
-            {% endif %}
-            <div style="border:{{ deuxparagrapheCadre }}; background-color: {{ block.settings.deuxparagrapheCouleurFond }};" class="deuxParagraphe">
-                <div class="deuxParagraphes-premierParagraphe">
-                    <h3 style="text-align: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre | append: 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
-                        {{ block.settings.deuxParagraphesTitre1 }} 
-                    </h3>
-                    <div style="text-align: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte | append: 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
-                        {{ block.settings.deuxParagraphesText1 }} 
-                    </div>
-                </div>
-                <div class="deuxParagraphes-deuxiemeParagraphe">
-                    <h3 style="text-align: {{ block.settings.deuxparagrapheTexte_alignmentTitre }}; font-size: {{ block.settings.deuxparagrapheTailletitre | append: 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurTitre }};"> 
-                        {{ block.settings.deuxParagraphesTitre2 }} 
-                    </h3>
-                    <div style="text-align: {{ block.settings.deuxparagrapheTexte_alignmentTexte }}; font-size: {{ block.settings.deuxparagrapheTailletexte | append: 'px'  }}; color: {{ block.settings.deuxparagrapheCouleurtexte }};"> 
-                        {{ block.settings.deuxParagraphesText2 }} 
-                    </div>
-                </div>
-            </div>
-        {% elsif block.type == 'IconeTexte' %} {%comment%} Si une icone et du texte {%endcomment%}
-            {% if block.settings.IconeTexteCadre == true %}
-                {% assign IconeTexteCadre = "groove" %}
-            {% else %}
-                {% assign IconeTexteCadre = "none" %}
-            {% endif %}
-            <div style="border: {{ block.settings.IconeTexteCadre }}; background-color: {{ block.settings.IconeTexteCouleurFond }}" class="IconeTexte">
-                <img alt={{ block.settings.IconeTexteImage.alt }} src={{ block.settings.IconeTexteImage | img_url:"medium"}} style="text-align: {{ block.settings.IconeTexte_alignmentIcone }}">
-
-                <h3 style="text-align: {{ block.settings.IconeTexte_alignmentTitre }}; color: {{ block.settings.IconeCouleurTitre }}; font-size: {{ block.settings.IconeTailletitre | append: 'px'  }};">
-                    {{ block.settings.IconeTitre }}
-                </h3>
-                
-                <div style="text-align: {{ block.settings.IconeTexte_alignmentTexte }}; color: {{ block.settings.IconeCouleurtexte }}; font-size: {{ block.settings.IconeTailletexte | append: 'px'  }};">
-                    {{ block.settings.IconeTexte }}
-                </div>
-            </div>
-        {% elsif block.type == 'deuxIconeTexte' %} {%comment%} Si deux icones {%endcomment%}
-            <div class="deuxIconeTexte">
-                <div class="deuxIconeTexte-PremierParagraphe">
-                    <img>
-                    <h3>
-
-                    </h3>
-                    <div>
-
-                    </div>
-                </div>
-                <div class="deuxIconeTexte-PremierParagraphe">
-                    <img>
-                    <h3>
-
-                    </h3>
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-        {% else %} {%comment%} Si un titre {%endcomment%}
-            <div>
-                <h2></h2>
-            </div>
-        {% endif %}
+        </div>
     {% endfor %}
 </div>
 
@@ -413,6 +415,11 @@
         color: {{ h2_color }};
         font-size: {{ h2_font_size }};
         text-align: {{ h2_text_align }};
+    }
+
+    .entretien-block{
+        margin-top:25px;
+        margin-bottom:25px;
     }
 
     .deuxParagraphe{
