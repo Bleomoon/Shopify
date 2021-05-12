@@ -136,7 +136,7 @@ function conditionClick(num)
 {
     var plusMoins = document.getElementById("conditions-generales-plusMoins-" + num);
     var p = document.getElementById("conditions-generales-p-" + num);
-
+    console.log("conditions-generales-p-" + num);
     if (plusMoins.classList.contains('open'))
     {
         plusMoins.classList.remove('open');
