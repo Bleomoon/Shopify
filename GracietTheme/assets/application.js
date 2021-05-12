@@ -132,8 +132,21 @@ function removeArrow()
     document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE'
 }
 
-function conditionClick(id)
+function conditionClick(num)
 {
-    document.getElementById(id).innerHTML = '<i class="fas fa-minus"></i>';
-    
+    var plusMoins = document.getElementById("conditions-generales-plusMoins-" + num);
+    var p = document.getElementById("conditions-generales-p-" + num);
+
+    if (plusMoins.contains('open'))
+    {
+        plusMoins.classList.remove('open');
+        plusMoins.innerHTML = '<i class="fas fa-minus"></i>';
+        p.style.display = "block"
+    }
+    else
+    {
+        plusMoins.classList.add('open');
+        plusMoins.innerHTML = '<i class="fas fa-plus"></i>';
+        p.style.display = "none"
+    }
 }
