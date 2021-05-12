@@ -12,7 +12,7 @@
                 <br>
             {% endif %}
             <div style="text-align: {{ positionImage }};">
-                <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ block.settings.oneImage.alt }}">
+                <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
             </div>
         {% else %} {%comment%} si une image {%endcomment%}
             {% if block.settings.texte_position == 'Suite' %}

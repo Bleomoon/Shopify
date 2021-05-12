@@ -60,7 +60,7 @@
                 {% endif %}
                 <div style="border: {{ blocIconeTexteCadre }}; background-color: {{ block.settings.IconeTexteCouleurFond }}" class="IconeTexte">
                     <div style="text-align: {{ block.settings.IconeTexte_alignmentIcone }}">
-                        <img alt="{{ block.settings.IconeTexteImage.alt }}" src={{ block.settings.IconeTexteImage | img_url:"medium"}}>
+                        <img alt="{{ section.id }}" src={{ block.settings.IconeTexteImage | img_url:"medium"}}>
                     </div>
                     <h3 class="titreEntretien" style="text-align: {{ block.settings.IconeTexte_alignmentTitre }}; color: {{ block.settings.IconeCouleurTitre }}; font-size: {{ block.settings.IconeTailletitre | append: 'px'  }};">
                         {{ block.settings.IconeTitre }}
@@ -79,7 +79,7 @@
                 <div class="deuxIconeTexte" style="border: {{ blocDeuxIconeTexteCadre }}; background-color: {{ block.settings.deuxIconeTexteCouleurFond }};">
                     <div class="deuxIconeTexte-PremierParagraphe">
                         <div style="text-align: {{ block.settings.deuxIconeTexte_alignmentIcone }};">
-                            <img src={{ block.settings.deuxIconeTexteImage1 | img_url: 'medium' }} alt="{{ block.settings.deuxIconeTexteImage1.alt }}">
+                            <img src={{ block.settings.deuxIconeTexteImage1 | img_url: 'medium' }} alt="{{ section.id }}">
                         </div>
                         <h3 class="titreEntretien" style="color: {{ block.settings.deuxIconeTexteCouleurTitre }}; text-align: {{ block.settings.deuxIconeTexte_alignmentTitre }}; font-size: {{ block.settings.deuxIconeTexteTailletitre | append: 'px' }};">
                             {{ block.settings.deuxIconeTexteTitre1 }}
@@ -90,7 +90,7 @@
                     </div>
                     <div class="deuxIconeTexte-DeuxiemeParagraphe">
                         <div style="text-align: {{ block.settings.deuxIconeTexte_alignmentIcone }};">
-                            <img src={{ block.settings.deuxIconeTexteImage2 | img_url:'medium' }} alt="{{ block.settings.deuxIconeTexteImage2.alt }}">
+                            <img src={{ block.settings.deuxIconeTexteImage2 | img_url: 'medium' }} alt="{{ section.id }}">
                         </div>
                         <h3 class="titreEntretien" style="color: {{ block.settings.deuxIconeTexteCouleurTitre }}; text-align: {{ block.settings.deuxIconeTexte_alignmentTitre }}; font-size: {{ block.settings.deuxIconeTexteTailletitre | append: 'px' }};">
                             {{ block.settings.deuxIconeTexteTitre2 }}
