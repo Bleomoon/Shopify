@@ -131,3 +131,9 @@ function removeArrow()
 {
     document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE'
 }
+
+function conditionClick(id)
+{
+    document.getElementById(id).innerHTML = '<i class="fas fa-minus"></i>';
+    
+}

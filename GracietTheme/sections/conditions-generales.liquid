@@ -1,0 +1,107 @@
+{% comment %} zone assignation des valeurs {% endcomment %}
+{% assign h2_font_size = section.settings.taillesubTitre | append:'px' %}
+
+
+{% comment %} zone d'affichage du html {% endcomment %}
+<div class="conditions-generales">
+  <h2 class="conditions-generales-h2">{{ secton.settings.titre }}</h2>
+  {% for block in section.blocks %}
+    {% capture _ %} 
+      {% increment numCondition %} 
+      {% assign myId = 'conditions-generales-plusMoins-' | append: numCondition %}
+    {% endcapture %}
+    <div class="conditions-generales-div">
+      <h3 class="conditions-generales-h3">{{ block.settings.titre }}</h3>
+      <button id="conditions-generales-plusMoins-{{ numCondition }}" onclick=conditionClick(myId) class="conditions-generales-plusMoins">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+    <div class="conditions-generales-p">
+      <p>{{ block.settings.texte }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+{% comment %} la gestion du schema {% endcomment %}
+{% schema %}
+{
+  "name":"conditions-generales",
+  "settings":[
+    {
+      "id":"title",
+      "type":"text",
+      "label":"Titre",
+      "default":"Mon titre"
+    },
+    {
+      "type": "text",
+      "id": "tailleTitre",
+      "label": "taille du titre",
+      "default": "25"
+    }
+  ],
+  "max_blocks":50,
+  "blocks":[
+    {
+      "type":"uneCondition",
+      "name":"uneCondition",
+      "settings":[
+        {
+          "id":"subtitle",
+          "type":"text",
+          "label":"Mon sous-titre",
+          "default":"Sous titre"
+        },
+        {
+          "id":"texte",
+          "type":"richtext",
+          "label":"Mon texte",
+          "default":"<p>Le texte</p>"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %} la gestion du style css {% endcomment %}
+{% style %}
+  .conditions-generales{
+    margin-bottom:25px;
+    margin-top:25px;
+    margin-right:100px;
+    margin-left:100px;
+  }
+
+  .conditions-generales-h2{
+    color: black;
+    font-size: {{ h2_font_size }};
+    text-align: center;
+  }
+
+  .
+  .conditions-generales-div{
+    color:black;
+    display:grid;
+  }
+
+  .conditions-generales-div:hover{
+    color:gray;
+  }
+
+  .conditions-generales-h3{
+    grid-column:1;
+    grid-row:1;
+  }
+
+  .conditions-generales-plusMoins{
+    grid-column:2;
+    grid-row:1;
+    text-align:end;
+  }
+
+  .conditions-generales-p{
+    margin-bottom:25px;
+    margin-top:25px;
+  }
+{% endstyle %}
