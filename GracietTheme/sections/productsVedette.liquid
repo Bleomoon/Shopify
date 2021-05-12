@@ -11,7 +11,7 @@
       <div class="unProduit">
           {% assign product = all_products[block.settings.id] %}
           {% assign firstImage = product.image %}
-          <img src= {{ firstImage | img_url: 'medium' }} alt="{{ firstImage.alt }}">
+          <img src= {{ product | img_url: 'medium' }} alt="{{ product.image.alt }}">
           <h3>{{ product.title }}</h3>
           <p>le produit</p>{{ block.settings.product }}<br>
 <p>l'id du prouit</p>{{ block.settings.id }}<br>
