@@ -1,10 +1,18 @@
 {% comment %} l'initialisation des variables {% endcomment %}
-
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle %}
 
 {% comment %} ici le html d'affichage du site {% endcomment %}
 <div class="produitsVedette">
-  <h2>{{ section.settings.produitVedetteTitre }}</h2>
-  
+  <h2 class="produitsVedette-h2">{{ section.settings.produitVedetteTitre }}</h2>
+  {% for block in section.blocks %}
+    <div class="unProduit">
+        {% assign imageShow = block.product.image %}
+        <img src= {{ imageShow | img_url: 'medium' }} alt="{{ imageShow.alt }}">
+        <h3>{{ block.product.title }}</h3>
+    </div>
+  {% endfor %}
 </div>
 
 {% comment %} ici le schema de la section {% endcomment %}
@@ -17,21 +25,37 @@
       "type":"text",
       "label":"Titre de la section",
       "default":"Je suis un titre accrocheur"
+    },
+    {
+      "type": "color",
+      "id": "couleurTitle",
+      "label": "Couleur du titre",
+      "default": "#222222"
+    },
+    {
+      "type": "text",
+      "id": "tailleTitre",
+      "label": "taille du titre",
+      "default": "25"
+    },
+    {
+      "type": "radio",
+      "id": "titre_alignment",
+      "options": [
+        { "value": "Left", "label": "Gauche"},
+        { "value": "Center", "label": "Milieu"},
+        { "value": "Right", "label": "Droite"}
+      ],
+      "label": "Alignement du titre"
     }
   ],
   "max_blocks":8,
   "blocks": [
     {
-      "type":"produit",
-      "name":"produit",
-      "settings":[
-        {
-          "id": "produitTitre",
-          "type": "text",
-          "label": "Titre du produit",
-          "default": "Mon titre"
-        }
-      ]
+      "type": "product",
+      "id": "id",
+      "label": "text",
+      "info": "text"
     }
   ],
   "presets":[
@@ -47,7 +71,35 @@
 {% style %}
 
   .produitsVedette{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+  }
 
+  .produitsVedette-h2{
+    color: {{ h2_color }};
+    font-size: {{ h2_font_size }};
+    text-align: {{ h2_text_align }};
+  }
+
+  .unProduit{
+    text-align:center;
+    margin:auto;
+  }
+
+  @media screen and (max-width:1200px)
+  {
+    .produitsVedette{
+      display:grid;
+      grid-template-columns: repeat(2,1fr);
+    }
+  }
+
+  @media screen and (max-width:800px)
+  {
+    .produitsVedette{
+      display:grid;
+      grid-template-columns: repeat(1,1fr);
+    }
   }
 
 {% endstyle %}
