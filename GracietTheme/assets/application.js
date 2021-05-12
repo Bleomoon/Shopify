@@ -137,7 +137,7 @@ function conditionClick(num)
     var plusMoins = document.getElementById("conditions-generales-plusMoins-" + num);
     var p = document.getElementById("conditions-generales-p-" + num);
 
-    if (plusMoins.contains('open'))
+    if (plusMoins.classList.contains('open'))
     {
         plusMoins.classList.remove('open');
         plusMoins.innerHTML = '<i class="fas fa-minus"></i>';
