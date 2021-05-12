@@ -3,12 +3,10 @@
 
 {%comment%} Ici le html{%endcomment%}
 <div class="texteCadre">
-    {%for block in section.blocks %}
-        {% assign myImgSize = block.settings.tailletexte %}
-        
+    {%for block in section.blocks %}        
         <div class="div-texteCadre">
             {% if block.settings.image_position == 'Avant' and block.settings.anImage == true %}
-                <img class="div-texteCadre-img1" style="grid-column: 1;" src={{ block.settings.oneImage | img_url: myImgSize | append: 'x' | append: myImgSize }} alt="{{ section.id }}">
+                <img class="div-texteCadre-img1" style="grid-column: 1;" src={{ block.settings.oneImage | img_url: '50x50' }} alt="{{ section.id }}">
             {% endif %}
             <p class="div-texteCadre-p" style="text-align: {{ block.settings.texte_position }}; color: {{ block.settings.couleurtexte }}; font-size: {{ block.settings.tailletexte | append: 'px' }};">
                 {{ block.settings.text }} </p>
@@ -103,6 +101,7 @@
     .div-texteCadre{
         display:grid;
         grid-template-rows: repeat(1,1fr);
+        margin:auto;
     }
     
     .div-texteCadre-img1{
