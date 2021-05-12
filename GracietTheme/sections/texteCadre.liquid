@@ -6,9 +6,9 @@
     {%for block in section.blocks %}
         <div>
             {% if block.settings.image_position == 'Avant' and block.settings.anImage == true %}
-                    <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
+                <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
             {% endif %}
-            <p style="text-align: {{ positionTexte }}; color: {{ block.settings.couleurtexte }}; font-size: {{ block.settings.tailletexte | append: 'px' }};">
+            <p style="text-align: {{ block.settings.texte_position }}; color: {{ block.settings.couleurtexte }}; font-size: {{ block.settings.tailletexte | append: 'px' }};">
                 {{ block.settings.text }} </p>
             {% if block.settings.image_position == 'Apres' and block.settings.anImage == true %}
                 <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
@@ -45,13 +45,13 @@
                 "type": "color",
                 "id": "couleurtexte",
                 "label": "Couleur du texte",
-                "default": "#d35400"
+                "default": "#222222"
             },
             {
                 "type": "text",
                 "id": "tailletexte",
                 "label": "taille du texte",
-                "default": "75"
+                "default": "25"
             },
             {
                 "type": "radio",
@@ -59,8 +59,7 @@
                 "options": [
                     { "value": "Left", "label": "Gauche"},
                     { "value": "Center", "label": "Milieu"},
-                    { "value": "Right", "label": "Droite"},
-                    { "value": "Suite", "label": "A la suite"}
+                    { "value": "Right", "label": "Droite"}
                 ],
                 "label": "Position du texte"
             },
@@ -72,7 +71,7 @@
             {
                 "id":"anImage",
                 "type":"checkbox",
-                "label":"Ajouter une image ?",
+                "label":"Ajouter l'image ?",
                 "default" : false
             },
             {
