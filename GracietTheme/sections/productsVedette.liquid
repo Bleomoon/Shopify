@@ -9,13 +9,13 @@
   <div class="produits">
     {% for block in section.blocks %}
       {% assign product = all_products[block.settings.id] %}
-      <a class="aRef" href={{ product.url }}>
+      
         <div class="unProduit">
             {% assign firstImage = product.images | first %}
-            <img src= {{ firstImage | img_url: 'medium' }} alt="{{ firstImage.alt }}">
-            <h3>{{ product.title }}</h3>
+            <a class="aRef" href={{ product.url }}> <img src= {{ firstImage | img_url: 'medium' }} alt="{{ firstImage.alt }}"> </a>
+            <a class="aRef" href={{ product.url }}><h3>{{ product.title }}</h3></a>
         </div>
-      </a>
+      
     {% endfor %}
   </div>
 </div>
