@@ -13,11 +13,6 @@
           {% assign firstImage = product.images | first %}
           <img src= {{ firstImage | img_url: 'medium' }} alt="{{ firstImage.alt }}">
           <h3>{{ product.title }}</h3>
-          <p>le produit</p>{{ block.settings.product }}<br>
-<p>l'id du prouit</p>{{ block.settings.id }}<br>
-<p>l'id du produit du produit</p>{{ block.settings.id.product }}<br>
-<p>l'id du produit du produit</p>{{ block.settings.id.product.title }}<br>
-<p>le produit</p>{{ block.settings.product.title }}<br>
       </div>
     {% endfor %}
   </div>
@@ -108,16 +103,14 @@
 
   @media screen and (max-width:1200px)
   {
-    .produitsVedette{
-      display:grid;
+    .produits{
       grid-template-columns: repeat(2,1fr);
     }
   }
 
   @media screen and (max-width:800px)
   {
-    .produitsVedette{
-      display:grid;
+    .produits{
       grid-template-columns: repeat(1,1fr);
     }
   }
