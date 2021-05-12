@@ -11,8 +11,7 @@
             <p style="text-align: {{ positionTexte }}; color: {{ block.settings.couleurtexte }}; font-size: {{ block.settings.tailletexte | append: 'px' }};">
                 {{ block.settings.text }} </p>
             {% if block.settings.image_position == 'Apres' and block.settings.anImage == true %}
-                <img src={{ block.settings.oneImage | img_url: '100x100' }}
-                    alt="{{ section.id }}">
+                <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
             {% endif %}
         </div>
     {% endfor %}
