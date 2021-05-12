@@ -1,22 +1,21 @@
 {% comment %} zone assignation des valeurs {% endcomment %}
 {% assign h2_font_size = section.settings.taillesubTitre | append:'px' %}
 
-
 {% comment %} zone d'affichage du html {% endcomment %}
 <div class="conditions-generales">
-  <h2 class="conditions-generales-h2">{{ secton.settings.titre }}</h2>
+  <h2 class="conditions-generales-h2">{{ section.settings.titre }}</h2>
   {% for block in section.blocks %}
     {% capture _ %} 
       {% increment numCondition %} 
       {% assign myId = 'conditions-generales-plusMoins-' | append: numCondition %}
     {% endcapture %}
     <div class="conditions-generales-div">
-      <h3 class="conditions-generales-h3">{{ block.settings.titre }}</h3>
-      <button id="conditions-generales-plusMoins-{{ numCondition }}" onclick=conditionClick(myId) class="conditions-generales-plusMoins">
+      <h3 class="conditions-generales-h3">{{ block.settings.subtitle }}</h3>
+      <button id="conditions-generales-plusMoins-{{ numCondition }}" onclick=conditionClick(numCondition) class="conditions-generales-plusMoins">
         <i class="fas fa-plus"></i>
       </button>
     </div>
-    <div class="conditions-generales-p">
+    <div class="conditions-generales-p-{{ numCondition }}">
       <p>{{ block.settings.texte }}</p>
     </div>
   {% endfor %}
