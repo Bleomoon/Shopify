@@ -4,7 +4,8 @@
 {%comment%} Ici le html{%endcomment%}
 <div class="texteCadre">
     {%for block in section.blocks %}
-        {% assign myImgSize = {{ block.settings.tailletexte }} / 2 %}
+        {% assign myImgSize = {{ block.settings.tailletexte }} %}
+        {{ myImgSize / 2 }}
         <div class="div-texteCadre">
             {% if block.settings.image_position == 'Avant' and block.settings.anImage == true %}
                 <img class="div-texteCadre-img1" style="grid-column: 1;" src={{ block.settings.oneImage | img_url: {{ myImgSize | append: 'x' | append: {{ myImgSize }} }} }} alt="{{ section.id }}">
