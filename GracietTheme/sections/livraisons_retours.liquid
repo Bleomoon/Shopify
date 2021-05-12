@@ -1,0 +1,114 @@
+{% comment %} assign les value du schema {% endcomment %}
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle %}
+{% assign bg_color = section.settings.couleurFond %}
+
+{% comment %} le html du titre et des paragraphes {% endcomment %}
+<div class="livraisons-retours">
+  <h2 class="livraisons-retours-h2">{{ section.settings.title  }}</h2>
+  style="font-size: {{ block.settings.Tailletexte }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};"
+  {% for block in section.blocks %}
+    <div>
+      <p>
+        {{ block.settings.Texte }}
+      </p>
+    </div>
+  {% endfor %}
+</div>
+
+{% comment %} le schema du paragraphe {% endcomment %}
+{% schema %}
+  {
+    "name":"livraisons_retours",
+    "settings":[
+      {
+        "id":"title",
+        "type":"text",
+        "label":"Titre",
+        "default":"Mon titre"
+      },
+      {
+        "type": "color",
+        "id": "couleurTitle",
+        "label": "Couleur du titre",
+        "default": "#222222"
+      },
+      {
+        "type": "text",
+        "id": "tailleTitre",
+        "label": "taille du titre",
+        "default": "25"
+      },
+      {
+        "type": "radio",
+        "id": "titre_alignment",
+        "options": [
+          { "value": "Left", "label": "Gauche"},
+          { "value": "Center", "label": "Milieu"},
+          { "value": "Right", "label": "Droite"}
+        ],
+        "label": "Alignement du titre"
+      },
+      {
+        "type": "color",
+        "id": "couleurFond",
+        "label": "Couleur du fond",
+        "default": "#ffffff"
+      }
+    ],
+    "max_blocks": 10,
+    "blocks": [
+      {
+        "type":"oneParagraphe",
+        "name":"oneParagraphe",
+        "settings": [
+          {
+            "id":"Texte",
+            "type":"richtext",
+            "label":"Texte",
+            "default":"<p>Mon texte</p>"
+          },
+          {
+            "type": "color",
+            "id": "Couleurtexte",
+            "label": "Couleur du texte",
+            "default": "#222222"
+          },
+          {
+            "type": "text",
+            "id": "Tailletexte",
+            "label": "taille du texte",
+            "default": "15"
+          },
+          {
+            "type": "radio",
+            "id": "Texte_alignment",
+            "options": [
+              { "value": "Left", "label": "Gauche"},
+              { "value": "Center", "label": "Milieu"},
+              { "value": "Right", "label": "Droite"}
+            ],
+            "label": "Alignement du texte"
+          },
+          {
+            "type": "color",
+            "id": "couleurFondParagraphe",
+            "label": "Couleur du fond du texte",
+            "default": "#ffffff"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% style %}
+  .livraisons_retours{
+
+  }
+
+  .livraisons-retours-h2{
+
+  }
+{% endstyle %}
