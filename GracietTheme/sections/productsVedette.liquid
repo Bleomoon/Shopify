@@ -8,9 +8,9 @@
   <h2 class="produitsVedette-h2">{{ section.settings.produitVedetteTitre }}</h2>
   {% for block in section.blocks %}
     <div class="unProduit">
-        {% assign imageShow = block.product.image %}
+        {% assign imageShow = block.settings.id.image %}
         <img src= {{ imageShow | img_url: 'medium' }} alt="{{ imageShow.alt }}">
-        <h3>{{ block.product.title }}</h3>
+        <h3>{{ block.settings.id.title }}</h3>
     </div>
   {% endfor %}
 </div>
