@@ -8,12 +8,14 @@
   <h2 class="produitsVedette-h2">{{ section.settings.produitVedetteTitre }}</h2>
   <div class="produits">
     {% for block in section.blocks %}
-      <div class="unProduit">
-          {% assign product = all_products[block.settings.id] %}
-          {% assign firstImage = product.images | first %}
-          <img src= {{ firstImage | img_url: 'medium' }} alt="{{ firstImage.alt }}">
-          <h3>{{ product.title }}</h3>
-      </div>
+      {% assign product = all_products[block.settings.id] %}
+      <a href={{ product.url }}>
+        <div class="unProduit">
+            {% assign firstImage = product.images | first %}
+            <img src= {{ firstImage | img_url: 'medium' }} alt="{{ firstImage.alt }}">
+            <h3>{{ product.title }}</h3>
+        </div>
+      </a>
     {% endfor %}
   </div>
 </div>
