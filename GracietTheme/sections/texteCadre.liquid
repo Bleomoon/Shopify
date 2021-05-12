@@ -4,7 +4,7 @@
 {%comment%} Ici le html{%endcomment%}
 <div class="texteCadre">
     {%for block in section.blocks %}
-        <div>
+        <div class="div-texteCadre">
             {% if block.settings.image_position == 'Avant' and block.settings.anImage == true %}
                 <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
             {% endif %}
@@ -97,5 +97,8 @@
         border: groove;
         display: grid;
         border-color: {{ bg_color }};
+    }
+    .div-texteCadre{
+        grid-template-rows: repeat(1,1fr);
     }
 {% endstyle %}
