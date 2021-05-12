@@ -4,7 +4,7 @@
 {%comment%} Ici le html{%endcomment%}
 <div class="texteCadre">
     {%for block in section.blocks %}
-        {% if block.type == 'oneParagraphe' %} {%comment%} si un paragraphe {%endcomment%}
+        {% if block.type == 'oneImage' %} {%comment%} si un paragraphe {%endcomment%}
             {% if block.settings.texte_position == 'Suite' %}
                 {% assign positionImage = '' %}
             {% else %}
