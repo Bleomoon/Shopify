@@ -10,8 +10,8 @@
     {{ section.settings.title  }}
   </h2>
   {% for block in section.blocks %}
-    <div style="bakcground-color: {{ block.settings.couleurFondParagraphe }}">
-      <p style="font-size: {{ block.settings.Tailletexte }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};">
+    <div style="background-color: {{ block.settings.couleurFondParagraphe }}">
+      <p style="font-size: {{ block.settings.Tailletexte | append: 'px' }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};">
         {{ block.settings.Texte }}
       </p>
     </div>
@@ -106,10 +106,13 @@
 
 {% style %}
   .livraisons_retours{
-
+    display:grid;
+    background-color: {{ bg_color }};
   }
 
   .livraisons-retours-h2{
-
+    color: {{ h2_color }} ;
+    font-size: {{ h2_font_size }};
+    text-align: {{ h2_text_align }};
   }
 {% endstyle %}
