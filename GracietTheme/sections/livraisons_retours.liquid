@@ -6,11 +6,12 @@
 
 {% comment %} le html du titre et des paragraphes {% endcomment %}
 <div class="livraisons-retours">
-  <h2 class="livraisons-retours-h2">{{ section.settings.title  }}</h2>
-  style="font-size: {{ block.settings.Tailletexte }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};"
+  <h2 class="livraisons-retours-h2">
+    {{ section.settings.title  }}
+  </h2>
   {% for block in section.blocks %}
-    <div>
-      <p>
+    <div style="bakcground-color: {{ block.settings.couleurFondParagraphe }}">
+      <p style="font-size: {{ block.settings.Tailletexte }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};">
         {{ block.settings.Texte }}
       </p>
     </div>
