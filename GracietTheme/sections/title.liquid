@@ -12,7 +12,7 @@
 {%comment%} Ici le schéma du titre avec couleur, style, background-color etc {%endcomment%}
 {% schema %}
 {
-    "name":"entretienSubTitle",
+    "name":"title",
     "settings":[
     {
       "id":"title",
@@ -42,12 +42,6 @@
       ],
       "label": "Alignement du titre"
     }
-  ],
-  "presets":[
-    {
-      "category":"Presentation",
-      "name": "Sous-Titre"
-    }
   ]
 }
 {% endschema %}
@@ -61,8 +55,8 @@
     }
 
     .entretienTitle-myTitle-h1{
-        color: {{ h1_color }}
-        font-size: {{ h1_font_size }};
-        text-align: {{ h1_text_align }};
+      color: {{ h1_color }}
+      font-size: {{ h1_font_size }};
+      text-align: {{ h1_text_align }};
     }
 {% endstyle %}
