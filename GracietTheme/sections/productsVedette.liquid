@@ -11,7 +11,7 @@
       {% assign product = all_products[block.settings.id] %}
         <div class="unProduit">
             {% assign firstImage = product.images | first %}
-            <a class="aRef" href={{ product.url }}> <img src= {{ firstImage | img_url: 'medium' }} alt="{{ firstImage.alt }}"> </a>
+            <a class="aRef" href={{ product.url }}> <img src= {{ firstImage | img_url: 'medium', scale: 3 }} alt="{{ firstImage.alt }}"> </a>
             <a class="unProduit-h3" href={{ product.url }}><h3>{{ product.title }}</h3></a>
         </div>
       
@@ -95,13 +95,18 @@
   .produits{
     display:grid;
     grid-template-columns: repeat(4,1fr);
-    margin-top:10px;
-    margin-bottom:10px;
   }
 
   .unProduit{
     text-align:center;
     margin:auto;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+
+  .unProduit-h3{
+    color:black;
+    text-decoration:none;
   }
 
   .unProduit-h3:hover{
