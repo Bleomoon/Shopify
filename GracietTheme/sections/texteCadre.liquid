@@ -5,20 +5,20 @@
 <div class="texteCadre">
     {%for block in section.blocks %}
         {% if block.type == 'oneImage' %} {%comment%} si un paragraphe {%endcomment%}
-            {% if block.settings.texte_position == 'Suite' %}
+            {% if block.settings.image_position == 'Suite' %}
                 {% assign positionImage = '' %}
             {% else %}
-                {% assign positionImage = block.settings.texte_position %}
+                {% assign positionImage = block.settings.image_position %}
                 <br>
             {% endif %}
             <div style="text-align: {{ positionImage }};">
-                <img src={{ block.settings.oneImage | img_url: 'small' }} alt="{{ block.settings.oneImage.alt }}">
+                <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ block.settings.oneImage.alt }}">
             </div>
         {% else %} {%comment%} si une image {%endcomment%}
-            {% if block.settings.image_position == 'Suite' %}
+            {% if block.settings.texte_position == 'Suite' %}
                 {% assign positionTexte = '' %}
             {% else %}
-                {% assign positionTexte = block.settings.image_position %}
+                {% assign positionTexte = block.settings.texte_position %}
                 <br>
             {% endif %}
             <p style="text-align: {{ positionTexte }}; color: {{ block.settings.couleurtexte }}; font-size: {{ block.settings.tailletexte | append: 'px' }};">
@@ -107,7 +107,7 @@
     .texteCadre{
         margin-bottom:25px;
         margin-top:25px;
-        border-style:groove;
+        border: groove;
         border-color: {{ bg_color }};
     }
 {% endstyle %}

@@ -13,3 +13,6 @@ https://shopify.dev/concepts/shopify-introduction
 
 crée une application:
 https://shopify.dev/tutorials/build-a-shopify-app-with-node-and-react/build-your-user-interface-with-polaris
+
+réglé les images:
+https://www.shopify.com/partners/blog/img-url-filter
