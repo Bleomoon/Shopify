@@ -1,5 +1,6 @@
 {%comment%} Le html d'un produit {%endcomment%}
-<div class="productShow">  
+<div class="productShow"> 
+  {{ section.settings.poductLink }} 
   <a class="aRef" href="{{ section.settings.productLink }}">
     <div class="product-img">
     <img id="{{ section.id }}" alt="{{section.settings.productName }}" class="product-img" 

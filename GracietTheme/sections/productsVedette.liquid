@@ -1,0 +1,53 @@
+{% comment %} l'initialisation des variables {% endcomment %}
+
+
+{% comment %} ici le html d'affichage du site {% endcomment %}
+<div class="produitsVedette">
+  <h2>{{ section.settings.produitVedetteTitre }}</h2>
+  
+</div>
+
+{% comment %} ici le schema de la section {% endcomment %}
+{% schema %}
+{
+  "name":"produitsVedette",
+  "settings": [
+    {
+      "id":"produitVedetteTitre",
+      "type":"text",
+      "label":"Titre de la section",
+      "default":"Je suis un titre accrocheur"
+    }
+  ],
+  "max_blocks":8,
+  "blocks": [
+    {
+      "type":"produit",
+      "name":"produit",
+      "settings":[
+        {
+          "id": "produitTitre",
+          "type": "text",
+          "label": "Titre du produit",
+          "default": "Mon titre"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Produits en Vedettes",
+      "category":"Produits"
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %} ici le css {% endcomment %}
+{% style %}
+
+  .produitsVedette{
+
+  }
+
+{% endstyle %}
