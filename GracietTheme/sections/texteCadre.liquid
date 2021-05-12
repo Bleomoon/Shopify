@@ -2,9 +2,28 @@
 {% assign bg_color = section.settings.couleurFond %}
 
 {%comment%} Ici le html{%endcomment%}
-<div class="entretienWarning">
+<div class="texteCadre">
     {%for block in section.blocks %}
-        <p style="text-align: {{ block.settings.texte_alignment }}; color: {{ block.settings.text }}; font-size: {{ block.settings.tailletexte | 'px' }};"> {{ block.settings.text }} </p>
+        {% if block.type == 'oneParagraphe' %} {%comment%} si un paragraphe {%endcomment%}
+            {% if block.settings.texte_position == 'Suite' %}
+                {% assign positionImage = '' %}
+            {% else %}
+                {% assign positionImage = block.settings.texte_position %}
+                <br>
+            {% endif %}
+            <div style="text-align: {{ positionImage }};">
+                <img src={{ block.settings.oneImage | img_url: 'small' }} alt="{{ block.settings.oneImage.alt }}">
+            </div>
+        {% else %} {%comment%} si une image {%endcomment%}
+            {% if block.settings.image_position == 'Suite' %}
+                {% assign positionTexte = '' %}
+            {% else %}
+                {% assign positionTexte = block.settings.image_position %}
+                <br>
+            {% endif %}
+            <p style="text-align: {{ positionTexte }}; color: {{ block.settings.couleurtexte }}; font-size: {{ block.settings.tailletexte | append: 'px' }};">
+            {{ block.settings.text }} </p>
+        {% endif %}
     {% endfor %}
 </div>
 
@@ -20,7 +39,7 @@
             "default": "#ffffff"
         }
     ],
-    "max_blocks":4,
+    "max_blocks":10,
     "blocks":[
     {
         "type":"oneParagraphe",
@@ -46,13 +65,36 @@
             },
             {
                 "type": "radio",
-                "id": "texte_alignment",
+                "id": "texte_position",
                 "options": [
                     { "value": "Left", "label": "Gauche"},
                     { "value": "Center", "label": "Milieu"},
-                    { "value": "Right", "label": "Droite"}
+                    { "value": "Right", "label": "Droite"},
+                    { "value": "Suite", "label": "A la suite"}
                 ],
-                "label": "Alignement du texte"
+                "label": "Position du texte"
+            }
+        ]
+    },
+    {
+        "type":"oneImage",
+        "name":"oneImage",
+        "settings":[
+            {
+                "id":"oneImage",
+                "type":"image_picker",
+                "label":"une image"
+            },
+            {
+                "type": "radio",
+                "id": "image_position",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"},
+                    { "value": "Suite", "label": "A la suite"}
+                ],
+                "label": "Alignement de l'image"
             }
         ]
     }
@@ -62,7 +104,7 @@
 
 {%comment%} Ici le style css{%endcomment%}
 {% style %}
-    .entretienWarning{
+    .texteCadre{
         margin-bottom:25px;
         margin-top:25px;
         border-style:groove;

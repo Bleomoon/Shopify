@@ -1,7 +1,7 @@
 {%comment%} Ici on assigne les val du schéma {%endcomment%}
 {% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
 {% assign h1_text_align = section.settings.titre_alignment %}
-{% assign h1_color = section.settings.couleurTitle%}
+{% assign h1_color = section.settings.couleurTitle %}
 {% assign bg_color = section.settings.couleurFond %}
 
 {%comment%} Ici le html{%endcomment%}
@@ -24,13 +24,13 @@
       "type": "color",
       "id": "couleurTitle",
       "label": "Couleur du titre",
-      "default": "#d35400"
+      "default": "#222222"
     },
     {
       "type": "text",
       "id": "tailleTitre",
       "label": "taille du titre",
-      "default": "75"
+      "default": "25"
     },
     {
       "type": "radio",
@@ -55,7 +55,7 @@
     }
 
     .entretienTitle-myTitle-h1{
-      color: {{ h1_color }}
+      color: {{ h1_color }};
       font-size: {{ h1_font_size }};
       text-align: {{ h1_text_align }};
     }
