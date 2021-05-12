@@ -11,7 +11,7 @@
     {% endcapture %}
     <div class="conditions-generales-div">
       <h3 class="conditions-generales-h3">{{ block.settings.subtitle }}</h3>
-      <button id="conditions-generales-plusMoins-{{ numCondition }}" onclick=conditionClick(numCondition) class="conditions-generales-plusMoins">
+      <button id="conditions-generales-plusMoins-{{ numCondition }}" onclick=conditionClick( {{ numCondition }} ) class="conditions-generales-plusMoins">
         <i class="fas fa-plus"></i>
       </button>
     </div>
@@ -27,7 +27,7 @@
   "name":"conditions-generales",
   "settings":[
     {
-      "id":"title",
+      "id":"titre",
       "type":"text",
       "label":"Titre",
       "default":"Mon titre"
@@ -54,7 +54,7 @@
         {
           "id":"texte",
           "type":"richtext",
-          "label":"Mon texte",
+          "label":"Mon texte (Il est dissimulé)",
           "default":"<p>Le texte</p>"
         }
       ]
@@ -78,7 +78,6 @@
     text-align: center;
   }
 
-  .
   .conditions-generales-div{
     color:black;
     display:grid;
@@ -94,12 +93,15 @@
   }
 
   .conditions-generales-plusMoins{
+    background:none;
+    margin:auto;
     grid-column:2;
     grid-row:1;
     text-align:end;
   }
 
   .conditions-generales-p{
+    display:none;
     margin-bottom:25px;
     margin-top:25px;
   }
