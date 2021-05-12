@@ -5,15 +5,21 @@
 {% assign bg_color = section.settings.couleurFond %}
 
 {% comment %} le html du titre et des paragraphes {% endcomment %}
-<div class="livraisons-retours">
-  <h2 class="livraisons-retours-h2">
+<div class="mentions-legales">
+  <h2 class="mentions-legales-h2">
     {{ section.settings.title  }}
   </h2>
   {% for block in section.blocks %}
-    <div class="livraisons-paragraphe" style="background-color: {{ block.settings.couleurFondParagraphe }}">
-      <p style="font-size: {{ block.settings.Tailletexte | append: 'px' }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};">
-        {{ block.settings.Texte }}
-      </p>
+    <div class="mentions-legales-block">
+      {% if block.type = "oneParagraphe" %} {% comment %} si un paragraphe {% endcomment %}
+          <p style="font-size: {{ block.settings.Tailletexte | append: 'px' }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};">
+            {{ block.settings.Texte }}
+          </p>        
+      {% else %} {% comment %} si un subtitle {% endcomment %}
+        <h3 style="font-size: {{ block.settings.TailleSubtitle | append: 'px' }}; text-align: {{ block.settings.Subtitle_alignment }}; color: {{ block.settings.CouleurSubtitle }};">
+          {{ block.settings.Subtitle }}
+        </h3>
+      {% endif %}
     </div>
   {% endfor %}
 </div>
@@ -91,12 +97,40 @@
               { "value": "Right", "label": "Droite"}
             ],
             "label": "Alignement du texte"
+          }
+        ]
+      },
+      {
+        "type":"oneSubtitle",
+        "name":"oneSubtitle",
+        "settings": [
+          {
+            "id":"Texte",
+            "type":"text",
+            "label":"Subtitle",
+            "default":"Mon sous titre"
           },
           {
             "type": "color",
-            "id": "couleurFondParagraphe",
-            "label": "Couleur du fond du texte",
-            "default": "#ffffff"
+            "id": "CouleurSubtitle",
+            "label": "Couleur du sous titre",
+            "default": "#222222"
+          },
+          {
+            "type": "text",
+            "id": "TailleSubtitle",
+            "label": "taille du sous titre",
+            "default": "15"
+          },
+          {
+            "type": "radio",
+            "id": "Subtitle_alignment",
+            "options": [
+              { "value": "Left", "label": "Gauche"},
+              { "value": "Center", "label": "Milieu"},
+              { "value": "Right", "label": "Droite"}
+            ],
+            "label": "Alignement du sous titre"
           }
         ]
       }
@@ -105,20 +139,20 @@
 {% endschema %}
 
 {% style %}
-  .livraisons-retours{
+  .mentions-legales{
     display:grid;
     background-color: {{ bg_color }};
     margin-right:25px;
     margin-left:25px;
   }
 
-  .livraisons-retours-h2{
+  .mentions-legales-h2{
     color: {{ h2_color }} ;
     font-size: {{ h2_font_size }};
     text-align: {{ h2_text_align }};
   }
 
-  .livraisons-paragraphe{
+  .mentions-legales-block{
     margin-top:15px;
     margin-bottom:15px;
   }
