@@ -4,26 +4,17 @@
 {%comment%} Ici le html{%endcomment%}
 <div class="texteCadre">
     {%for block in section.blocks %}
-        {% if block.type == 'oneImage' %} {%comment%} si un paragraphe {%endcomment%}
-            {% if block.settings.image_position == 'Suite' %}
-                {% assign positionImage = '' %}
-            {% else %}
-                {% assign positionImage = block.settings.image_position %}
-                <br>
-            {% endif %}
-            <div style="text-align: {{ positionImage }};">
-                <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
-            </div>
-        {% else %} {%comment%} si une image {%endcomment%}
-            {% if block.settings.texte_position == 'Suite' %}
-                {% assign positionTexte = '' %}
-            {% else %}
-                {% assign positionTexte = block.settings.texte_position %}
-                <br>
+        <div>
+            {% if block.settings.image_position == 'Avant' and block.settings.anImage == true %}
+                    <img src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
             {% endif %}
             <p style="text-align: {{ positionTexte }}; color: {{ block.settings.couleurtexte }}; font-size: {{ block.settings.tailletexte | append: 'px' }};">
-            {{ block.settings.text }} </p>
-        {% endif %}
+                {{ block.settings.text }} </p>
+            {% if block.settings.image_position == 'Apres' and block.settings.anImage == true %}
+                <img src={{ block.settings.oneImage | img_url: '100x100' }}
+                    alt="{{ section.id }}">
+            {% endif %}
+        </div>
     {% endfor %}
 </div>
 
@@ -39,7 +30,7 @@
             "default": "#ffffff"
         }
     ],
-    "max_blocks":10,
+    "max_blocks":4,
     "blocks":[
     {
         "type":"oneParagraphe",
@@ -73,28 +64,26 @@
                     { "value": "Suite", "label": "A la suite"}
                 ],
                 "label": "Position du texte"
-            }
-        ]
-    },
-    {
-        "type":"oneImage",
-        "name":"oneImage",
-        "settings":[
+            },
             {
                 "id":"oneImage",
                 "type":"image_picker",
                 "label":"une image"
             },
             {
+                "id":"anImage",
+                "type":"checkbox",
+                "label":"Ajouter une image ?",
+                "default" : false
+            },
+            {
                 "type": "radio",
                 "id": "image_position",
                 "options": [
-                    { "value": "Left", "label": "Gauche"},
-                    { "value": "Center", "label": "Milieu"},
-                    { "value": "Right", "label": "Droite"},
-                    { "value": "Suite", "label": "A la suite"}
+                    { "value": "Avant", "label": "Avant le texte"},
+                    { "value": "Apres", "label": "Apres le texte"}
                 ],
-                "label": "Alignement de l'image"
+                "label": "Position de l'image"
             }
         ]
     }
@@ -108,6 +97,7 @@
         margin-bottom:25px;
         margin-top:25px;
         border: groove;
+        display: grid;
         border-color: {{ bg_color }};
     }
 {% endstyle %}
