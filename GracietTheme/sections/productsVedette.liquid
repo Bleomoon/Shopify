@@ -9,11 +9,10 @@
   <div class="produits">
     {% for block in section.blocks %}
       {% assign product = all_products[block.settings.id] %}
-      
         <div class="unProduit">
             {% assign firstImage = product.images | first %}
             <a class="aRef" href={{ product.url }}> <img src= {{ firstImage | img_url: 'medium' }} alt="{{ firstImage.alt }}"> </a>
-            <a class="aRef" href={{ product.url }}><h3>{{ product.title }}</h3></a>
+            <a class="unProduit-h3" href={{ product.url }}><h3>{{ product.title }}</h3></a>
         </div>
       
     {% endfor %}
@@ -96,11 +95,17 @@
   .produits{
     display:grid;
     grid-template-columns: repeat(4,1fr);
+    margin-top:10px;
+    margin-bottom:10px;
   }
 
   .unProduit{
     text-align:center;
     margin:auto;
+  }
+
+  .unProduit-h3:hover{
+    color:gray;
   }
 
   @media screen and (max-width:1200px)
