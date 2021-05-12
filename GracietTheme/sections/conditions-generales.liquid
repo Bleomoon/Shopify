@@ -16,7 +16,7 @@
         <i class="fas fa-plus"></i>
       </button>
     </div>
-    <div class="conditions-generales-p-{{ numCondition }}">
+    <div style="display:none;" class="conditions-generales-p-{{ numCondition }}">
       <p>{{ block.settings.texte }}</p>
     </div>
   {% endfor %}
@@ -105,9 +105,4 @@
     margin-right:100px;
   }
 
-  .conditions-generales-p{
-    display:none;
-    margin-bottom:25px;
-    margin-top:25px;
-  }
 {% endstyle %}
