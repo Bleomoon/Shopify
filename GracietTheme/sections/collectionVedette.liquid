@@ -12,7 +12,7 @@
         <h3 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.couleurTitre2 }};" class="collectionVedette-h3">COLLECTION</h3>
         <h2 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.couleurTitre1 }};" class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
         <span class="collectionVedette-span-a">
-            <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
+            <a style="color :{{ section.settings.couleurboutton }};" class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
         </div>
     </div>
 </div>
@@ -50,6 +50,12 @@ Elle a un nom, une image et un url {%endcomment%}
                 "id": "couleurTitre2",
                 "label": "Couleur de 'Collection'",
                 "default": "#222222"
+            },
+            {
+                "type": "color",
+                "id": "couleurboutton",
+                "label": "Couleur du boutton",
+                "default": "#ffffff"
             },
             {
                 "type": "text",
@@ -110,6 +116,7 @@ Elle a un nom, une image et un url {%endcomment%}
     .collectionVedette-span-a{
         display:block;
         text-align:end;
+        margin:right:15px;
     }
     .collectionVedette-a{
         background:none;
@@ -117,6 +124,7 @@ Elle a un nom, une image et un url {%endcomment%}
         color:white;
         margin:auto;
         border:groove;
+        padding:5px;
     }
     .collectionVedette-a:hover{
         color:white;
