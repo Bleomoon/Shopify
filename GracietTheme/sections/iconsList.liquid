@@ -36,9 +36,9 @@
         {{ block.settings.listTitre }}
       </h3>
       {% if block.settings.showTexte == true %}
-        <p class="icons-p">
+        <div class="icons-p">
           {{ block.settings.listTexte }}
-        </p>
+        </div>
       {% endif %}
     </div>
   {%endfor%}
@@ -189,6 +189,9 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
     color: {{ icone_h3_color }};
   }
   
+  .icons-img{
+    margin:auto;
+  }
   .icons-h3{
     width:max-content;
     margin:auto;
@@ -197,6 +200,7 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
   .icons-p{
     color: {{ icone_p_color }};
     font-size: {{ icone_p_font_size }};
+    margin:auto;
   }
 
   @media screen and (min-width:1060px) and (max-width:600px) {
