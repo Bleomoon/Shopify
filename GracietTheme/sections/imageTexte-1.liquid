@@ -4,21 +4,20 @@
 {% assign h2_color = section.settings.couleurTitle%}
 {% assign bg_color = section.settings.couleurFond %}
 
+{% if section.settings.rightLeft == true %}
+    {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
+{% else %}
+    {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
+{% endif %}
+
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
 <div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte-1">
-  {% if section.settings.rightLeft == true %}
-    {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
-    {% assign textAlignImg = 'Left' %} {% assign textAlignTexte = 'Right' %}
-  {% else %}
-    {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
-    {% assign textAlignImg = 'Right' %} {% assign textAlignTexte = 'Left' %}
-  {% endif %}
-
-  <div class="imageTexte-1-img" style="text-align: {{ textAlignImg }}; grid-column: {{ numColImg }};">
+  
+  <div class="imageTexte-1-img">
     <img class="imageTexte-1-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
 
-  <div style="grid-column: {{ numColTexte }};text-align: {{ textAlignTexte }};" class="imageTexte-1-texte">
+  <div class="imageTexte-1-texte">
     <h2 class="imageTexte-1-h2">
       {{section.settings.title }}
     </h2>
@@ -189,27 +188,33 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
 }
 {% endschema %}
 
-
+<div class="imageTexte-1-img" style=
+"text-align: {{ textAlignImg }}; 
+grid-column: {{ numColImg }};"></div>
 {%comment%} Ici le style css d'image et texte {%endcomment%}
 {% style %}
   .imageTexte-1{
+    margin:auto;
     margin-top:25px;
     margin-bottom:25px;
     display:grid;
     justify-content:center;
     grid-gap:1%;
     grid-template-columns: repeat(2,1fr);
-    margin:auto;
     width:80%;
   }
+
   .imageTexte-1-img{
     grid-row:1;
+    grid-column: {{ numColImg }};
   }
+
   .imageTexte-1-texte{
     margin-top:25px;
     margin-bottom:25px;
     display:grid;
     grid-row:1;
+    grid-column: {{ numColTexte }};
   }
 
   .imageTexte-1-h2{
@@ -224,14 +229,16 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     .imageTexte-1{
       margin-right:0;
       margin-left:0;
+      width:100%;
     }
   }
   
-  @media screen and (max-width:576px) {
+  @media screen and (max-width:800px) {
     .imageTexte-1{
       grid-template-columns:repeat(1,1fr);
       margin-right:0;
       margin-left:0;
+      width:100%;
     }
 
     
