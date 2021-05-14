@@ -7,7 +7,7 @@
 {% endif %}
 
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
-<div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}';" class="collectionVedette">
+<div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
     <div style="grid-column: {{ positionContenu }};" class="collectionVedette-contenu">
         <h3 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.couleurTitre2 }};" class="collectionVedette-h3">COLLECTION</h3>
         <h2 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.couleurTitre1 }};" class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
@@ -85,6 +85,14 @@ Elle a un nom, une image et un url {%endcomment%}
 
         display:grid;
         grid-template-columns: repeat(2, 1fr);
+
+        position:sticky;
+        height:inherit; 
+        background-position:center;
+        background-attachment: scroll, local;
+        background-repeat:no-repeat;
+        background-size:cover;
+        box-sizing:border-box;
     }
     .collectionVedette-contenu{
         display:grid;
