@@ -64,12 +64,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "default": "75"
     },
     {
-      "type": "font_picker",
-      "label": "style de texte",
-      "id": "fontTitre",
-      "default": "claire_news_n3"
-    },
-    {
       "id":"image",
       "type":"image_picker",
       "label":"Mon image"
@@ -122,12 +116,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
             "default": "75"
           },
           {
-            "type": "font_picker",
-            "label": "style de texte",
-            "id": "fontSousTitre",
-            "default": "claire_news_n3"
-          },
-          {
             "type": "radio",
             "id": "subtitre_alignment",
             "options": [
@@ -160,12 +148,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
           "id": "tailleTexte",
           "label": "taille du texte",
           "default": "75"
-        },
-        {
-          "type": "font_picker",
-          "label": "style de texte",
-          "id": "fontTexte",
-          "default": "claire_news_n3"
         },
         {
           "type": "radio",
@@ -215,9 +197,9 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
   }
 
   .imageTexte-2-h2{
-    font-size: {{ h1_font_size }};
-    text-align: {{ h1_text_align }};
-    color: {{ h1_color }};
+    font-size: {{ h2_font_size }};
+    text-align: {{ h2_text_align }};
+    color: {{ h2_color }};
     width: max-content;
 
   }
