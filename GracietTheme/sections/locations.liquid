@@ -18,6 +18,32 @@
                 <p> {{ location.adresse }}</p>
             </div>
         {% endfor %}
+        {% for location in QueryRoot.locations %}
+            <div class="locations-oneLocation">
+                <p> {{ location.name }} </p>
+                <p> {{ location.adresse }}</p>
+            </div>
+        {% endfor %}
+        {% for location in InventoryLevel.location %}
+            <div class="locations-oneLocation">
+                <p> {{ location.name }} </p>
+                <p> {{ location.adresse }}</p>
+            </div>
+        {% endfor %}
+
+        {% for location in Order.physicalLocation %}
+            <div class="locations-oneLocation">
+                <p> {{ location.name }} </p>
+                <p> {{ location.adresse }}</p>
+            </div>
+        {% endfor %}
+
+        {% for location in FulfillmentService.location %}
+            <div class="locations-oneLocation">
+                <p> {{ location.name }} </p>
+                <p> {{ location.adresse }}</p>
+            </div>
+        {% endfor %}
     </div>
   </div>
   
