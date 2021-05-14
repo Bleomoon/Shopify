@@ -8,31 +8,31 @@
 <div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte-1">
   {% if section.settings.rightLeft == true %}
     {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
-  {% else %}gi
+    {% assign textAlignImg = 'Left' %} {% assign textAlignTexte = 'Right' %}
+  {% else %}
     {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
+    {% assign textAlignImg = 'Right' %} {% assign textAlignTexte = 'Left' %}
   {% endif %}
-  <div style="grid-column: {{ numColImg }};">
-    <div class="imageTexte-1-img">
-      <img class="imageTexte-1-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
-    </div>
+
+  <div class="imageTexte-1-img" style="text-align: {{ textAlignImg }}; grid-column: {{ numColImg }};">
+    <img class="imageTexte-1-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
-  <div style="grid-column: {{ numColTexte }};">
-    <div class="imageTexte-1-texte">
-      <h2 class="imageTexte-1-h2">
-        {{section.settings.title }}
-      </h2>
-      {% for block in section.blocks %}
-        {% if block.type == 'composeSubTitle' %}
-          <h3 style="text-align: {{ block.settings.subtitre_alignment }}; color: {{ block.settings.couleurSubTitle }}; font-size: {{ block.settings.tailleSubTitre | append:'px' }};"> 
-            {{ block.settings.subTitle }} 
-          </h3>
-        {% else %}
-          <div style="text-align: {{ block.settings.text_alignment }}; color: {{ block.settings.couleurTexte }}; font-size: {{ block.settings.tailleTexte | append:'px' }};" >
-            {{ block.settings.text }}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+
+  <div style="grid-column: {{ numColTexte }};text-align: {{ textAlignTexte }};" class="imageTexte-1-texte">
+    <h2 class="imageTexte-1-h2">
+      {{section.settings.title }}
+    </h2>
+    {% for block in section.blocks %}
+      {% if block.type == 'composeSubTitle' %}
+        <h3 style="text-align: {{ block.settings.subtitre_alignment }}; color: {{ block.settings.couleurSubTitle }}; font-size: {{ block.settings.tailleSubTitre | append:'px' }};"> 
+          {{ block.settings.subTitle }} 
+        </h3>
+      {% else %}
+        <div style="text-align: {{ block.settings.text_alignment }}; color: {{ block.settings.couleurTexte }}; font-size: {{ block.settings.tailleTexte | append:'px' }};" >
+          {{ block.settings.text }}
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
 </div>
 
@@ -199,25 +199,25 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     justify-content:center;
     grid-gap:1%;
     grid-template-columns: repeat(2,1fr);
-  }
-  .imageTexte-1-h2{
-    font-style: {{ h1_font.style }};
-    font-weight: {{ h1_font.weight }};
-    font-family: {{ h1_font.family }};
-    font-size: {{ h1_font_size }};
-    text-align: {{ h1_text_align }};
-    color: {{ h1_color }};
-    width: max-content;
+    margin:auto;
+    width:80%;
   }
   .imageTexte-1-img{
-    height:auto;
-    margin-right:25px;
-    text-align:end;
+    grid-row:1;
   }
   .imageTexte-1-texte{
     margin-top:25px;
     margin-bottom:25px;
     display:grid;
+    grid-row:1;
+  }
+
+  .imageTexte-1-h2{
+    font-size: {{ h1_font_size }};
+    text-align: {{ h1_text_align }};
+    color: {{ h1_color }};
+    width: max-content;
+
   }
 
   @media screen and (max-width:1000px) {
