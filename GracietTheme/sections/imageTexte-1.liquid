@@ -220,7 +220,7 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
 
   }
 
-  @media screen and (max-width:1000px) {
+  @media screen and (max-width:1200px) {
     .imageTexte-1{
       margin-right:0;
       margin-left:0;
@@ -232,6 +232,18 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       grid-template-columns:repeat(1,1fr);
       margin-right:0;
       margin-left:0;
+    }
+
+    
+    .imageTexte-1-img{
+      grid-column:1;
+      grid-row:1;
+    }
+
+
+    .imageTexte-1-texte{
+      grid-column:1;
+      grid-row:2;
     }
   }
 {% endstyle %}
