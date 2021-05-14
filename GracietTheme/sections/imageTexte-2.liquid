@@ -79,16 +79,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "id": "couleurFond",
       "label": "Couleur du fond",
       "default": "#ffffff"
-    },
-    {
-      "type": "radio",
-      "id": "titre_alignment",
-      "options": [
-        { "value": "Left", "label": "Gauche"},
-        { "value": "Center", "label": "Milieu"},
-        { "value": "Right", "label": "Droite"}
-      ],
-      "label": "Alignement du titre"
     }
   ],
   "max_blocks":8,
@@ -201,7 +191,7 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     text-align: {{ h2_text_align }};
     color: {{ h2_color }};
     width: max-content;
-
+    margin:auto;
   }
 
   @media screen and (max-width:1200px) {
@@ -224,7 +214,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       grid-column:1;
       grid-row:1;
     }
-
 
     .imageTexte-2-texte{
       grid-column:1;
