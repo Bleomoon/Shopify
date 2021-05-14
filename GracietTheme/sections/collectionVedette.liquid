@@ -12,7 +12,7 @@
         <h3 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.couleurTitre2 }};" class="collectionVedette-h3">COLLECTION</h3>
         <h2 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.couleurTitre1 }};" class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
         <span class="collectionVedette-span-a">
-            <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}"><button>Decouvrir</button></a>
+            <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
         </div>
     </div>
 </div>
@@ -109,6 +109,7 @@ Elle a un nom, une image et un url {%endcomment%}
 
     .collectionVedette-span-a{
         display:block;
+        text-align:end;
     }
     .collectionVedette-a{
         background:none;
@@ -116,7 +117,6 @@ Elle a un nom, une image et un url {%endcomment%}
         color:white;
         margin:auto;
         border:groove;
-        text-align:end;
     }
     .collectionVedette-a:hover{
         color:white;
