@@ -12,7 +12,7 @@
         <h3 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.couleurTitre2 }};" class="collectionVedette-h3">COLLECTION</h3>
         <h2 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.couleurTitre1 }};" class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
         <span class="collectionVedette-span-a">
-            <a style="color :{{ section.settings.couleurboutton }};" class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
+            <a style="text-align: {{ section.settings.boutton_alignment }}; color: {{ section.settings.couleurboutton }};" class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
         </div>
     </div>
 </div>
@@ -74,6 +74,16 @@ Elle a un nom, une image et un url {%endcomment%}
                 "id": "RightLeft",
                 "default": true,
                 "label": "Position du texte"
+            },
+            {
+                "type": "radio",
+                "id": "boutton_alignment",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement du boutton"
             }
         ],
         "presets":[
@@ -130,12 +140,23 @@ Elle a un nom, une image et un url {%endcomment%}
         border:none;
     }
 
-    @media screen and (max-width:1000px)
+    @media screen and (max-width:1000px) and  (min-width:600px)
     {
         .collectionVedette{
             display:flex;
             text-align:center;
             background-size:contain;
+            height:500px;
+        }
+    }
+
+    @media screen and (max-width:600px) and  (min-width:0px)
+    {
+        .collectionVedette{
+            display:flex;
+            text-align:center;
+            background-size:contain;
+            height:300px;
         }
     }
 {% endstyle %}
