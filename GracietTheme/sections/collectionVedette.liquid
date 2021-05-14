@@ -11,7 +11,9 @@
     <div style="grid-column: {{ positionContenu }};" class="collectionVedette-contenu">
         <h3 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.couleurTitre2 }};" class="collectionVedette-h3">COLLECTION</h3>
         <h2 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.couleurTitre1 }};" class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
-        <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
+        <span class="collectionVedette-span-a">
+            <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}"><button>Decouvrir</button></a>
+        </div>
     </div>
 </div>
 
@@ -46,7 +48,7 @@ Elle a un nom, une image et un url {%endcomment%}
             {
                 "type": "color",
                 "id": "couleurTitre2",
-                "label": "Couleur titre 2",
+                "label": "Couleur de 'Collection'",
                 "default": "#222222"
             },
             {
@@ -58,7 +60,7 @@ Elle a un nom, une image et un url {%endcomment%}
             {
                 "type": "text",
                 "id": "tailleTitre2",
-                "label": "taille du titre 2",
+                "label": "taille de 'Collection'",
                 "default": "25"
             },
             {
@@ -107,12 +109,17 @@ Elle a un nom, une image et un url {%endcomment%}
         font-weight:700;
         width:max-content;
     }
+
+    .collectionVedette-span-a{
+        display:block;
+    }
     .collectionVedette-a{
         background:none;
         text-decoration:none;
         color:white;
         margin:auto;
         border:groove;
+        text-align:end;
     }
     .collectionVedette-a:hover{
         color:white;
