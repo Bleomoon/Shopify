@@ -5,6 +5,8 @@
 {% assign bg_color = section.settings.couleurFond %}
 {% assign icone_h3_color = section.settings.couleurListTitre %}
 {% assign icone_h3_font_size = section.settings.listTailleTitre | append:'px' %}
+{% assign icone_p_font_size = section.settings.listTailleTexte | append:'px' %}
+{% assign icone_p_color = section.settings.couleurListTexte %}
 
 {%comment%} Délimite le nombre de ligne et col pour afficher en 2x4 ou en 4x2 {%endcomment%}
 {% if section.settings.VerticalHorizontal == true %}
@@ -28,11 +30,17 @@
 </div>
 <div class="iconsList">
   {%for block in section.blocks %}
+    {% assign %}
     <div class="icons">
       <img class="icons-img" alt="{{ block.settings.listTitre }}" src="{{ block.settings.icons | img_url: '300x300' }}">
       <h3 class="icons-h3">
         {{ block.settings.listTitre }}
       </h3>
+      {% if block.settings.showTexte == true %}
+        <p class="icons-p">
+          {{ block.settings.listTexte }}
+        </p>
+      {% endif %}
     </div>
   {%endfor%}
 </div>
@@ -100,6 +108,18 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
       "id": "couleurListTitre",
       "label": "Couleur des titres des icones",
       "default": "#222222"
+    },
+    {
+      "type":"text",
+      "id":"listTailleTexte",
+      "label":"Taille des textes des icones",
+      "default":"15"
+    },
+    {
+      "type": "color",
+      "id": "couleurListTexte",
+      "label": "Couleur des textes des icones",
+      "default": "#222222"
     }
   ],
   "max_blocks":8,
@@ -118,6 +138,18 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
           "type":"image_picker",
           "id":"icons",
           "label":"L'icone"
+        },
+        {
+          "id":"showTexte",
+          "type": "checkbox",
+          "label": "Afficher le texte ? ",
+          "default": true
+        },
+        {
+          "type":"richtext",
+          "id":"listTexte",
+          "label":"Description de l'icone",
+          "default": "Description de mon icone"
         }
       ]
     }
@@ -161,6 +193,11 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
   .icons-h3{
     width:max-content;
     margin:auto;
+  }
+
+  .icons-p{
+    color: {{ icone_p_color }};
+    font-size: {{ icone_p_font_size }};
   }
 
   @media screen and (min-width:1060px) and (max-width:600px) {
