@@ -126,8 +126,16 @@ Elle a un nom, une image et un url {%endcomment%}
         padding:5px;
     }
     .collectionVedette-a:hover{
-        color:white;
         background-color:black;
         border:none;
+    }
+
+    @media screen and (max-width:1000px)
+    {
+        .collectionVedette{
+            display:flex;
+            text-align:center;
+            background-size:contain;
+        }
     }
 {% endstyle %}
