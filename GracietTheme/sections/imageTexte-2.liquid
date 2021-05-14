@@ -1,8 +1,7 @@
 {%comment%} Ici la prise en compte du schema {%endcomment%}
-{% assign h1_font = section.settings.fontTitre | font_face %}
-{% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
-{% assign h1_text_align = section.settings.titre_alignment %}
-{% assign h1_color = section.settings.couleurTitle%}
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle%}
 {% assign bg_color = section.settings.couleurFond %}
 
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
@@ -18,22 +17,16 @@
   </div>
 
   <div style="grid-column: {{ numColTexte }};" class="imageTexte-2-texte">
-    <h1 class="imageTexte-2-h1">
+    <h2 class="imageTexte-2-h2">
       {{section.settings.title }}
-    </h1>
+    </h2>
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
-        {% assign h2_text_align = block.settings.subtitre_alignment %}
-        {% assign h2_color = block.settings.couleurSubTitle%}
-        <h2 style="text-align: {{ h2_text_align }}; color: {{ h2_color }}; font-size:{{ h2_font_size }};"> 
+        <h3 style="text-align: {{ block.settings.subtitre_alignment }}; color: {{ block.settings.couleurSubTitle }}; font-size: {{ block.settings.tailleSubTitre | append:'px' }};"> 
           {{ block.settings.subTitle }} 
-        </h2>
+        </h3>
       {% else %}
-        {% assign div_font_size = block.settings.tailleTexte | append:'px' %}
-        {% assign div_text_align = block.settings.text_alignment %}
-        {% assign div_color = block.settings.couleurTexte %}
-        <div style="text-align: {{ div_text_align }}; color: {{ div_color }}; font-size:{{ div_font_size }};" >
+        <div style="text-align: {{ block.settings.text_alignment }}; color: {{ block.settings.couleurTexte }}; font-size: {{ block.settings.tailleTexte | append:'px' }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}
@@ -209,22 +202,22 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
   }
   .imageTexte-2-img{
     width:50%;
+    grid-row:1;
   }
   .imageTexte-2-texte{
     margin-top:25px;
     margin-bottom:25px;
     display:grid;
     width:50%;
+    grid-row:1;
   }
 
-  .imageTexte-2-h1{
-    font-style: {{ h1_font.style }};
-    font-weight: {{ h1_font.weight }};
-    font-family: {{ h1_font.family }};
+  .imageTexte-2-h2{
     font-size: {{ h1_font_size }};
     text-align: {{ h1_text_align }};
     color: {{ h1_color }};
     width: max-content;
+
   }
 
   @media screen and (max-width:1000px) {
