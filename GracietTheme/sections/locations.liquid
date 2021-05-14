@@ -8,83 +8,83 @@
 
 {% comment %} le html du titre et des locations {% endcomment %}
 <div class="locations">
-    <h2 class="locations-h2">
-      {{ section.settings.title  }}
-    </h2>
-    <div class="locations-Alllocations">
-        {% for location in DeliveryLocationGroup %}
-            ICI<div class="locations-oneLocation">
-                <p> {{ location.name }} </p>
-                <p> {{ location.adresse }}</p>
-            </div>
-        {% endfor %}
-        ICI{% for location in QueryRoot.locations %}
-            <div class="locations-oneLocation">
-                <p> {{ location.name }} </p>
-                <p> {{ location.adresse }}</p>
-            </div>
-        {% endfor %}
-        ICI{% for location in InventoryLevel.location %}
-            <div class="locations-oneLocation">
-                <p> {{ location.name }} </p>
-                <p> {{ location.adresse }}</p>
-            </div>
-        {% endfor %}
+<h2 class="locations-h2">
+    {{ section.settings.title  }}
+</h2>
+<div class="locations-Alllocations">
+    {% for location in DeliveryLocationGroup %}
+        ICI<div class="locations-oneLocation">
+            <p> {{ location.name }} </p>
+            <p> {{ location.adresse }}</p>
+        </div>
+    {% endfor %}
+    ICI{% for location in QueryRoot.locations %}
+        <div class="locations-oneLocation">
+            <p> {{ location.name }} </p>
+            <p> {{ location.adresse }}</p>
+        </div>
+    {% endfor %}
+    ICI{% for location in InventoryLevel.location %}
+        <div class="locations-oneLocation">
+            <p> {{ location.name }} </p>
+            <p> {{ location.adresse }}</p>
+        </div>
+    {% endfor %}
 
-        ICI{% for location in Order.physicalLocation %}
-            <div class="locations-oneLocation">
-                <p> {{ location.name }} </p>
-                <p> {{ location.adresse }}</p>
-            </div>
-        {% endfor %}
+    ICI{% for location in Order.physicalLocation %}
+        <div class="locations-oneLocation">
+            <p> {{ location.name }} </p>
+            <p> {{ location.adresse }}</p>
+        </div>
+    {% endfor %}
 
-        ICI{% for location in FulfillmentService.location %}
-            <div class="locations-oneLocation">
-                <p> {{ location.name }} </p>
-                <p> {{ location.adresse }}</p>
-            </div>
-        {% endfor %}
-    </div>
-  </div>
-  
-  {% comment %} le schema du paragraphe {% endcomment %}
-  {% schema %}
-    {
-      "name":"Locations",
-      "settings":[
+    ICI{% for location in FulfillmentService.location %}
+        <div class="locations-oneLocation">
+            <p> {{ location.name }} </p>
+            <p> {{ location.adresse }}</p>
+        </div>
+    {% endfor %}
+</div>
+</div>
+
+{% comment %} le schema du paragraphe {% endcomment %}
+{% schema %}
+{
+    "name":"Locations",
+    "settings":[
         {
-          "id":"title",
-          "type":"text",
-          "label":"Titre",
-          "default":"Mon titre"
+            "id":"title",
+            "type":"text",
+            "label":"Titre",
+            "default":"Mon titre"
         },
         {
-          "type": "color",
-          "id": "couleurTitle",
-          "label": "Couleur du titre",
-          "default": "#222222"
+            "type": "color",
+            "id": "couleurTitle",
+            "label": "Couleur du titre",
+            "default": "#222222"
         },
         {
-          "type": "text",
-          "id": "tailleTitre",
-          "label": "taille du titre",
-          "default": "25"
+            "type": "text",
+            "id": "tailleTitre",
+            "label": "taille du titre",
+            "default": "25"
         },
         {
-          "type": "radio",
-          "id": "titre_alignment",
-          "options": [
-            { "value": "Left", "label": "Gauche"},
-            { "value": "Center", "label": "Milieu"},
-            { "value": "Right", "label": "Droite"}
-          ],
-          "label": "Alignement du titre"
+            "type": "radio",
+            "id": "titre_alignment",
+            "options": [
+                { "value": "Left", "label": "Gauche"},
+                { "value": "Center", "label": "Milieu"},
+                { "value": "Right", "label": "Droite"}
+            ],
+            "label": "Alignement du titre"
         },
         {
-          "type": "color",
-          "id": "couleurFond",
-          "label": "Couleur du fond",
-          "default": "#ffffff"
+            "type": "color",
+            "id": "couleurFond",
+            "label": "Couleur du fond",
+            "default": "#ffffff"
         },
         {
             "type": "color",
@@ -93,41 +93,41 @@
             "default": "#222222"
         },
         {
-          "type": "text",
-          "id": "Tailletexte",
-          "label": "taille des textes",
-          "default": "15"
+            "type": "text",
+            "id": "Tailletexte",
+            "label": "taille des textes",
+            "default": "15"
         }
-      ]
-    }
-  {% endschema %}
-  
-  {% style %}
-    .locations{
-      display:grid;
-      background-color: {{ bg_color }};
-      margin-right:100px;
-      margin-left:100px;
-      margin-top:25px;
-      margin-bottom:25px;
-    }
-  
-    .locations-h2{
-      color: {{ h2_color }} ;
-      font-size: {{ h2_font_size }};
-      text-align: {{ h2_text_align }};
-    }
-  
-    .locations-Alllocations{
-        display:grid;
-        margin-top:15px;
-        margin-bottom:15px;
-        grid-template-columns:repeat(4,1fr);
-        color: {{ bloc_color }};
-        font-size: {{ bloc_font_size }};
-    }
+    ]
+}
+{% endschema %}
 
-    .locations-oneLocation{
-      display:grid;
-    }
-  {% endstyle %}
+{% style %}
+.locations{
+    display:grid;
+    background-color: {{ bg_color }};
+    margin-right:100px;
+    margin-left:100px;
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+.locations-h2{
+    color: {{ h2_color }} ;
+    font-size: {{ h2_font_size }};
+    text-align: {{ h2_text_align }};
+}
+
+.locations-Alllocations{
+    display:grid;
+    margin-top:15px;
+    margin-bottom:15px;
+    grid-template-columns:repeat(4,1fr);
+    color: {{ bloc_color }};
+    font-size: {{ bloc_font_size }};
+}
+
+.locations-oneLocation{
+    display:grid;
+}
+{% endstyle %}
