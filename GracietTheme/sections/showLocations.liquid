@@ -12,7 +12,7 @@
     {{ section.settings.title  }}
 </h2>
 <div class="locations-Alllocations">
-    {% for block in blocks %}
+    {% for block in section.blocks %}
         <div class="locations-oneLocation">
             <p> {{ block.settings.Ville }} </p>
             <p> {{ block.settings.adresse }} </p>
@@ -116,7 +116,6 @@
 .locations{
     display:grid;
     background-color: {{ bg_color }};
-    width: 80%;
     margin-top:25px;
     margin-bottom:25px;
 }
@@ -134,6 +133,7 @@
     grid-template-columns:repeat(4,1fr);
     color: {{ bloc_color }};
     font-size: {{ bloc_font_size }};
+    width: 80%;
 }
 
 .locations-oneLocation{
