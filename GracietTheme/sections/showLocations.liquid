@@ -12,6 +12,9 @@
     {{ section.settings.title  }}
 </h2>
 <div class="locations-Alllocations">
+    location = {{ location }} <br>
+    location id = {{ location.id }} <br>
+    lcoations = {{ locations }} <br>
     {% for location in DeliveryLocationGroup %}
         ICI<div class="locations-oneLocation">
             <p> {{ location.name }} </p>
