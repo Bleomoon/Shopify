@@ -6,48 +6,46 @@
 {% assign bg_color = section.settings.couleurFond %}
 
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
-<div id="{{ section.settings.title }}"
-  style="background-color: {{ section.settings.couleurFond }};"
-  class="imageTexte">
+<div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte-2">
   {% if section.settings.rightLeft == true %}
-  {% assign numColImg = 3 %} {% assign numColTexte = 2 %}
-  {% else %}
-  {% assign numColImg = 2 %} {% assign numColTexte = 3 %}
+    {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
+  {% else %}gi
+    {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
   {% endif %}
-  <div style="grid-column: {{ numColImg }};" class="imageTexte-img">
-    <img class="imageTexte-Image" alt="{{ section.settings.title }}"
-      src={{ section.settings.image | img_url:"555x"}}>
-  </div>
-  <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
-    <h1 class="imageTexte-2-h1">
-      {{section.settings.title }}
-    </h1>
-    {% for block in section.blocks %}
-    {% if block.type == 'composeSubTitle' %}
-    {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
-    {% assign h2_text_align = block.settings.subtitre_alignment %}
-    {% assign h2_color = block.settings.couleurSubTitle%}
-    <h2
-      style="text-align: {{ h2_text_align }}; color:{{ h2_color }}; font-size:{{ h2_font_size }};">
-      {{ block.settings.subTitle }}
-    </h2>
-    {% else %}
-    {% assign div_font_size = block.settings.tailleTexte | append:'px' %}
-    {% assign div_text_align = block.settings.text_alignment %}
-    {% assign div_color = block.settings.couleurTexte %}
-    <div
-      style="text-align: {{ div_text_align }}; color:{{ div_color }}; font-size:{{ div_font_size }};">
-      {{ block.settings.text }}
+  <div style="grid-column: {{ numColImg }};">
+    <div class="imageTexte-2-img">
+      <img class="imageTexte-2-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
     </div>
-    {% endif %}
-    {% endfor %}
+  </div>
+  <div style="grid-column: {{ numColTexte }};">
+    <div class="imageTexte-2-texte">
+      <h1 class="imageTexte-2-h1">
+        {{section.settings.title }}
+      </h1>
+      {% for block in section.blocks %}
+        {% if block.type == 'composeSubTitle' %}
+          {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
+          {% assign h2_text_align = block.settings.subtitre_alignment %}
+          {% assign h2_color = block.settings.couleurSubTitle%}
+          <h2 style="text-align: {{ h2_text_align }}; color: {{ h2_color }}; font-size:{{ h2_font_size }};"> 
+            {{ block.settings.subTitle }} 
+          </h2>
+        {% else %}
+          {% assign div_font_size = block.settings.tailleTexte | append:'px' %}
+          {% assign div_text_align = block.settings.text_alignment %}
+          {% assign div_color = block.settings.couleurTexte %}
+          <div style="text-align: {{ div_text_align }}; color: {{ div_color }}; font-size:{{ div_font_size }};" >
+            {{ block.settings.text }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 </div>
 
 
 {%comment%} Ici le schema d'un texte et d'une image
-Elle a une image un titre, avec choix taille et couleur et checkbox pour
-selectionner a droite ou a gauche
+Elle a une image un titre, avec choix taille et couleur et checkbox pour selectionner a droite ou a gauche
 Puis si l'utilisateur le veux, rajoute sous-titres avec taille et couleur
 richtext avec choix couleurs et tailles textes {%endcomment%}
 {% schema %}
@@ -112,82 +110,82 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "type":"composeSubTitle",
       "name":"composeSubTitle",
       "settings":[
+          {
+            "id":"subTitle",
+            "type":"text",
+            "label":"Sous-titre",
+            "default":"Mon sous titre"
+          },
+          {
+            "type": "color",
+            "id": "couleurSubTitle",
+            "label": "Couleur du sous titre",
+            "default": "#d35400"
+          },
+          {
+            "type": "text",
+            "id": "tailleSubTitre",
+            "label": "taille du sous titre",
+            "default": "75"
+          },
+          {
+            "type": "font_picker",
+            "label": "style de texte",
+            "id": "fontSousTitre",
+            "default": "claire_news_n3"
+          },
+          {
+            "type": "radio",
+            "id": "subtitre_alignment",
+            "options": [
+              { "value": "Left", "label": "Gauche"},
+              { "value": "Center", "label": "Milieu"},
+              { "value": "Right", "label": "Droite"}
+            ],
+            "label": "Alignement du sous-titre"
+          }
+      ]
+    },
+    {
+      "type":"composeTexte",
+      "name":"composeTexte",
+      "settings":[
         {
-          "id":"subTitle",
-          "type":"text",
-          "label":"Sous-titre",
-          "default":"Mon sous titre"
+          "id":"text",
+          "type":"richtext",
+          "label":"Texte",
+          "default":"<p>Mon texte</p>"
         },
         {
           "type": "color",
-          "id": "couleurSubTitle",
-          "label": "Couleur du sous titre",
+          "id": "couleurTexte",
+          "label": "Couleur du texte",
           "default": "#d35400"
         },
         {
           "type": "text",
-          "id": "tailleSubTitre",
-          "label": "taille du sous titre",
+          "id": "tailleTexte",
+          "label": "taille du texte",
           "default": "75"
         },
         {
           "type": "font_picker",
           "label": "style de texte",
-          "id": "fontSousTitre",
+          "id": "fontTexte",
           "default": "claire_news_n3"
         },
         {
           "type": "radio",
-          "id": "subtitre_alignment",
+          "id": "text_alignment",
           "options": [
             { "value": "Left", "label": "Gauche"},
             { "value": "Center", "label": "Milieu"},
             { "value": "Right", "label": "Droite"}
           ],
-          "label": "Alignement du sous-titre"
+          "label": "Alignement du texte"
         }
       ]
-    },
-  {
-    "type":"composeTexte",
-    "name":"composeTexte",
-    "settings":[
-      {
-        "id":"text",
-        "type":"richtext",
-        "label":"Texte",
-        "default":"<p>Mon texte</p>"
-      },
-      {
-        "type": "color",
-        "id": "couleurTexte",
-        "label": "Couleur du texte",
-        "default": "#d35400"
-      },
-      {
-        "type": "text",
-        "id": "tailleTexte",
-        "label": "taille du texte",
-        "default": "75"
-      },
-      {
-        "type": "font_picker",
-        "label": "style de texte",
-        "id": "fontTexte",
-        "default": "claire_news_n3"
-      },
-      {
-        "type": "radio",
-        "id": "text_alignment",
-        "options": [
-          { "value": "Left", "label": "Gauche"},
-          { "value": "Center", "label": "Milieu"},
-          { "value": "Right", "label": "Droite"}
-        ],
-        "label": "Alignement du texte"
-      }
-    ]
-  }
+    }
   ],
   "presets":[
     {
@@ -201,22 +199,15 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
 
 {%comment%} Ici le style css d'image et texte {%endcomment%}
 {% style %}
-  .a{
-    text-decoration:none;
-    color:black;
-  }
-  a:hover{
-    color:gray;
-  }
-  .imageTexte{
+  .imageTexte-2{
     margin-top:25px;
     margin-bottom:25px;
     display:grid;
     justify-content:center;
     grid-gap:1%;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(2,1fr);
   }
-  .imageTexte-1-h1{
+  .imageTexte-2-h1{
     font-style: {{ h1_font.style }};
     font-weight: {{ h1_font.weight }};
     font-family: {{ h1_font.family }};
@@ -225,26 +216,31 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     color: {{ h1_color }};
     width: max-content;
   }
-  .imageTexte-img{
+  .imageTexte-2-img{
     height:auto;
     grid-row:1;
+    margin-right:25px;
+    text-align:end;
   }
-  .imageTexte-texte{
+  .imageTexte-texte-2{
     margin-top:25px;
     margin-bottom:25px;
     display:grid;
     grid-row:1;
-    text-align:center;
   }
+
   @media screen and (max-width:1000px) {
-    .imageTexte{
-      grid-template-columns:repeat(2,1fr);
+    .imageTexte-2{
+      margin-right:0;
+      margin-left:0;
     }
   }
   
   @media screen and (max-width:576px) {
-    .imageTexte{
+    .imageTexte-2{
       grid-template-columns:repeat(1,1fr);
+      margin-right:0;
+      margin-left:0;
     }
   }
 {% endstyle %}
