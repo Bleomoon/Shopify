@@ -12,39 +12,12 @@
     {{ section.settings.title  }}
 </h2>
 <div class="locations-Alllocations">
-    location = {{ location }} <br>
-    location id = {{ location.id }} <br>
-    lcoations = {{ locations }} <br>
-    {% for location in DeliveryLocationGroup %}
-        ICI<div class="locations-oneLocation">
-            <p> {{ location.name }} </p>
-            <p> {{ location.adresse }}</p>
-        </div>
-    {% endfor %}
-    ICI{% for location in QueryRoot.locations %}
+    {% for block in blocks %}
         <div class="locations-oneLocation">
-            <p> {{ location.name }} </p>
-            <p> {{ location.adresse }}</p>
-        </div>
-    {% endfor %}
-    ICI{% for location in InventoryLevel.location %}
-        <div class="locations-oneLocation">
-            <p> {{ location.name }} </p>
-            <p> {{ location.adresse }}</p>
-        </div>
-    {% endfor %}
-
-    ICI{% for location in Order.physicalLocation %}
-        <div class="locations-oneLocation">
-            <p> {{ location.name }} </p>
-            <p> {{ location.adresse }}</p>
-        </div>
-    {% endfor %}
-
-    ICI{% for location in FulfillmentService.location %}
-        <div class="locations-oneLocation">
-            <p> {{ location.name }} </p>
-            <p> {{ location.adresse }}</p>
+            <p> {{ block.settings.Ville }} </p>
+            <p> {{ block.settings.adresse }} </p>
+            <p> {{ block.settings.NumDep }} </p>
+            <p> {{ block.settings.pays }} </p>
         </div>
     {% endfor %}
 </div>
@@ -101,6 +74,40 @@
             "label": "taille des textes",
             "default": "15"
         }
+    ],
+    "max_blocks":8,
+    "blocks":[
+        {
+            "name":"uneLocation",
+            "type":"uneLocation",
+            "settings":[
+                {
+                    "id":"Ville",
+                    "type":"text",
+                    "label":"Ville",
+                    "default":"Paris"
+                },
+                {
+                    "id":"adresse",
+                    "type":"text",
+                    "label":"Adresse",
+                    "default":"rue"
+                },
+                {
+                    "id":"NumDep",
+                    "type":"text",
+                    "label":"Numero de département",
+                    "default":"75000"
+                },
+                {
+                    "id":"pays",
+                    "type":"text",
+                    "label":"Pays",
+                    "default":"France"
+                }
+            ]
+        }
+        
     ]
 }
 {% endschema %}
@@ -109,8 +116,7 @@
 .locations{
     display:grid;
     background-color: {{ bg_color }};
-    margin-right:100px;
-    margin-left:100px;
+    width: 80%;
     margin-top:25px;
     margin-bottom:25px;
 }
