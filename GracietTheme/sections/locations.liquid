@@ -13,32 +13,32 @@
     </h2>
     <div class="locations-Alllocations">
         {% for location in DeliveryLocationGroup %}
+            ICI<div class="locations-oneLocation">
+                <p> {{ location.name }} </p>
+                <p> {{ location.adresse }}</p>
+            </div>
+        {% endfor %}
+        ICI{% for location in QueryRoot.locations %}
             <div class="locations-oneLocation">
                 <p> {{ location.name }} </p>
                 <p> {{ location.adresse }}</p>
             </div>
         {% endfor %}
-        {% for location in QueryRoot.locations %}
-            <div class="locations-oneLocation">
-                <p> {{ location.name }} </p>
-                <p> {{ location.adresse }}</p>
-            </div>
-        {% endfor %}
-        {% for location in InventoryLevel.location %}
-            <div class="locations-oneLocation">
-                <p> {{ location.name }} </p>
-                <p> {{ location.adresse }}</p>
-            </div>
-        {% endfor %}
-
-        {% for location in Order.physicalLocation %}
+        ICI{% for location in InventoryLevel.location %}
             <div class="locations-oneLocation">
                 <p> {{ location.name }} </p>
                 <p> {{ location.adresse }}</p>
             </div>
         {% endfor %}
 
-        {% for location in FulfillmentService.location %}
+        ICI{% for location in Order.physicalLocation %}
+            <div class="locations-oneLocation">
+                <p> {{ location.name }} </p>
+                <p> {{ location.adresse }}</p>
+            </div>
+        {% endfor %}
+
+        ICI{% for location in FulfillmentService.location %}
             <div class="locations-oneLocation">
                 <p> {{ location.name }} </p>
                 <p> {{ location.adresse }}</p>
