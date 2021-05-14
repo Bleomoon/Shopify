@@ -1,9 +1,4 @@
 {% comment %} Ici l'attribution des valeur du schéma {% endcomment %}
-{% assign h2_font_size = section.settings.tailleTitre1 | append:'px' %}
-{% assign h2_color = section.settings.couleurTitre1 %}
-{% assign h3_font_size = section.settings.tailleTitre2 | append:'px' %}
-{% assign h3_color = section.settings.couleurTitre2 %}
-
 {% comment %} Position du texte {% endcomment %}
 {% if section.settings.RightLeft == true %} {%comment%} Alors a droite{%endcomment%}
     {% assign positionContenu = 1 %}
@@ -12,10 +7,10 @@
 {% endif %}
 
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
-<div class="collectionVedette">
-    <div class="collectionVedette-contenu">
-        <h3 class="collectionVedette-h3">COLLECTION</h3>
-        <h2 class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
+<div style="url('{{ section.settings.collectionImg | img_url:'5760x5760' }}'" class="collectionVedette">
+    <div style="grid-column: {{ positionContenu }};" class="collectionVedette-contenu">
+        <h3 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.couleurTitre2 }};" class="collectionVedette-h3">COLLECTION</h3>
+        <h2 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.couleurTitre1 }};" class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
         <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
     </div>
 </div>
@@ -58,13 +53,13 @@ Elle a un nom, une image et un url {%endcomment%}
                 "type": "text",
                 "id": "tailleTitre1",
                 "label": "taille du titre 1",
-                "default": "11"
+                "default": "25"
             },
             {
                 "type": "text",
                 "id": "tailleTitre2",
                 "label": "taille du titre 2",
-                "default": "11"
+                "default": "25"
             },
             {
                 "type": "checkbox",
@@ -82,17 +77,11 @@ Elle a un nom, une image et un url {%endcomment%}
     }
 {% endschema %}
 
-{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
-
-{% assign h2_color = section.settings.couleurTitle %}
-positionContenu
 {%comment%} Ici le style css de colelctionShow {%endcomment%}
 {% style %}
     .collectionVedette{
         margin-top:25px;
         margin-bottom:25px;
-
-        background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');
 
         display:grid;
         grid-template-columns: repeat(2, 1fr);
@@ -100,17 +89,12 @@ positionContenu
     .collectionVedette-contenu{
         display:grid;
         width:80%;
-        grid-column: {{ positionContenu }};
     }
     .collectionVedette-h2{
-        font-size: {{ h2_font_size }};
-        color: {{ h2_color }};
         font-weight:900;
         width:max-content;
     }
     .collectionVedette-h3{
-        font-size: {{ h3_font_size }};
-        color: {{ h3_color }};
         font-weight:700;
         width:max-content;
     }
