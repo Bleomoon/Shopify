@@ -1,14 +1,14 @@
 {% comment %} assign les value du schema {% endcomment %}
-{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
-{% assign h2_text_align = section.settings.titre_alignment %}
-{% assign h2_color = section.settings.couleurTitle %}
+{% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h1_text_align = section.settings.titre_alignment %}
+{% assign h1_color = section.settings.couleurTitle %}
 {% assign bg_color = section.settings.couleurFond %}
 
 {% comment %} le html du titre et des paragraphes {% endcomment %}
 <div class="livraisons-retours">
-  <h2 class="livraisons-retours-h2">
+  <h1 class="livraisons-retours-h1">
     {{ section.settings.title  }}
-  </h2>
+  </h1>
   {% for block in section.blocks %}
     <div class="livraisons-paragraphe" style="background-color: {{ block.settings.couleurFondParagraphe }}">
       <p style="font-size: {{ block.settings.Tailletexte | append: 'px' }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};">
@@ -112,10 +112,10 @@
     margin-left:25px;
   }
 
-  .livraisons-retours-h2{
-    color: {{ h2_color }} ;
-    font-size: {{ h2_font_size }};
-    text-align: {{ h2_text_align }};
+  .livraisons-retours-h1{
+    color: {{ h1_color }} ;
+    font-size: {{ h1_font_size }};
+    text-align: {{ h1_text_align }};
   }
 
   .livraisons-paragraphe{

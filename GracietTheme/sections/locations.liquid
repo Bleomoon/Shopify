@@ -1,0 +1,128 @@
+{% comment %} assign les value du schema {% endcomment %}
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle %}
+{% assign bg_color = section.settings.couleurFond %}
+{% assign bloc_color = section.settings.Couleurtexte %}
+{% assign bloc_font_size = section.settings.Tailletexte %}
+
+{% comment %} le html du titre et des locations {% endcomment %}
+<div class="locations">
+    <h2 class="locations-h2">
+      {{ section.settings.title  }}
+    </h2>
+    <div class="locations-Alllocations">
+        {% for location in locations %}
+            <div class="locations-oneLocation">
+                <p> {{ location.name }} </p>
+                <p> {{ location.adresse }}</p>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+  
+  {% comment %} le schema du paragraphe {% endcomment %}
+  {% schema %}
+    {
+      "name":"livraisons_retours",
+      "settings":[
+        {
+          "id":"title",
+          "type":"text",
+          "label":"Titre",
+          "default":"Mon titre"
+        },
+        {
+          "type": "color",
+          "id": "couleurTitle",
+          "label": "Couleur du titre",
+          "default": "#222222"
+        },
+        {
+          "type": "text",
+          "id": "tailleTitre",
+          "label": "taille du titre",
+          "default": "25"
+        },
+        {
+          "type": "radio",
+          "id": "titre_alignment",
+          "options": [
+            { "value": "Left", "label": "Gauche"},
+            { "value": "Center", "label": "Milieu"},
+            { "value": "Right", "label": "Droite"}
+          ],
+          "label": "Alignement du titre"
+        },
+        {
+          "type": "color",
+          "id": "couleurFond",
+          "label": "Couleur du fond",
+          "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "Couleurtexte",
+            "label": "Couleur des textes",
+            "default": "#222222"
+        },
+        {
+          "type": "text",
+          "id": "Tailletexte",
+          "label": "taille des textes",
+          "default": "15"
+        }
+      ],
+      "max_blocks": 8,
+      "blocks": [
+        {
+          "type":"oneLocation",
+          "name":"oneLocation",
+          "settings": [
+            {
+              "id":"ligne",
+              "type":"texte",
+              "label":"Numero de ligne (nb ou nb/nb) max 2",
+              "default":"1"
+            },
+            {
+                "id":"colonne",
+                "type":"texte",
+                "label":"Numero de colonne (nb ou nb/nb) max 4",
+                "default":"1"
+            }
+          ]
+        }
+      ]
+    }
+  {% endschema %}
+  
+  {% style %}
+    .locations{
+      display:grid;
+      background-color: {{ bg_color }};
+      margin-right:100px;
+      margin-left:100px;
+      margin-top:25px;
+      margin-bottom:25px;
+    }
+  
+    .locations-h2{
+      color: {{ h2_color }} ;
+      font-size: {{ h2_font_size }};
+      text-align: {{ h2_text_align }};
+    }
+  
+    .locations-Alllocations{
+        display:grid;
+        margin-top:15px;
+        margin-bottom:15px;
+        grid-template-columns:repeat(4,1fr);
+        color: {{ bloc_color }};
+        font-size: {{ bloc_font_size }};
+    }
+
+    .locations-oneLocation{
+      display:grid;
+    }
+  {% endstyle %}
