@@ -21,10 +21,12 @@
 {% endif %}
 
 {%comment%} Le html  de notre bloc {%endcomment%}
-<div class="iconsList">
+<div>
   <h2 class="iconesList-h2">
     {{ section.settings.titre }}
   </h2>
+</div>
+<div class="iconsList">
   {%for block in section.blocks %}
     <div class="icons">
       <img class="icons-img" alt="{{ block.settings.listTitre }}" src="{{ block.settings.icons | img_url: '300x300' }}">
@@ -39,7 +41,7 @@
 Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%}
 {% schema %}
 {
-  "name":"iconsListVertical",
+  "name":"iconsList",
   "settings": [
     {
       "id":"VerticalHorizontal",
@@ -138,6 +140,7 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
     grid-template-columns:repeat( {{ nbMaxCol }} ,1fr);
     grid-template-rows:repeat( {{ nbMaxLigne }} ,1fr);
     background-color: {{ bg_color }};
+    grid-gap:10px;
   }
 
   .iconesList-h2{
@@ -151,8 +154,8 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
     display:grid;
     justify-content:center;
     text-align:center;
-    font-size: {{ icone_h3_color }};
-    color: {{ icone_h3_font_size }};
+    font-size: {{ icone_h3_font_size }};
+    color: {{ icone_h3_color }};
   }
   
   .icons-h3{
@@ -160,14 +163,14 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
     margin:auto;
   }
 
-  @media screen and (max-width:1060px) {
+  @media screen and (min-width:1060px) and (max-width:600px) {
     .iconsList{
       grid-template-columns:repeat(2,1fr);
       grid-template-rows:repeat(4,1fr);
     }
   }
 
-  @media screen and (max-width:600px) {
+  @media screen and (min-width:600px) {
     .iconsList{
       grid-template-columns:repeat(1,1fr);
       grid-template-rows:repeat(8,1fr);
