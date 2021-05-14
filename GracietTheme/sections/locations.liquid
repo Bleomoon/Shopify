@@ -4,7 +4,7 @@
 {% assign h2_color = section.settings.couleurTitle %}
 {% assign bg_color = section.settings.couleurFond %}
 {% assign bloc_color = section.settings.Couleurtexte %}
-{% assign bloc_font_size = section.settings.Tailletexte %}
+{% assign bloc_font_size = section.settings.Tailletexte | append:'px' %}
 
 {% comment %} le html du titre et des locations {% endcomment %}
 <div class="locations">
@@ -12,7 +12,7 @@
       {{ section.settings.title  }}
     </h2>
     <div class="locations-Alllocations">
-        {% for location in locations %}
+        {% for location in DeliveryLocationGroup %}
             <div class="locations-oneLocation">
                 <p> {{ location.name }} </p>
                 <p> {{ location.adresse }}</p>
@@ -24,7 +24,7 @@
   {% comment %} le schema du paragraphe {% endcomment %}
   {% schema %}
     {
-      "name":"livraisons_retours",
+      "name":"Locations",
       "settings":[
         {
           "id":"title",
