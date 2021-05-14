@@ -1,0 +1,176 @@
+{% comment %} Ici l'attribution des valeur du schéma {% endcomment %}
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle %}
+{% assign bg_color = section.settings.couleurFond %}
+{% assign icone_h3_color = section.settings.couleurListTitre %}
+{% assign icone_h3_font_size = section.settings.listTailleTitre | append:'px' %}
+
+{%comment%} Délimite le nombre de ligne et col pour afficher en 2x4 ou en 4x2 {%endcomment%}
+{% if section.settings.VerticalHorizontal == true %}
+  {% assign nbMaxCol = 4 %} {% assign nbMaxLigne = 2 %}
+{% else %}
+  {% assign nbMaxCol = 2 %} {% assign nbMaxLigne = 4 %}
+{% endif %}
+
+{%comment%} SI on affiche la titre {%endcomment%}
+{% if section.settings.showTitle == true %}
+  {% assign displayTitre = 'grid' %}
+{% else %}
+  {% assign displayTitre = 'none' %}
+{% endif %}
+
+{%comment%} Le html  de notre bloc {%endcomment%}
+<div class="iconsList">
+  <h2 class="iconesList-h2">
+    {{ section.settings.titre }}
+  </h2>
+  {%for block in section.blocks %}
+    <div class="icons">
+      <img class="icons-img" alt="{{ block.settings.listTitre }}" src="{{ block.settings.icons | img_url: '300x300' }}">
+      <h3 class="icons-h3">
+        {{ block.settings.listTitre }}
+      </h3>
+    </div>
+  {%endfor%}
+</div>
+
+{%comment%} Le schema de notre sections sui comprend
+Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%}
+{% schema %}
+{
+  "name":"iconsListVertical",
+  "settings": [
+    {
+      "id":"VerticalHorizontal",
+      "type": "checkbox",
+      "label": "A l'horizontal ? ",
+      "default": true
+    },
+    {
+      "id":"titre",
+      "type":"text",
+      "label":"Titre",
+      "default":"Mon titre"
+    },
+    {
+      "id":"showTitle",
+      "type": "checkbox",
+      "label": "Afficher le titre ? ",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "couleurTitre",
+      "label": "Couleur du titre",
+      "default": "#222222"
+    },
+    {
+      "type": "text",
+      "id": "tailleTitre",
+      "label": "taille du titre",
+      "default": "25"
+    },
+    {
+      "type": "radio",
+      "id": "titre_alignment",
+      "options": [
+        { "value": "Left", "label": "Gauche"},
+        { "value": "Center", "label": "Milieu"},
+        { "value": "Right", "label": "Droite"}
+      ],
+      "label": "Alignement du titre"
+    },
+    {
+      "type": "color",
+      "id": "couleurFond",
+      "label": "Couleur du fond",
+      "default": "#ffffff"
+    },
+    {
+      "type":"text",
+      "id":"listTailleTitre",
+      "label":"Taille des titres des icones",
+      "default":"15"
+    },
+    {
+      "type": "color",
+      "id": "couleurListTitre",
+      "label": "Couleur des titres des icones",
+      "default": "#222222"
+    }
+  ],
+  "max_blocks":8,
+  "blocks":[
+    {
+      "type":"Icons",
+      "name":"oneIcons",
+      "settings":[
+        {
+          "type":"text",
+          "id":"listTitre",
+          "label":"Titre",
+          "default":"Mon titre"
+        },
+        {
+          "type":"image_picker",
+          "id":"icons",
+          "label":"L'icone"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "category":"Autre",
+      "name":"Icone et titre"
+    }
+  ]
+}
+{% endschema %}
+
+{%comment%} Le style de notre bloc {%endcomment%}
+{% style %}
+  .iconsList{
+    margin-top:25px;
+    margin-bottom:25px;
+    display:grid;
+    grid-template-columns:repeat( {{ nbMaxCol }} ,1fr);
+    grid-template-rows:repeat( {{ nbMaxLigne }} ,1fr);
+    background-color: {{ bg_color }};
+  }
+
+  .iconesList-h2{
+    font-size: {{ h2_font_size }};
+    color: {{ h2_color }};
+    text-align: {{ h2_text_align }};
+    display : {{ displayTitre }};
+  }
+
+  .icons{
+    display:grid;
+    justify-content:center;
+    text-align:center;
+    font-size: {{ icone_h3_color }};
+    color: {{ icone_h3_font_size }};
+  }
+  
+  .icons-h3{
+    width:max-content;
+    margin:auto;
+  }
+
+  @media screen and (max-width:1060px) {
+    .iconsList{
+      grid-template-columns:repeat(2,1fr);
+      grid-template-rows:repeat(4,1fr);
+    }
+  }
+
+  @media screen and (max-width:600px) {
+    .iconsList{
+      grid-template-columns:repeat(1,1fr);
+      grid-template-rows:repeat(8,1fr);
+    }
+  }
+{% endstyle %}
