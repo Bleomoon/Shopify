@@ -1,3 +1,4 @@
+<div class="productTemplate">
 {%comment%} Fiche Produit {%endcomment%}
 <div class="ficheProduct">
     {% assign current_variant = product.selected_or_first_available_variant %}
@@ -102,42 +103,192 @@
         </ul>
       </div>
     </div>
-    
-    
-  </div>
-  
-  <br><br><br>
+</div>
+  {% comment %} Les informations sur le produit : sa description et ces informations complémentaires qui sont : 
+  - Variants, Poids, balises, type, Modèle  {% endcomment %}
   <div class="infosComplementairesProduct">
-    <div class="infosComplementairesProduct-Titre">
-      <button class="infosComplementairesProduct-Btn" onclick=infosComplementairesProduct();>Informations supplémentaires</button>
-      <div class="infosComplementairesProduct-Show">
-       <p>I'm SHOWING THE INFORMATION of </p>
+    <div class="menu-infosComplementairesProduct">
+      <div id="menuButton-Description" class="menuButton-Description" onclick="switchMenuInformationsProduct(1);">
+        Description
+      </div>
+      <div id="menuButton-Informations" class="menuButton-Informations" onclick="switchMenuInformationsProduct(2);">
+        Informations complmentaires
       </div>
     </div>
-    <div class="infosComplementairesProduct-paragraphe">
-      <div class="infosComplementairesProduct-p">
-        <p>
-          {{ product.description }}
-        </p>
-      </div>
-      <div class="infosComplementairesProduct-Btn">
-        <button style="background:none;border:solid;"><i class="fas fa-cart-plus"></i></i> Entretien</button>
+    <div class="info-Description">
+      <p class="info-Contenu">
+        {{ product.description }}
+      </p>
+    </div>
+    <div class="info-Informations">
+      <div class="info-Contenu">
+        plein de truc
       </div>
     </div>
   </div>
+</div>
+{%comment%} Ici le style css {% endcomment %}
+{% style %}
+  .productTemplate{
+    display: grid;
+    width:80%;
+    margin-right:10%;
+    margin-left:10%;
+  }
+  /*CSS de la fiche d'un produit*/
+  .ficheProduct {
+    grid-column:1;
+    grid-row:1;
+  }
   
-  <br><br><br>
+  .ficheProduct-Img {
+  display: grid;
+  grid-column: 1/4;
+  grid-row: 1;
+  }
   
-  {% comment %} On fait une boucle de 1 a 4 et on ajoute les 4 premiers produits {% endcomment %}
-  <div class="listProductLike">
-    <h2>VOUS AIMEREZ AUSSI...</h2>
-    <div class="listProduit">
-      {% assign myCollection = product.Collections %}
-      {% for i in (1..4) %}
-        {% if myCollection.next_product %}
-          {{ 'Next product' | link_to: collection.next_product.url, collection.next_product.title }}
-        {% endif %}
-      {% endfor %}
-  </div>
+  .ficheProduit-BigImg {
+  grid-column: 2/4;
+  grid-row: 1/10;
+  }
   
-  <br><br><br>
+  .ficheProduct-SousImg {
+  grid-column: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: grid;
+  }
+  
+  .ficheProduct-SousImg-0 {
+  grid-row: 1/2;
+  }
+  
+  .ficheProduct-SousImg-1 {
+  grid-row: 3/4;
+  }
+  
+  .ficheProduct-SousImg-2 {
+  grid-row: 5/6;
+  }
+  
+  .ficheProduct-SousImg-3 {
+  grid-row: 7/8;
+  }
+  
+  .ficheProduct-SousImg-4 {
+  grid-row: 9/10;
+  }
+  
+  .ficheProduct-Contenu {
+  display: grid;
+  grid-column: 5/7;
+  grid-row: 1/2;
+  }
+  
+  .ficheProduct-Contenu-Title {
+  grid-column: 1;
+  grid-row: 1;
+  }
+  
+  .ficheProduct-OtherArticle {
+  display: grid;
+  grid-column: 2;
+  justify-content: end;
+  grid-row: 1;
+  }
+  
+  .ficheProduct-Desc {
+  grid-row: 3/5;
+  }
+  
+  .ficheProduct-personnalise {
+  grid-row: 6/7;
+  }
+  
+  .ficheProduct-Logos {
+  justify-content: end;
+  grid-row: 8;
+  }
+
+  .infosComplementairesProduct{
+    display:grid;
+    margin-top:25px;
+    margin-bottom:25px;
+    grid-column:1;
+    grid-row:2;
+  }
+
+  .menu-infosComplementairesProduct{
+    grid-column:1;
+    grid-row:1;
+    margin-right:15px;
+    display:grid;
+    grid-column:1/2;
+  }
+
+  .menuButton-Description{
+    background:none;
+    background-color:black;
+    color:white;
+    margin-bottom:10px;
+  }
+
+  .menuButton-Description:hover{
+    cursor:pointer;
+  }
+
+  .menuButton-Informations{
+    background:none;
+    color:gray;
+    background-color:white; 
+  }
+
+  .menuButton-Informations:hover{
+    cursor:pointer;
+  }
+
+  .info-Description{
+    display:grid;
+    border-left:solid;
+    grid-column:2;
+    grid-row:1;
+    grid-column:3/10;
+  }
+
+  .info-Informations{
+    display:none;
+    border-left:solid;
+    grid-column:2;
+    grid-row:1;
+    grid-column:3/10;
+  }
+  
+  .info-Contenu{
+    margin-left:15px;
+  }
+{% endstyle %}
+
+{%comment%} Ici le javascript {% endcomment %}
+<script>
+  function switchMenuInformationsProduct(num)
+  {
+    if (num == 1)
+    {
+      document.getElementById("menuButton-Description").style.background-color = "gray";
+      document.getElementById("menuButton-Description").style.color = "black";
+      document.getElementById("menuButton-Informations").style.background-color = "black";
+      document.getElementById("menuButton-Informations").style.color = "white";
+      document.getElementById("info-Description").style.display= "none";
+      document.getElementById("info-Informations").style.display = "grid";
+    }
+    else
+    {
+      document.getElementById("menuButton-Informations").style.background-color = "gray";
+      document.getElementById("menuButton-Informations").style.color = "black";
+      document.getElementById("menuButton-Description").style.background-color = "black";
+      document.getElementById("menuButton-Description").style.color = "white";
+      document.getElementById("info-Description").style.display = "grid";
+      document.getElementById("info-Informations").style.display = "none";
+    }
+  }
+</script>

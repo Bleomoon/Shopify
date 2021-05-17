@@ -33,7 +33,7 @@
             {% for block in section.blocks %}
                 {% if block.type == 'iconsPaiement' %}
                     <img alt="{{ block.settings.paiementTitre }}" src={{ block.settings.paiementIcon | img_url: '50x50'}}>
-                    {% if allPaiements == '' %}
+                    {% if allPaiements == '(' %}
                         {% assign allPaiements = allPaiements | append: block.settings.paiementTitre %}
                     {% else %}
                         {% assign allPaiements = allPaiements | append: ', ' | append: block.settings.paiementTitre %}
@@ -178,7 +178,7 @@
     margin-top: 25px;
     margin-bottom:0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3,1fr);
     top: 0;
     align-items: center;
     font-size: 1rem;
@@ -201,6 +201,7 @@
     display:grid;
     grid-template-rows: repeat(1,1fr);
     grid-template-columns: repeat(6,1fr);
+    margin:auto;
 }
 
 .newsletter{
@@ -210,7 +211,7 @@
 }
 
 .contactText{
-    padding :10px;
+
 }
 
 .contactSubmit{
@@ -253,7 +254,7 @@
     }
 }
 
-@media screen and (max-width:576px) {
+@media screen and (max-width:700px) {
     .footer {
         grid-template-columns: repeat(1,1fr);
     }
