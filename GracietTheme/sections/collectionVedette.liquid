@@ -1,15 +1,18 @@
+{% comment %} Ici l'attribution des valeur du schéma {% endcomment %}
+{% comment %} Position du texte {% endcomment %}
+{% if section.settings.RightLeft == true %} {%comment%} Alors a droite{%endcomment%}
+    {% assign positionContenu = 1 %}
+{% else %} {%comment%} sinon a gauche {%endcomment%}
+    {% assign positionContenu = 2 %}
+{% endif %}
+
 {%comment%} Ici le html d'affichage d'une collection {%endcomment%}
-<div class="collectionVedette">
-    {% if section.settings.RightLeft == true %} {%comment%} Alors a droite{%endcomment%}
-        {% assign positionOfMyContent = 5 %}
-    {% else %} {%comment%} sinon a gauche {%endcomment%}
-        {% assign positionOfMyContent = 3 %}
-    {% endif %}
-    <div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
-    <div style="grid-column: {{ positionOfMyContent }}" class="collectionVedette-contenu">
-            <h2 style="font-size:{{section.settings.tailleTitre1 | append:'px'}}; color: {{section.settings.color_borders}}" class="collectionVedette-h2">COLLECTION</h2>
-            <h1 style="font-size:{{section.settings.tailleTitre2 | append:'px'}}; color: {{section.settings.color_borders}}" class="collectionVedette-h1">{{ section.settings.collectionTitle }}</h1>
-            <a class="collectionVedette-a" href="{{ section.settings.collectionUrl }}"><span class="collectionVedette-span-a">Decouvrir</span></a>
+<div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
+    <div style="grid-column: {{ positionContenu }};" class="collectionVedette-contenu">
+        <h3 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.couleurTitre2 }};" class="collectionVedette-h3">COLLECTION</h3>
+        <h2 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.couleurTitre1 }};" class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
+        <span class="collectionVedette-span-a">
+            <a style="text-align: {{ section.settings.boutton_alignment }}; color: {{ section.settings.couleurboutton }};" class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
         </div>
     </div>
 </div>
@@ -38,27 +41,49 @@ Elle a un nom, une image et un url {%endcomment%}
             },
             {
                 "type": "color",
-                "id": "color_borders",
-                "label": "Title colors",
-                "default": "#d35400"
+                "id": "couleurTitre1",
+                "label": "Couleur titre 1",
+                "default": "#222222"
             },
             {
-            "type": "text",
-            "id": "tailleTitre1",
-            "label": "taille du titre 1",
-            "default": "11"
+                "type": "color",
+                "id": "couleurTitre2",
+                "label": "Couleur de 'Collection'",
+                "default": "#222222"
             },
             {
-            "type": "text",
-            "id": "tailleTitre2",
-            "label": "taille du titre 2",
-            "default": "11"
+                "type": "color",
+                "id": "couleurboutton",
+                "label": "Couleur du boutton",
+                "default": "#ffffff"
             },
             {
-            "type": "checkbox",
-            "id": "RightLeft",
-            "default": true,
-            "label": "Position du texte"
+                "type": "text",
+                "id": "tailleTitre1",
+                "label": "taille du titre 1",
+                "default": "25"
+            },
+            {
+                "type": "text",
+                "id": "tailleTitre2",
+                "label": "taille de 'Collection'",
+                "default": "25"
+            },
+            {
+                "type": "checkbox",
+                "id": "RightLeft",
+                "default": true,
+                "label": "Position du texte"
+            },
+            {
+                "type": "radio",
+                "id": "boutton_alignment",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement du boutton"
             }
         ],
         "presets":[
@@ -70,53 +95,69 @@ Elle a un nom, une image et un url {%endcomment%}
     }
 {% endschema %}
 
-
 {%comment%} Ici le style css de colelctionShow {%endcomment%}
 {% style %}
-    .collectionVedetteFirst{
+    .collectionVedette{
         margin-top:25px;
         margin-bottom:25px;
-        height:500px;
-        background-color:#ffffff;
-    }
-    .collectionVedette{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
         position:sticky;
-        height:inherit; 
+        height:670px; 
         background-position:center;
-        background-attachment: scroll, local;
         background-repeat:no-repeat;
         background-size:cover;
-        grid-template-columns:repeat(7,1fr);
-        grid-template-rows:repeat(7,1fr);
-        display:grid;
         box-sizing:border-box;
     }
     .collectionVedette-contenu{
         display:grid;
-        grid-row:3/5;
+        width:80%;
+        margin:auto;
     }
-    .collectionVedette-h1{
-        font-size:xx-large;
-        grid-row:4;
+    .collectionVedette-h2{
         font-weight:900;
         width:max-content;
     }
-    .collectionVedette-h2{
-        grid-row:3;
+    .collectionVedette-h3{
         font-weight:700;
         width:max-content;
     }
+
     .collectionVedette-span-a{
-        border: 2px inset white;
-        right:0;
-        position:relative;
+        display:block;
+        text-align:end;
+        margin:right:15px;
     }
     .collectionVedette-a{
         background:none;
         text-decoration:none;
-        color:white;
-        grid-row:5;
-        display:grid;
-        justify-content:center;
+        margin:auto;
+        border:groove;
+        padding:5px;
+    }
+    .collectionVedette-a:hover{
+        background-color:black;
+        border:none;
+    }
+
+    @media screen and (max-width:1000px) and  (min-width:600px)
+    {
+        .collectionVedette{
+            display:flex;
+            text-align:center;
+            background-size:contain;
+            height:600px;
+        }
+    }
+
+    @media screen and (max-width:600px) and  (min-width:0px)
+    {
+        .collectionVedette{
+            display:flex;
+            text-align:center;
+            background-size:contain;
+            height:300px;
+            width:auto;
+        }
     }
 {% endstyle %}

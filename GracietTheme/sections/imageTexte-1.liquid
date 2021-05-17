@@ -1,37 +1,33 @@
 {%comment%} Ici la prise en compte du schema {%endcomment%}
-{% assign h1_font = section.settings.fontTitre | font_face %}
-{% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
-{% assign h1_text_align = section.settings.titre_alignment %}
-{% assign h1_color = section.settings.couleurTitle%}
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle%}
 {% assign bg_color = section.settings.couleurFond %}
 
+{% if section.settings.rightLeft == true %}
+    {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
+{% else %}
+    {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
+{% endif %}
+
 {%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
-<div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte">
-  {% if section.settings.rightLeft == true %}
-    {% assign numColImg = 3 %} {% assign numColTexte = 2 %}
-  {% else %}gi
-    {% assign numColImg = 2 %} {% assign numColTexte = 3 %}
-  {% endif %}
-  <div style="grid-column: {{ numColImg }};" class="imageTexte-img">
-    <img class="imageTexte-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
+<div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte-1">
+  
+  <div class="imageTexte-1-img">
+    <img class="imageTexte-1-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
   </div>
-  <div style="grid-column: {{ numColTexte }};" class="imageTexte-texte">
-    <h1 class="imageTexte-1-h1">
+
+  <div class="imageTexte-1-texte">
+    <h2 class="imageTexte-1-h2">
       {{section.settings.title }}
-    </h1>
+    </h2>
     {% for block in section.blocks %}
       {% if block.type == 'composeSubTitle' %}
-        {% assign h2_font_size = block.settings.tailleSubTitre | append:'px' %}
-        {% assign h2_text_align = block.settings.subtitre_alignment %}
-        {% assign h2_color = block.settings.couleurSubTitle%}
-        <h2 style="text-align: {{ h2_text_align }}; color: {{ h2_color }}; font-size:{{ h2_font_size }};"> 
+        <h3 style="text-align: {{ block.settings.subtitre_alignment }}; color: {{ block.settings.couleurSubTitle }}; font-size: {{ block.settings.tailleSubTitre | append:'px' }};"> 
           {{ block.settings.subTitle }} 
-        </h2>
+        </h3>
       {% else %}
-        {% assign div_font_size = block.settings.tailleTexte | append:'px' %}
-        {% assign div_text_align = block.settings.text_alignment %}
-        {% assign div_color = block.settings.couleurTexte %}
-        <div style="text-align: {{ div_text_align }}; color: {{ div_color }}; font-size:{{ div_font_size }};" >
+        <div style="text-align: {{ block.settings.text_alignment }}; color: {{ block.settings.couleurTexte }}; font-size: {{ block.settings.tailleTexte | append:'px' }};" >
           {{ block.settings.text }}
         </div>
       {% endif %}
@@ -67,12 +63,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "default": "75"
     },
     {
-      "type": "font_picker",
-      "label": "style de texte",
-      "id": "fontTitre",
-      "default": "claire_news_n3"
-    },
-    {
       "id":"image",
       "type":"image_picker",
       "label":"Mon image"
@@ -88,23 +78,13 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
       "id": "couleurFond",
       "label": "Couleur du fond",
       "default": "#ffffff"
-    },
-    {
-      "type": "radio",
-      "id": "titre_alignment",
-      "options": [
-        { "value": "Left", "label": "Gauche"},
-        { "value": "Center", "label": "Milieu"},
-        { "value": "Right", "label": "Droite"}
-      ],
-      "label": "Alignement du titre"
     }
   ],
   "max_blocks":8,
   "blocks":[
     {
       "type":"composeSubTitle",
-      "name":"composeSubTitle",
+      "name":"Sous Titre",
       "settings":[
           {
             "id":"subTitle",
@@ -125,12 +105,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
             "default": "75"
           },
           {
-            "type": "font_picker",
-            "label": "style de texte",
-            "id": "fontSousTitre",
-            "default": "claire_news_n3"
-          },
-          {
             "type": "radio",
             "id": "subtitre_alignment",
             "options": [
@@ -144,7 +118,7 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
     },
     {
       "type":"composeTexte",
-      "name":"composeTexte",
+      "name":"Texte",
       "settings":[
         {
           "id":"text",
@@ -163,12 +137,6 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
           "id": "tailleTexte",
           "label": "taille du texte",
           "default": "75"
-        },
-        {
-          "type": "font_picker",
-          "label": "style de texte",
-          "id": "fontTexte",
-          "default": "claire_news_n3"
         },
         {
           "type": "radio",
@@ -192,54 +160,67 @@ richtext avec choix couleurs et tailles textes {%endcomment%}
 }
 {% endschema %}
 
-
+<div class="imageTexte-1-img" style=
+"text-align: {{ textAlignImg }}; 
+grid-column: {{ numColImg }};"></div>
 {%comment%} Ici le style css d'image et texte {%endcomment%}
 {% style %}
-  .a{
-    text-decoration:none;
-    color:black;
-  }
-  a:hover{
-    color:gray;
-  }
-  .imageTexte{
+  .imageTexte-1{
+    margin:auto;
     margin-top:25px;
     margin-bottom:25px;
     display:grid;
     justify-content:center;
     grid-gap:1%;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(2,1fr);
+    width:80%;
   }
-  .imageTexte-1-h1{
-    font-style: {{ h1_font.style }};
-    font-weight: {{ h1_font.weight }};
-    font-family: {{ h1_font.family }};
-    font-size: {{ h1_font_size }};
-    text-align: {{ h1_text_align }};
-    color: {{ h1_color }};
-    width: max-content;
-  }
-  .imageTexte-img{
-    height:auto;
+
+  .imageTexte-1-img{
     grid-row:1;
+    grid-column: {{ numColImg }};
   }
-  .imageTexte-texte{
+
+  .imageTexte-1-texte{
     margin-top:25px;
     margin-bottom:25px;
     display:grid;
     grid-row:1;
-    text-align:center;
+    grid-column: {{ numColTexte }};
   }
 
-  @media screen and (max-width:1000px) {
-  .imageTexte{
-  grid-template-columns:repeat(2,1fr);
+  .imageTexte-1-h2{
+    font-size: {{ h2_font_size }};
+    text-align: {{ h2_text_align }};
+    color: {{ h2_color }};
+    width: max-content;
+    margin:auto;
   }
+
+  @media screen and (max-width:1200px) {
+    .imageTexte-1{
+      margin-right:0;
+      margin-left:0;
+      width:100%;
+    }
   }
   
-  @media screen and (max-width:576px) {
-  .imageTexte{
-  grid-template-columns:repeat(1,1fr);
-  }
+  @media screen and (max-width:800px) {
+    .imageTexte-1{
+      grid-template-columns:repeat(1,1fr);
+      margin-right:0;
+      margin-left:0;
+      width:100%;
+    }
+    
+    .imageTexte-1-img{
+      grid-column:1;
+      grid-row:1;
+    }
+
+    .imageTexte-1-texte{
+      grid-column:1;
+      grid-row:2;
+    }
   }
 {% endstyle %}
