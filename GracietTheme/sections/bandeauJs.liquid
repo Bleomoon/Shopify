@@ -1,5 +1,5 @@
 {% comment %} Ici assignement des valeurs {% endcomment %}
-{% assign allImagesUrl = '' | split '' %}
+{% assign allImagesUrl = '' %}
 {% for block in section.blocks %}
   {% assign myImgUrl = block.settings.sliderImage | img_url: '5760x5760' %}
   {% assign allImagesUrl = '' | append: ', ' | append: myImgUrl %}
