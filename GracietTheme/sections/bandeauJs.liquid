@@ -1,3 +1,12 @@
+{% comment %} Ici assignement des valeurs {% endcomment %}
+{% assign allImagesUrl = '' | split '' %}
+{% for block in section.blocks %}
+  {% assign myImgUrl = block.settings.sliderImage | img_url: '5760x5760' %}
+  {% assign allImagesUrl = '' | append: ', ' | append: myImgUrl %}
+  {{ allImagesUrl }}
+{% endfor %}
+{% assign tableauImages = allImagesUrl | split ', ' %}
+
 {% comment %} ici le html d'affichage du site {% endcomment %}
 <div class="slider">
   {% for block in section.blocks %}
@@ -83,6 +92,7 @@
   .oneSlideH3{
     font-style:italic;
     font-family:cursive;
-    margin:auto;
+    margin-top:auto;
+    margin-bottom:auto;
   }
 {% endstyle %}
