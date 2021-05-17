@@ -1,47 +1,261 @@
-<footer class="footer">
-    <div class="topFooter"> 
-        <div class="topFooter-contact">
-            <button class="buttonRef">
-			    <i class="fab fa-facebook"></i>
-		    </button>
+{% comment %} Initialise les valeurs {% endcomment %}
+{% assign texte_color = section.settings.couleurTexte %}
+{% assign texte_size = section.settings.tailleTexte | append: 'px' %}
 
-            <button class="buttonRef">
-			    <i class="fas fa-instagram"></i>
-            </button>
-            <br><br><br>
-            <p>CONTACT</p> <br>
-            <p>contact@sylvie-strohl.com</p><br>
-            <p> - </p>
+{% comment %} Le html de la page {% endcomment %}
+<footer class="footer">
+    <div class="reseaux">
+        <div class="iconesReseaux">
+        {% for block in section.blocks %}
+            {% if block.type == 'iconsReseaux' %}
+                <a class="aRef" href="{{ block.settings.reseauUrl }}">
+                    <img alt="{{ block.settings.reseauIcon }}" src={{ block.settings.reseauIcon | img_url: '50x50'}}>
+                </a>
+            {% endif %}
+        {% endfor %}
         </div>
-        <div class="topFooter-Newsletter">
-            <p>Inscrivez-vous à notre newsletter pour suivre nos actualités.</p><br>
-            <form action="newsletter" method="post">
-                <input type="text" value="EMAIL"><br><br>
-                <input style="background-color: black;color: white;" type="button" value="S'INSCRIRE">
-            </form>
-        </div>
-        <div class="topFooter-Paiement">
-            <i class="fab fa-facebook"></i>
-            <i class="fab fa-cc-mastercard"></i>
-            <i class="fab fa-cc-visa"></i>
-            <i class="fab fa-cc-paypal"></i>
-            <br>
-            <p style="font-weight:bold;">PAIEMENT SECURISE</p><br>
-            <p>(CB, Visa, MasterCard / Paypal)</p>
-            <br>
-            <p> - </p>
-        </div>
+        <p>©2021 SYLVIE STROHL</p>
     </div>
-    
-    <div class="botFooter"> 
-        <ul class="botFooter-ul">
-            <li class="botFooter-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Entretien">Entretien</a></li>
-            <li class="botFooter-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Mentions-Légales">Mentions Légales</a></li>
-            <li class="botFooter-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Conditions-Générales-De-Vente">Conditions Générales De Vente</a></li>
-            <li class="botFooter-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/pages/Livraisons-et-retours">Livraisons et retours</a></li>
-            <br><br>
-            <p> - </p><br>
-            <li class="botFooter-item"><p>©2021 SYLVIE STROHL – </p> Something</li>
-        </ul>
+    <div class="newsletter">
+        {% for block in section.blocks %}
+            {% if block.type == 'newsletter' %}
+                <h3>{{ block.settings.newsText }}</h3>
+                <form action="newsletter" method="post">
+                    <input class="contactText" type="text" value="EMAIL"><br><br>
+                    <input class="contactSubmit" type="button" value="S'INSCRIRE">
+                </form>
+            {% endif %}
+        {% endfor %}
     </div>
+    <div class="paiement">
+        {% assign allPaiements = '(' %}
+        <div class="iconesPaiement">
+            {% for block in section.blocks %}
+                {% if block.type == 'iconsPaiement' %}
+                    <img alt="{{ block.settings.paiementTitre }}" src={{ block.settings.paiementIcon | img_url: '50x50'}}>
+                    {% if allPaiements == '' %}
+                        {% assign allPaiements = allPaiements | append: block.settings.paiementTitre %}
+                    {% else %}
+                        {% assign allPaiements = allPaiements | append: ', ' | append: block.settings.paiementTitre %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% assign allPaiements = allPaiements | append: ')' %}
+        <strong>PAIEMENT SÉCURISÉ</strong>
+        <div><p> {{ allPaiements }} </p></div>
+    </div>
+    {% for block in section.blocks %}
+        {% if block.type == 'oneTexte' %}
+            <div class="oneTexte">
+                <h3> {{ block.settings.paragrapheTitre }} </h3>
+                <p> {{ block.settings.paragraphe }} </p>
+            </div>
+        {% elsif block.type == 'liens' %} {% comment %} liens {% endcomment %}
+            <div class="liens">
+                <h3> {{ block.settings.lienTitre }} </h3>
+                {{ block.settings.menu }}
+            </div>
+        {% endif %}
+    {% endfor %}
 </footer>
+
+{%comment%} ici le schema {%endcomment%}
+{% schema %}
+{
+    "name":"Pied de page",
+    "class":"section-footer",
+    "settings":[
+        {
+            "type": "color",
+            "id": "couleurTexte",
+            "label": "Couleur du texte",
+            "default": "#222222"
+        },
+        {
+            "type": "text",
+            "id": "tailleTexte",
+            "label": "taille du texte",
+            "default": "15"
+        }
+    ],
+    "max_blocks":50,
+    "blocks":[
+        {
+            "type":"liens",
+            "name":"Liens",
+            "settings":[
+                {
+                    "type":"text",
+                    "id":"lienTitre",
+                    "label":"Titre du bloc",
+                    "default":"Titre du bloc"
+                },
+                {
+                    "type":"link_list",
+                    "id":"menu",
+                    "label":"Selectionner un menu"
+                }
+            ]
+        },
+        {
+            "type":"oneTexte",
+            "name":"Texte",
+            "settings":[
+                {
+                    "type":"text",
+                    "id":"paragrapheTitre",
+                    "label":"Le titre du paragraphe",
+                    "default":"Parlez de votre entreprise"
+                },
+                {
+                    "type":"richtext",
+                    "id":"paragraphe",
+                    "label":"Le paragraphe",
+                    "default":"<p>Partagez...</p>"
+                }
+            ]
+        },
+        {
+            "type":"newsletter",
+            "name":"Formulaire de contact",
+            "limit": 1,
+            "settings":[
+                {
+                    "type":"text",
+                    "id":"newsText",
+                    "label":"Le titre",
+                    "default":"Newsletter"
+                }
+            ]
+        },
+        {
+            "type":"iconsPaiement",
+            "name":"Icones Paiement",
+            "settings":[
+                {
+                    "type":"image_picker",
+                    "id":"paiementIcon",
+                    "label":"Icone du paiement"
+                },
+                {
+                    "type":"text",
+                    "id":"paiementTitre",
+                    "label":"Titre paiement",
+                    "default":"VISA"
+                }
+            ]
+        },
+        {
+            "type":"iconsReseaux",
+            "name":"Icones Reseau",
+            "settings":[
+                {
+                    "type":"image_picker",
+                    "id":"reseauIcon",
+                    "label":"Icone du réseau"
+                },
+                {
+                    "type":"url",
+                    "id":"reseauUrl",
+                    "label":"Lien vers le réseaux social"
+                }
+            ]
+        }
+    ],
+    "presets":[
+        {
+            "category":"Footertest",
+            "name": "FooterTeste"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+/*CSS du FOOTER*/
+.footer {
+    margin-top: 25px;
+    margin-bottom:0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    top: 0;
+    align-items: center;
+    font-size: 1rem;
+    font-family: sans-serif;
+    position: static;
+    bottom: 0;
+    text-align: center;
+    background-color: #EEE;
+    color: {{ texte_color }};
+    font-size: {{ texte_size }};
+}
+
+.reseaux{
+    display:grid;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+
+.iconesReseaux{
+    display:grid;
+    grid-template-rows: repeat(1,1fr);
+    grid-template-columns: repeat(6,1fr);
+}
+
+.newsletter{
+    display: grid;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+
+.contactText{
+    padding :10px;
+}
+
+.contactSubmit{
+    color:white;
+    background-color:black;
+}
+
+.contactSubmit:hover{
+    color:black;
+    background-color:white;
+}
+
+.paiement{
+    display:grid;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+
+.iconesPaiement{
+    display:grid;
+    grid-template-rows: repeat(1,1fr);
+    grid-template-columns: repeat(6,1fr);
+}
+
+.oneTexte{
+    display:grid;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+
+.liens{
+    display:grid;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+
+@media screen and (max-width:1100px) {
+    .footer {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media screen and (max-width:576px) {
+    .footer {
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+{% endstyle %}

@@ -7,8 +7,6 @@
   {% for block in section.blocks %}
     {% capture _ %} 
       {% increment numCondition %} 
-      {% assign myIdP = 'conditions-generales-p-' | append: numCondition %}
-      {% assign myIdH3 = 'conditions-generales-plusMoins-' | append: numCondition %}
     {% endcapture %}
     <div class="conditions-generales-div">
       <h3 class="conditions-generales-h3">{{ block.settings.subtitle }}</h3>
