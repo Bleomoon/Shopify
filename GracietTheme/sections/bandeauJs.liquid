@@ -1,7 +1,7 @@
 {% comment %} ici le html d'affichage du site {% endcomment %}
 <div class="slider">
   {% for block in section.blocks %}
-    <div style="background-image: url('{{ block.settings.image_picker | img_url: '5760x5760' }}')" class="oneSlide">
+    <div alt="{{ block.settings.sliderTitre }}" style="background-image: url('{{ block.settings.sliderImage | img_url: '5760x5760' }}');" class="oneSlide">
       <h2 style="font-size: {{ block.settings.sliderTailleTitre | append: 'px' }}; text-align: {{ block.settings.sliderTitre_alignment }}; color: {{ block.settings.sliderCouleurTitre }};" class="oneSlideH3">
         {{ block.settings.sliderTitre }}
       </h2>
@@ -82,5 +82,6 @@
   .oneSlideH3{
     font-style:italic;
     font-family:cursive;
+    margin:auto;
   }
 {% endstyle %}
