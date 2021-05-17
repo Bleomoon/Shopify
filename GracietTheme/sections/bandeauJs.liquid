@@ -1,0 +1,80 @@
+{% comment %} ici le html d'affichage du site {% endcomment %}
+<div class="slider">
+  {% for block in section.blocks %}
+    <div style="background-image: url('{{ block.settings.image_picker | img_url: '5760x5760' }}')" class="oneSlide">
+      <h2 style="font-size: {{ block.settings.sliderTailleTitre | append: 'px' }}; text-align: {{ block.settings.sliderTitre_alignment }}; color: {{ block.settings.sliderCouleurTitre }};" class="oneSlideH3">
+        {{ block.settings.sliderTitre }}
+      </h2>
+    </div>
+  {% endfor %}
+</div>
+
+{% comment %} ici le schema de la section {% endcomment %}
+{% schema %}
+{
+  "name": "Slider",
+  "max_blocks":8,
+  "block": [
+    {
+      "name": "oneSlide",
+      "type": "oneSlide",
+      "settings":[
+        {
+          "id":"sliderImage",
+          "type": "image_picker",
+          "label":"Image du slide"
+        },
+        {
+          "id":"sliderTitre",
+          "type":"text",
+          "label":"Titre du slide",
+          "default":"Je suis un titre"
+        },
+        {
+          "type": "color",
+          "id": "sliderCouleurTitre",
+          "label": "Couleur du titre",
+          "default": "#222222"
+        },
+        {
+          "type": "text",
+          "id": "sliderTailleTitre",
+          "label": "taille du titre",
+          "default": "25"
+        },
+        {
+          "type": "radio",
+          "id": "sliderTitre_alignment",
+          "options": [
+            { "value": "Left", "label": "Gauche"},
+            { "value": "Center", "label": "Milieu"},
+            { "value": "Right", "label": "Droite"}
+          ],
+          "label": "Alignement du titre"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{%comment%} Ici le style css d'image et texte {%endcomment%}
+{% style %}
+  .slider{
+    margin-top:25px;
+    margin-bottom:25px;
+  }
+
+  .oneSlide{
+    position:sticky;
+    height:670px;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    box-sizing:border-box;
+  }
+  .oneSlideH3{
+    font-style:italic;
+    font-family:cursive;
+  }
+{% endstyle %}
