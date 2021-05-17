@@ -8,6 +8,9 @@
 {% assign tableauImages = allImagesUrl | split ', ' %}
 
 {% comment %} ici le html d'affichage du site {% endcomment %}
+<script>
+  
+</script>
 <div class="slider">
   {% for block in section.blocks %}
     <div alt="{{ block.settings.sliderTitre }}" style="background-image: url('{{ block.settings.sliderImage | img_url: '5760x5760' }}');" class="oneSlide">
@@ -96,3 +99,8 @@
     margin-bottom:auto;
   }
 {% endstyle %}
+
+{%comment%} Ici le javascript {%endcomment%}
+{% javascript %}
+
+{% endjavascript %}
