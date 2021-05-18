@@ -5,40 +5,44 @@
       {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
     
       {%comment%} Zone sur les images {%endcomment%}
-      <div class="ficheProduct-Img">
-        <div alt="{{ product.title }}" id="ficheProduit-BigImg" class="ficheProduit-BigImg">
-
-        </div>
-        
-        <div class="ficheProduct-SousImg">
-          {% assign ficheProductnbImg = 0 %}
-          {% for image in product.images %}
-            {% capture _ %}{% increment id %}{% endcapture %}
-            {% assign mysrc = image.src | img_url: 'compact' %}
-            {% assign myId = "ficheProduct-SousImg-{{ id }}" %}
-            <img id="ficheProduct-SousImg-{{ id }}" onclick=changeImageProduct(myId,mysrc); src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-          {% endfor %}
-        </div>
+      <div class="ficheProduct-SousImg">
+        {% assign ficheProductnbImg = 0 %}
+        {% for image in product.images %}
+          {% capture _ %}{% increment id %}{% endcapture %}
+          {% assign mysrc = image.src | img_url: 'compact' %}
+          {% assign myId = "ficheProduct-SousImg-{{ id }}" %}
+          <img class="SousImg-Img" id="ficheProduct-SousImg-{{ id }}" onclick=changeImageProduct(myId,mysrc); src="{{ image.src | img_url: 'small' }}" alt="{{ image.alt | escape }}">
+        {% endfor %}
       </div>
     
+      <div id="ficheProduit-BigImg" class="ficheProduit-BigImg">
+        <img class="BigImg-Image" src="{{ featured_image.src | img_url: '700x700' }}" alt="{{ featured_image.alt }}">
+        <button class="BigImg-Zoom"><i class="fas fa-search-plus"></i></button>
+        <button class="BigImg-Right" onclick="";><i class="fas fa-chevron-right"></i></button>
+        <button class="BigImg-Left" onclick="";><i class="fas fa-chevron-left"></i></button>
+      </div>
+
       {%comment%} Zone sur le contenu de la fiche produit {%endcomment%}
       <div class="ficheProduct-Contenu">
         <div class="ficheProduct-Haut">
-          {%comment%} Zone sur le titre {%endcomment%}
+          {%comment%} Zone sur le titre et le prix {%endcomment%}
           <h1 class="ficheProduct-Contenu-Title">{{ product.title }}</h1>
+          <h3 class="ficheProduct-Contenu-Prix">{{ product.price | money }}</h3>
 
           {%comment%} Zone des bouttons pour changer d'articles {%endcomment%}
           <div class="ficheProduct-OtherArticle">
-            <button class="buttonRef" style="grid-row:1;"><a class="aRef" href={{ collection.next_product.url }}>
+            <a class="aRef" href={{ collection.next_product.url }}>
+              <button class="buttonRef">
                 <i class="fas fa-chevron-right"></i>
-              </a></button>
+              </button>
+            </a>
           
-            <button class="buttonRef" style="grid-row:2;"><a class="aRef" href={{ collection.previous_product.url }}>
+            <a class="aRef" href={{ collection.previous_product.url }}>
+              <button class="buttonRef">
                 <i class="fas fa-chevron-left"></i>
-              </a></button>
+              </button>
+            </a>
           </div>
-
-          <h3 class="ficheProduct-Contenu-Prix">{{ product.price }}</h3>
         </div>
         
         {%comment%} Zone sur la description du produit {%endcomment%}
@@ -57,7 +61,9 @@
               {% endif %}
               {% endfor %}
             </select>
-            <input type="submit" name="add" id="add" value="Add to Cart" class="button">
+            <button type="submit" name="add" id="add" class="ajouterPanier">
+              <i class="fas fa-cart-plus"></i> Ajouter au panier
+            </button>
           </form>
           
         {% endform %}
@@ -178,6 +184,7 @@
     grid-column:1;
     grid-row:1;
     display:grid;
+    grid-template-columns:repeat(3,1fr);
   }
   
   .ficheProduct-Img {
@@ -187,23 +194,97 @@
   }
   
   .ficheProduit-BigImg {
-    grid-column: 2/4;
-    background-image:cover;
-    background-image: url('{{ featured_image | img_url: 'medium' }}');
-  }
-  
-  .ficheProduct-SousImg {
-    grid-column: 1;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: grid;
-    background-size:contain;
-  }
-  
-  .ficheProduct-Contenu {
-    display: grid;
     grid-column: 2;
     grid-row: 1;
+    display:grid;
+  }
+  
+  .BigImg-Image{
+    z-index:1;
+    grid-column:1;
+    grid-row:1;
+  }
+
+  .BigImg-Zoom{
+    z-index:2;
+    background-color:white;
+    grid-column:1;
+    grid-row:1;
+    width:max-content;
+    margin:auto;
+    margin-top:0;
+    margin-left:0;
+    padding:5px;
+    border:none;
+    color:black;
+  }
+
+  .BigImg-Zoom:hover{
+    background-color:black;
+    color:white;
+  }
+
+  .BigImg-Right{
+    z-index:2;
+    background-color:white;
+    grid-column:1;
+    grid-row:1;
+    width:max-content;
+    margin:auto;
+    margin-bottom:25px;
+    margin-right:0;
+    border:none;
+    color:black;
+  }
+
+  .BigImg-Right:hover{
+    background-color:black;
+    color:white;
+  }
+
+  .BigImg-Left{
+    z-index:2;
+    background-color:white;
+    grid-column:1;
+    grid-row:1;
+    width:max-content;
+    margin:auto;
+    margin-bottom:0;
+    margin-right:0;
+    border:none;
+    color:black;
+  }
+
+  .BigImg-Left:hover{
+    background-color:black;
+    color:white;
+  }
+
+  .ficheProduct-SousImg {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    background-size:contain;
+    height:700px;
+    overflow:auto;
+    width:max-content;
+  }
+
+  .SousImg-Img{
+    width:100%;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+  
+  .SousImg-Img:hover{
+    cursor:pointer;
+  }
+
+  .ficheProduct-Contenu {
+    display: grid;
+    grid-column: 3;
+    grid-row: 1;
+    margin:25px;
   }
   
   .ficheProduct-Haut{
@@ -213,17 +294,41 @@
   .ficheProduct-Contenu-Title {
     grid-column: 1;
     grid-row: 1;
+    font-size:20px;
+    font-family:cursive;
+    width:max-content;
   }
   
+  .ficheProduct-Contenu-Prix{
+    grid-column: 1;
+    grid-row: 2;
+    font-size:15px;
+    font-family:cursive;
+    width:max-content;
+  }
+
   .ficheProduct-OtherArticle{
     display:grid;
     grid-column: 2;
     grid-row: 1;
+    width:max-content;
+    margin:auto;
+    margin-top:0;
   }
 
-  .ficheProduct-Contenu-Prix{
-    grid-column: 1;
-    grid-row: 2;
+  .ajouterPanier{
+    padding:15px;
+    border:solid;
+    border-color:black;
+    background-color:white;
+    color:black;
+    margin-right:0;
+  }
+
+  .ajouterPanier:hover{
+    border:none;
+    background-color:black;
+    color:white;
   }
 
   .ficheProduct-Logos {
@@ -233,12 +338,11 @@
     border:solid;
     border-right:none;
     border-left:none;
+    margin:auto;
   }
 
   .logoDiv{
-    margin-top:5px;
-    margin-top:5px;
-    margin:auto;
+    margin:5px;
   }
 
   .infosComplementairesProduct{
@@ -340,13 +444,10 @@
     }
   }
 
-  function changeImageProduct(imgId, src)
+  function changeImageProduct(src, alt)
   {
-    var myImg = document.getElementById(imgId);
     var bigImg = document.getElementById("ficheProduit-BigImg");
-    var img = "url(" + src + ")";
 
-    bigImg.style.background-image = img;
-
+    bigImg.innerHTML = "<img src=" + src + " alt=" + alt + ">"
   }
 </script>

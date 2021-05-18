@@ -150,3 +150,38 @@ function conditionClick(num)
         p.style.display = "none"
     }
 }
+
+function switchMenu(numero)
+  {
+    var menuDesc = document.getElementById("menuButton-Description");
+    var menuInfo = document.getElementById("menuButton-Informations");
+    var infoDesc = document.getElementById("info-Description");
+    var infoInfo = document.getElementById("info-Informations");
+    
+    console.log("numero : " + numero);
+    if (numero < 2)
+    {
+        menuDesc.style.background-color = "gray";
+        menuDesc.style.color = "black";
+        menuInfo.style.background-color = "black";
+        menuInfo.style.color = "white";
+        infoDesc.style.display= "none";
+        infoInfo.style.display = "grid";
+    }
+    else
+    {
+        menuInfo.style.background-color = "gray";
+        menuInfo.style.color = "black";
+        menuDesc.style.background-color = "black";
+        menuDesc.style.color = "white";
+        infoDesc.style.display = "grid";
+        infoInfo.style.display = "none";
+    }
+  }
+
+  function changeImageProduct(src, alt)
+  {
+    var bigImg = document.getElementById("ficheProduit-BigImg");
+
+    bigImg.innerHTML = "<img src=" + src + " alt=" + alt + ">"
+  }
