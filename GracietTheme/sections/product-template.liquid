@@ -1,117 +1,118 @@
 <div class="productTemplate">
-{%comment%} Fiche Produit {%endcomment%}
-<div class="ficheProduct">
-    {% assign current_variant = product.selected_or_first_available_variant %}
-    {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-  
-    {%comment%} Zone sur les images {%endcomment%}
-    <div class="ficheProduct-Img">
-      <img class="ficheProduit-BigImg" alt="{{ product.title }}" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
-      <div class="ficheProduct-SousImg">
-        {%assign ficheProductnbImg = 0%}
-        {% for image in product.images %}
-        <a class="ficheProduct-SousImg-{%increment ficheProductnbImg%}" href="{{ image.src | img_url: 'large' }}">
-          <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-        </a>
-        {% endfor %}
-      </div>
-    </div>
-  
-    {%comment%} Zone sur le contenu de la fiche produit {%endcomment%}
-    <div class="ficheProduct-Contenu">
-      {%comment%} Zone sur le titre {%endcomment%}
-      <h1 class="ficheProduct-Contenu-Title">{{ product.title }}</h1>
-  
-      {%comment%} Zone des bouttons pour changer d'articles {%endcomment%}
-      <div class="ficheProduct-OtherArticle">
-        <button class="buttonRef" style="grid-row:1;"><a class="aRef" href={{ collection.next_product.url }}>
-            <i class="fas fa-chevron-right"></i>
-          </a></button>
-      
-        <button class="buttonRef" style="grid-row:2;"><a class="aRef" href={{ collection.previous_product.url }}>
-            <i class="fas fa-chevron-left"></i>
-          </a></button>
-      </div>
-  
-      {%comment%} Zone sur la description du produit {%endcomment%}
-      <div class="ficheProduct-Desc">{{ product.description }}</div>
-  
-      {%comment%} Zone sur le contenu personnalisé : prix/quantity etc {%endcomment%}
-      {% form "product", product %}
-        {%comment%}
-        <div class="ficheProduct-personnalise" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-          <select name="id" id="productSelect">
-            {% for variant in product.variants %}
-            {% if variant.available %}
-            <option value="{{ variant.id }}">
-              {{ variant.title }} - {{ variant.price | money_with_currency }}
-            </option>
-            {% else %}
-            <option disabled="disabled">
-              {{ variant.title }} - sold out
-            </option>
-            {% endif %}
-            {% endfor %}
-          </select>
-          {{ current_variant.price | money }}
-          <label for="Quantity">quantity</label>
-          <input type="number" id="Quantity" name="quantity" value="1" min="1">  
-          </div>
-          {%endcomment%}
-        <form action="/cart/add" method="post" enctype="multipart/form-data">
-          <select name="id">
-            {% for variant in product.variants %}
-            {% if variant.available == true %}
-            <option value="{{variant.id}}"> {{ variant.title }} for
-              {{ variant.price | money_with_currency }}</option>
-            {% else %}
-            <option disabled="disabled"> {{ variant.title }} - sold out!</option>
-            {% endif %}
-            {% endfor %}
-          </select>
-          <label >quantity</label>
-          <option value="{{ product.quantity }}">{{ product.quantity }}</option>
-          <input type="submit" name="add" id="add" value="Add to Cart" class="button">
-        </form>
-        
-      {% endform %}
-      {%comment%} Zone des logos Facebook/Twitter/Instagram {%endcomment%}
-      <div class="ficheProduct-Logos">
-        <button class="buttonRef"> <a class="aRef" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F">
-          <i class="fab fa-facebook"></i>
-        </a></button>
-      
-        <button class="buttonRef"><a class="aRef" href="http://twitter.com/share?text=http://OLIVIA%2090&url=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F"> 
-          <i class="fab fa-twitter"></i>
-        </a></button>
-      
-        <button class="buttonRef"> <a class="aRef" href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F&media=https://sylvie-strohl.com/wp-content/uploads/2019/12/OLIVIA-90-FACE-SANS-M2TAL.jpg&description=http://OLIVIA%2090">
-          <i class="fab fa-instagram"></i>
-        </a></button>
-      </div>
-  
-      {%comment%} Zone des produit associés {%endcomment%}
-      <div class="ficheProduct-associateProduct">
-        <button class="associateProductBtn" onclick=AssociateProductClick();>Produits associes <i class="fas fa-plus"></i></button>
-        <ul class="associateProduct">
-          {%assign associatePnbImg = 0%}
+  {%comment%} Fiche Produit {%endcomment%}
+  <div class="ficheProduct">
+      {% assign current_variant = product.selected_or_first_available_variant %}
+      {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+    
+      {%comment%} Zone sur les images {%endcomment%}
+      <div class="ficheProduct-Img">
+        <img class="ficheProduit-BigImg" alt="{{ product.title }}" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
+        <div class="ficheProduct-SousImg">
+          {%assign ficheProductnbImg = 0%}
           {% for image in product.images %}
-              <li class="associateProduct-products-{% increment associatePnbImg %}"><a href="{{ image.src | img_url: 'large' }}">
-                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-              </a></li>
+          <a class="ficheProduct-SousImg-{%increment ficheProductnbImg%}" href="{{ image.src | img_url: 'large' }}">
+            <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+          </a>
           {% endfor %}
-        </ul>
+        </div>
       </div>
-    </div>
-</div>
+    
+      {%comment%} Zone sur le contenu de la fiche produit {%endcomment%}
+      <div class="ficheProduct-Contenu">
+        {%comment%} Zone sur le titre {%endcomment%}
+        <h1 class="ficheProduct-Contenu-Title">{{ product.title }}</h1>
+    
+        {%comment%} Zone des bouttons pour changer d'articles {%endcomment%}
+        <div class="ficheProduct-OtherArticle">
+          <button class="buttonRef" style="grid-row:1;"><a class="aRef" href={{ collection.next_product.url }}>
+              <i class="fas fa-chevron-right"></i>
+            </a></button>
+        
+          <button class="buttonRef" style="grid-row:2;"><a class="aRef" href={{ collection.previous_product.url }}>
+              <i class="fas fa-chevron-left"></i>
+            </a></button>
+        </div>
+    
+        {%comment%} Zone sur la description du produit {%endcomment%}
+        <div class="ficheProduct-Desc">{{ product.description }}</div>
+    
+        {%comment%} Zone sur le contenu personnalisé : prix/quantity etc {%endcomment%}
+        {% form "product", product %}
+          {%comment%}
+          <div class="ficheProduct-personnalise" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+            <select name="id" id="productSelect">
+              {% for variant in product.variants %}
+              {% if variant.available %}
+              <option value="{{ variant.id }}">
+                {{ variant.title }} - {{ variant.price | money_with_currency }}
+              </option>
+              {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} - sold out
+              </option>
+              {% endif %}
+              {% endfor %}
+            </select>
+            {{ current_variant.price | money }}
+            <label for="Quantity">quantity</label>
+            <input type="number" id="Quantity" name="quantity" value="1" min="1">  
+            </div>
+            {%endcomment%}
+          <form action="/cart/add" method="post" enctype="multipart/form-data">
+            <select name="id">
+              {% for variant in product.variants %}
+              {% if variant.available == true %}
+              <option value="{{variant.id}}"> {{ variant.title }} for
+                {{ variant.price | money_with_currency }}</option>
+              {% else %}
+              <option disabled="disabled"> {{ variant.title }} - sold out!</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+            <label >quantity</label>
+            <option value="{{ product.quantity }}">{{ product.quantity }}</option>
+            <input type="submit" name="add" id="add" value="Add to Cart" class="button">
+          </form>
+          
+        {% endform %}
+        {%comment%} Zone des logos Facebook/Twitter/Instagram {%endcomment%}
+        <div class="ficheProduct-Logos">
+          <button class="buttonRef"> <a class="aRef" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F">
+            <i class="fab fa-facebook"></i>
+          </a></button>
+        
+          <button class="buttonRef"><a class="aRef" href="http://twitter.com/share?text=http://OLIVIA%2090&url=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F"> 
+            <i class="fab fa-twitter"></i>
+          </a></button>
+        
+          <button class="buttonRef"> <a class="aRef" href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fsylvie-strohl.com%2Fproduit%2Folivia-90%2F&media=https://sylvie-strohl.com/wp-content/uploads/2019/12/OLIVIA-90-FACE-SANS-M2TAL.jpg&description=http://OLIVIA%2090">
+            <i class="fab fa-instagram"></i>
+          </a></button>
+        </div>
+    
+        {%comment%} Zone des produit associés {%endcomment%}
+        <div class="ficheProduct-associateProduct">
+          <button class="associateProductBtn" onclick=AssociateProductClick();>Produits associes <i class="fas fa-plus"></i></button>
+          <ul class="associateProduct">
+            {%assign associatePnbImg = 0%}
+            {% for image in product.images %}
+                <li class="associateProduct-products-{% increment associatePnbImg %}"><a href="{{ image.src | img_url: 'large' }}">
+                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                </a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+  </div>
+
   {% comment %} Les informations sur le produit : sa description et ces informations complémentaires qui sont : 
   - Variants, Poids, balises, type, Modèle  {% endcomment %}
   <div class="infosComplementairesProduct">
     <div class="menu-infosComplementairesProduct">
-      <div id="menuButton-Description" class="menuButton-Description" onclick="switchMenuInformationsProduct(1);">
+      <div id="menuButton-Description" class="menuButton-Description" onclick=switchMenu(1);>
         Description
       </div>
-      <div id="menuButton-Informations" class="menuButton-Informations" onclick="switchMenuInformationsProduct(2);">
+      <div id="menuButton-Informations" class="menuButton-Informations" onclick=switchMenu(2);>
         Informations complmentaires
       </div>
     </div>
@@ -122,11 +123,48 @@
     </div>
     <div class="info-Informations">
       <div class="info-Contenu">
-        plein de truc
+        
+        {% comment %} l'affichage des variants {% endcomment %}
+        {% for product_option in product.options_with_values %}          
+            {% assign myvalues = '' %}
+            {% for value in product_option.values %}
+              {% if myvalues == '' %}
+                {% assign myvalues = myvalues %}
+              {% else %}
+                {% assign myvalues = myvalues | append: ', ' | append: value %}
+              {% endif %}
+            {% endfor %}
+            <div class="une-Info-Contenu">
+              <p>{{ product_option.name }}</p>
+              <p>{{ myvalues }}</p>
+            </div>
+        {% endfor %}
+
+        {% comment %} l'affichage des tags {% endcomment %}
+        {% assign mytags = '' %}
+        {% for tag in product.tags %}
+          {% if mytags == '' %}
+            {% assign mytags = tag %}
+          {% else %}
+            {% assign mytags = mytags | append: ', ' | append: tag %}
+          {% endif %}
+        {% endfor %}
+        <div class="une-Info-Contenu">
+          <p>Balises :</p> 
+          <p>{{ mytags }}</p>
+        </div>
+
+
+        {% comment %} l'affichage du type {% endcomment %}
+        <div class="une-Info-Contenu"> 
+          <p>Type : </p> 
+          <p>{{ product.type }} </p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 {%comment%} Ici le style css {% endcomment %}
 {% style %}
   .productTemplate{
@@ -221,6 +259,8 @@
   .menu-infosComplementairesProduct{
     grid-column:1;
     grid-row:1;
+    margin-top:auto;
+    margin-bottom:auto;
     margin-right:15px;
     display:grid;
     grid-column:1/2;
@@ -248,7 +288,7 @@
   }
 
   .info-Description{
-    display:grid;
+    display:none;
     border-left:solid;
     grid-column:2;
     grid-row:1;
@@ -256,7 +296,7 @@
   }
 
   .info-Informations{
-    display:none;
+    display:grid;
     border-left:solid;
     grid-column:2;
     grid-row:1;
@@ -265,30 +305,42 @@
   
   .info-Contenu{
     margin-left:15px;
+    display:grid;
+  }
+
+  .une-Info-Contenu{
+    grid-template-columns:repeat(2,1fr);
   }
 {% endstyle %}
 
-{%comment%} Ici le javascript {% endcomment %}
+{% comment %} Ici le javascript {% endcomment %}
+
 <script>
-  function switchMenuInformationsProduct(num)
+  function switchMenu(numero)
   {
-    if (num == 1)
+    var menuDesc = document.getElementById("menuButton-Description");
+    var menuInfo = document.getElementById("menuButton-Informations");
+    var infoDesc = document.getElementById("info-Description");
+    var infoInfo = document.getElementById("info-Informations");
+    
+    console.log("numero : " + numero);
+    if (numero < 2)
     {
-      document.getElementById("menuButton-Description").style.background-color = "gray";
-      document.getElementById("menuButton-Description").style.color = "black";
-      document.getElementById("menuButton-Informations").style.background-color = "black";
-      document.getElementById("menuButton-Informations").style.color = "white";
-      document.getElementById("info-Description").style.display= "none";
-      document.getElementById("info-Informations").style.display = "grid";
+      menuDesc.style.background-color = "gray";
+      menuDesc.style.color = "black";
+      menuInfo.style.background-color = "black";
+      menuInfo.style.color = "white";
+      infoDesc.style.display= "none";
+      infoInfo.style.display = "grid";
     }
     else
     {
-      document.getElementById("menuButton-Informations").style.background-color = "gray";
-      document.getElementById("menuButton-Informations").style.color = "black";
-      document.getElementById("menuButton-Description").style.background-color = "black";
-      document.getElementById("menuButton-Description").style.color = "white";
-      document.getElementById("info-Description").style.display = "grid";
-      document.getElementById("info-Informations").style.display = "none";
+      menuInfo.style.background-color = "gray";
+      menuInfo.style.color = "black";
+      menuDesc.style.background-color = "black";
+      menuDesc.style.color = "white";
+      infoDesc.style.display = "grid";
+      infoInfo.style.display = "none";
     }
   }
 </script>
