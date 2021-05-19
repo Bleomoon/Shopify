@@ -1,0 +1,130 @@
+{% comment %} Ici assignement des valeurs {% endcomment %}
+{% for block in section.blocks %}
+  {% capture _ %} {% increment intervalleMax %} {% endcapture %}
+{% endfor %}
+
+{% comment %} ici le html d'affichage du site {% endcomment %}
+<div class="slider">
+  {% for block in section.blocks %}
+    {% capture _ %} {% increment intervalle %} {% endcapture %}
+    <div id="oneSlide-{{ intervalle }}" class="oneSlide" alt="{{ block.settings.sliderTitre }}" style="display: none; background-image: url('{{ block.settings.sliderImage | img_url: '5760x5760' }}');">
+      <h2  class="oneSlideH2" style="font-size: {{ block.settings.sliderTailleTitre | append: 'px' }}; text-align: {{ block.settings.sliderTitre_alignment }}; color: {{ block.settings.sliderCouleurTitre }};">
+        {{ block.settings.sliderTitre }}
+      </h2>
+    </div>
+  {% endfor %}
+</div>
+
+{% comment %} ici le schema de la section {% endcomment %}
+{% schema %}
+{
+  "name": "Slider",
+  "max_blocks":8,
+  "blocks": [
+    {
+      "name": "oneSlide",
+      "type": "oneSlide",
+      "settings":[
+        {
+          "id":"sliderImage",
+          "type": "image_picker",
+          "label":"Image du slide"
+        },
+        {
+          "id":"sliderTitre",
+          "type":"text",
+          "label":"Titre du slide",
+          "default":"Je suis un titre"
+        },
+        {
+          "type": "color",
+          "id": "sliderCouleurTitre",
+          "label": "Couleur du titre",
+          "default": "#222222"
+        },
+        {
+          "type": "text",
+          "id": "sliderTailleTitre",
+          "label": "taille du titre",
+          "default": "25"
+        },
+        {
+          "type": "radio",
+          "id": "sliderTitre_alignment",
+          "options": [
+            { "value": "Left", "label": "Gauche"},
+            { "value": "Center", "label": "Milieu"},
+            { "value": "Right", "label": "Droite"}
+          ],
+          "label": "Alignement du titre"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Slider",
+      "category":"Bandeau"
+    }
+  ]
+}
+{% endschema %}
+
+{%comment%} Ici le style css d'image et texte {%endcomment%}
+{% style %}
+  .slider{
+    margin-top:25px;
+    margin-bottom:25px;
+  }
+
+  .oneSlide{
+    position:sticky;
+    height:670px;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    box-sizing:border-box;
+  }
+
+  .oneSlideH2{
+    font-style:italic;
+    font-family:cursive;
+    margin-top:auto;
+    margin-bottom:auto;
+  }
+
+  @media screen and (max-width:1000px) and (min-width:600px)
+  {
+    .oneSlide{
+      height:450px;
+    }
+  }
+  @media screen and (max-width:600px) and (min-width:0px)
+  {
+    .oneSlide{
+      height:300px;
+    }
+  } 
+{% endstyle %}
+
+{%comment%} Ici le javascript {%endcomment%}
+<script>
+  /*On récupère le slide max*/
+    var maxSlide = {{ intervalleMax | json }};
+    var Slide = 1;
+
+    /*toute les 2 secondes on change l'image*/
+    setInterval(changeSlide, 5000);
+
+    /*on change en display = none et display = grid pour l'image d'après*/
+    function changeSlide() {
+      document.getElementById("oneSlide-" + Slide).style.display = "none";
+      if (Slide == maxSlide) {
+        Slide = 1
+      }
+      else {
+        Slide++;
+      }
+      document.getElementById("oneSlide-" + Slide).style.display = "grid";
+    }
+</script>

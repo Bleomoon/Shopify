@@ -1,0 +1,223 @@
+{%comment%} Ici la prise en compte du schema {%endcomment%}
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle%}
+{% assign bg_color = section.settings.couleurFond %}
+
+{% if section.settings.rightLeft == true %}
+    {% assign numColImg = 2 %} {% assign numColTexte = 1 %}
+{% else %}
+    {% assign numColImg = 1 %} {% assign numColTexte = 2 %}
+{% endif %}
+
+{%comment%} Ici le html d'affichage d'un texte et d'une image {%endcomment%}
+<div id="{{ section.settings.title }}" style="background-color: {{ section.settings.couleurFond }};" class="imageTexte-1">
+  
+  <div class="imageTexte-1-img">
+    <img class="imageTexte-1-Image" alt="{{ section.settings.title }}" src= {{ section.settings.image | img_url:"555x"}}>
+  </div>
+
+  <div class="imageTexte-1-texte">
+    <h2 class="imageTexte-1-h2">
+      {{section.settings.title }}
+    </h2>
+    {% for block in section.blocks %}
+      {% if block.type == 'composeSubTitle' %}
+        <h3 style="text-align: {{ block.settings.subtitre_alignment }}; color: {{ block.settings.couleurSubTitle }}; font-size: {{ block.settings.tailleSubTitre | append:'px' }};"> 
+          {{ block.settings.subTitle }} 
+        </h3>
+      {% else %}
+        <div style="text-align: {{ block.settings.text_alignment }}; color: {{ block.settings.couleurTexte }}; font-size: {{ block.settings.tailleTexte | append:'px' }};" >
+          {{ block.settings.text }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+
+{%comment%} Ici le schema d'un texte et d'une image
+Elle a une image un titre, avec choix taille et couleur et checkbox pour selectionner a droite ou a gauche
+Puis si l'utilisateur le veux, rajoute sous-titres avec taille et couleur
+richtext avec choix couleurs et tailles textes {%endcomment%}
+{% schema %}
+{
+  "name":"imageTexte",
+  "settings":[
+    {
+      "id":"title",
+      "type":"text",
+      "label":"Titre",
+      "default":"Mon titre"
+    },
+    {
+      "type": "color",
+      "id": "couleurTitle",
+      "label": "Couleur du titre",
+      "default": "#d35400"
+    },
+    {
+      "type": "text",
+      "id": "tailleTitre",
+      "label": "taille du titre",
+      "default": "75"
+    },
+    {
+      "id":"image",
+      "type":"image_picker",
+      "label":"Mon image"
+    },
+    {
+      "id":"rightLeft",
+      "type":"checkbox",
+      "label":"Image a droite ?",
+      "default" : false
+    },
+    {
+      "type": "color",
+      "id": "couleurFond",
+      "label": "Couleur du fond",
+      "default": "#ffffff"
+    }
+  ],
+  "max_blocks":8,
+  "blocks":[
+    {
+      "type":"composeSubTitle",
+      "name":"Sous Titre",
+      "settings":[
+          {
+            "id":"subTitle",
+            "type":"text",
+            "label":"Sous-titre",
+            "default":"Mon sous titre"
+          },
+          {
+            "type": "color",
+            "id": "couleurSubTitle",
+            "label": "Couleur du sous titre",
+            "default": "#d35400"
+          },
+          {
+            "type": "text",
+            "id": "tailleSubTitre",
+            "label": "taille du sous titre",
+            "default": "75"
+          },
+          {
+            "type": "radio",
+            "id": "subtitre_alignment",
+            "options": [
+              { "value": "Left", "label": "Gauche"},
+              { "value": "Center", "label": "Milieu"},
+              { "value": "Right", "label": "Droite"}
+            ],
+            "label": "Alignement du sous-titre"
+          }
+      ]
+    },
+    {
+      "type":"composeTexte",
+      "name":"Texte",
+      "settings":[
+        {
+          "id":"text",
+          "type":"richtext",
+          "label":"Texte",
+          "default":"<p>Mon texte</p>"
+        },
+        {
+          "type": "color",
+          "id": "couleurTexte",
+          "label": "Couleur du texte",
+          "default": "#d35400"
+        },
+        {
+          "type": "text",
+          "id": "tailleTexte",
+          "label": "taille du texte",
+          "default": "75"
+        },
+        {
+          "type": "radio",
+          "id": "text_alignment",
+          "options": [
+            { "value": "Left", "label": "Gauche"},
+            { "value": "Center", "label": "Milieu"},
+            { "value": "Right", "label": "Droite"}
+          ],
+          "label": "Alignement du texte"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "category":"Presentation",
+      "name": "Image et texte"
+    }
+  ]
+}
+{% endschema %}
+
+{%comment%} Ici le style css d'image et texte {%endcomment%}
+{% style %}
+  .imageTexte-1{
+    margin:auto;
+    margin-top:25px;
+    margin-bottom:25px;
+    display:grid;
+    justify-content:center;
+    grid-gap:1%;
+    grid-template-columns: repeat(2,1fr);
+    width:80%;
+  }
+
+  .imageTexte-1-img{
+    grid-row:1;
+    grid-column: {{ numColImg }};
+  }
+
+  .imageTexte-1-texte{
+    margin-top:25px;
+    margin-bottom:25px;
+    display:grid;
+    grid-row:1;
+    grid-column: {{ numColTexte }};
+  }
+
+  .imageTexte-1-h2{
+    font-size: {{ h2_font_size }};
+    text-align: {{ h2_text_align }};
+    color: {{ h2_color }};
+    width: max-content;
+    margin:auto;
+  }
+
+  @media screen and (max-width:1200px) {
+    .imageTexte-1{
+      margin-right:0;
+      margin-left:0;
+      width:100%;
+    }
+  }
+  
+  @media screen and (max-width:800px) {
+    .imageTexte-1{
+      grid-template-columns:repeat(1,1fr);
+      margin-right:0;
+      margin-left:0;
+      width:100%;
+    }
+    
+    .imageTexte-1-img{
+      grid-column:1;
+      grid-row:1;
+    }
+
+    .imageTexte-1-texte{
+      grid-column:1;
+      grid-row:2;
+    }
+  }
+{% endstyle %}

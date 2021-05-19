@@ -1,0 +1,130 @@
+{% comment %} l'initialisation des variables {% endcomment %}
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle %}
+
+{% comment %} ici le html d'affichage du site {% endcomment %}
+<div class="produitsVedette">
+  <h2 class="produitsVedette-h2">{{ section.settings.produitVedetteTitre }}</h2>
+  <div class="produits">
+    {% for block in section.blocks %}
+      {% assign product = all_products[block.settings.id] %}
+        <div class="unProduit">
+            {% assign firstImage = product.images | first %}
+            <a class="aRef" href={{ product.url }}> <img src= {{ firstImage | img_url: 'medium', crop:'center' }} alt="{{ firstImage.alt }}"> </a>
+            <a class="unProduit-h3" href={{ product.url }}><h3>{{ product.title }}</h3></a>
+        </div>
+      
+    {% endfor %}
+  </div>
+</div>
+
+{% comment %} ici le schema de la section {% endcomment %}
+{% schema %}
+{
+  "name":"produitsVedette",
+  "settings": [
+    {
+      "id":"produitVedetteTitre",
+      "type":"text",
+      "label":"Titre de la section",
+      "default":"Je suis un titre accrocheur"
+    },
+    {
+      "type": "color",
+      "id": "couleurTitle",
+      "label": "Couleur du titre",
+      "default": "#222222"
+    },
+    {
+      "type": "text",
+      "id": "tailleTitre",
+      "label": "taille du titre",
+      "default": "25"
+    },
+    {
+      "type": "radio",
+      "id": "titre_alignment",
+      "options": [
+        { "value": "Left", "label": "Gauche"},
+        { "value": "Center", "label": "Milieu"},
+        { "value": "Right", "label": "Droite"}
+      ],
+      "label": "Alignement du titre"
+    }
+  ],
+  "max_blocks":8,
+  "blocks": [
+    {
+      "name":"monProduit",
+      "type": "monProduit",
+      "settings":[
+        {
+          "type": "product",
+          "id": "id",
+          "label": "text",
+          "info": "text"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Produits en Vedettes",
+      "category":"Produits"
+    }
+  ]
+}
+{% endschema %}
+
+{% comment %} ici le css {% endcomment %}
+{% style %}
+  .produitsVedette{
+    margin-top:25px;
+    margin-bottom:25px;
+  }
+
+  .produitsVedette-h2{
+    color: {{ h2_color }};
+    font-size: {{ h2_font_size }};
+    text-align: {{ h2_text_align }};
+    font-family: cursive;
+    font-style: italic;
+  }
+
+  .produits{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+  }
+
+  .unProduit{
+    text-align:center;
+    margin:auto;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+
+  .unProduit-h3{
+    color:black;
+    text-decoration:none;
+  }
+
+  .unProduit-h3:hover{
+    color:gray;
+  }
+
+  @media screen and (max-width:1200px)
+  {
+    .produits{
+      grid-template-columns: repeat(2,1fr);
+    }
+  }
+
+  @media screen and (max-width:800px)
+  {
+    .produits{
+      grid-template-columns: repeat(1,1fr);
+    }
+  }
+
+{% endstyle %}

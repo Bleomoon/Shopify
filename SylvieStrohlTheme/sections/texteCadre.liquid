@@ -1,0 +1,119 @@
+{%comment%} Ici la prise en compte du schema {%endcomment%}
+{% assign bg_color = section.settings.couleurFond %}
+
+{%comment%} Ici le html{%endcomment%}
+<div class="texteCadre">
+    {%for block in section.blocks %}        
+        <div class="div-texteCadre">
+            {% if block.settings.image_position == 'Avant' and block.settings.anImage == true %}
+                <img class="div-texteCadre-img1" style="grid-column: 1;" src={{ block.settings.oneImage | img_url: '50x50' }} alt="{{ section.id }}">
+            {% endif %}
+            <p class="div-texteCadre-p" style="text-align: {{ block.settings.texte_position }}; color: {{ block.settings.couleurtexte }}; font-size: {{ block.settings.tailletexte | append: 'px' }};">
+                {{ block.settings.text }} </p>
+            {% if block.settings.image_position == 'Apres' and block.settings.anImage == true %}
+                <img class="div-texteCadre-img2" src={{ block.settings.oneImage | img_url: '100x100' }} alt="{{ section.id }}">
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+{%comment%} Ici le schéma du titre avec couleur, style, background-color etc {%endcomment%}
+{% schema %}
+{
+    "name":"Texte Encadre",
+    "settings":[
+        {
+            "type": "color",
+            "id": "couleurFond",
+            "label": "Couleur du cadre",
+            "default": "#ffffff"
+        }
+    ],
+    "max_blocks":4,
+    "blocks":[
+    {
+        "type":"oneParagraphe",
+        "name":"oneParagraphe",
+        "settings":[
+            {
+                "id":"text",
+                "type":"text",
+                "label":"text",
+                "default":"Mon texte"
+            },
+            {
+                "type": "color",
+                "id": "couleurtexte",
+                "label": "Couleur du texte",
+                "default": "#222222"
+            },
+            {
+                "type": "text",
+                "id": "tailletexte",
+                "label": "taille du texte",
+                "default": "25"
+            },
+            {
+                "type": "radio",
+                "id": "texte_position",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Position du texte"
+            },
+            {
+                "id":"oneImage",
+                "type":"image_picker",
+                "label":"une image"
+            },
+            {
+                "id":"anImage",
+                "type":"checkbox",
+                "label":"Ajouter l'image ?",
+                "default" : false
+            },
+            {
+                "type": "radio",
+                "id": "image_position",
+                "options": [
+                    { "value": "Avant", "label": "Avant le texte"},
+                    { "value": "Apres", "label": "Apres le texte"}
+                ],
+                "label": "Position de l'image"
+            }
+        ]
+    }
+  ]
+}
+{% endschema %}
+
+{%comment%} Ici le style css{%endcomment%}
+{% style %}
+    .texteCadre{
+        margin-bottom:25px;
+        margin-top:25px;
+        border: groove;
+        display: grid;
+        border-color: {{ bg_color }};
+    }
+    .div-texteCadre{
+        display:grid;
+        grid-template-rows: repeat(1,1fr);
+        margin:auto;
+    }
+    
+    .div-texteCadre-img1{
+        grid-column:1;
+    }
+    
+    .div-texteCadre-p{
+        grid-column:2;
+        margin:auto;
+    }
+
+    .div-texteCadre-img2{
+        grid-column:3;
+    }
+{% endstyle %}

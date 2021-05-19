@@ -1,0 +1,298 @@
+{%comment%} Un templates d'un page montrant des produits avec en plus un filtre au dessus {%endcomment%}
+{%comment%} L'html de la page {%endcomment%}
+<div class="productShowFilter">
+    <div class="productShowFilter-Filter">
+        <div class="productShowFilter-Filter-1">
+            <button id="productFilterBtn" class="productFilterBtn" onclick=openFilters();><i class="fas fa-plus"></i> Filtres</button>
+            <button class="buttonRef" onclick=changeClassOfLayout(1);>
+                <i class="fas fa-th-large"></i></button>
+            <button class="buttonRef" onclick=changeClassOfLayout(2);>
+                <i class="fas fa-list"></i></button>
+            <button class="buttonRef" onclick=changeClassOfLayout(3);>
+                <i class="fas fa-th"></i></button>
+        </div>
+        <div class="productShowFilter-Filter-2">
+            
+            <select name="sort_by">
+                {% for collection in collections %}
+                    {% for option in collection.sort_options %}
+                        <option value="{{ option.value }}">{{ option.name }}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+<p>
+    {{ collections.general.sort_options }}
+    {{ collections.general.items_with_count }}
+    {{ collections.general.collection_label }}
+</p>
+    <div id="productFilter" class="productFilter">
+        {%comment%} Ici on boucle pour récupéré tous les noms d'options {%endcomment%}
+        {% assign myOptions = '' | split '' %}
+        {% for collection in collections %}
+            {% for product in collection.products %} 
+                {% for product_option in product.options_with_values %}
+                    {% assign myProduct = product_option.name | split: '' %}
+                    {% assign listOption = myOptions | split: ', ' | uniq %}
+                    {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+
+        {%comment%} Ici on boucle pour récupéré toutes les valeurs de options {%endcomment%}
+        {% assign listValue = '' | split '' %}
+        {% assign allValue = '' | split '' %}
+        {%for oneOption in listOption %}
+            {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
+                <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+                <option value="{{ oneOption }}" disabled>{{ oneOption }}</option>
+                <option value="Tous">Tous</option>
+                {% for collection in collections %}
+                    {% for product in collection.products %}
+                        {% for product_option in product.options_with_values %}
+                            {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
+                                {% for value in product_option.values %}
+                                    {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
+                                    {% unless listValue contains value %}
+                                        <option value="{{ value }}">{{ value }}</option>
+                                    {% endunless %}
+                                    {% assign allValue = allValue | append: ', ' | append: value %}
+                                    {% assign listValue = allValue | split: ', ' | uniq %}
+                                {% endfor %}
+                            {% endif %}
+                        {%endfor%}
+                    {%endfor%}
+                {%endfor%}
+                </select>
+            {%endif%}
+        {%endfor%}
+    </div>
+
+    
+    {%comment%} Puis on affiche le produit selon le layout qui déterminer avec
+    changeClassOfLayout {%endcomment%}
+    {% assign show = false%}
+    <div id="myLayout" class="oneProduct-Standard">
+        {% for collection in collections %}
+            {%for product in collection.products %}
+                <div id={{ product.id }} class="oneProduct">
+                    <img class="oneProduct-img" alt="{{ product.title }}" src="{{ product | img_url: "370x" }}">
+                    <div class="oneProduct-texte">
+                        <div class="oneProduct-h2">
+                            <h2>{{ product.title }}</h2>
+                        </div>
+            
+                        <div class="oneProduct-desc">
+                            <p>{{ product.description }}</p>
+                        </div>
+            
+                        <div class="oneProduct-price">
+                            <p>{{ product.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+{%comment%} Ici le style css de la page {%endcomment%}
+{% style %}
+    .productShowFilter{
+        display:grid;
+    }
+
+    .productShowFilter-Filter{
+        border:solid;
+        border-color:black;
+        border-right:none;
+        border-left:none;
+        grid-template-columns:repeat(2,1fr);
+        grid-template-rows:repeat(1,1fr);
+        display:grid;
+        grid-row:1;
+        margin-left:5px;
+        margin-right:5px;
+    }
+
+    
+    .productShowFilter-Filter-1{
+        grid-column:1;
+        display:grid;
+        width:max-content;
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .productFilter{
+        grid-template-columns:repeat(4,1fr);
+        display:grid;
+        grid-row:2;
+        grid-gap:25px;
+        margin-top:10px;
+        margin-left:15px;
+        margin-right:15px;
+        left: -999px;
+        position:absolute;
+    }
+    .productFilter.open{
+        left:0;
+        position:inherit;
+    }
+    .productFilterBtn{
+        background:none;
+        border:none;
+    }
+    .oneFilter{
+        font-size: .9rem;
+        padding: 2px 5px;
+        background-color:black;
+        color: white;
+        -moz-appearance: none;
+        border: none;
+    }
+    .productShowFilter-Filter-2{
+        grid-column:2;
+        justify-content:flex-end;
+        display:flex;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+
+    .productShowFilter-Filter-open{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .oneProduct-img{
+        box-shadow: 10px 10px 100px gray;
+    }
+
+    .oneProduct-texte{
+        font-family:cursive;
+        margin-top:5%;
+    }
+
+    .oneProduct-Standard{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        margin-top:5%;
+        margin-right:5%;
+        margin-left:5%;
+        grid-gap:25px;
+    }
+
+    .oneProduct-Standard .oneProduct-texte .oneProduct-desc{
+        display:none;
+    }
+    
+    .oneProduct-Standard .oneProduct-texte .oneProduct-h2{
+        text-align:center;
+    }
+
+    .oneProduct-Standard .oneProduct-texte .oneProduct-price{
+        text-align:right;
+    }
+
+    .oneProduct-Standard .oneProduct-img{
+        width: 100%;
+        height: auto;
+        margin: auto;
+        display:block;
+    }
+
+    .oneProduct-List{
+        display:grid;
+        grid-template-rows:repeat(1,1fr);
+        margin-top:5%;
+        margin-right:5%;
+        margin-left:5%;
+        grid-gap:25px;
+    }
+
+    .oneProduct-List .oneProduct{
+        display:grid;
+        grid-template-columns:repeat(4,1fr)
+    }
+
+    .oneProduct-List .oneProduct-img{
+        grid-column:1;
+    }
+
+    .oneProduct-List .oneProduct-texte{
+        grid-column:2/5;
+        display:grid;
+        margin-left:25px;
+    }
+
+    .oneProduct-List .oneProduct-h2{
+        text-align:center;
+    }
+
+    .oneProduct-List .oneProduct-desc{
+        text-align:justify;
+    }
+
+    .oneProduct-List .oneProduct-price{
+        text-align:right;
+    }
+
+    .oneProduct-Grid{
+        display:grid;
+        grid-template-columns:repeat(5,1fr);
+        margin-top:5%;
+        margin-right:1%;
+        margin-left:1%;
+        grid-gap:25px;
+    }
+
+    .oneProduct-Grid .oneProduct-texte .oneProduct-desc{
+        display:none;
+    }
+    .oneProduct-Grid .oneProduct-texte .oneProduct-h2{
+        text-align:center;
+    }
+    .oneProduct-Grid .oneProduct-texte .oneProduct-price{
+        text-align:right;
+    }
+    .oneProduct-Grid .oneProduct-img{
+        width: 100%;
+        height: auto;
+        margin: auto;
+        display:block;
+    }
+
+    @media screen and (max-width:1860px) {
+        .oneProduct-Grid{
+            grid-template-columns:repeat(4,1fr);
+        }
+    }
+    @media screen and (max-width:1800px) {
+        .oneProduct-Standard{
+            grid-template-columns:repeat(3,1fr);
+        }
+    }
+    @media screen and (max-width:1580px) {
+        .oneProduct-Grid{
+            grid-template-columns:repeat(3,1fr);
+        }
+    }
+
+    @media screen and (max-width:1200px) {
+        .oneProduct-Standard{
+            grid-template-columns:repeat(2,1fr);
+        }
+        .oneProduct-Grid{
+            grid-template-columns:repeat(2,1fr);
+        }
+    }
+    
+    @media screen and (max-width:800px) {
+        .oneProduct-Standard{
+            grid-template-columns:repeat(1,1fr);
+        }
+        .oneProduct-Grid{
+            grid-template-columns:repeat(1,1fr);
+        }
+    }
+{% endstyle %}

@@ -1,0 +1,369 @@
+{% if cart.item_count > 0 %}
+  <h1 class="myCart-H1">Mon Panier</h1>
+  <form action="/cart" method="post" novalidate>
+    <div class="myCart">
+      <div class="myCart-products">
+        <h3 class="myCart-H3"> Votre Choix ( {{ cart.item_count }} Articles)</h3>
+        <div class="myProducts">
+          <table class="myProducts-table">
+            <thead class="myProducts-thead"> 
+              <th class="myProducts-th">ARTICLE</th>
+              <th class="myProducts-th">DESCRIPTIF</th>
+              <th class="myProducts-th">PRIX UNITAIRE</th>
+              <th class="myProducts-th">QUANTITE</th>
+              <th class="myProducts-th">Sous-Total</th>
+              <th class="myProducts-th"></th>
+            </thead>
+            <tbody>
+              {% for item in cart.items %}
+              <tr>
+                <td class="myProducts-td">
+                  <a href="{{ item.url | within: collections.all }}">
+                    <img src="{{ item | img_url: 'small' }}"
+                      alt="{{ item.title | escape }}">
+                  </a>
+                </td>
+                <td class="titleProduct" class="myProducts-td">
+                  <a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a>
+                  
+                </td>
+                <td class="myProducts-td">{{ item.price | money }}</td>
+                <td class="myProducts-td">
+                  <div class="productQuantity">
+                    <input type="number" name="updates[]" id="updates_{{ item.key }}"
+                      value="{{ item.quantity }}" min="0">
+                  </div>
+                </td>
+                <td class="myProducts-td">
+                  {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+                    {{ item.line_price | money }}
+                  {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+                </td>
+                <td class="myProducts-td">
+                  <a class="deleteProduct" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><li class="fas fa-times"></li></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="myCart-resume">
+        <h3 class="Total-H3"> Total Du Panier </h3>
+        <div class="resume-Frais">
+          <h4 class="H4-subtotal">Sous-total</h4>
+          <h4 class="H4-subtotal-price"> {{ cart.items_subtotal_price | money }} </h4>
+          <div class="frais">
+            <input type="checkbox">
+            <label>À domicile: <strong>10.00€</strong></label>
+            <p>(Confirmation de livraison par mail.)</p>
+            <br>
+
+            <input type="checkbox">
+            <label>À domicile sur RDV: <strong>14.50€</strong></label>
+            <p>(SMS la veille au soir avec 3 propositions d'horaires.)</p>
+            <p>Les options de livraison seront mises à jour lors de la commande.</p>
+          </div>
+          <h4 class="H4-Expedition">Expédition</h4>
+          <h4 class="Expedition-texte">Estimation des frais de livraison</h4>
+          <select class="Expedition-select" name="country">
+            {{ country_option_tags }}
+          </select>
+          
+        </div>
+        <div class="cartTotal">
+          <h4 class="H4-total">Total</h4>
+          <h4 class="H4-total-price">{{ cart.total_price | money }}</h4>
+          <button class="commandeValider">Valider la commande</button>
+          <button class="continuerAchats">Continuer Mes Achats</button>
+        </div>
+      </div>
+    </div>  
+  </form>
+  {% section 'products-recommandations' %}
+{% else %}
+  <div class="emptycart">
+    <h1 class="emptycart-titre" >Mon Panier</h1>
+    <p class="emptycart-texte">Cart is empty</p>
+  </div>
+  
+{% endif %}
+
+{% style %}
+  .emptycart{
+    display:grid;
+    grid-templates-columns: repeat(4, 1fr);
+  }
+
+  .emptycart-titre{
+    text-align:center;
+    font-family:cursive;
+    grid-column:1/4;
+    margin-bottom:25px;
+  }
+
+  .emptycart-texte{
+    font-family:cursive;
+    grid-column:2;
+  }
+
+  .myCart-H1{
+    text-align:center;
+    font-family:cursive;
+    font-weight:900;
+  }
+
+  .myCart-H3{
+    font-family:cursive;
+    font-style: italic;
+  }
+
+  .myCart-H4{
+    font-family:cursive;
+    font-style: italic;
+  }
+
+  @media screen and (max-width:1000px) and (min-width:0px) {
+    .myCart{
+      display:grid;
+      grid-template-columns: repeat(1,1fr);
+    }
+    
+    .myCart-products{
+      grid-column:1;
+      grid-row:1;
+    }
+
+    .myCart-resume{
+      grid-column:1;
+      grid-row:2;
+    }
+
+    .myProducts{
+      padding: 0;
+    }
+    
+    .commandeValider{
+      grid-row:2;
+      grid-column:1/3;
+    }
+
+    .continuerAchats{
+      grid-column:2;
+    }
+  }
+
+  @media screen and (max-width:1200px) and (min-width:1000px){
+    .myCart{
+      display:grid;
+      grid-template-columns: repeat(2,1fr);
+    }
+    
+    .myCart-products{
+      grid-column:1;
+      grid-row:1;
+    }
+    
+    .myCart-resume{
+      grid-column:2;
+      grid-row:1;
+      margin-left:15px;
+      margin-right:15px;
+    }
+    
+    .myProducts{
+      padding: 0;
+    }
+
+    .commandeValider{
+      grid-row:2;
+      grid-column:1/3;
+    }
+    
+    .continuerAchats{
+      grid-row:3;
+      grid-column:2;
+    }
+  }
+
+  @media screen and (min-width:1200px) {
+    .myCart{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .myCart-products{
+      grid-column:2;
+    }
+
+    .myCart-resume{
+      grid-column:3;
+      display:grid;
+    }
+
+    .myProducts{
+      padding-right:25px;
+    }
+
+    .commandeValider{
+      grid-row:2;
+      grid-column:1/3;
+    }
+
+    .continuerAchats{
+      grid-row:3;
+      grid-column:1;
+    }
+  }
+
+  .myProducts-thead{
+    margin-top:25px;
+    margin-bottom:25px;
+  }
+
+  .myProducts-th{
+    border: thick;
+    border-left:none;
+    border-right:none;
+    text-align:center;
+  }
+
+  .myProducts-td{
+    border:thick;
+    border-left:none;
+    border-right:none;
+    text-align:center;
+    vertical-align:middle;
+    margin:auto;
+    padding:10px;
+  }
+
+  .titleProduct{
+    font-family:cursive;
+    font-style: italic;
+    vertical-align:middle;
+  }
+
+  .productQuantity{
+    display:grid;
+    border:solid;
+    vertical-align:middle;
+  }
+  
+  .deleteProduct{
+    background:none;
+    color:gray;
+  }
+
+  .deleteProduct:hover{
+    color:black;
+  }
+
+  .myProducts-table{
+    width:100%;
+  }
+
+  .Total-H3{
+    margin:auto;
+    text-align:center;
+    font-family:cursive;
+    font-style: italic;
+  }
+
+  .resume-Frais{
+    display:grid;
+    padding-top:25px;
+    padding-bottom:25px;
+    border:thick;
+    border-right:none;
+    border-left:none;
+  }
+  
+  .H4-subtotal{
+    grid-column:1;
+    grid-row:1;
+    font-family:cursive;
+    font-style: italic;
+    margin-top:15px;
+  }
+  
+  .H4-subtotal-price{
+    grid-column:2;
+    grid-row:1;
+    text-align:right;
+    font-family:cursive;
+    font-style: italic;
+    margin-top:15px;
+  }
+  
+  .frais{
+    margin-top:15px;
+    margin-bottom:15px;
+    grid-column:1/3;
+    grid-row:2/3;
+    text-align:end;
+  }
+  
+  .H4-Expedition{
+    grid-column:1;
+    grid-row:4;
+    font-family:cursive;
+    font-style: italic;
+    margin:auto;
+  }
+  
+  .Expedition-texte{
+    grid-column:2;
+    grid-row:4;
+    font-family:cursive;
+    font-style: italic;
+    font-weight:bold;
+  }
+  
+  .Expedition-select{
+    grid-column:2;
+    grid-row:4;
+  }
+
+  .cartTotal{
+    display:grid;
+  }
+
+  .H4-total{
+    font-family:cursive;
+    font-style: italic;
+    grid-row:1;
+    grid-column:1;
+    margin-top:auto;
+    margin-bottom:auto;
+  }
+
+  .H4-total-price{
+    font-family:cursive;
+    font-style: italic;
+    grid-row:1;
+    grid-column:2;
+    margin-top:auto;
+    margin-bottom:auto;
+    text-align:end;
+  }
+  
+  .commandeValider{
+    text-align:center;
+    background-color:black;
+    color:white;
+    border:none;
+    margin:auto;
+    padding:10px;
+  }
+
+  .continuerAchats{
+    background:none;
+    border:none;
+    margin-top:15px;
+    margin-bottom:15px;
+    text-align:end;
+  }
+  
+
+{% endstyle %}

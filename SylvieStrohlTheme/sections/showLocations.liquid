@@ -1,0 +1,160 @@
+{% comment %} assign les value du schema {% endcomment %}
+{% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h2_text_align = section.settings.titre_alignment %}
+{% assign h2_color = section.settings.couleurTitle %}
+{% assign bg_color = section.settings.couleurFond %}
+{% assign bloc_color = section.settings.Couleurtexte %}
+{% assign bloc_font_size = section.settings.Tailletexte | append:'px' %}
+
+{% comment %} le html du titre et des locations {% endcomment %}
+<div class="locations">
+<h2 class="locations-h2">
+    {{ section.settings.title  }}
+</h2>
+<div class="locations-Alllocations">
+    {% for block in section.blocks %}
+        <div class="locations-oneLocation">
+            <p> {{ block.settings.Ville }} </p>
+            <p> {{ block.settings.adresse }} </p>
+            <p> {{ block.settings.NumDep }} </p>
+            <p> {{ block.settings.pays }} </p>
+        </div>
+    {% endfor %}
+</div>
+</div>
+
+{% comment %} le schema du paragraphe {% endcomment %}
+{% schema %}
+{
+    "name":"Locations",
+    "settings":[
+        {
+            "id":"title",
+            "type":"text",
+            "label":"Titre",
+            "default":"Mon titre"
+        },
+        {
+            "type": "color",
+            "id": "couleurTitle",
+            "label": "Couleur du titre",
+            "default": "#222222"
+        },
+        {
+            "type": "text",
+            "id": "tailleTitre",
+            "label": "taille du titre",
+            "default": "25"
+        },
+        {
+            "type": "radio",
+            "id": "titre_alignment",
+            "options": [
+                { "value": "Left", "label": "Gauche"},
+                { "value": "Center", "label": "Milieu"},
+                { "value": "Right", "label": "Droite"}
+            ],
+            "label": "Alignement du titre"
+        },
+        {
+            "type": "color",
+            "id": "couleurFond",
+            "label": "Couleur du fond",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "Couleurtexte",
+            "label": "Couleur des textes",
+            "default": "#222222"
+        },
+        {
+            "type": "text",
+            "id": "Tailletexte",
+            "label": "taille des textes",
+            "default": "15"
+        }
+    ],
+    "max_blocks":8,
+    "blocks":[
+        {
+            "name":"uneLocation",
+            "type":"uneLocation",
+            "settings":[
+                {
+                    "id":"Ville",
+                    "type":"text",
+                    "label":"Ville",
+                    "default":"Paris"
+                },
+                {
+                    "id":"adresse",
+                    "type":"text",
+                    "label":"Adresse",
+                    "default":"rue"
+                },
+                {
+                    "id":"NumDep",
+                    "type":"text",
+                    "label":"Numero de département",
+                    "default":"75000"
+                },
+                {
+                    "id":"pays",
+                    "type":"text",
+                    "label":"Pays",
+                    "default":"France"
+                }
+            ]
+        }
+        
+    ]
+}
+{% endschema %}
+
+{% style %}
+.locations{
+    display:grid;
+    background-color: {{ bg_color }};
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+.locations-h2{
+    color: {{ h2_color }} ;
+    font-size: {{ h2_font_size }};
+    text-align: {{ h2_text_align }};
+}
+
+.locations-Alllocations{
+    display:grid;
+    margin-top:15px;
+    margin-bottom:15px;
+    grid-template-columns:repeat(4,1fr);
+    color: {{ bloc_color }};
+    font-size: {{ bloc_font_size }};
+    width: 80%;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+}
+
+.locations-oneLocation{
+    display:grid;
+}
+
+@media screen and (max-width:1000px) and  (min-width:600px)
+{
+    .locations-Alllocations{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media screen and (max-width:600px) and  (min-width:0px)
+{
+    .locations-Alllocations{
+        grid-template-columns:repeat(1,1fr);
+    }
+}
+{% endstyle %}

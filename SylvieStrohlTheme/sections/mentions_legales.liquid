@@ -1,0 +1,159 @@
+{% comment %} assign les value du schema {% endcomment %}
+{% assign h1_font_size = section.settings.tailleTitre | append:'px' %}
+{% assign h1_text_align = section.settings.titre_alignment %}
+{% assign h1_color = section.settings.couleurTitle %}
+{% assign bg_color = section.settings.couleurFond %}
+
+{% comment %} le html du titre et des paragraphes {% endcomment %}
+<div class="mentions-legales">
+  <h1 class="mentions-legales-h1">
+    {{ section.settings.title  }}
+  </h1>
+  {% for block in section.blocks %}
+    <div class="mentions-legales-block">
+      {% if block.type == "oneParagraphe" %} {% comment %} si un paragraphe {% endcomment %}
+          <p style="font-size: {{ block.settings.Tailletexte | append: 'px' }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};">
+            {{ block.settings.Texte }}
+          </p>        
+      {% else %} {% comment %} si un subtitle {% endcomment %}
+        <h2 style="font-size: {{ block.settings.TailleSubtitle | append: 'px' }}; text-align: {{ block.settings.Subtitle_alignment }}; color: {{ block.settings.CouleurSubtitle }};">
+          {{ block.settings.Subtitle }}
+        </h2>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+{% comment %} le schema du paragraphe {% endcomment %}
+{% schema %}
+  {
+    "name":"livraisons_retours",
+    "settings":[
+      {
+        "id":"title",
+        "type":"text",
+        "label":"Titre",
+        "default":"Mon titre"
+      },
+      {
+        "type": "color",
+        "id": "couleurTitle",
+        "label": "Couleur du titre",
+        "default": "#222222"
+      },
+      {
+        "type": "text",
+        "id": "tailleTitre",
+        "label": "taille du titre",
+        "default": "25"
+      },
+      {
+        "type": "radio",
+        "id": "titre_alignment",
+        "options": [
+          { "value": "Left", "label": "Gauche"},
+          { "value": "Center", "label": "Milieu"},
+          { "value": "Right", "label": "Droite"}
+        ],
+        "label": "Alignement du titre"
+      },
+      {
+        "type": "color",
+        "id": "couleurFond",
+        "label": "Couleur du fond",
+        "default": "#ffffff"
+      }
+    ],
+    "max_blocks": 10,
+    "blocks": [
+      {
+        "type":"oneParagraphe",
+        "name":"oneParagraphe",
+        "settings": [
+          {
+            "id":"Texte",
+            "type":"richtext",
+            "label":"Texte",
+            "default":"<p>Mon texte</p>"
+          },
+          {
+            "type": "color",
+            "id": "Couleurtexte",
+            "label": "Couleur du texte",
+            "default": "#222222"
+          },
+          {
+            "type": "text",
+            "id": "Tailletexte",
+            "label": "taille du texte",
+            "default": "15"
+          },
+          {
+            "type": "radio",
+            "id": "Texte_alignment",
+            "options": [
+              { "value": "Left", "label": "Gauche"},
+              { "value": "Center", "label": "Milieu"},
+              { "value": "Right", "label": "Droite"}
+            ],
+            "label": "Alignement du texte"
+          }
+        ]
+      },
+      {
+        "type":"oneSubtitle",
+        "name":"oneSubtitle",
+        "settings": [
+          {
+            "id":"Subtitle",
+            "type":"text",
+            "label":"Subtitle",
+            "default":"Mon sous titre"
+          },
+          {
+            "type": "color",
+            "id": "CouleurSubtitle",
+            "label": "Couleur du sous titre",
+            "default": "#222222"
+          },
+          {
+            "type": "text",
+            "id": "TailleSubtitle",
+            "label": "taille du sous titre",
+            "default": "15"
+          },
+          {
+            "type": "radio",
+            "id": "Subtitle_alignment",
+            "options": [
+              { "value": "Left", "label": "Gauche"},
+              { "value": "Center", "label": "Milieu"},
+              { "value": "Right", "label": "Droite"}
+            ],
+            "label": "Alignement du sous titre"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% style %}
+  .mentions-legales{
+    display:grid;
+    background-color: {{ bg_color }};
+    margin-right:25px;
+    margin-left:25px;
+  }
+
+  .mentions-legales-h1{
+    color: {{ h1_color }} ;
+    font-size: {{ h1_font_size }};
+    text-align: {{ h1_text_align }};
+  }
+
+  .mentions-legales-block{
+    margin-top:15px;
+    margin-bottom:15px;
+  }
+{% endstyle %}

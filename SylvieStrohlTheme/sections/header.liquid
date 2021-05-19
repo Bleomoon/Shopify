@@ -1,0 +1,140 @@
+{% comment %}L'ensemble du code du HEADER {% endcomment %}
+<header class="header">
+	{% comment %}Le logo du site qui redirige vers l'accueil{% endcomment %}
+	<div class="header-logo">
+		<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/"><img alt="{{ shop.title }}" src="{{ section.settings.logo | img_url: "300x300" }}" alt="{{ shop.name }}"></a>
+	</div>
+
+	{% comment %} Ici la barre de navigation qui affichera les bouttons vers les autres pages {% endcomment %}
+	<nav class="header-navbar">
+		<button class="navbar-toggler" onclick=openMenuNav();><i class="fas fa-bars"></i></button>
+		<ul class="navbar">
+			{% for link in linklists.main-menu.links %}
+				<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>	
+			{% endfor %}
+		</ul>
+	</nav>
+
+	{% comment %} Ici la classe qui gere les bouttons panier, search et connexion {% endcomment %}
+	<div class="header-icons">
+		{% comment %} boutton qui va afficher une bar de navigation {% endcomment %}
+		<button onclick=openSearch(); class="header-icons-search">
+			<i class="fas fa-search"></i>
+		</button>
+
+		
+		{% comment %} boutton qui va afficher une liste avec les objets du paniers et si clique envoie sur le panier {% endcomment %}
+		<button onmouseover="showCart();" id="header-icons-cart" class="header-icons-cart">
+			<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart"><i class="fas fa-shopping-basket"></i></a>
+		</button>
+
+		{% comment %} Si connexion acrtiver dans les parametres {% endcomment %}
+		{% if shop.customer_accounts_enabled %}
+			{% comment %} boutton qui affiche se connecter ou se déconnecter {% endcomment %}
+			<button class="header-icons-Ref" onclick=openUser();>
+				<i class="fas fa-user"></i>
+			</button>
+			<ul class="user">
+				{% comment %} Si utilisateur connecté {% endcomment %}
+				{% if customer  %} 
+					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account">Mon compte</a></li>
+					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/logout">Deconnexion</a></li>
+				{% else %}
+					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/login">Connexion</a></li>
+					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/register">Inscription</a></li>
+				{% endif %}
+			</ul>
+		{% endif %}
+	</div>
+
+	{%comment%} On doit crée un nouveau menu pour la taille du portable = small {% endcomment%}
+	<div class="menu-smallScreen">
+		<button class="smallScreen-toggler" onclick=openMenuNavSmallScreen();>
+			<i class="fas fa-bars"></i>
+		</button>
+		<ul class="smallScreen">
+			{% for link in linklists.main-menu.links %}
+				<li class="smallScreen-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
+			{% endfor %}
+
+			{% if shop.customer_accounts_enabled %}
+				{% if customer %}
+					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account">Mon compte</a></li>
+					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/logout">Deconnexion</a> </li>
+				{% else %}
+					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/login">Connexion</a></li>
+					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/register">Inscription</a></li>
+				{% endif %}
+			{% endif %}
+			<li class="smallScreen-item"><button class="header-icons-search">RECHERCHER</button></li>
+			<li class="smallScreen-item"><a  class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart"><button class="header-icons-cart">MON PANIER</button></a></li>
+		</ul>
+	</div>
+
+	{%comment%} Ici affiche {% endcomment%}
+	<div id="showCart" class="showCart" onmouseover="showCart();" onmouseleave="setTimeout(notShowCart,2000);">
+		{% if cart.item_count == 0 %}
+			<div class="noItemInCart">
+				<p>Votre panier est vide</p>
+			</div>
+		{% else %}
+			<div class="goPanierItems">
+				<h2 class="goPanierItems-h2Tot">TOTAL</h2>
+				<h2 class="goPanierItems-h2Prix">{{ cart.total_price | money }}</h2>
+				<a onmouseover="addOeil();" onmouseout="removeOeil();" id="goPanierItems-goPanier" class="goPanierItems-goPanier-A" href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a>
+				<a onmouseover="addArrow();" onmouseout="removeArrow();" id="goPanierItems-goFin" class="goPanierItems-goFin-A" href="paiement">FINALISER VOTRE COMMANDE</a>
+			</div>
+			<ul class="ItemsInCart">
+				{% for item in cart.items %}
+					<li class="ItemInCart">
+						<a class="ItemImg" href="{{ item.url | within: collections.all }}">
+							<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+						</a>
+						<div class="ItemText">
+							<div class="ItemText-h3"><p><a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a></p></div>
+							<div class="ItemText-prix"><p>PRIX UNITAIRE {{ item.price | money }}</p></div>
+							<div class="ItemText-qte"><p>QUANTITE : {{ item.quantity }} </p></div>
+						</div>
+						<a class="ItemText-delete" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><i class="fas fa-times"></i></a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+
+	{%comment%} Ici on gère le recherche sur le site un form search {% endcomment%}
+	<div id="searchbox" class="searchbox-content">
+		<div class="searchbox-search">
+			<form action="/search" class="search-bar" role="search">
+				<input type="text" class="search-input" value="{{ search.terms | espace }}">
+				<button class="searchbox-Btn"><i class="far fa-hand-point-right"></i></button>	
+			</form>
+			<button onclick=openSearch(); class="btn-close"><li class="fas fa-times"></li></button>
+		</div>
+	</div>
+</header>
+</br></br></br>
+
+{% schema %}
+{
+	"name":"Haut de page",
+	"class":"section-header",
+	"settings": [
+		{
+			"type":"image_picker",
+			"id":"logo",
+			"label":"logo"
+		}
+	]
+}
+{% endschema %}
+
+<script>
+	function showCart() {
+		document.getElementById("showCart").style.display = "grid";
+	}
+
+	function notShowCart() {
+		document.getElementById("showCart").style.display = "none";
+	}
+</script>

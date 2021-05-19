@@ -1,0 +1,163 @@
+{% comment %} Ici l'attribution des valeur du schéma {% endcomment %}
+{% comment %} Position du texte {% endcomment %}
+{% if section.settings.RightLeft == true %} {%comment%} Alors a droite{%endcomment%}
+    {% assign positionContenu = 1 %}
+{% else %} {%comment%} sinon a gauche {%endcomment%}
+    {% assign positionContenu = 2 %}
+{% endif %}
+
+{%comment%} Ici le html d'affichage d'une collection {%endcomment%}
+<div style="background-image: url('{{ section.settings.collectionImg | img_url:'5760x5760' }}');" class="collectionVedette">
+    <div style="grid-column: {{ positionContenu }};" class="collectionVedette-contenu">
+        <h3 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.couleurTitre2 }};" class="collectionVedette-h3">COLLECTION</h3>
+        <h2 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.couleurTitre1 }};" class="collectionVedette-h2">{{ section.settings.collectionTitle }}</h2>
+        <span class="collectionVedette-span-a">
+            <a style="text-align: {{ section.settings.boutton_alignment }}; color: {{ section.settings.couleurboutton }};" class="collectionVedette-a" href="{{ section.settings.collectionUrl }}">Decouvrir</a>
+        </div>
+    </div>
+</div>
+
+{%comment%} Ici le schema d'une collection 
+Elle a un nom, une image et un url {%endcomment%}
+{% schema %}
+    {
+        "name":"Collection en Vedette",
+        "settings": [
+            {
+                "id":"collectionTitle",
+                "type":"text",
+                "label":"Nom de la Collection",
+                "default":"Nom de ma collection"
+            },
+            {
+                "id":"collectionImg",
+                "type":"image_picker",
+                "label":"Image de la collection"
+            },
+            {
+                "id":"collectionUrl",
+                "type":"url",
+                "label":"Url de la Collection"
+            },
+            {
+                "type": "color",
+                "id": "couleurTitre1",
+                "label": "Couleur titre 1",
+                "default": "#222222"
+            },
+            {
+                "type": "color",
+                "id": "couleurTitre2",
+                "label": "Couleur de 'Collection'",
+                "default": "#222222"
+            },
+            {
+                "type": "color",
+                "id": "couleurboutton",
+                "label": "Couleur du boutton",
+                "default": "#222222"
+            },
+            {
+                "type": "text",
+                "id": "tailleTitre1",
+                "label": "taille du titre 1",
+                "default": "25"
+            },
+            {
+                "type": "text",
+                "id": "tailleTitre2",
+                "label": "taille de 'Collection'",
+                "default": "25"
+            },
+            {
+                "type": "checkbox",
+                "id": "RightLeft",
+                "default": true,
+                "label": "Texte a gauche ?"
+            },
+            {
+                "type": "radio",
+                "id": "boutton_alignment",
+                "options": [
+                    { "value": "Left", "label": "Gauche"},
+                    { "value": "Center", "label": "Milieu"},
+                    { "value": "Right", "label": "Droite"}
+                ],
+                "label": "Alignement du boutton"
+            }
+        ],
+        "presets":[
+            {
+                "name":"Collection en Vedette",
+                "category":"Collection"
+            }
+        ]
+    }
+{% endschema %}
+
+{%comment%} Ici le style css de colelctionShow {%endcomment%}
+{% style %}
+    .collectionVedette{
+        margin-top:25px;
+        margin-bottom:25px;
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+        position:sticky;
+        height:670px; 
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
+        box-sizing:border-box;
+    }
+    .collectionVedette-contenu{
+        display:grid;
+        width:80%;
+        margin:auto;
+    }
+    .collectionVedette-h2{
+        font-weight:900;
+        width:max-content;
+    }
+    .collectionVedette-h3{
+        font-weight:700;
+        width:max-content;
+    }
+
+    .collectionVedette-span-a{
+        display:block;
+        text-align:end;
+        margin:right:15px;
+    }
+    .collectionVedette-a{
+        background:none;
+        text-decoration:none;
+        margin:auto;
+        border:groove;
+        padding:5px;
+    }
+    .collectionVedette-a:hover{
+        background-color:black;
+        border:none;
+    }
+
+    @media screen and (max-width:1000px) and  (min-width:600px)
+    {
+        .collectionVedette{
+            display:flex;
+            text-align:center;
+            background-size:contain;
+            height:600px;
+        }
+    }
+
+    @media screen and (max-width:600px) and  (min-width:0px)
+    {
+        .collectionVedette{
+            display:flex;
+            text-align:center;
+            background-size:contain;
+            height:300px;
+            width:auto;
+        }
+    }
+{% endstyle %}
