@@ -1,0 +1,11 @@
+Although all our themes are created to accommodate images of any size, the optimum dimensions we would recommend are as follows 
+(for additional reference, these dimensions are in use on our very own demo sites):
+
+Image with Text Overlay - 2000 x 1350px
+Slideshow - 2600 x 1000px for larger screens / 2000 x 900px for more popular laptop and desktop sizes 
+(Please note - Full Height will vary, based on the viewers' screensize in question) 
+Products: 2000 x 2000px for a square image, 2000 x 1800px for landscape images and 1600 x 2000 for portrait images.
+Collection - 2000 x 175px for a banner image at the top of the page, 480 x 320px for a feature image.
+Adverts are dependent on how many are used; 1000 x 650px is great as a ballpark number for two or more. One stand-alone Advert could be 1700 x 350px.
+Blog posts - 1000 x 350px
+Hero - 1200 x 900px

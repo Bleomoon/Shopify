@@ -10,7 +10,7 @@
     {% endcapture %}
     <div class="conditions-generales-div">
       <h3 class="conditions-generales-h3">{{ block.settings.subtitle }}</h3>
-      <button id="conditions-generales-plusMoins-{{ numCondition }}" onclick="conditionClick( {{ numCondition }})"; class="conditions-generales-plusMoins">
+      <button id="conditions-generales-plusMoins-{{ numCondition }}" onclick="conditionClick( {{ numCondition }})" class="conditions-generales-plusMoins">
         <i class="fas fa-plus"></i>
       </button>
     </div>
@@ -104,3 +104,25 @@
   }
 
 {% endstyle %}
+
+{% comment %} la gestion du javascript {% endcomment %}
+<script>
+  function conditionClick(num)
+  {
+      var plusMoins = document.getElementById("conditions-generales-plusMoins-" + num);
+      var p = document.getElementById("conditions-generales-p-" + num);
+
+      if (plusMoins.classList.contains('open'))
+      {
+          plusMoins.classList.remove('open');
+          plusMoins.innerHTML = '<i class="fas fa-minus"></i>';
+          p.style.display = "block"
+      }
+      else
+      {
+          plusMoins.classList.add('open');
+          plusMoins.innerHTML = '<i class="fas fa-plus"></i>';
+          p.style.display = "none"
+      }
+  }
+</script>

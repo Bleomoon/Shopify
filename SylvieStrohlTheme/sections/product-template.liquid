@@ -7,20 +7,15 @@
     
       {%comment%} Zone sur les images {%endcomment%}
       <div class="ficheProduct-SousImg">
-        {% assign ficheProductnbImg = 0 %}
         {% for image in product.images %}
           {% capture _ %}{% increment id %}{% endcapture %}
-          {% assign mysrc = image.src | img_url: 'compact' %}
-          {% assign myId = "ficheProduct-SousImg-{{ id }}" %}
-          <img class="SousImg-Img" id="ficheProduct-SousImg-{{ id }}" onclick=changeImageProduct(myId,mysrc); src="{{ image.src | img_url: 'small' }}" alt="{{ image.alt | escape }}">
+          <img class="SousImg-Img" id="ficheProduct-SousImg-{{ id }}" onclick=changeImageProduct('{{ image.src | img_url: '700x700' }}'); src="{{ image.src | img_url: 'small' }}" alt="{{ image.alt | escape }}">
         {% endfor %}
       </div>
     
-      <div id="ficheProduit-BigImg" class="ficheProduit-BigImg">
-        <img class="BigImg-Image" src="{{ featured_image.src | img_url: '700x700' }}" alt="{{ featured_image.alt }}">
+      <div class="ficheProduit-BigImg">
+        <img id="ficheProduit-BigImg" class="BigImg-Image" src="{{ featured_image.src | img_url: '700x700' }}" alt="{{ product.title }}">
         <button class="BigImg-Zoom"><i class="fas fa-search-plus"></i></button>
-        <button class="BigImg-Right" onclick="";><i class="fas fa-chevron-right"></i></button>
-        <button class="BigImg-Left" onclick="";><i class="fas fa-chevron-left"></i></button>
       </div>
 
       {%comment%} Zone sur le contenu de la fiche produit {%endcomment%}
@@ -28,21 +23,34 @@
         <div class="ficheProduct-Haut">
           {%comment%} Zone sur le titre et le prix {%endcomment%}
           <h1 class="ficheProduct-Contenu-Title">{{ product.title }}</h1>
-          <h3 class="ficheProduct-Contenu-Prix">{{ product.price | money }}</h3>
+          <h2 class="ficheProduct-Contenu-Prix">{{ product.price | money }}</h2>
 
           {%comment%} Zone des bouttons pour changer d'articles {%endcomment%}
           <div class="ficheProduct-OtherArticle">
-            <a class="aRef" href={{ collection.next_product.url }}>
-              <button class="buttonRef">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-            </a>
-          
-            <a class="aRef" href={{ collection.previous_product.url }}>
-              <button class="buttonRef">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-            </a>
+            {% assign nextHref = '' %} {% assign backHref = '' %}
+            {% for collection in product.collections %}
+              {% if collection.next_product.available and nextHref != '' and collection.next_product.id != product.id %}
+                {% assign nextHref = collection.next_product.url %}
+              {% endif %}
+              {% if collection.previous_product.available and backHref != ''  and collection.previous_product.id != product.id %}
+                {% assign backHref = collection.previous_product.url %}
+              {% endif %}
+            {% endfor %}
+            {% if nextHref != '' %}
+              <a class="aRef" href={{ collection.next_product.url }}>
+                <button class="buttonRef">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </a>
+            {% endif %}
+
+            {% if backHref != '' %}
+              <a class="aRef" href={{ collection.previous_product.url }}>
+                <button class="buttonRef">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+              </a>
+            {% endif %}
           </div>
         </div>
         
@@ -66,7 +74,6 @@
               <i class="fas fa-cart-plus"></i> Ajouter au panier
             </button>
           </form>
-          
         {% endform %}
 
         {%comment%} Zone des logos, l'admin les rajotue, jusqu'a 8 {%endcomment%}
@@ -89,19 +96,24 @@
   - Variants, Poids, balises, type, Modèle  {% endcomment %}
   <div class="infosComplementairesProduct">
     <div class="menu-infosComplementairesProduct">
-      <div id="menuButton-Description" class="menuButton-Description" onclick=switchMenu(1);>
+      <div id="menuButton-Description" class="menuButton-Description" onclick="switchMenu(1)">
         Description
       </div>
-      <div id="menuButton-Informations" class="menuButton-Informations" onclick=switchMenu(2);>
+      <div id="menuButton-Informations" class="menuButton-Informations" onclick="switchMenu(2)">
         Informations complementaires
       </div>
     </div>
-    <div class="info-Description">
-      <p class="info-Contenu">
-        {{ product.description }}
-      </p>
+    <div id="info-Description" class="info-Description">
+      {% for block in section.blocks %}
+        <div class="info-Contenu">
+        {% if block.type == "description" %}
+          {{ block.settings.paragraphe }}
+        {% endif %}
+        </div>
+      {% endfor %}
+      
     </div>
-    <div class="info-Informations">
+    <div id="info-Informations" class="info-Informations">
       <div class="info-Contenu">
         
         {% comment %} l'affichage des variants {% endcomment %}
@@ -134,10 +146,9 @@
           <p>{{ mytags }}</p>
         </div>
 
-
         {% comment %} l'affichage du type {% endcomment %}
         <div class="une-Info-Contenu"> 
-          <p>Type : </p> 
+          <p>Type : </p>
           <p>{{ product.type }} </p>
         </div>
       </div>
@@ -165,7 +176,20 @@
           "label": "Lien de redirection"
         }  
       ]
-    } 
+    },
+    {
+      "type":"description",
+      "name":"description",
+      "limit":1,
+      "settings":[
+        {
+          "type": "richtext",
+          "id": "paragraphe",
+          "label":"La description poussé du produit",
+          "default":"<p>Ce produit ne dispose pas encore d'une description</p>"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}
@@ -221,42 +245,6 @@
   }
 
   .BigImg-Zoom:hover{
-    background-color:black;
-    color:white;
-  }
-
-  .BigImg-Right{
-    z-index:2;
-    background-color:white;
-    grid-column:1;
-    grid-row:1;
-    width:max-content;
-    margin:auto;
-    margin-bottom:25px;
-    margin-right:0;
-    border:none;
-    color:black;
-  }
-
-  .BigImg-Right:hover{
-    background-color:black;
-    color:white;
-  }
-
-  .BigImg-Left{
-    z-index:2;
-    background-color:white;
-    grid-column:1;
-    grid-row:1;
-    width:max-content;
-    margin:auto;
-    margin-bottom:0;
-    margin-right:0;
-    border:none;
-    color:black;
-  }
-
-  .BigImg-Left:hover{
     background-color:black;
     color:white;
   }
@@ -357,7 +345,6 @@
   .menu-infosComplementairesProduct{
     grid-column:1;
     grid-row:1;
-    margin-top:auto;
     margin-bottom:auto;
     margin-right:15px;
     display:grid;
@@ -367,10 +354,8 @@
   }
 
   .menuButton-Description{
-    background:none;
-    background-color:black;
-    color:white;
     margin-bottom:10px;
+    color:gray;
   }
 
   .menuButton-Description:hover{
@@ -378,9 +363,7 @@
   }
 
   .menuButton-Informations{
-    background:none;
-    color:gray;
-    background-color:white; 
+    color:black;
   }
 
   .menuButton-Informations:hover{
@@ -388,19 +371,19 @@
   }
 
   .info-Description{
-    display:none;
-    border-left:solid;
-    grid-column:2;
-    grid-row:1;
-    grid-column:3/10;
-  }
-
-  .info-Informations{
     display:grid;
     border-left:solid;
     grid-column:2;
     grid-row:1;
-    grid-column:3/10;
+    grid-column:2/10;
+  }
+
+  .info-Informations{
+    display:none;
+    border-left:solid;
+    grid-column:2;
+    grid-row:1;
+    grid-column:2/10;
   }
   
   .info-Contenu{
@@ -416,7 +399,7 @@
 {% endstyle %}
 
 {% comment %} Ici le javascript {% endcomment %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<script>
   function switchMenu(numero)
   {
     var menuDesc = document.getElementById("menuButton-Description");
@@ -424,31 +407,33 @@
     var infoDesc = document.getElementById("info-Description");
     var infoInfo = document.getElementById("info-Informations");
     
-    console.log("numero : " + numero);
     if (numero < 2)
     {
-        menuDesc.style.background-color = "gray";
-        menuDesc.style.color = "black";
-        menuInfo.style.background-color = "black";
-        menuInfo.style.color = "white";
-        infoDesc.style.display= "none";
-        infoInfo.style.display = "grid";
+        menuDesc.style.color = "gray";
+        menuInfo.style.color = "black";
+        infoInfo.style.display= "none";
+        infoDesc.style.display = "grid";
     }
     else
     {
-        menuInfo.style.background-color = "gray";
-        menuInfo.style.color = "black";
-        menuDesc.style.background-color = "black";
-        menuDesc.style.color = "white";
-        infoDesc.style.display = "grid";
-        infoInfo.style.display = "none";
+        menuInfo.style.color = "gray";
+        menuDesc.style.color = "black";
+        infoInfo.style.display = "grid";
+        infoDesc.style.display = "none";
     }
   }
 
-  function changeImageProduct(src, alt)
+  function changeImageProduct(src)
   {
     var bigImg = document.getElementById("ficheProduit-BigImg");
+    console.log("ma source : " + src);
+    bigImg.src = src;
+  }
 
-    bigImg.innerHTML = "<img src=" + src + " alt=" + alt + ">"
+  function nextImage(src)
+  {
+    var bigImg = document.getElementById("ficheProduit-BigImg");
+    console.log("ma source : " + src);
+    bigImg.src = src;
   }
 </script>

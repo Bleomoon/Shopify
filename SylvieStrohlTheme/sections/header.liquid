@@ -137,4 +137,99 @@
 	function notShowCart() {
 		document.getElementById("showCart").style.display = "none";
 	}
+
+	function openMenuNav(){
+		const navbar = document.querySelector('.navbar');
+		const navbarBtn = document.querySelector('.navbar-toggler');
+
+		/*Ici on crée un type open, qui s'il est présent alors c'est ouvert, sinon non */
+		if(navbar.classList.contains('open'))
+		{
+			navbar.classList.remove('open');
+			navbarBtn.innerHTML = '<i class="fas fa-bars"></i>';
+		}
+		else
+		{
+			navbar.classList.add('open');
+			navbarBtn.innerHTML = '<i class="fas fa-times"></i>'
+		}
+	}
+
+	function openSearch()
+	{
+		document.getElementById('searchbox').classList.toggle('show');
+	}
+
+	function openUser()
+	{
+		const userBar = document.querySelector('.user');
+		const userBarBtn = document.querySelector('.header-icons-Ref');
+
+		if(userBar.classList.contains('open'))
+		{
+			userBar.classList.remove('open');
+			userBarBtn.innerHTML = '<i class="fas fa-user"></i>';
+		}
+		else
+		{
+			userBar.classList.add('open');
+			userBarBtn.innerHTML = '<i class="fas fa-times"></i>';
+		}
+	}
+
+	function openMenuNavSmallScreen()
+	{
+		const navbarSmallScreen = document.querySelector('.smallScreen');
+		const navbarSmallScreenBtn = document.querySelector('.smallScreen-toggler');
+
+		/*Ici on crée un type open, qui s'il est présent alors c'est ouvert, sinon non */
+		if (navbarSmallScreen.classList.contains('open'))
+		{
+			navbarSmallScreen.classList.remove('open');
+			navbarSmallScreenBtn.innerHTML = '<i class="fas fa-bars"></i>';
+		}
+		else
+		{
+			navbarSmallScreen.classList.add('open');
+			navbarSmallScreenBtn.innerHTML = '<i class="fas fa-times"></i>'
+		}
+	}
+
+	
+	function openFilters(){
+		const productFilterBtn = document.getElementById('productFilterBtn');
+		const productFilter = document.getElementById('productFilter');
+		
+		if (productFilter.classList.contains('open')){
+			productFilter.classList.remove('open');
+			productFilterBtn.innerHTML ='<i class="fas fa-minus"></i> Filtres';
+		}
+		else{
+			productFilter.classList.add('open');
+			productFilterBtn.innerHTML = '<i class="fas fa-plus"></i> Filtres';
+		}
+	}
+
+	
+	function addOeil()
+	{
+		document.getElementById('goPanierItems-goPanier').innerHTML = 'VOIR VOTRE PANIER<i class="fas fa-eye"></i>'
+	}
+
+	function addArrow()
+	{
+		document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE<i class="fas fa-arrow-right"></i>'
+	}
+
+	function removeOeil()
+	{
+		document.getElementById('goPanierItems-goPanier').innerHTML = 'VOIR VOTRE PANIER'
+	}
+
+	function removeArrow()
+	{
+		document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE'
+	}
+
+	
 </script>
