@@ -1,0 +1,109 @@
+{% if section.settings.showRecommendations %}
+    {% if recommendations.performed %}
+        {% if recommendations.products_count > 0%}
+            {% comment %} Ici la gestion du html {% endcomment %}
+            <div class="product-recommendations">
+                <div class="recommendations-titre">
+                    <h2 class="recommendations-h2">
+                        {{ section.settings.recommendationsTexte }}
+                    </h2>
+                </div>
+                <div class="recommendations">
+                    {% for product in recommendations.products %}
+                        <a class="aRef" href="{{ product.url }}">
+                            <div class="recommendations-product">
+                                <img class="recommendations-product-image" src={{ product.image | img_url: '5760:5760'}} alt="{{ product.image.alt }}">
+                                <h3 class="recommendations-product-titre"> {{ product.title }} </h3>
+                                <h3 class="recommendations-product-price"> {{ product.price }}</h3>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <div data-base-url="{{ routes.product_recommendations_url }}" data-product-id="{{ product.id }}" data-section-id="{{ section.id }}" data-section-type="product-recommendations">
+            je suis l'autre contenu si prefroem = false
+        </div>
+    {% endif %}
+{% endif %}
+
+
+
+{% comment %} Ici la gestion du schéma {% endcomment %}
+{% schema %}
+{
+    "name":"product-recommendations",
+    "settings":[
+        {
+            "type":"checkbox",
+            "id":"showRecommendations",
+            "label":"Afficher les recommendations"
+        },
+        {
+            "type":"text",
+            "id":"recommendationsTexte",
+            "label":"Texe du bloc de recommendations",
+            "default":"VOUS AIMEREZ AUSSI..."
+        }
+    ]
+}
+{% endschema %}
+
+
+{% comment %} ici la gestion du style css {% endcomment %}
+{% style %}
+    .product-recommendations{
+        display:grid;
+        width:80%;
+        margin-right:10%;
+        margin-left:10%;
+        margin-top:25px;
+        margin-bottom:25px;
+    }
+
+    .recommendations-titre{
+        border-bottom:solid;
+        font-style:italic;
+        font-family: cursive;
+        margin:auto;
+        margin-left:0;
+    }
+
+    .recommendations{
+        display:grid;
+        grid-template-columns: repeat(4,1fr);
+    }
+
+    .recommendations-product{
+        display:grid;
+    }
+
+    .recommendations-product-image{
+        grid-row:1;
+        grid-column:1;
+        z-index: 1;
+    }
+
+    .recommendations-product-titre{
+        grid-row:1;
+        grid-column:1;
+        z-index: 2;
+        font-style:italic;
+        font-family: cursive;
+    }
+
+    .recommendations-product-price{
+        grid-row:1;
+        grid-column:1;
+        z-index: 2;
+        font-style:italic;
+        font-family: cursive;
+    }
+{% endstyle %}
+
+
+{% comment %} ici la gestion du script {% endcomment %}
+<script>
+
+</script>

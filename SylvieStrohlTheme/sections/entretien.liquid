@@ -5,7 +5,7 @@
 {% assign h2_font_size = section.settings.taillesubTitre | append:'px' %}
 {% assign h2_text_align = section.settings.subtitle_alignment %}
 {% assign h2_color = section.settings.couleursubTitle %}
-{% assign bg_color = section.settings.couleursubTitle %}
+{% assign bg_color = section.settings.couleurFond %}
 
 {%comment%} Ici le html{%endcomment%}
 <div class="entretien">
@@ -126,7 +126,7 @@
             "type": "color",
             "id": "couleurTitle",
             "label": "Couleur du titre",
-            "default": "#222222"
+            "default": "#000000"
         },
         {
             "type": "text",
@@ -148,13 +148,13 @@
             "id":"subtitle",
             "type":"text",
             "label":"Sous-Titre",
-            "default":"Mon sou-titre"
+            "default":"Mon sous-titre"
         },
         {
             "type": "color",
             "id": "couleursubTitle",
             "label": "Couleur du sous-titre",
-            "default": "#222222"
+            "default": "#000000"
         },
         {
             "type": "text",
@@ -189,13 +189,13 @@
                 "type": "color",
                 "id": "paragrapheCouleurtexte",
                 "label": "Couleur du texte",
-                "default": "#d35400"
+                "default": "#000000"
             },
             {
                 "type": "text",
                 "id": "paragrapheTailletexte",
                 "label": "taille du texte",
-                "default": "75"
+                "default": "15"
             },
             {
                 "type": "radio",
@@ -253,13 +253,13 @@
                 "type": "color",
                 "id": "deuxparagrapheCouleurtexte",
                 "label": "Couleur des textes",
-                "default": "#ffffff"
+                "default": "#000000"
             },
             {
                 "type": "color",
                 "id": "deuxparagrapheCouleurTitre",
                 "label": "Couleur des titres",
-                "default": "#ffffff"
+                "default": "#000000"
             },
             {
                 "type": "text",
@@ -332,13 +332,13 @@
                 "type": "color",
                 "id": "IconeCouleurtexte",
                 "label": "Couleur du texte",
-                "default": "#ffffff"
+                "default": "#000000"
             },
             {
                 "type": "color",
                 "id": "IconeCouleurTitre",
                 "label": "Couleur du titre",
-                "default": "#ffffff"
+                "default": "#000000"
             },
             {
                 "type": "text",
@@ -511,8 +511,7 @@
     .entretien{
         margin-bottom:25px;
         margin-top:25px;
-        border-style:groove;
-        border-color: {{ bg_color }};
+        background-color: {{ bg_color }};
         font-family: cursive;
         font-style: italic;
     }

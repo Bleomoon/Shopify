@@ -54,7 +54,9 @@
         {% elsif block.type == 'liens' %} {% comment %} liens {% endcomment %}
             <div class="liens">
                 <h3> {{ block.settings.lienTitre }} </h3>
-                {{ block.settings.menu }}
+                {% for link in block.settings.menu.links %}
+                    <a class="aRef" href="{{ link.url }}"> {{ link.title }} </a>
+                {% endfor %}
             </div>
         {% endif %}
     {% endfor %}
@@ -94,7 +96,8 @@
                 {
                     "type":"link_list",
                     "id":"menu",
-                    "label":"Selectionner un menu"
+                    "label":"Selectionner un menu",
+                    "default":"footer"
                 }
             ]
         },

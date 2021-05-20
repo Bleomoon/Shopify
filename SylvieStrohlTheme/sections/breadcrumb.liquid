@@ -1,0 +1,114 @@
+{% comment %} Ici l'assignation des valeurs des variables {% endcomment %}
+{% assign bg_color = section.settings.CouleurFond %}
+{% assign colorText = section.settings.couleurTexte %}
+{% assign colorSelectedText = section.settings.couleurTexteSelectionner %}
+
+{% comment %} Ici l'affichae du html {% endcomment %}
+{%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
+{%- assign t = template | split: '.' | first -%}
+
+<div class="breadcrumb">
+    <img src="img/here.png" alt="Vous êtes ici :" class="here" />
+    <a class="arianeText" href="{{ shop.url }}">Accueil</a>
+    <span class="sep"> &gt; </span>
+    {%- case t -%}
+    {%- when 'page' -%}
+            <span class="sep"> &gt; </span>
+            <a class="arianeText" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+    {%- when 'product' -%}
+        {%- if collection.url -%}
+            <span class="sep"> &gt; </span>
+            {{ collection.title | link_to: collection.url }}
+        {%- endif -%}
+            <span class="sep"> &gt; </span>
+            <a class="arianeText" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+    {%- when 'collection' and collection.handle -%}
+        {%- if current_tags -%}
+            <span class="sep"> &gt; </span>
+            {{ collection.title | link_to: collection.url }}
+            <span class="sep"> &gt; </span>
+            {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+            <a class="arianeText" href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + "}}</a>
+        {%- else -%}
+            <span class="sep"> &gt; </span>
+            <a class="arianeText" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+        {%- endif -%}
+    {%- when 'blog' -%}
+        {%- if current_tags -%}
+            <span class="sep"> &gt; </span>
+            {{ blog.title | link_to: blog.url }}
+            <span class="sep"> &gt; </span>
+            {%- capture tag_url -%}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+            <a class="arianeText" href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + " }}</a>
+        {%- else -%}
+            <span class="sep"> &gt; </span>
+            <a class="arianeText" href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+        {%- endif -%}
+    {%- when 'article' -%}
+            <span class="sep"> &gt; </span>
+            {{ blog.title | link_to: blog.url }}
+            <span class="sep"> &gt; </span>
+            <a class="arianeText" href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+    {%- else -%}
+            <span class="sep"> &gt; </span>
+            <a class="arianeText" href="{{ request.path }}" aria-current="page">{{ page_title }}</a>
+    {%- endcase -%}
+</div>
+
+{%- endunless -%}
+{% comment %} Ici le shéma du fil d'ariane composé d'une background color {% endcomment %}
+{% schema %}
+{
+    "name":"Fil d'ariane",
+    "settings":[
+        {
+            "type":"color",
+            "id":"CouleurFond",
+            "label":"Couleur de fond"
+        },
+        {
+            "type":"color",
+            "id":"couleurTexteSelectionner",
+            "label":"Couleur du texte sélectionner"
+        },
+        {
+            "type":"color",
+            "id":"couleurTexte",
+            "label":"Couleur du texte"
+        }
+    ],
+    "presets":[
+        {
+            "category":"Presentation",
+            "name": "Fil d'ariane"
+        }
+    ]
+}
+{% endschema %}
+
+{% comment %} Ici le style css du site {% endcomment %}
+{% style %}
+  .breadcrumb{
+    background-color: {{ bg_color }};
+    text-align: center;
+  }
+
+  .here{
+    color: {{ colorText }};
+  }
+
+  .sep{
+    
+  }
+
+  .arianeText{
+    text-decoration:none;
+    font-family:cursive;
+    font-style: italic;
+    color: {{ colorText }};
+  }
+
+  .on{
+    color: {{ colorSelectedText }};
+  }
+{% endstyle %}

@@ -10,8 +10,8 @@
     {{ section.settings.title  }}
   </h1>
   {% for block in section.blocks %}
-    <div class="livraisons-paragraphe" style="background-color: {{ block.settings.couleurFondParagraphe }}">
-      <p style="font-size: {{ block.settings.Tailletexte | append: 'px' }}; text-align: {{ block.settings.Texte_alignment }}; color: {{ block.settings.Couleurtexte }};">
+    <div class="livraisons-paragraphe" style="background-color: {{ block.settings.couleurFondParagraphe }}; ; color: {{ block.settings.Couleurtexte }};">
+      <p style="font-size: {{ block.settings.Tailletexte | append: 'px' }}; text-align: {{ block.settings.Texte_alignment }};">
         {{ block.settings.Texte }}
       </p>
     </div>

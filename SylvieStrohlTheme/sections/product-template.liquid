@@ -98,6 +98,9 @@
     <div class="menu-infosComplementairesProduct">
       <div id="menuButton-Description" class="menuButton-Description" onclick="switchMenu(1)">
         Description
+        {% if section.settings.showButton == true %}
+          <a class="aRef" href="{{ section.settings.urlButton }}"><button class="buttonRef">{{ section.settings.textButton }}</button></a>
+        {% endif %}
       </div>
       <div id="menuButton-Informations" class="menuButton-Informations" onclick="switchMenu(2)">
         Informations complementaires
@@ -159,6 +162,24 @@
 {% schema %}
 {
   "name": "produit",
+  "settings":[
+    {
+      "type":"checkbox",
+      "id":"showButton",
+      "label":"Afficher un boutton lien vers une autre page ?",
+      "default": false
+    },
+    {
+      "type":"url",
+      "id":"urlButton",
+      "label":"Lien du boutton"
+    },
+    {
+      "type":"text",
+      "id":"textButton",
+      "label":"Texte du boutton"
+    }
+  ],
   "blocks":[
     {
       "type":"logo",
