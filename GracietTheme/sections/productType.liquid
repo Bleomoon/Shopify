@@ -1,0 +1,83 @@
+{% comment %} l'initialisation des variables {% endcomment %}
+{% assign product_Type = section.settings.produit.type %}
+
+{% comment %} ici le html d'affichage du site {% endcomment %}
+<div class="produitsType">
+  <h2 class="produitsType-type">{{ section.settings.produit.type}}</h2>
+  {% comment %} les produits qui sont du type sélectionné {% endcomment %}
+  <div class="produits">
+      
+    {% for product in general.collection %}
+        {{ product.type }}
+        {% if product.type == product_Type %}
+            <div class="unProduit">
+                {% assign firstImage = product.images | first %}
+                <a class="aRef" href={{ product.url }}> <img src= {{ firstImage | img_url: 'medium', crop:'center' }} alt="{{ firstImage.alt }}"> </a>
+                <a class="aRef" href={{ product.url }}><h3>{{ product.title }}</h3></a>
+            </div>
+        {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% comment %} ici le schema de la section {% endcomment %}
+{% schema %}
+{
+  "name":"produitsType",
+  "settings": [
+        {
+            "type": "product",
+            "id": "id",
+            "label": "Selectionner le produit type",
+            "info": "Le type du type sélectionné sera affiché en haut de la page"
+        }
+    ]
+}
+{% endschema %}
+
+{% comment %} ici le css {% endcomment %}
+{% style %}
+    .produitsType{
+        width:80%;
+        margin-left:10%;
+        margin-right:10%;
+        margin-top:25px;
+        margin-bottom:25px;
+    }
+
+    .produitsType-type{
+        font-family: cursive;
+        font-style: italic;
+    }
+
+    .produits{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        grid-gap:10px;
+    }
+
+    .unProduit{
+        text-align:center;
+        margin:auto;
+    }
+
+    @media screen and (max-width:1200px)
+    {
+        .produitsType{
+            width:100%;
+            margin-left:0;
+            margin-right:0;
+        }
+
+        .produits{
+            grid-template-columns:repeat(3,1fr);
+        }
+    }
+
+    @media screen and (max-width:800px)
+    {
+        .produits{
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+{% endstyle %}

@@ -53,8 +53,8 @@
             </div>
         {% elsif block.type == 'liens' %} {% comment %} liens {% endcomment %}
             <div class="liens">
-                <h3> {{ block.settings.lienTitre }} </h3>
-                {% for link in block.settings.menu.links %}
+                <h3> {{ block.settings.lienTitrlinklists[block.settings.menu]e }} </h3>
+                {% for link in .links %}
                     <a class="aRef" href="{{ link.url }}"> {{ link.title }} </a>
                 {% endfor %}
             </div>

@@ -3,19 +3,15 @@
     <div class="ShowAllCollections-title">
         <h1>{{ pages.collectionsShow.title }}</h1>
     </div>
-    <div class="ShowAllCollections-contenu">
-        {% if shop.collections_count == 0 %}
-            <div class="contenu-noCollections">
-                <h2>Il n'existe encore aucune collecton</h2>
-            </div>
-        {% else %}
-            {% capture _ %} {%comment%} Permet de capturer la sortie {%endcomment%}
-                {% increment numColonne %} {% increment numColonne %} {%comment%} On met le numCol a 2 {%endcomment%}
-                {% increment numLigne %}{%comment%} On met le numLigne a 1 {%endcomment%}
-            {% endcapture %}
+    
+    {% if shop.collections_count == 0 %}
+        <div class="contenu-noCollections">
+            <h2>Il n'existe encore aucune collecton</h2>
+        </div>
+    {% else %}
+        <div class="ShowAllCollections-contenu">
             {% for collection in collections %}
-                
-                <div style="grid-row:{{ numLigne }}; grid-column:{{numColonne}};" class="contenu-showOneCollection">
+                <div class="contenu-showOneCollection">
                     <a class="aRef" href="{{ collection.url }}">
                         {% if collection.image %}
                             <div class="oneCollection-img">
@@ -27,40 +23,51 @@
                         </div>
                     </a>
                 </div>
-
-                {% capture _ %}
-                    {%comment%} Gestion de l'affichage ligne col des collections {%endcomment%}
-                    {%if numColonne == 4 %}
-                        {% increment numLigne %} {%comment%} On increment NumLigne {%endcomment%}
-                        {%comment%} On met NumCol a 2 {%endcomment%}
-                        {% decrement numColonne %} {% decrement numColonne %} 
-                    {% else %}
-                        {% increment numColonne %} {%comment%} On increment NumCol {%endcomment%}
-                    {% endif %}
-                {% endcapture %}
             {% endfor %}
-        {% endif %}
-    </div> 
+        </div> 
+    {% endif %}
 </div>
 
 {% style %}
     .ShowAllCollections{
         font-family: cursive;
         font-weight: bold;
+		width:80%;
+        margin-left:10%;
+        margin-right:10%;
+        margin-top:25px;
+        margin-bottom:25px;
+    }
+
+    .contenu-noCollections{
+        margin:auto;
     }
 
     .ShowAllCollections-contenu{
         display:grid;
-        grid-template-columns:repeat(5,1fr);
+        grid-template-columns:repeat(3,1fr);
         grid-gap:10px;
     }
 
-    .contenu-noCollections{
-        grid-column:3;
-        grid-row:1;
+    .contenu-showOneCollection{
+        margin:auto;
     }
 
-    .contenu-showOneCollection{
-        text-align:center;
+    @media screen and (max-width:1200px)
+    {
+        .ShowAllCollections{
+            width:100%;
+            margin-left:0;
+            margin-right:0;
+        }
     }
+
+    @media screen and (max-width:800px)
+    {
+        .ShowAllCollections-contenu{
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+    
+    
 {% endstyle %}

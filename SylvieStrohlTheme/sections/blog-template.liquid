@@ -1,0 +1,107 @@
+{% comment %} assignation des valeurs {% endcomment %}
+
+
+{% comment %} Ici le html d'affichage {% endcomment %}
+<div class="blogs">
+    {% for block in section.blocks %}
+        {% assign theblog = blogs[block.settings.myBlog] %}
+
+        {% if theblog.articles_count > 0 %}
+            <div class="oneBlog">
+                <header class="visually-hidden">
+                    {% if current_tags %}
+                        <h2>{{ theblog.title | link_to: theblog.url }} &mdash; {{ current_tags.first }}</h2>
+                    {% else %}
+                        <h2>{{ theblog.title }}</h2>
+                    {% endif %}
+                </header>
+                {% for article in theblog.articles %}
+                    <div class="oneArticle">
+                        <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+
+                        <div class="rte rte--indented-images">
+                            {% if article.image %}
+                                <p>
+                                <a href="{{ article.url }}">
+                                    {{ article | img_url: 'medium' | img_tag: article.title }}
+                                </a>
+                                </p>
+                            {% endif %}
+
+                            {% if article.excerpt.size > 0 %}
+                                {{ article.excerpt }}
+                            {% else %}
+                                <p>{{ article.content | truncatewords: 100 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <p class="action-link">
+                            <a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} <span class="icon icon-arrow-right action-link__icon" aria-hidden="true"></span></a>
+                        </p>
+
+                        {% unless forloop.last %}
+                            <hr class="hr--clear">
+                        {% endunless %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% comment %} Ici le schéma de la section {% endcomment %}
+{% schema %}
+{
+    "name":"Blogs",
+    "max_blocks":50,
+    "blocks":[
+        {
+            "type":"oneBlog",
+            "name":"oneBlog",
+            "settings":[
+                {
+                    "type": "blog",
+                    "id": "myBlog",
+                    "label": "Un blog"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% comment %} Ici le css de la section {% endcomment %}
+{% style %}
+    .blogs{
+        display:grid;
+        width:80%;
+        margin-left:10%;
+        margin-right:10%;
+        margin-top:25px;
+        margin-bottom:25px;
+    }
+
+    .oneBlog{
+        margin:auto;
+        display:grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-gap:15px;
+    }
+
+    .oneArticle{
+        text-align:center;
+    }
+
+    @media screen and (max-width:1200px)
+    {
+        .blogs{
+            width:100%;
+        }
+        .oneBlog{
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+
+{% endstyle %}
+
+{% comment %} Ici le js de la section {% endcomment %}
