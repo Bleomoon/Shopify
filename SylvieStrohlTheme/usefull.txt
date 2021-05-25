@@ -20,3 +20,6 @@ https://www.shopify.com/partners/blog/img-url-filter
 product-recommendations:
 	pour la section: https://shopify.dev/tutorials/develop-theme-recommended-products-using-liquid#theme-editor-considerations
 	pour le produit: https://shopify.dev/tutorials/develop-theme-recommended-products-using-json-api
+
+dev ton app:
+https://shopify.dev/tutorials/build-a-shopify-app-with-node-and-react/build-your-user-interface-with-polaris

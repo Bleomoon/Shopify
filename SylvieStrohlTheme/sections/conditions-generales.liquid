@@ -3,10 +3,10 @@
 
 {% comment %} zone d'affichage du html {% endcomment %}
 <div class="conditions-generales">
-  <h2 class="conditions-generales-h2">{{ section.settings.titre }}</h2>
+  <h1 class="conditions-generales-h2">{{ section.settings.titre }}</h2>
   {% for block in section.blocks %}
     {% capture _ %} 
-      {% increment numCondition %} 
+      {% increment numCondition %}
     {% endcapture %}
     <div class="conditions-generales-div">
       <h3 class="conditions-generales-h3">{{ block.settings.subtitle }}</h3>
@@ -101,6 +101,7 @@
     position:absolute;
     right:0;
     margin-right:100px;
+	border:none;
   }
 
 {% endstyle %}
@@ -115,14 +116,14 @@
       if (plusMoins.classList.contains('open'))
       {
           plusMoins.classList.remove('open');
-          plusMoins.innerHTML = '<i class="fas fa-minus"></i>';
-          p.style.display = "block"
+          plusMoins.innerHTML = '<i class="fas fa-plus"></i>';
+          p.style.display = "none"
       }
       else
       {
           plusMoins.classList.add('open');
-          plusMoins.innerHTML = '<i class="fas fa-plus"></i>';
-          p.style.display = "none"
+          plusMoins.innerHTML = '<i class="fas fa-minus"></i>';
+          p.style.display = "block"
       }
   }
 </script>
