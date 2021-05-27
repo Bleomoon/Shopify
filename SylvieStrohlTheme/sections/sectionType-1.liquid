@@ -1,0 +1,178 @@
+
+{% comment %} l'initialisation des variables {% endcomment %}
+{% if section.settings.type_filter == "none"%}
+    {% assign myProducts = collections.all.products%}
+{% else %}
+    {% assign myType = section.settings.type_filter %}
+    {% assign myProducts = collections.all.products | where: "type", myType %}
+{% endif %}
+
+{% comment %} On regarde si on enlève les produits indisponible {% endcomment %} 
+{% if section.settings.available_products == false %}
+    {% assign myProducts = myProducts | where: "available" %}
+{% endif %}
+
+{% comment %} la zone de filtre utilisateur {% endcomment %}
+{% if section.settings.zone_filter == true %}
+    <div id="productFilter" class="productFilter">
+        {%comment%} Ici on boucle pour récupéré tous les noms d'options {%endcomment%}
+        {% assign myOptions = ''  %}
+            {% for product in myProducts %} 
+                {% for product_option in product.options_with_values %}
+                    {{ product_option }}
+                    {% assign myProduct = product_option.name | split: '' %}
+                    {% assign listOption = myOptions | split: ', ' | uniq %}
+                    {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
+                {% endfor %}
+            {% endfor %}
+
+        {%comment%} Ici on boucle pour récupéré toutes les valeurs de options {%endcomment%}
+        {% assign listValue = ''  %}
+        {% assign allValue = '' %}
+        {%for oneOption in listOption %}
+            {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enlve le title et le vide {%endcomment%}
+                <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+                <option value="{{ oneOption }}" disabled>{{ oneOption }}</option>
+                <option value="Tous">Tous</option>
+
+                    {% for product in myProducts %}
+                        {% for product_option in product.options_with_values %}
+                            {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
+                                {% for value in product_option.values %}
+                                    {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
+                                    {% unless listValue contains value %}
+                                        <option value="{{ value }}">{{ value }}</option>
+                                    {% endunless %}
+                                    {% assign allValue = allValue | append: ', ' | append: value %}
+                                    {% assign listValue = allValue | split: ', ' | uniq %}
+                                {% endfor %}
+                            {% endif %}
+                        {%endfor%}
+                    {%endfor%}
+
+                </select>
+            {%endif%}
+        {%endfor%}
+    </div>
+{% endif %}
+  
+{% comment %} ici le html d'affichage du site {% endcomment %}
+{% assign nbProducts = myProducts | size %}
+{% if nbProducts  > 0 %}
+  <h2 class="produits-H2">{{ section.settings.type}}</h2>
+  {% include 'product-grid-width' with product_image_type: section.settings.product_image_type, product_image_size: section.settings.product_image_size %}
+  <div class="grid collection-grid grid--uniform grid--no-gutters">
+    {% for product in myProducts %}
+      {% assign price = product.price | money_without_trailing_zeros %}
+      {% include 'product-grid-item' with product_image_spacing: section.settings.product_image_spacing, vendor_enable: section.settings.vendor_enable %}
+    {% endfor %}
+  </div>
+{% else %}
+    <h2 class="produits-H2">Aucun produit n'a été trouvé</h2>
+{% endif %}
+
+{% comment %} ici le schema de la section {% endcomment %}
+{% schema %}
+{
+  "name":"Types-1",
+  "settings": [
+		{
+            "type": "text",
+            "id": "type_filter",
+            "label": "Nom du type à filtrer",
+            "default": "none",
+            "info": "Le noms du types doit être exactement le même, à la majuscule prêt"
+        },
+        {
+            "type": "checkbox",
+            "id": "zone_filter",
+            "label": "Afficher une zone de filtre supplémentaire",
+            "default": false,
+			"info":"Les utilisateurs pourront filtrer davantage"
+        },
+        {
+            "type": "checkbox",
+            "id": "available_products",
+            "label": "Afficher les produits indisponible ?",
+            "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "product_image_spacing",
+          "label": "Ajouter un espacement entre les images"
+        },
+        {
+          "type": "checkbox",
+          "id": "vendor_enable",
+          "label": "Afficher le distributeur du produit"
+        },
+        {
+          "type": "select",
+          "id": "product_image_type",
+          "label": "Style d'image",
+          "options": [
+            {
+              "value": "portrait",
+              "label": "Grand/carré"
+            },
+            {
+              "value": "landscape",
+              "label": "Large"
+            }
+          ]
+		},
+        {
+          "type": "select",
+          "id": "product_image_size",
+          "label": "Taille de l'image",
+          "default": "medium",
+          "options": [
+            {
+              "value": "small",
+              "label": "Petite"
+            },
+            {
+              "value": "medium",
+              "label": "Moyenne"
+            },
+            {
+              "value": "large",
+              "label": "Grande"
+            },
+            {
+              "value": "xlarge",
+              "label": "Très grande"
+            }
+          ]
+        }
+    ]
+}
+{% endschema %}
+
+{% comment %} ici le css {% endcomment %}
+{% style %}
+	.produits-H2{
+		text-align:center;
+	}
+
+    .productFilter{
+        grid-template-columns:repeat(4,1fr);
+        display:grid;
+        grid-row:2;
+        grid-gap:25px;
+        margin-top:10px;
+        margin-left:15px;
+        margin-right:15px;
+        left: -999px;
+        position:absolute;
+    }
+
+    .oneFilter{
+        font-size: .9rem;
+        padding: 2px 5px;
+        background-color:black;
+        color: white;
+        -moz-appearance: none;
+        border: none;
+    }
+{% endstyle %}

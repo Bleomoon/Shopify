@@ -1,0 +1,328 @@
+
+{% comment %} l'initialisation des variables {% endcomment %}
+
+{% comment %} On filtre dans l'ordre, d'abord les collections {% endcomment %} 
+{% if section.settings.collection_filter == false %}
+    {% assign allProducts = collections.all.products %}
+{% else %}
+    {% for block in section.blocks %}
+        {% if block.type == "uneCollection" %}
+            {% for collection in collections %}
+                {{ collection.id }}
+                {{ block.settings.collection_id }}
+                {% if collection.id == block.settings.collection_id %}
+                    {% assign allProducts = allProducts | concat: collection.products | uniq %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+1er :
+{% for product in allProducts %}
+	{{ product.title }}
+{% endfor %}
+<br>
+{% comment %} On regarde si on enlève les produits indisponible {% endcomment %} 
+{% if section.settings.available_products == false %}
+    {% assign allProducts = allProducts | where: "available" %}
+{% endif %}
+1er bis mdr : 
+{% for product in allProducts %}
+	{{ product.title }}
+{% endfor %}
+<br>
+{% comment %} On filtre sur les tags d'un produit {% endcomment %} 
+{% if section.settings.products_filter_tags == true %}
+    {% for block in section.blocks %}
+        {% if block.type == "unProduitTag" %}
+            {% assign myProduct = all_products[block.settings.product_id_tag] %}
+            {% for tag in myProduct.tags %}
+                {% assign allProducts = allProducts |  where: "tag", tag %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+2eme : 
+{% for product in allProducts %}
+	{{ product.title }}
+{% endfor %}
+<br>
+{% comment %} On filtre sur un tag {% endcomment %} 
+{% if section.settings.products_filter_tag == true %}
+    {% for block in section.blocks %}
+        {% if block.type == "unTag" %}
+            je suis le tag : {{ block.settings.tag_id }} <br>
+            {% assign allProducts = allProducts | where: "tags", block.settings.tag_id %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+3eme :
+{% for product in allProducts %}
+	{{ product.title }}
+{% endfor %}
+<br>
+{% comment %} On filtre sur un type {% endcomment %} 
+{% if section.settings.products_filter_type == true %}
+    {% for block in section.blocks %}
+        {% if block.type == "unType" %}
+                {% assign allProducts = allProducts |  where: "type", block.settings.type_id %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+4eme : 
+{% for product in allProducts %}
+	{{ product.title }}
+{% endfor %}
+<br>
+{% comment %} On filtre sur les options d'un produit {% endcomment %} 
+{% if section.settings.products_filter_options == true %}
+    {% for block in section.blocks %}
+        {% if block.type == "unProduitOption" %}
+            {% for product_option in product[section.settings.product_id_option].options %}
+                {% assign allProducts = allProducts | where: "options", product_option %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+5eme : 
+{% for product in allProducts %}
+	{{ product.title }}
+{% endfor %}
+<br>
+{% comment %} On filtre sur une option {% endcomment %} 
+{% if section.settings.products_filter_option == true %}
+    {% for block in section.blocks %}
+        {% if block.type == "uneOption" %}
+            {% assign allProducts = allProducts | where: "options", block.settings.option_id %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+6eme : 
+{% for product in allProducts %}
+	{{ product.title }}
+{% endfor %}
+<br>
+{% comment %} On filtre sur un distributeur {% endcomment %} 
+{% if section.settings.distributeur_filter == true %}
+    {% for block in section.blocks %}
+        {% if block.type == "unDistributeur" %}
+            {% assign allProducts = allProducts | where: "vendor" , block.settings.distributeur_id | capitalize  %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+7eme : 
+{% for product in allProducts %}
+	{{ product.title }}
+{% endfor %}
+<br>
+
+Je suis le premier test {{ allProducts.products_count }} <br>
+Je suis le deuxieme test {{ allProducts | size }} <br>
+
+Je suis le troisieme test  <br>
+Je suis le quatrieme test  <br>
+{% comment %} ici le html d'affichage du site {% endcomment %}
+{% assign nbProducts = allProducts | size %}
+{% if nbProducts  > 0 %}
+	<div class="produits">
+		<h2 class="produits-H2">{{ section.settings.type}}</h2>
+        {% for product in allProducts %}
+            <div class="unProduit">
+                {% assign firstImage = product.images | first %}
+                <a class="aRef" href={{ product.url }}> <img src= {{ firstImage | img_url: 'medium', crop:'center' }} alt="{{ firstImage.alt }}"> </a>
+                <a class="aRef" href={{ product.url }}><h3>{{ product.title }}</h3></a>
+            </div>
+        {% endfor %}
+	</div>
+{% else %}
+<h2 class="produits-H2">Aucun produit n'a été trouvé</h2>
+{% endif %}
+
+{% comment %} ici le schema de la section {% endcomment %}
+{% schema %}
+{
+  "name":"Filtres",
+  "settings": [
+		{
+            "type": "checkbox",
+            "id": "collection_filter",
+            "label": "Afficher une collection en particulier ? ",
+            "default": false,
+            "info": "Les prochains filtres seront appliqué sur cette collection"
+        },
+        {
+            "type": "checkbox",
+            "id": "products_filter_tags",
+            "label": "Afficher des produits avec des tags en commun ? ",
+            "default": false,
+            "info": "Les produits qui ont au moins 1 tag en commun apparaitront"
+        },
+        {
+            "type": "checkbox",
+            "id": "products_filter_tag",
+            "label": "Afficher des produits avec un tag en commun ? ",
+            "default": false,
+            "info": "Les produits qui ont ce tag en commun apparaitront"
+        },
+        {
+            "type": "checkbox",
+            "id": "products_filter_type",
+            "label": "Afficher des produits avec un type en commun ? ",
+            "default": false,
+            "info": "Les produits qui ont ce type en commun apparaitront"
+        },
+        {
+            "type": "checkbox",
+            "id": "products_filter_options",
+            "label": "Afficher des produits avec des options en commun ? ",
+            "default": false,
+            "info": "Les produits qui ont au moins 1 option en commun apparaitront"
+        },
+        {
+            "type": "checkbox",
+            "id": "products_filter_option",
+            "label": "Afficher des produits avec une option en commun ? ",
+            "default": false,
+            "info": "Les produits qui ont ce type en commun apparaitront"
+        },
+        {
+            "type": "checkbox",
+            "id": "zone_filter",
+            "label": "Afficher une zone de filtre supplémentaire",
+            "default": false,
+			"info":"Les utilisateurs pourront filtrer davantage"
+        },
+        {
+            "type": "checkbox",
+            "id": "collection_options_filter",
+            "label": "Afficher les filtres des collections ? ",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "distributeur_filter",
+            "label": "Afficher des produits avec un distributeur en commun ? ",
+            "default": false,
+            "info": "Les produits qui ont au moins 1 distributeur en communs apparaitront"
+        },
+        {
+            "type": "checkbox",
+            "id": "available_products",
+            "label": "Afficher les produits indisponible ?",
+            "default": false
+        }
+    ],
+    "max_blocks":50,
+    "blocks":[
+        {
+            "name":"Une collection",
+            "type":"uneCollection",
+            "settings":[
+                {
+                    "type":"collection",
+                    "id": "collection_id",
+                    "label": "Selectionner la collection",
+                    "info": "Vous pouvez crée de nouvelles collections dans votre menu d'administrateur"
+                }
+            ]
+        },
+        {
+            "name":"Un produit, tag",
+            "type":"unProduitTag",
+            "settings":[
+                {
+                    "type": "product",
+                    "id": "product_id_tag",
+                    "label": "Selectionner le produit pour ces tags"
+                }
+            ]
+        },
+        {
+            "name":"Un tag",
+            "type":"unTag",
+            "settings":[
+                {
+                    "type":"text",
+                    "id":"tag_id",
+                    "label":"Ecrivez le tag",
+                    "info":"les majuscules ou minuscules n'ont pas d'importance"
+                }
+            ]
+        },
+        {
+            "name":"Un type",
+            "type":"unType",
+            "settings":[
+                {
+                    "type":"text",
+                    "id":"type_id",
+                    "label":"Ecrivez le type",
+                    "info":"les majuscules ou minuscules n'ont pas d'importance"
+                }
+            ]
+        },
+        {
+            "name":"Un produit, options",
+            "type":"unProduitOption",
+            "settings":[
+                {
+                    "type": "product",
+                    "id": "product_id_option",
+                    "label": "Selectionner le produit pour ces options"
+                }
+            ]
+        },
+        {
+            "name":"Une option",
+            "type":"uneOption",
+            "settings":[
+                {
+                    "type":"text",
+                    "id":"option_id",
+                    "label":"Ecrivez l'option",
+                    "info":"les majuscules ou minuscules n'ont pas d'importance"
+                }
+            ]
+        },
+        {
+            "name":"Un distributeur",
+            "type":"unDistributeur",
+            "settings":[
+                {
+                    "type":"text",
+                    "id":"distributeur_id",
+                    "label":"Ecrivez le distributeur",
+                    "info":"les majuscules ou minuscules n'ont pas d'importance"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% comment %} ici le css {% endcomment %}
+{% style %}
+    .produits{
+        width:100%;
+        display:grid;
+        margin-top:25px;
+        margin-bottom:25px;
+        grid-gap:3%;
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    @media screen and (max-width:1200px)
+    {
+        .produits{
+            grid-template-columns:repeat(3,1fr);
+        }
+    }
+
+    @media screen and (max-width:800px)
+    {
+        .produits{
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+{% endstyle %}

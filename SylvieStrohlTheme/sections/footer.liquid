@@ -8,7 +8,7 @@
         <div class="iconesReseaux">
         {% for block in section.blocks %}
             {% if block.type == 'iconsReseaux' %}
-                <a class="aRef" href="{{ block.settings.reseauUrl }}">
+                <a style="grid-row:1;" class="aRef" href="{{ block.settings.reseauUrl }}">
                     <img alt="{{ block.settings.reseauIcon }}" src={{ block.settings.reseauIcon | img_url: '50x50'}}>
                 </a>
             {% endif %}
@@ -19,11 +19,17 @@
     <div class="newsletter">
         {% for block in section.blocks %}
             {% if block.type == 'newsletter' %}
-                <h3>{{ block.settings.newsText }}</h3>
-                <form action="newsletter" method="post">
-                    <input class="contactText" type="text" value="EMAIL"><br><br>
-                    <input class="contactSubmit" type="button" value="S'INSCRIRE">
-                </form>
+      			{% form 'customer' %}
+                  {{ form.errors | default_errors }}
+                  {% if form.posted_successfully? %}
+                  	<p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+                  {% else %}
+                    <h3>{{ block.settings.newsText }}</h3>
+                    <label for="Email" class="newsletter__label label--hidden">{{ 'general.newsletter_form.email_placeholder' | t }}</label>
+                    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" name="contact[email]" id="Email" class="contactText" autocorrect="off" autocapitalize="off">
+                    <input class="contactSubmit" type="submit"  name="commit" id="Subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+                  {% endif %}
+      			{% endform %}
             {% endif %}
         {% endfor %}
     </div>
@@ -32,7 +38,7 @@
         <div class="iconesPaiement">
             {% for block in section.blocks %}
                 {% if block.type == 'iconsPaiement' %}
-                    <img alt="{{ block.settings.paiementTitre }}" src={{ block.settings.paiementIcon | img_url: '50x50'}}>
+                    <img style="grid-row:1;" alt="{{ block.settings.paiementTitre }}" src={{ block.settings.paiementIcon | img_url: '50x50'}}>
                     {% if allPaiements == '(' %}
                         {% assign allPaiements = allPaiements | append: block.settings.paiementTitre %}
                     {% else %}
@@ -53,8 +59,8 @@
             </div>
         {% elsif block.type == 'liens' %} {% comment %} liens {% endcomment %}
             <div class="liens">
-                <h3> {{ block.settings.lienTitrlinklists[block.settings.menu]e }} </h3>
-                {% for link in .links %}
+                <h3> {{ block.settings.lienTitre }} </h3>
+                {% for link in linklists[block.settings.menu].links %}
                     <a class="aRef" href="{{ link.url }}"> {{ link.title }} </a>
                 {% endfor %}
             </div>
@@ -135,6 +141,7 @@
         {
             "type":"iconsPaiement",
             "name":"Icones Paiement",
+			"limit":6,
             "settings":[
                 {
                     "type":"image_picker",
@@ -152,6 +159,7 @@
         {
             "type":"iconsReseaux",
             "name":"Icones Reseau",
+			"limit":6,
             "settings":[
                 {
                     "type":"image_picker",
@@ -203,7 +211,7 @@
 .iconesReseaux{
     display:grid;
     grid-template-rows: repeat(1,1fr);
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: auto;
     margin:auto;
 }
 
@@ -225,6 +233,7 @@
 .contactSubmit:hover{
     color:black;
     background-color:white;
+	cursor:pointer;
 }
 
 .paiement{
@@ -236,7 +245,7 @@
 .iconesPaiement{
     display:grid;
     grid-template-rows: repeat(1,1fr);
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: auto;
 }
 
 .oneTexte{
