@@ -48,10 +48,10 @@
         {% endif %}
         <div class="showCollection" alt="{{feature_collection_image.alt}}" style="background-image: url('{{ feature_collection_image | img_url: '1870x859' }}');" >
             <div class="contenuShowCollection" style="grid-column: {{ positionTexte }} ">
-                <h3 style="font-size: {{ tailleTitre1 | append:'px' }}; color: {{ section.settings.collection_showImage_color_texte }};">COLLECTION</h3>
-                <h2 style="font-size: {{ tailleTitre2 | append:'px' }}; color: {{ section.settings.collection_showImage_color_texte2 }};">{{ collections[featured_collection].title }}</h2>
+                <h3 style="font-size: {{ section.settings.tailleTitre1 | append:'px' }}; color: {{ section.settings.collection_showImage_color_texte }};">COLLECTION</h3>
+                <h2 style="font-size: {{ section.settings.tailleTitre2 | append:'px' }}; color: {{ section.settings.collection_showImage_color_texte2 }};">{{ collections[featured_collection].title }}</h2>
                 <span class="contenuShowCollection-span-a">
-                    <a style="font-size: {{ tailleTitre3 | append:'px' }}; color: {{ section.settings.collection_showImage_color_boutton }};" class="contenuShowCollection-a" href="{{ collections[featured_collection].url }}">
+                    <a style="font-size: {{ section.settings.tailleTitre3 | append:'px' }}; color: {{ section.settings.collection_showImage_color_boutton }};" class="contenuShowCollection-a" href="{{ collections[featured_collection].url }}">
                         Découvrir 
                         <span class="icon icon-arrow-right action-link__icon" aria-hidden="true"></span>
                     </a>
@@ -572,6 +572,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position:center;
+    grid-template-columns:repeat(2,1fr);
   }
   
   .contenuShowCollection{
