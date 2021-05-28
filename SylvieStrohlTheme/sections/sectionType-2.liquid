@@ -28,9 +28,10 @@
 
         {%for oneOption in listOption %}
             {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enleve le title et le vide {%endcomment%}
-                <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+                <label>Filtrer par : </label>
+                <select onchange="changeSelected({{ oneOption }})"  class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
                 <option value="{{ oneOption }}" disabled>{{ oneOption }}</option>
-                <option value="Tous">Tous</option>
+                <option value="Tous">{{oneOption}}</option>
 
                     {% for product in myProducts %}
                         {% for product_option in product.options_with_values %}
@@ -70,7 +71,7 @@
 {% comment %} ici le schema de la section {% endcomment %}
 {% schema %}
 {
-  "name":"Types-1",
+  "name":"Types-2",
   "settings": [
 		{
             "type": "text",
@@ -82,7 +83,7 @@
         {
             "type": "checkbox",
             "id": "zone_filter",
-            "label": "Afficher une zone de filtre supplémentaire ?",
+            "label": "Afficher une zone de filtre supplémentaire",
             "default": false,
 			"info":"Les utilisateurs pourront filtrer davantage"
         },
@@ -150,25 +151,12 @@
 	.produits-H2{
 		text-align:center;
 	}
-
-    .productFilter{
-        grid-template-columns:repeat(4,1fr);
-        display:grid;
-        grid-row:2;
-        grid-gap:25px;
-        margin-top:10px;
-        margin-left:15px;
-        margin-right:15px;
-        left: -999px;
-        position:absolute;
-    }
-
-    .oneFilter{
-        font-size: .9rem;
-        padding: 2px 5px;
-        background-color:black;
-        color: white;
-        -moz-appearance: none;
-        border: none;
-    }
 {% endstyle %}
+
+{% comment %} ici le js {% endcomment %}
+<script>
+    function changeSelected(id)
+    {
+        
+    }
+</script>
