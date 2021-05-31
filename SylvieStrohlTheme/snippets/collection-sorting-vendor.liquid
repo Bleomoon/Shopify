@@ -1,0 +1,33 @@
+{% comment %} d'abord on récupère les vendeurs {% endcomment %}
+{% for product in collections.all.products %}
+  {% assign myVendors = myVendors | append: ', ' | append: product.vendor %}
+{% endfor %}
+{% assign allVendor = myVendors | split: ',' | uniq%}
+<select onchange="changeVendor()" class="oneVendor" id="vendor" name="vendor">
+  <option value="Vendeurs" disabled>Vendeurs</option>
+  <option value="Tous">Tous</option>
+  {% for vendor in allVendor %}
+    <option value={{ vendor }}>
+      {{ vendor }} {% comment %} lien vers le sort_by vendor {% endcomment %}
+    </option>
+  {% endfor %}
+</select>
+
+Sort By Vendor:
+<ul class="subnav clearfix">
+{% assign vendor_list = '' %}
+{% for product in collection.all_products %}
+{% if vendor_list contains product.vendor %}
+{% else %}
+  <li>
+{% comment %}
+   
+  <a href="/collections/{{ collection.handle }}{% if collection.sort_by %}?sort_by={{ collection.sort_by }}{% endif %}">All</a>
+     {% endcomment %}
+<a title="{{ product.vendor }}">{{ product.vendor }}</a>
+  
+  </li>
+{% capture temp %}{{ vendor_list }}{{ product.vendor }}{% endcapture %}{% assign vendor_list = temp %}
+{% endif %}
+{% endfor %}
+</ul>

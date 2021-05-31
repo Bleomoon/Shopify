@@ -1,6 +1,9 @@
 product.Quoi? :
 https://www.shopify.com/partners/blog/89205510-how-to-use-all_products-in-a-shopify-theme
 
+Cheat Sheet:
+https://www.shopify.com/partners/shopify-cheat-sheet
+
 Les types sur les schema:
 https://shopify.dev/docs/themes/settings
 
@@ -20,3 +23,7 @@ https://www.shopify.com/partners/blog/img-url-filter
 product-recommendations:
 	pour la section: https://shopify.dev/tutorials/develop-theme-recommended-products-using-liquid#theme-editor-considerations
 	pour le produit: https://shopify.dev/tutorials/develop-theme-recommended-products-using-json-api
+
+filtres:
+https://shopify.dev/tutorials/customize-theme-filter-collections-with-product-tags
+https://gist.github.com/garrettmac/7a536ec1dd40c69bac9dffbb715902ac

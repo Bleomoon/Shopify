@@ -1,0 +1,36 @@
+{% comment %} la zone de filtre d'options {% endcomment %}
+<div id="productFilter" class="productFilter">
+    {%comment%} Ici on boucle pour récupéré tous les noms d'options {%endcomment%}
+        {% for product in collection.products %} 
+            {% for product_option in product.options_with_values %}
+                {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
+            {% endfor %}
+        {% endfor %}
+        {% assign listOption = myOptions | split: ', ' | uniq %}
+    {%comment%} Ici on boucle pour récupéré toutes les valeurs de options {%endcomment%}
+
+    {%for oneOption in listOption %}
+        {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enleve le title et le vide {%endcomment%}
+            <label> Trie par {{ oneOption }} : </label>
+            <select onchange="changeFilter({{ oneOption }})" class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+            <option value="Tous">Tous</option>
+
+                {% for product in collection.products %}
+                    {% for product_option in product.options_with_values %}
+                        {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
+                            {% for value in product_option.values %}
+                                {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
+                                {% unless listValue contains value %}
+                                    <option value="{{ value }}">{{ value }}</option>
+                                {% endunless %}
+                                {% assign allValue = allValue | append: ', ' | append: value %}
+                                {% assign listValue = allValue | split: ', ' | uniq %}
+                            {% endfor %}
+                        {% endif %}
+                    {%endfor%}
+                {%endfor%}
+
+            </select>
+        {%endif%}
+    {%endfor%}
+</div>

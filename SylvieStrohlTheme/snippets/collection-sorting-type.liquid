@@ -1,0 +1,25 @@
+<select class="selectType">
+    {% for product_type in shop.types %}
+        {% assign type_handle = product_type | handleize %}
+        {% assign type_collection = collections[type_handle] %}
+        <option value="{{ product_type }}" class="{% if product.type == product_type %}current{% endif %}">
+            {% if type_collection == empty %}
+                {{ product_type | link_to_type  }}
+            {% else %}
+                {{ type_collection.title | link_to: type_collection.url }}
+            {% endif %}
+        </option>
+    {% endfor %}
+</select>
+
+<ul>
+    {% for product_type in shop.types %}
+    {% assign type_handle = product_type | handleize %}
+    {% assign type_collection = collections[type_handle] %}
+    <li class="{% if product.type == product_type %}current{% endif %}">
+      {% if type_collection == empty %}{{ product_type | link_to_type  }}
+      {% else %}{{ type_collection.title | link_to: type_collection.url }}
+      {% endif %}
+    </li>
+    {% endfor %}
+ </ul>

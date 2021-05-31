@@ -18,20 +18,20 @@
 {% if section.settings.zone_filter == true and nbProducts > 0%}
     <div id="productFilter" class="productFilter">
         {%comment%} Ici on boucle pour récupéré tous les noms d'options {%endcomment%}
-            {% for product in myProducts %} 
-                {% for product_option in product.options_with_values %}
-                    {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
-                {% endfor %}
+        {% for product in myProducts %} 
+            {% for product_option in product.options_with_values %}
+                {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
             {% endfor %}
-			{% assign listOption = myOptions | split: ', ' | uniq %}
-        {%comment%} Ici on boucle pour récupéré toutes les valeurs de options {%endcomment%}
+        {% endfor %}
+			  {% assign listOption = myOptions | split: ', ' | uniq %}
 
+        {%comment%} Ici on boucle pour récupéré toutes les valeurs de options {%endcomment%}
         {%for oneOption in listOption %}
             {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enleve le title et le vide {%endcomment%}
                 <label>Filtrer par : </label>
-                <select onchange="changeSelected({{ oneOption }})"  class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
-                <option value="{{ oneOption }}" disabled>{{ oneOption }}</option>
-                <option value="Tous">{{oneOption}}</option>
+                <select class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+                <option style="text-align:center;"  value="{{ oneOption }}" disabled>{{ oneOption }}</option>
+                <option value="Tous">Tous</option>
 
                     {% for product in myProducts %}
                         {% for product_option in product.options_with_values %}
@@ -53,10 +53,78 @@
         {%endfor%}
     </div>
 {% endif %}
+
+{% comment %} ici on filtre sur les vendor {% endcomment %}
+{% if section.settings.filter_vendor == true %}
+    {% comment %} d'abord on récupère les vendeurs {% endcomment %}
+    {% for product in collections.all.products %}
+      {% assign myVendors = myVendors | append: ', ' | append: product.vendor %}
+    {% endfor %}
+    {% assign allVendor = myVendors | split: ', ' | uniq %}
+    <div class="productFilterVendor">
+      <select onchange="changeVendor()" class="oneVendor" id="vendor" name="vendor">
+        <option style="text-align:center;" value="Vendeurs" disabled>Vendeurs</option>
+        <option value="Tous">Tous</option>
+        {% for vendor in allVendor %}
+          {% if vendor != "" %}
+            <option value={{ vendor }}>{{ vendor }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  {% comment %} puis on filtre si nécessaire {% endcomment %}
   
+  the Vendor : {{ theVendor  }}
+  {% if theVendor != "Tous" %}
+    {% assign myProducts = myProducts | where: "vendor", theVendor %}
+  {% endif %}
+{% endif %}
+
+
+
+{% comment %} ici on filtre sur les tags {% endcomment %}
+{% if section.settings.filter_tags == true %}
+  {% comment %} d'abord on récupère les vendeurs {% endcomment %}
+  {% for product in collections.all.products %}
+    {% for tag in product.tags %}
+      {% assign mytags = mytags | append: ', ' | append: tag %}
+    {% endfor %}
+  {% endfor %}
+  {% assign allTags = mytags | split: ',' | uniq %}
+  <div class="productFilterTag">
+    <select onchange="changeTags()" class="changeTags" id="tag" name="tag">
+      <option style="text-align:center;"  value="Balises" disabled>Balises</option>
+      <option value="Tous">Tous</option>
+      {% for tag in allTags %}
+        {% if tag != "" %}
+          <option value={{ tag }}>{{ tag }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+  {% comment %} puis on filtre si nécessaire {% endcomment %}
+  {% capture theTag %} 
+  <script> 
+  function changeTags() {
+    var tagSelected = document.getElementById("tag").value;
+    return tagSelected;
+  }
+  </script>
+  {% endcapture %}
+  the tag : {{ theTag  }}
+  {% if theTag != "Tous" %}
+    {% assign myProducts = myProducts | where: "tags", theTag %}
+  {% endif %}
+{% endif %}
+
+{% comment %} ici on filtre sur les variants {% endcomment %}
+
+
+{% assign nbProducts = myProducts | size %}
+
 {% comment %} ici le html d'affichage du site {% endcomment %}
 {% if nbProducts  > 0 %}
-  <h2 class="produits-H2">{{ section.settings.type}}</h2>
+  <h2 class="produits-H2"> {{ section.settings.type_filter}} </h2>
   {% include 'product-grid-width' with product_image_type: section.settings.product_image_type, product_image_size: section.settings.product_image_size %}
   <div class="grid collection-grid grid--uniform grid--no-gutters">
     {% for product in myProducts %}
@@ -81,17 +149,29 @@
             "info": "Le noms du types doit être exactement le même, à la majuscule prêt"
         },
         {
-            "type": "checkbox",
-            "id": "zone_filter",
-            "label": "Afficher une zone de filtre supplémentaire",
-            "default": false,
-			"info":"Les utilisateurs pourront filtrer davantage"
+          "type": "checkbox",
+          "id": "filter_vendor",
+          "label": "Afficher une zone de filtre sur les vendeurs ?",
+          "default": false
         },
         {
-            "type": "checkbox",
-            "id": "available_products",
-            "label": "Afficher les produits indisponible ?",
-            "default": false
+          "type": "checkbox",
+          "id": "filter_tags",
+          "label": "Afficher une zone de filtre sur les balises des produits ?",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "zone_filter",
+          "label": "Afficher une zone de filtre supplémentaire",
+          "default": false,
+          "info":"Les utilisateurs pourront filtrer davantage"
+        },
+        {
+          "type": "checkbox",
+          "id": "available_products",
+          "label": "Afficher les produits indisponible ?",
+          "default": false
         },
         {
           "type": "checkbox",
@@ -155,8 +235,12 @@
 
 {% comment %} ici le js {% endcomment %}
 <script>
-    function changeSelected(id)
-    {
-        
-    }
+  function changeVendor(){
+    var vendorSelected = document.getElementById("vendor").value;
+    var vendor = vendorSelected.options[e.selectedIndex].value;
+    console.log(vendor);
+    {% capture theVendor %} 
+      vendor 
+    {% endcapture %}
+  };
 </script>

@@ -1,223 +1,336 @@
-{% comment %}L'ensemble du code du HEADER {% endcomment %}
-<header class="header">
-	{% comment %}Le logo du site qui redirige vers l'accueil{% endcomment %}
-	<div class="header-logo">
-		<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/"><img alt="{{ shop.title }}" src="{{ section.settings.logo | img_url: "300x300" }}" alt="{{ shop.name }}"></a>
-	</div>
-
-	{% comment %} Ici la barre de navigation qui affichera les bouttons vers les autres pages {% endcomment %}
-	<nav class="header-navbar">
-		<button class="navbar-toggler" onclick=openMenuNav();><i class="fas fa-bars"></i></button>
-		<ul class="navbar">
-			{% for link in linklists.main-menu.links %}
-				<li class="navbar-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>	
-			{% endfor %}
-		</ul>
-	</nav>
-
-	{% comment %} Ici la classe qui gere les bouttons panier, search et connexion {% endcomment %}
-	<div class="header-icons">
-		{% comment %} boutton qui va afficher une bar de navigation {% endcomment %}
-		<button onclick=openSearch(); class="header-icons-search">
-			<i class="fas fa-search"></i>
-		</button>
-
-		
-		{% comment %} boutton qui va afficher une liste avec les objets du paniers et si clique envoie sur le panier {% endcomment %}
-		<button onmouseover="showCart();" id="header-icons-cart" class="header-icons-cart">
-			<a class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart"><i class="fas fa-shopping-basket"></i></a>
-		</button>
-
-		{% comment %} Si connexion acrtiver dans les parametres {% endcomment %}
-		{% if shop.customer_accounts_enabled %}
-			{% comment %} boutton qui affiche se connecter ou se déconnecter {% endcomment %}
-			<button class="header-icons-Ref" onclick=openUser();>
-				<i class="fas fa-user"></i>
-			</button>
-			<ul class="user">
-				{% comment %} Si utilisateur connecté {% endcomment %}
-				{% if customer  %} 
-					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account">Mon compte</a></li>
-					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/logout">Deconnexion</a></li>
-				{% else %}
-					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/login">Connexion</a></li>
-					<li class="navbar-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/register">Inscription</a></li>
-				{% endif %}
-			</ul>
-		{% endif %}
-	</div>
-
-	{%comment%} On doit crée un nouveau menu pour la taille du portable = small {% endcomment%}
-	<div class="menu-smallScreen">
-		<button class="smallScreen-toggler" onclick=openMenuNavSmallScreen();>
-			<i class="fas fa-bars"></i>
-		</button>
-		<ul class="smallScreen">
-			{% for link in linklists.main-menu.links %}
-				<li class="smallScreen-item"><a class="aRef" href="{{ link.url }}">{{ link.title }}</a></li>
-			{% endfor %}
-
-			{% if shop.customer_accounts_enabled %}
-				{% if customer %}
-					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account">Mon compte</a></li>
-					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/logout">Deconnexion</a> </li>
-				{% else %}
-					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/login">Connexion</a></li>
-					<li class="smallScreen-item"><a class="aRef" href="https://gracietboutiquetpe.myshopify.com/account/register">Inscription</a></li>
-				{% endif %}
-			{% endif %}
-			<li class="smallScreen-item"><button class="header-icons-search">RECHERCHER</button></li>
-			<li class="smallScreen-item"><a  class="aRef" href="https://gracietboutiquetpe.myshopify.com/cart"><button class="header-icons-cart">MON PANIER</button></a></li>
-		</ul>
-	</div>
-
-	{%comment%} Ici affiche {% endcomment%}
-	<div id="showCart" class="showCart" onmouseover="showCart();" onmouseleave="setTimeout(notShowCart,2000);">
-		{% if cart.item_count == 0 %}
-			<div class="noItemInCart">
-				<p>Votre panier est vide</p>
-			</div>
-		{% else %}
-			<div class="goPanierItems">
-				<h2 class="goPanierItems-h2Tot">TOTAL</h2>
-				<h2 class="goPanierItems-h2Prix">{{ cart.total_price | money }}</h2>
-				<a onmouseover="addOeil();" onmouseout="removeOeil();" id="goPanierItems-goPanier" class="goPanierItems-goPanier-A" href="https://gracietboutiquetpe.myshopify.com/cart">VOIR VOTRE PANIER</a>
-				<a onmouseover="addArrow();" onmouseout="removeArrow();" id="goPanierItems-goFin" class="goPanierItems-goFin-A" href="paiement">FINALISER VOTRE COMMANDE</a>
-			</div>
-			<ul class="ItemsInCart">
-				{% for item in cart.items %}
-					<li class="ItemInCart">
-						<a class="ItemImg" href="{{ item.url | within: collections.all }}">
-							<img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
-						</a>
-						<div class="ItemText">
-							<div class="ItemText-h3"><p><a class="aRef" href="{{ item.url }}">{{ item.product.title }}</a></p></div>
-							<div class="ItemText-prix"><p>PRIX UNITAIRE {{ item.price | money }}</p></div>
-							<div class="ItemText-qte"><p>QUANTITE : {{ item.quantity }} </p></div>
-						</div>
-						<a class="ItemText-delete" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><i class="fas fa-times"></i></a>
-					</li>
-				{% endfor %}
-			</ul>
-		{% endif %}
-	</div>
-
-	{%comment%} Ici on gère le recherche sur le site un form search {% endcomment%}
-	<div id="searchbox" class="searchbox-content">
-		<div class="searchbox-search">
-			<form action="/search" class="search-bar" role="search">
-				<input type="text" class="search-input" value="{{ search.terms | espace }}">
-				<button class="searchbox-Btn"><i class="far fa-hand-point-right"></i></button>	
-			</form>
-			<button onclick=openSearch(); class="btn-close"><li class="fas fa-times"></li></button>
+<style>
+	.site-header__logo img {
+	  max-width: {{ section.settings.logo_width | escape | default: '180' | remove: 'px' | append: 'px' }};
+	}
+	@media screen and (max-width: 749px) {
+	  .site-header__logo img {
+		max-width: 100%;
+	  }
+	}
+	.a-main-menu{
+	  color : {{ section.settings.color_En_tete }};
+	}
+  </style>
+  
+  <header class="site-header" role="banner" data-section-id="{{ section.id }}" data-section-type="header-section">
+	<div class="grid grid--no-gutters grid--table site-header__inner">
+	  
+	  <div class="grid__item one-third medium-up--one-sixth">
+		<div class="site-header__logo h1" itemscope itemtype="http://schema.org/Organization">
+  
+		  {%- if request.page_type == "index" -%}
+			{%- if section.settings.logo_slideshow != blank -%}
+			  <a href="{{ routes.root_url }}" itemprop="url" class="site-header__logo-link">
+				{% capture image_size %}{{ section.settings.logo_width | escape }}x{% endcapture %}
+				<img class="site-header__logo-image" src="{{ section.settings.logo_slideshow | img_url: image_size }}"
+				srcset="{{ section.settings.logo_slideshow | img_url: image_size }} 1x, {{ section.settings.logo_slideshow | img_url: image_size, scale: 2 }} 2x" alt="{{ shop.name }}" itemprop="logo">
+			  </a>
+			{%- endif -%}
+		  {%- else -%}
+			{%- if section.settings.logo != blank -%}
+			  <a href="{{ routes.root_url }}" itemprop="url" class="site-header__logo-link">
+				{% capture image_size %}{{ section.settings.logo_width | escape }}x{% endcapture %}
+				<img class="site-header__logo-image" src="{{ section.settings.logo | img_url: image_size }}"
+				srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ shop.name }}" itemprop="logo">
+			  </a>
+			{%- else -%}
+			  <a href="{{ routes.root_url }}" class="site-header__link site-header__logo-link" itemprop="url">{{ shop.name }}</a>
+			{%- endif -%}
+		  {%- endif -%}
+  
 		</div>
+	  </div>
+	  
+	  <div class="one-third medium-up--two-thirds menu-bigScreen">
+		  {% comment %} Ici le main-menu a inséré {% endcomment %}
+		  {% for link in linklists.main-menu.links %}
+			<a class="drawer-nav__link h2 a-main-menu" href="{{ link.url }}">{{ link.title }}</a>
+		  {% endfor %}
+	  </div>
+
+	  <div class="one-third medium-up--one-sixth text-right menu-bigScreen">
+		{% if shop.customer_accounts_enabled %}
+		  {% if customer %}
+				{% assign userType = "isCustomer" %}
+			{% else %}
+				{% assign userType = "isnotCustomer" %}
+			{% endif %}
+			
+			{% if customer %}
+				<div class="site-header__link site-header__user">
+					<span id="customer-span-Bigscreen" onclick="showUser('isCustomer', 'Bigscreen')" class="icon"><i class="fas fa-user "></i></span>
+				</div>
+			{% else %}
+				<div class="site-header__link site-header__user">
+					<span id="customer-span-Bigscreen" onclick="showUser('isnotCustomer', 'Bigscreen')" class="icon"><i class="fas fa-user"></i></span>
+				</div>
+			{% endif %}
+		{% endif %}
+		
+		<a href="{{ routes.search_url }}" class="site-header__link site-header__search js-drawer-open-top">
+			<span class="icon icon-search" aria-hidden="true"></span>
+			<span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+		</a>
+
+		<a href="{{ routes.cart_url }}" class="site-header__link site-header__cart cart-link{% if settings.cart_type == 'drawer' %} js-drawer-open-right{% endif %}{% if cart.item_count > 0 %} cart-bubble--visible{% endif %}">
+		  <span class="icon icon-cart" aria-hidden="true"></span>
+		  <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+		</a>
+	  </div>
+	  
+	  <div class="eight-tenths medium-up--one-thirds menu-smallScreen">
+		
+		{% if shop.customer_accounts_enabled %}
+		  {% if customer %}
+				{% assign userType = "isCustomer" %}
+			{% else %}
+				{% assign userType = "isnotCustomer" %}
+			{% endif %}
+			
+			{% if customer %}
+				<div class="site-header__link site-header__user">
+					<span id="customer-span-Smallscreen" onclick="showUser('isCustomer', 'Smallscreen')" class="icon"><i class="fas fa-user"></i></span>
+				</div>
+			{% else %}
+				<div class="site-header__link site-header__user">
+					<span id="customer-span-Smallscreen" onclick="showUser('isnotCustomer', 'Smallscreen')" class="icon"><i class="fas fa-user"></i></span>
+				</div>
+			{% endif %}
+		{% endif %}
+		
+		<a href="{{ routes.search_url }}" class="site-header__link site-header__search js-drawer-open-top">
+			<span class="icon icon-search" aria-hidden="true"></span>
+			<span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+		</a>
+
+		<a href="{{ routes.cart_url }}" class="site-header__link site-header__cart cart-link{% if settings.cart_type == 'drawer' %} js-drawer-open-right{% endif %}{% if cart.item_count > 0 %} cart-bubble--visible{% endif %}">
+		  <span class="icon icon-cart" aria-hidden="true"></span>
+		  <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+		</a>
+		<button type="button" class="site-header__link text-link site-header__toggle-nav js-drawer-open-left">
+		  <span class="icon icon-hamburger" aria-hidden="true"></span>
+		  <span class="icon__fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+		</button>
+	  </div>
 	</div>
-</header>
-</br></br></br>
-
-{% schema %}
-{
-	"name":"Haut de page",
-	"class":"section-header",
+	{% if customer %}
+		<div id="isCustomer" class="isCustomer">
+			<a href="{{ routes.account_url }}">{{ 'layout.customer.account' | t }}</a>
+			<a href="{{ routes.account_logout_url }}">{{ 'layout.customer.log_out' | t | customer_logout_link }}</a>
+		</div>
+	{% else %}
+		<div id="isnotCustomer" class="isnotCustomer">
+			<a href="{{ routes.account_login_url }}">{{ 'layout.customer.log_in' | t | customer_login_link }}</a>
+			<a href="{{ routes.account_register_url }}">{{ 'layout.customer.create_account' | t | customer_register_link }}</a>
+		</div>
+	{% endif %}
+  </header>
+  
+  
+  {% schema %}
+  {
+	"name": {
+	  "cs": "Záhlaví",
+	  "da": "Overskrift",
+	  "de": "Titel",
+	  "en": "Header",
+	  "es": "Encabezado",
+	  "fi": "Ylätunniste",
+	  "fr": "En-tête",
+	  "it": "Header",
+	  "ja": "ヘッダー",
+	  "ko": "헤더",
+	  "nb": "Header",
+	  "nl": "Koptekst",
+	  "pl": "Nagłówek",
+	  "pt-BR": "Cabeçalho",
+	  "pt-PT": "Cabeçalho",
+	  "sv": "Rubrik",
+	  "th": "ส่วนหัว",
+	  "tr": "Üstbilgi",
+	  "vi": "Đầu trang",
+	  "zh-CN": "标头",
+	  "zh-TW": "標頭"
+	},
+	"class": "header-section",
 	"settings": [
-		{
-			"type":"image_picker",
-			"id":"logo",
-			"label":"logo"
+	  {
+		"type": "image_picker",
+		"id": "logo",
+		"label": {
+		  "cs": "Logo",
+		  "da": "Logo",
+		  "de": "Logo",
+		  "en": "Logo",
+		  "es": "Logo",
+		  "fi": "Logo",
+		  "fr": "Logo",
+		  "it": "Logo",
+		  "ja": "ロゴ",
+		  "ko": "로고",
+		  "nb": "Logo",
+		  "nl": "Logo",
+		  "pl": "Logo",
+		  "pt-BR": "Logo",
+		  "pt-PT": "Logótipo",
+		  "sv": "Logotyp",
+		  "th": "โลโก้",
+		  "tr": "Logo",
+		  "vi": "Logo",
+		  "zh-CN": "logo",
+		  "zh-TW": "商標"
+		},
+		"info": {
+		  "cs": "Maximálně 450 × 200 px",
+		  "da": "Maks. 450 x 200 px",
+		  "de": "Maximal 450 x 200 Pixel",
+		  "en": "450 x 200px max",
+		  "es": "450 x 200px máx.",
+		  "fi": "Enintään 450 x 200 pikseliä",
+		  "fr": "450 x 250 px max",
+		  "it": "450 x 200 px max",
+		  "ja": "最大450 x 200ピクセル",
+		  "ko": "최대 450x200 픽셀",
+		  "nb": "Maks 450 x 200 px",
+		  "nl": "450 x 200px max",
+		  "pl": "Maks. 450 x 200 px",
+		  "pt-BR": "450 x 200 px máx.",
+		  "pt-PT": "450 x 200 px máx.",
+		  "sv": "450 x 200 px max",
+		  "th": "สูงสุด 450 x 200 พิกเซล",
+		  "tr": "Maksimum 450 x 200 piksel",
+		  "vi": "Tối đa 450 x 200px",
+		  "zh-CN": "最大 450 x 200 px",
+		  "zh-TW": "最大 450 x 200 像素"
 		}
+	  },
+	  {
+		"type": "image_picker",
+		"id": "logo_slideshow",
+		"label": {
+		  "cs": "Logo na domovské stránce",
+		  "da": "Logo på startside",
+		  "de": "Startseitenlogo",
+		  "en": "Home page logo",
+		  "es": "Logo de la página de inicio",
+		  "fi": "Etusivun logo",
+		  "fr": "Logo de la page d'accueil",
+		  "it": "Logo della home page",
+		  "ja": "ホームページのロゴ",
+		  "ko": "홈페이지 로고",
+		  "nb": "Logo for startsiden",
+		  "nl": "Logo homepage",
+		  "pl": "Logo strony głównej",
+		  "pt-BR": "Logo da página inicial",
+		  "pt-PT": "Logótipo da página inicial",
+		  "sv": "Hemsideslogo",
+		  "th": "โลโก้หน้าแรก",
+		  "tr": "Ana sayfa logosu",
+		  "vi": "Logo trang chủ",
+		  "zh-CN": "主页 logo",
+		  "zh-TW": "首頁商標"
+		},
+		"info": {
+		  "cs": "Zobrazit v prezentaci",
+		  "da": "Vist i diasshow",
+		  "de": "In Slideshow anzeigen",
+		  "en": "Shown on slideshow",
+		  "es": "Mostrado en diapositivas",
+		  "fi": "Näkyy diaesityksessä",
+		  "fr": "Affiché sur le diaporama",
+		  "it": "Mostrato sulla presentazione",
+		  "ja": "スライドショーに表示する",
+		  "ko": "슬라이드쇼에 표시",
+		  "nb": "Vist i lysbildefremvisning",
+		  "nl": "Weergegeven op diavoorstelling",
+		  "pl": "Wyświetlane w pokazie slajdów",
+		  "pt-BR": "Exibido em slides",
+		  "pt-PT": "Mostrado numa apresentação de diapositivos",
+		  "sv": "Visas på bildspelet",
+		  "th": "แสดงในสไลด์โชว์",
+		  "tr": "Slayt gösterisinde gösterilir",
+		  "vi": "Hiển thị trên bản trình chiếu",
+		  "zh-CN": "显示在幻灯片上",
+		  "zh-TW": "素材輪播"
+		}
+	  },
+	  {
+		"type": "text",
+		"id": "logo_width",
+		"label": {
+		  "cs": "Šířka vlastního loga (v pixelech)",
+		  "da": "Tilpasset logobredde (i pixels)",
+		  "de": "Benutzerdefinierte Logobreite (Pixel)",
+		  "en": "Custom logo width (in pixels)",
+		  "es": "Ancho del logo personalizado (en píxeles)",
+		  "fi": "Mukautettu logon leveys (pikseleinä)",
+		  "fr": "Largeur personnalisée du logo (en pixels)",
+		  "it": "Larghezza logo personalizzato (in pixel)",
+		  "ja": "ロゴの幅をカスタマイズする (ピクセル単位)",
+		  "ko": "사용자 지정 로고 폭 (픽셀)",
+		  "nb": "Tilpasset logobredde (i piksler)",
+		  "nl": "Aangepaste logobreedte (in pixels)",
+		  "pl": "Niestandardowa szerokość logo (w pikselach)",
+		  "pt-BR": "Largura do logo personalizado (em pixels)",
+		  "pt-PT": "Largura de logótipo personalizada (em píxeis)",
+		  "sv": "Anpassad logotypbredd (i pixlar)",
+		  "th": "ความกว้างของโลโก้แบบกำหนดเอง (เป็นพิกเซล)",
+		  "tr": "Özel logo genişliği (piksel)",
+		  "vi": "Chiều rộng logo tùy chỉnh (pixel)",
+		  "zh-CN": "自定义 logo 宽度（像素）",
+		  "zh-TW": "自訂標誌寬度 (單位為像素)"
+		},
+		"default": {
+		  "cs": "180",
+		  "da": "180",
+		  "de": "180",
+		  "en": "180",
+		  "es": "180",
+		  "fi": "180",
+		  "fr": "180",
+		  "it": "180",
+		  "ja": "180",
+		  "ko": "180",
+		  "nb": "180",
+		  "nl": "180",
+		  "pl": "180",
+		  "pt-BR": "180",
+		  "pt-PT": "180",
+		  "sv": "180",
+		  "th": "180",
+		  "tr": "180",
+		  "vi": "180",
+		  "zh-CN": "180",
+		  "zh-TW": "180"
+		}
+	  },
+	  {
+		  "type":"color",
+		  "id":"color_En_tete",
+		  "label":"Couleur du texte",
+		  "default": "#222222"
+	  }
 	]
-}
-{% endschema %}
-
-<script>
-	function showCart() {
-		document.getElementById("showCart").style.display = "grid";
-	}
-
-	function notShowCart() {
-		document.getElementById("showCart").style.display = "none";
-	}
-
-	function openMenuNav(){
-		const navbar = document.querySelector('.navbar');
-		const navbarBtn = document.querySelector('.navbar-toggler');
-
-		/*Ici on crée un type open, qui s'il est présent alors c'est ouvert, sinon non */
-		if(navbar.classList.contains('open'))
+  }
+  {% endschema %}
+  
+  
+  {% comment %} fonctions de users {% endcomment %}
+  <script>
+	function showUser(id, sizeScreen)
+	{
+		var user = document.getElementById('customer-span-' + sizeScreen);
+		if(user.classList.contains('open'))
 		{
-			navbar.classList.remove('open');
-			navbarBtn.innerHTML = '<i class="fas fa-bars"></i>';
+			user.classList.remove('open');
+			user.innerHTML = '<i class="fas fa-user">';
+			document.getElementById(id).style.display = "none";
 		}
 		else
 		{
-			navbar.classList.add('open');
-			navbarBtn.innerHTML = '<i class="fas fa-times"></i>'
+			user.classList.add('open');
+			user.innerHTML = '<i class="fas fa-times">';
+			document.getElementById(id).style.display = "grid";
 		}
 	}
-
-	function openSearch()
-	{
-		document.getElementById('searchbox').classList.toggle('show');
-	}
-
-	function openUser()
-	{
-		const userBar = document.querySelector('.user');
-		const userBarBtn = document.querySelector('.header-icons-Ref');
-
-		if(userBar.classList.contains('open'))
-		{
-			userBar.classList.remove('open');
-			userBarBtn.innerHTML = '<i class="fas fa-user"></i>';
-		}
-		else
-		{
-			userBar.classList.add('open');
-			userBarBtn.innerHTML = '<i class="fas fa-times"></i>';
-		}
-	}
-
-	function openMenuNavSmallScreen()
-	{
-		const navbarSmallScreen = document.querySelector('.smallScreen');
-		const navbarSmallScreenBtn = document.querySelector('.smallScreen-toggler');
-
-		/*Ici on crée un type open, qui s'il est présent alors c'est ouvert, sinon non */
-		if (navbarSmallScreen.classList.contains('open'))
-		{
-			navbarSmallScreen.classList.remove('open');
-			navbarSmallScreenBtn.innerHTML = '<i class="fas fa-bars"></i>';
-		}
-		else
-		{
-			navbarSmallScreen.classList.add('open');
-			navbarSmallScreenBtn.innerHTML = '<i class="fas fa-times"></i>'
-		}
-	}
-
-	
-	
-
-	
-	function addOeil()
-	{
-		document.getElementById('goPanierItems-goPanier').innerHTML = 'VOIR VOTRE PANIER<i class="fas fa-eye"></i>'
-	}
-
-	function addArrow()
-	{
-		document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE<i class="fas fa-arrow-right"></i>'
-	}
-
-	function removeOeil()
-	{
-		document.getElementById('goPanierItems-goPanier').innerHTML = 'VOIR VOTRE PANIER'
-	}
-
-	function removeArrow()
-	{
-		document.getElementById('goPanierItems-goFin').innerHTML = 'FINALISER VOTRE COMMANDE'
-	}
-
-	
-</script>
+  </script>
