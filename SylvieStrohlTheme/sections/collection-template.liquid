@@ -16,17 +16,13 @@
 
 {% comment %} Zone des filtres {% endcomment %}
 {% if collection.products_count > 0 %}
-  {% if section.settings.filter_general == true %}
-    <div class="sorting-General">
-      {% include 'collection-sorting-general' %}
-    </div>
-  {% endif %}
 
-  {% if section.settings.filter_tags == true %}
-  <div class="sorting-Tags">
-    {% include 'collection-sorting-tag' %}
-  </div>
-  {% endif %}
+ici le sort by
+  <select name="sort_by">
+    {% for option in collection.sort_options %}
+      <option value="{{ option.value }}">{{ option.name }}</option>
+    {% endfor %}
+  </select>
 
   {% if section.settings.filter_types == true %}
   <div class="sorting-Types">
@@ -52,6 +48,7 @@
     {%- if section.settings.collection_tags_enable and collection.all_tags.size > 1 -%}
       <div class="action-bar-secondary__dropdown action-bar-secondary--left">
         <label for="SortTags" class="label--hidden">{{ 'collections.general.tags' | t }}</label>
+        <option disabled>Balises</option>
         <select name="SortTags" id="SortTags" aria-describedby="a11y-refresh-page-message a11y-selection-message">
           {%- if current_tags -%}
             <option value="{{ collection.url }}">{{ 'collections.general.all_tags' | t }}</option>
@@ -69,6 +66,7 @@
       <div class="action-bar-secondary__dropdown action-bar-secondary--right">
         <label for="SortBy" class="label--hidden">{{ 'collections.sorting.title' | t }}</label>
         <select name="sort_by" id="SortBy" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-value="{{ collection.sort_by | default: collection.default_sort_by | escape }}">
+          <option disabled>Options de trie</option>
           {%- for option in collection.sort_options -%}
             <option value="{{ option.value }}"{% if sort_by == option.value %} selected="selected"{% endif %}>{{ option.name }}</option>
           {%- endfor -%}

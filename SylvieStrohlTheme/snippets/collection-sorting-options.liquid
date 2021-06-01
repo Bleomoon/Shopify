@@ -33,4 +33,6 @@
             </select>
         {%endif%}
     {%endfor%}
+    {{ collection.url | sort_by: 'Grand' }}
+    
 </div>

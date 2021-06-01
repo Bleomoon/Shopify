@@ -29,3 +29,19 @@ product-recommendations:
 
 dev ton app:
 https://shopify.dev/tutorials/build-a-shopify-app-with-node-and-react/build-your-user-interface-with-polaris
+
+
+filtres:
+https://shopify.dev/tutorials/customize-theme-filter-collections-with-product-tags
+https://gist.github.com/garrettmac/7a536ec1dd40c69bac9dffbb715902ac
+
+
+shopify filter by option :
+https://gracietboutiquetpetest.myshopify.com/collections/types?constraint=coton&q=SACS+A+MAIN&sort_by=Grand
+https://gracietboutiquetpetest.myshopify.com/collections/all&sort_by=Grand
+%3CGrand%3E%20&%20%3Cshopify%3E
+{% if section.settings.filter_options == true %}
+  <div class="sorting-Options">
+    {% include 'collection-sorting-options' %}
+  </div>
+  {% endif %}

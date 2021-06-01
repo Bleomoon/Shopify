@@ -1,25 +1,34 @@
-<select class="selectType">
+<select id="types_select" name="types_select" class="types_select">
+    <option value="disabled" disabled> Types de produits </option>
+    <option value="Tous">Tous</option>
     {% for product_type in shop.types %}
-        {% assign type_handle = product_type | handleize %}
-        {% assign type_collection = collections[type_handle] %}
-        <option value="{{ product_type }}" class="{% if product.type == product_type %}current{% endif %}">
-            {% if type_collection == empty %}
-                {{ product_type | link_to_type  }}
-            {% else %}
-                {{ type_collection.title | link_to: type_collection.url }}
-            {% endif %}
-        </option>
+        {%if product_type != '' %}
+            <option value="{{ product_type| url_for_type }}"{% if current_type contains product_type %} selected="selected"{% endif %}>{{ product_type }}</option>
+        {% endif %}
     {% endfor %}
 </select>
 
-<ul>
-    {% for product_type in shop.types %}
-    {% assign type_handle = product_type | handleize %}
-    {% assign type_collection = collections[type_handle] %}
-    <li class="{% if product.type == product_type %}current{% endif %}">
-      {% if type_collection == empty %}{{ product_type | link_to_type  }}
-      {% else %}{{ type_collection.title | link_to: type_collection.url }}
-      {% endif %}
-    </li>
-    {% endfor %}
- </ul>
+
+<script>
+    document.querySelector('#types_select').addEventListener('change', function(e) {
+        var selected_Type_Value = document.getElementById("types_select");
+        if(selected_Type_Value.value == 'Tous')
+        {
+            {% if collection.handle %}
+                window.location.href = "/collections/{{ collection.handle }}{% if collection.sort_by %}?sort_by={{ collection.sort_by }}{% endif %}";
+            {% elsif collection.current_type %}
+                window.location.href = "{{ collection.current_type | url_for_type | sort_by: collection.sort_by }}";
+            {% elsif collection.current_vendor %}
+                window.location.href = "{{ collection.current_vendor | url_for_vendor | sort_by: collection.sort_by }}";
+            {% endif %}
+        }
+        else if(selected_Type_Value.value != 'disabled')
+        {
+            var actual_Type = '{{ collection.current_type | json }}';
+            if(actual_Type != selected_Type_Value.options[selected_Type_Value.selectedIndex].text)
+            {
+                window.location.href = selected_Type_Value.value;
+            }
+        }
+    });
+</script>
