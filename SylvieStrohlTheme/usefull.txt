@@ -39,9 +39,12 @@ https://gist.github.com/garrettmac/7a536ec1dd40c69bac9dffbb715902ac
 shopify filter by option :
 https://gracietboutiquetpetest.myshopify.com/collections/types?constraint=coton&q=SACS+A+MAIN&sort_by=Grand
 https://gracietboutiquetpetest.myshopify.com/collections/all&sort_by=Grand
-%3CGrand%3E%20&%20%3Cshopify%3E
-{% if section.settings.filter_options == true %}
-  <div class="sorting-Options">
-    {% include 'collection-sorting-options' %}
-  </div>
-  {% endif %}
+
+Icon for Infinite Options by ShopPad
+Infinite Options by ShopPad
+<button class="BigImg-Zoom"><i class="fas fa-search-plus"></i></button>
+
+
+<button id="AddToCart-{{ section.id }}" type="submit" name="add" class="btn btn--add-to-cart{% if section.settings.enable_payment_button and product.selling_plan_groups == empty %} btn--secondary-accent{% endif %}">
+                  <span class="btn__text">{{ 'products.product.add_to_cart' | t }}</span>
+                </button>
