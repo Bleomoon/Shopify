@@ -1,0 +1,130 @@
+
+{% comment %} Initialisation des variables {% endcomment %}
+{% if bar_bg_under_menu == blank %}
+    {% assign bg_color = "wheat" %}
+{% else %}
+    {% assign bg_color = bar_bg_under_menu %}
+{% endif %}
+{% comment %} Ici le menu de navigation {% endcomment %}
+<nav>
+    <ul>
+        {% for link in linklists.main-menu.links %}
+      		{% if link.levels > 0%}
+      			{% assign under_Menu = "drop_down" %}
+      		{% else %}
+      			{% assign under_Menu = "no_drop_down" %}
+      		{% endif %}
+            <li class={{ under_Menu }}><a class="drawer-nav__link h2 a-main-menu" href="{{ link.url }}">{{ link.title }}</a>
+                {% if link.levels > 0%}
+                <ul class="under_menu">
+                    {% for sub_link in link.links %}
+                  		{% if sub_link.levels > 0%}
+                            {% assign under_under_Menu = "under_drop_down" %}
+                        {% else %}
+                            {% assign under_under_Menu = "no_under_drop_down" %}
+                        {% endif %}
+                        <li class={{ under_under_Menu }}> <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                            {% if sub_link.levels > 0%}
+                                <ul class="under_under_menu">
+                                    {% for sub_sub_link in sub_link.links %}
+                                        <li>
+                                            <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+
+{% comment %} Son css {% endcomment %}
+{% style %}
+nav{
+    background-color: transparent;
+    position: sticky;
+	display: inline-flex;
+    top: 0;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+nav ul li{
+    float: left;
+    text-align: center;
+    position: relative;
+}
+
+nav ul li a{
+    font-family: cursive;
+    font-weight: 700;
+}
+
+nav ul::after{
+    display: table;
+    clear: both;
+}
+
+.under_menu{
+    display: none;
+    background-color: {{ bg_color }};
+    position: absolute;
+    z-index: 1000;
+}
+nav > ul li:hover .under_menu{
+    display: block;
+}
+
+.under_under_menu{
+	display: none;
+    position: absolute;
+    width: max-content;
+    z-index: 1000;
+    top:100%;
+    background-color: {{ bg_color }};
+}
+
+.under_menu:hover .under_under_menu{
+    display: grid;
+}
+
+.drop_down{
+    padding:7px;
+}
+
+.no_drop_down{
+    padding:7px;
+}
+
+.under_drop_down{
+    width:100%;
+    display:flex;
+}
+
+.under_menu li{
+    width: max-content;
+}
+
+.under_under_menu li{
+    width: max-content;
+    margin-left:10px;
+}
+
+.drop_down > a::after{
+    content:" ▼";
+    font-size: 15px;
+    vertical-align:middle;
+}
+
+.under_drop_down > a::after{
+    content:" ▼";
+    font-size: 15px;
+    vertical-align:middle;
+}
+{% endstyle %}

@@ -1,0 +1,106 @@
+{% comment %} Ici l'assignation des valeurs des variables {% endcomment %}
+{% assign bg_color = section.settings.CouleurFond %}
+{% assign colorText = section.settings.couleurTexte %}
+{% assign colorSelectedText = section.settings.couleurTexteSelectionner %}
+
+{% comment %} Ici l'affichae du html {% endcomment %}
+{%- unless template == 'index' or template == 'cart' or template == '404' -%}
+{%- assign t = template | split: '.' | first -%}
+
+<div class="breadcrumb" role="navigation" aria-label="breadcrumb">
+  <div class="contentBreadcrumb">
+    <label class="arianeText">Vous êtes ici : </label>
+    <a class="arianeText" href="{{ shop.url }}">Accueil</a>
+  	
+  {% case t %}
+  
+  {% when 'page' %}
+    <span class="sep"> &gt; </span>
+    <a class="arianeText" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+
+  {% when 'product' %}
+    <span class="sep"> &gt; </span>
+    <a class="arianeText" href="{{ collections.all.url }}" aria-current="page">{{ collections.all.title }}</a>
+    <span class="sep"> &gt; </span>
+    <a class="arianeText" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+
+  {% when 'collection' and collection.handle %}
+	  {% for link in linklists.main-menu.links %}
+  		{% assign valTest = "/pages" | append: routes.collections_url %}
+  		{% if link.url == valTest %}
+  			{% assign collectionPageName = link.title %}
+  		{% endif %}
+  	{% endfor %}
+    {% if current_tags %}
+        <span class="sep"> &gt; </span>
+        <a class="arianeText" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+        {% capture tag_url %}{{ collection.url }}/{{ current_tags | join: "+"}}{% endcapture %}
+        <span class="sep"> &gt; </span>
+      	<a class="arianeText" href="{{ tag_url }}" aria-current="page">{{ current_tags }}</a>
+    {% else %}
+        {% if collection.id != collections.all.id %}
+            <span class="sep"> &gt; </span>
+            <a class="arianeText" href="{{ routes.collections_url }}" > {{ collectionPageName }}</a>
+        {% endif %}
+  		<span class="sep"> &gt; </span>
+      	<a class="arianeText" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+    {% endif %}
+  {% when 'list-collections' %}
+    <span class="sep"> &gt; </span>
+    <a class="arianeText" href="{{ routes.collections_url }}" aria-current="page">Collections</a>
+  {% when 'blog' %}
+    {% if current_tags %}
+        <span class="sep"> &gt; </span>
+        <a class="arianeText" href="{{ blog.url }}" aria-current="page">{{ blog.title  }}</a>
+        {% capture tag_url %}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{% endcapture %}
+        <span class="sep"> &gt; </span>
+      	<a class="arianeText" href="{{ tag_url }}" aria-current="page">{{ current_tags }}</a>
+    {% else %}
+        <span class="sep"> &gt; </span>
+        <a class="arianeText" href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+    {% endif %}
+
+  {% when 'article' %}
+    <span class="sep"> &gt; </span>
+    <a class="arianeText" href="{{ blog.url }}" aria-current="page">{{ blog.title  }}</a>
+    <span class="sep"> &gt; </span>
+    <a class="arianeText" href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+  {% else %}
+    <span class="sep"> &gt; </span>
+    <a class="arianeText" href="{{ request.path }}" aria-current="page">{{ request.path }}</a>
+  {% endcase %}
+  </div>
+</div>
+
+{%- endunless -%}
+
+{% comment %} Ici le style css du site {% endcomment %}
+{% style %}
+  .breadcrumb{
+    background-color: #1a1a1a;
+    display:block;
+	padding:15px;
+  }
+
+  .contentBreadcrumb{
+	margin-left:10%;
+  }
+  .here{
+    color: white;
+  }
+
+  .sep{
+    color: white;
+  }
+
+  .arianeText{
+    text-decoration:none;
+    font-family:cursive;
+    font-style: italic;
+    color: white;
+  }
+
+  .on{
+    color: white;
+  }
+{% endstyle %}

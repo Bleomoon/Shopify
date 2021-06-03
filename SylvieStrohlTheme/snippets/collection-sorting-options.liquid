@@ -1,9 +1,10 @@
 {% comment %} la zone de filtre d'options {% endcomment %}
-<div id="productFilter" class="productFilter">
+<div id="productFilter" class="action-bar-secondary filter_bar">
     {%comment%} Ici on boucle pour récupéré tous les noms d'options {%endcomment%}
-        {% for product in collection.products %} 
+        {% for product in my_collection.products %} 
             {% for product_option in product.options_with_values %}
                 {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
+                {{ product_option }}
             {% endfor %}
         {% endfor %}
         {% assign listOption = myOptions | split: ', ' | uniq %}
@@ -11,28 +12,39 @@
 
     {%for oneOption in listOption %}
         {% if oneOption != 'Title' and oneOption != '' %}{%comment%} On enleve le title et le vide {%endcomment%}
-            <label> Trie par {{ oneOption }} : </label>
-            <select onchange="changeFilter({{ oneOption }})" class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
-            <option value="Tous">Tous</option>
-
-                {% for product in collection.products %}
-                    {% for product_option in product.options_with_values %}
-                        {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
-                            {% for value in product_option.values %}
-                                {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
-                                {% unless listValue contains value %}
-                                    <option value="{{ value }}">{{ value }}</option>
-                                {% endunless %}
-                                {% assign allValue = allValue | append: ', ' | append: value %}
-                                {% assign listValue = allValue | split: ', ' | uniq %}
-                            {% endfor %}
-                        {% endif %}
-                    {%endfor%}
-                {%endfor%}
-
-            </select>
+          <div id="productFilter" class="productFilter">
+              <label> Trie par {{ oneOption }} : </label>
+              <select onchange="changeFilter({{ oneOption }})" class="oneFilter" id={{ oneOption }} name={{ oneOption }}>
+              <option value="Tous">Tous</option>
+                  {% for product in my_collection.products %}
+                      {% for product_option in product.options_with_values %}
+                          {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
+                                {{ product_option.values }}
+                              {% for value in product_option.values %}
+                                  {% assign myValue = value | split: '' %} {%comment%} on met la val en array {%endcomment%}
+                                  {% unless listValue contains value %}
+                                      <option value="{{ value }}">{{ value }}</option>
+                                  {% endunless %}
+                                  {% assign allValue = allValue | append: ', ' | append: value %}
+                                  {% assign listValue = allValue | split: ', ' | uniq %}
+                              {% endfor %}
+                          {% endif %}
+                      {%endfor%}
+                  {%endfor%}
+              </select>
+          </div>
         {%endif%}
     {%endfor%}
-    {{ collection.url | sort_by: 'Grand' }}
-    
 </div>
+
+{% comment %} la zone de gestion de filtres, on récupère les produits des filtres et on les supprime si il ne correspondent pas à un filtre {% endcomment %}
+Ici {% assign new_collection =  my_collection.products | where_exp:"product", "product.options_with_values.values contains 'K'" %} La<br>
+{{ product.options_with_values }}
+{{ new_collection }} <br>
+Ici {% assign new_collection2 =  my_collection.products | where_exp:"product", "product.options_with_values contains 'Taille'" %} La<br>
+Ici {% assign new_collection3 =  my_collection.products | where_exp:"product", "product.title == 'Sac Tigré'" %} La<br>
+{% assign unique_product = my_collection.products | find: "title", "Sac Tigré" %} alors la 
+{{ unique_product.title }} <br>
+{% for item in new_collection.item %}
+    {{ item }}
+{% endfor %}

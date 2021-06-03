@@ -16,65 +16,65 @@
 
 {% comment %} Zone des filtres {% endcomment %}
 {% if collection.products_count > 0 %}
+  {%- if section.settings.collection_sort_enable or section.settings.collection_tags_enable -%}
+    <div class="action-bar-secondary filter_bar">
+      {% comment %} Zone des filtres des tags {% endcomment %}
+      {%- if section.settings.collection_tags_enable and collection.all_tags.size > 1 -%}
+        <div class="action-bar-secondary__dropdown action-bar-secondary--left ">
+          <label for="SortTags" class="label--hidden">{{ 'collections.general.tags' | t }}</label>
+          <label style="margin:auto;">Balises :</label>
+          <select name="SortTags" id="SortTags" aria-describedby="a11y-refresh-page-message a11y-selection-message">
+            {%- if current_tags -%}
+              <option value="{{ collection.url }}">{{ 'collections.general.all_tags' | t }}</option>
+            {%- else -%}
+              <option value="">{{ 'collections.general.tags' | t }}</option>
+            {%- endif -%}
+            {%- for tag in collection.all_tags -%}
+              {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
+              <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- endif -%}
 
-ici le sort by
-  <select name="sort_by">
-    {% for option in collection.sort_options %}
-      <option value="{{ option.value }}">{{ option.name }}</option>
-    {% endfor %}
-  </select>
+      {% comment %} Zone des filtres des types {% endcomment %}
+      {% if section.settings.filter_types == true %}
+        <div class="sorting-Types">
+          {% include 'collection-sorting-type' %}
+        </div>
+      {% endif %}
 
-  {% if section.settings.filter_types == true %}
-  <div class="sorting-Types">
-    {% include 'collection-sorting-type' %}
-  </div>
-  {% endif %}
+      {% comment %} Zone des filtres des vendeurs {% endcomment %}
+      {% if section.settings.filter_vendors == true %}
+        <div class="sorting-Vendors">
+          {% include 'collection-sorting-vendor' %}
+        </div>
+      {% endif %}
 
-  {% if section.settings.filter_vendors == true %}
-  <div class="sorting-Vendors">
-    {% include 'collection-sorting-vendor' %}
-  </div>
-  {% endif %}
-
-  {% if section.settings.filter_options == true %}
-  <div class="sorting-Options">
-    {% include 'collection-sorting-options' %}
-  </div>
-  {% endif %}
+      {% comment %} Zone des filtres des options générales d'une collection {% endcomment %}
+      {%- if section.settings.collection_sort_enable and collection.products.size > 1 -%}
+        <div class="action-bar-secondary__dropdown action-bar-secondary--right">
+          <label for="SortBy" class="label--hidden">{{ 'collections.sorting.title' | t }}</label>
+          <select name="sort_by" id="SortBy" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-value="{{ collection.sort_by | default: collection.default_sort_by | escape }}">
+            <option disabled>Options de trie</option>
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}"{% if sort_by == option.value %} selected="selected"{% endif %}>{{ option.name }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
 {% endif %}
 
-{%- if section.settings.collection_sort_enable or section.settings.collection_tags_enable -%}
-  <div class="action-bar-secondary">
-    {%- if section.settings.collection_tags_enable and collection.all_tags.size > 1 -%}
-      <div class="action-bar-secondary__dropdown action-bar-secondary--left">
-        <label for="SortTags" class="label--hidden">{{ 'collections.general.tags' | t }}</label>
-        <option disabled>Balises</option>
-        <select name="SortTags" id="SortTags" aria-describedby="a11y-refresh-page-message a11y-selection-message">
-          {%- if current_tags -%}
-            <option value="{{ collection.url }}">{{ 'collections.general.all_tags' | t }}</option>
-          {%- else -%}
-            <option value="">{{ 'collections.general.tags' | t }}</option>
-          {%- endif -%}
-          {%- for tag in collection.all_tags -%}
-            {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
-            <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
-          {%- endfor -%}
-        </select>
+{% if collection.products_count > 0 %}
+    {% comment %} Zone des filtres des options {% endcomment %}
+    {% if section.settings.filter_options == true %}
+      <div class="action-bar-secondary filter_bar">
+        {% include 'collection-sorting-options' with my_collection: collection %}
       </div>
-    {%- endif -%}
-    {%- if section.settings.collection_sort_enable and collection.products.size > 1 -%}
-      <div class="action-bar-secondary__dropdown action-bar-secondary--right">
-        <label for="SortBy" class="label--hidden">{{ 'collections.sorting.title' | t }}</label>
-        <select name="sort_by" id="SortBy" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-value="{{ collection.sort_by | default: collection.default_sort_by | escape }}">
-          <option disabled>Options de trie</option>
-          {%- for option in collection.sort_options -%}
-            <option value="{{ option.value }}"{% if sort_by == option.value %} selected="selected"{% endif %}>{{ option.name }}</option>
-          {%- endfor -%}
-        </select>
-      </div>
-    {%- endif -%}
-  </div>
-{%- endif -%}
+    {% endif %}
+{% endif %}
 
 {% comment %}
   Set grid item widths based on settings
@@ -184,21 +184,9 @@ ici le sort by
     },
     {
       "type":"checkbox",
-      "id":"filter_general",
-      "default":true,
-      "label":"Afficher les filtres generaux des collections"
-    },
-    {
-      "type":"checkbox",
       "id":"filter_options",
       "default":true,
       "label":"Afficher les filtres sur les options de produits"
-    },
-    {
-      "type":"checkbox",
-      "id":"filter_tags",
-      "default":true,
-      "label":"Afficher les filtres sur les balises"
     },
     {
       "type":"checkbox",

@@ -41,11 +41,9 @@
 		</div>
 	  </div>
 	  
+	  {% comment %} Ici le main-menu {% endcomment %}
 	  <div class="one-third medium-up--two-thirds menu-bigScreen">
-		  {% comment %} Ici le main-menu a inséré {% endcomment %}
-		  {% for link in linklists.main-menu.links %}
-			<a class="drawer-nav__link h2 a-main-menu" href="{{ link.url }}">{{ link.title }}</a>
-		  {% endfor %}
+		  {% include 'menu_bar' with bar_color_text:  section.settings.color_En_tete, bar_bg_under_menu : section.settings.bg_under_Menu %}
 	  </div>
 
 	  <div class="one-third medium-up--one-sixth text-right menu-bigScreen">
@@ -309,6 +307,12 @@
 		  "id":"color_En_tete",
 		  "label":"Couleur du texte",
 		  "default": "#222222"
+	  },
+	  {
+		"type":"color",
+		"id":"bg_under_Menu",
+		"label":"Couleur du fond du sous menu",
+		"default": "#f5deb3"
 	  }
 	]
   }

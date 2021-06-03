@@ -3,6 +3,7 @@
   {% assign myVendors = myVendors | append: ', ' | append: product.vendor %}
 {% endfor %}
 {% assign allVendor = myVendors | split: ',' | uniq%}
+<label style="margin:auto;">Vendeurs :</label>
 <select class="vendors_select" id="vendors_select" name="vendors_select">
   <option value="Vendeurs" disabled>Vendeurs</option>
   <option value="Tous">Tous</option>

@@ -7,8 +7,8 @@
 {%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
 {%- assign t = template | split: '.' | first -%}
 
-<div class="breadcrumb">
-    <img src="img/here.png" alt="Vous êtes ici :" class="here" />
+<div class="breadcrumb">s
+    <label class="arianeText">Vous êtes ici : </label>
     <a class="arianeText" href="{{ shop.url }}">Accueil</a>
     <span class="sep"> &gt; </span>
     {%- case t -%}
