@@ -40,11 +40,8 @@ shopify filter by option :
 https://gracietboutiquetpetest.myshopify.com/collections/types?constraint=coton&q=SACS+A+MAIN&sort_by=Grand
 https://gracietboutiquetpetest.myshopify.com/collections/all&sort_by=Grand
 
+update customer data :
+https://shopify.dev/tutorials/update-customer-data-with-storefront-api#activating-customers
+
 Icon for Infinite Options by ShopPad
 Infinite Options by ShopPad
-<button class="BigImg-Zoom"><i class="fas fa-search-plus"></i></button>
-
-
-<button id="AddToCart-{{ section.id }}" type="submit" name="add" class="btn btn--add-to-cart{% if section.settings.enable_payment_button and product.selling_plan_groups == empty %} btn--secondary-accent{% endif %}">
-                  <span class="btn__text">{{ 'products.product.add_to_cart' | t }}</span>
-                </button>

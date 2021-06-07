@@ -1,5 +1,5 @@
 {% comment %} assignation des valeurs {% endcomment %}
-
+{% assign h2_align = section.settings.titre_text_align %}
 
 {% comment %} Ici le html d'affichage {% endcomment %}
 <div class="blogs">
@@ -7,19 +7,19 @@
         {% assign theblog = blogs[block.settings.myBlog] %}
 
         {% if theblog.articles_count > 0 %}
+  			<div class="blogHeader">
+              {% if current_tags %}
+              <h2>{{ theblog.title | link_to: theblog.url }} &mdash; {{ current_tags.first }}</h2>
+              {% else %}
+              <h2>{{ theblog.title }}</h2>
+              {% endif %}
+            </div>
             <div class="oneBlog">
-                <header class="visually-hidden">
-                    {% if current_tags %}
-                        <h2>{{ theblog.title | link_to: theblog.url }} &mdash; {{ current_tags.first }}</h2>
-                    {% else %}
-                        <h2>{{ theblog.title }}</h2>
-                    {% endif %}
-                </header>
                 {% for article in theblog.articles %}
                     <div class="oneArticle">
                         <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
 
-                        <div class="rte rte--indented-images">
+                        <div class="articleContenu">
                             {% if article.image %}
                                 <p>
                                 <a href="{{ article.url }}">
@@ -53,6 +53,18 @@
 {% schema %}
 {
     "name":"Blogs",
+	"settings":[
+		{
+			"type":"radio",
+			"id":"titre_text_align",
+			"options": [
+              { "value": "left", "label": "Gauche"},
+              { "value": "center", "label": "Milieu"},
+              { "value": "right", "label": "Droite"}
+        	],
+			"label":"Alignement des titres"
+		}
+	],
     "max_blocks":50,
     "blocks":[
         {
@@ -78,19 +90,27 @@
         margin-bottom:25px;
     }
 
+	.blogHeader{
+		text-align: {{ h2_align }};
+	}
+
     .oneBlog{
         margin:auto;
         display:grid;
         grid-template-columns: repeat(2,1fr);
         grid-gap:10%;
 		width:100%;
-        margin-top:15px;
-        margin-bottom:15px;
     }
 
     .oneArticle{
         text-align:center;
     }
+
+	.articleContenu{
+		display:grid;
+		margin:auto;
+		grid:gap:5px;
+	}
 
     @media screen and (max-width:1200px)
     {

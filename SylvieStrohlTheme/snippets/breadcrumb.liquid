@@ -67,7 +67,21 @@
     <a class="arianeText" href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
   {% else %}
     <span class="sep"> &gt; </span>
-    <a class="arianeText" href="{{ request.path }}" aria-current="page">{{ request.path }}</a>
+    {% assign t_bis = t | split: '/' %}
+    {% if t_bis[0] == 'customers' %}
+      {% case t_bis[1] %}
+      {% when 'login' %}
+        <a class="arianeText" href="{{ routes.account_login_url }}" aria-current="page">Connexion</a>
+      {% when 'register' %}
+        <a class="arianeText" href="{{ routes.account_register_url }}" aria-current="page">Creation de compte</a>
+      {% when 'account' %}
+        <a class="arianeText" href="{{ routes.account_url }}" aria-current="page">Mon compte</a>
+      {% when 'addresses' %}
+        <a class="arianeText" href="{{ routes.account_addresses_url }}" aria-current="page">Adresses</a>
+      {% endcase %}
+    {% else %}
+      <a class="arianeText" href="{{ request.path }}" aria-current="page">{{ request.path }}</a>
+    {% endif %}
   {% endcase %}
   </div>
 </div>

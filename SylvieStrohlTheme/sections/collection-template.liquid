@@ -70,9 +70,7 @@
 {% if collection.products_count > 0 %}
     {% comment %} Zone des filtres des options {% endcomment %}
     {% if section.settings.filter_options == true %}
-      <div class="action-bar-secondary filter_bar">
         {% include 'collection-sorting-options' with my_collection: collection %}
-      </div>
     {% endif %}
 {% endif %}
 

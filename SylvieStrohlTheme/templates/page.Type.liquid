@@ -1,19 +1,9 @@
-<!-- /templates/page.Type.liquid -->
-
-<div class="page-width page-container">
-    <header>
-      <h1 class="h1Titre">{{ page.title }}</h1>
-    </header>
-    <div class="rte rte--indented-images">
-      {{ page.content }}
-    </div>
-  </div>
- 
-  {% comment %}
-    Au chargement de la page renvoie à une collection filtrer par le type du nom de la page
-  {% endcomment %}
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      {{ page.title | url_for_type }}
-    });
-  </script>
+{% comment %}
+Au chargement de la page renvoie à une collection filtrer par le type du nom de la page
+{% endcomment %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    window.location.href = '{{ page.title | url_for_type }}';
+    
+  });
+</script>
