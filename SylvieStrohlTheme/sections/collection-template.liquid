@@ -16,6 +16,13 @@
 
 {% comment %} Zone des filtres {% endcomment %}
 {% if collection.products_count > 0 %}
+  <div class="filter_show" id="filter_show" onclick="show_Filter('filter_show','filters')">
+    Afficher les filtres <i class="fas fa-plus"></i>
+  </div>
+{% endif %}
+
+{% if collection.products_count > 0 %}
+  <div class="filters" id="filters">
   {%- if section.settings.collection_sort_enable or section.settings.collection_tags_enable -%}
     <div class="action-bar-secondary filter_bar">
       {% comment %} Zone des filtres des tags {% endcomment %}
@@ -65,13 +72,12 @@
       {%- endif -%}
     </div>
   {%- endif -%}
-{% endif %}
 
-{% if collection.products_count > 0 %}
     {% comment %} Zone des filtres des options {% endcomment %}
     {% if section.settings.filter_options == true %}
         {% include 'collection-sorting-options' with my_collection: collection %}
     {% endif %}
+  </div>
 {% endif %}
 
 {% comment %}

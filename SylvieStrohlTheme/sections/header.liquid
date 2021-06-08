@@ -316,25 +316,4 @@
 	  }
 	]
   }
-  {% endschema %}
-  
-  
-  {% comment %} fonctions de users {% endcomment %}
-  <script>
-	function showUser(id, sizeScreen)
-	{
-		var user = document.getElementById('customer-span-' + sizeScreen);
-		if(user.classList.contains('open'))
-		{
-			user.classList.remove('open');
-			user.innerHTML = '<i class="fas fa-user">';
-			document.getElementById(id).style.display = "none";
-		}
-		else
-		{
-			user.classList.add('open');
-			user.innerHTML = '<i class="fas fa-times">';
-			document.getElementById(id).style.display = "grid";
-		}
-	}
-  </script>
+{% endschema %}

@@ -3049,3 +3049,53 @@ $(document).ready(function() {
   sections.register('product-recommendations', theme.ProductRecommendations);
 });
 
+function showUser(id, sizeScreen)
+{
+  var user = document.getElementById('customer-span-' + sizeScreen);
+  if(user.classList.contains('open'))
+  {
+    user.classList.remove('open');
+    user.innerHTML = '<i class="fas fa-user"></i>';
+    document.getElementById(id).style.display = "none";
+  }
+  else
+  {
+    user.classList.add('open');
+    user.innerHTML = '<i class="fas fa-times"></i>';
+    document.getElementById(id).style.display = "grid";
+  }
+}
+
+function show_Password(id_Button, id_Input)
+{
+  var input_Password = document.getElementById(id_Input);
+  var button = document.getElementById(id_Button);
+  
+  if(input_Password.type == 'password')
+  {
+    input_Password.type = 'text';
+    button.innerHTML = '<i class="fas fa-eye"></i>';
+  }
+  else
+  {
+    input_Password.type = 'password';
+    button.innerHTML = '<i class="fas fa-eye-slash"></i>';
+  }
+}
+
+function show_Filter(id_show, id_filters){
+  var filter_div = document.getElementById(id_show);
+  var filters = document.getElementById(id_filters);
+  if (filter_div.classList.contains('open'))
+  {
+    filter_div.classList.remove('open');
+    filter_div.innerHTML = 'Afficher les filtres <i class="fas fa-plus"></i>';
+    filters.style.display = 'none';
+  }
+  else
+  {
+    filter_div.classList.add('open');
+    filter_div.innerHTML = 'Enlever les filtres <i class="fas fa-minus"></i>';
+    filters.style.display = 'block';
+  }
+}

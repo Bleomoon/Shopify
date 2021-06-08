@@ -1,0 +1,83 @@
+<!-- /snippets/social-sharing.liquid -->
+<div class="social-sharing" data-permalink="{{ permalinkURL }}">
+
+    {% if settings.share_facebook and settings.social_facebook_link %}
+      <a target="_blank" href="{{ settings.social_facebook_link }}" title="{{ 'general.social.alt_text.share_on_facebook' | t }}">
+        <span class="icon icon-facebook" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_facebook' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+      </a>
+    {% endif %}
+  
+    {% if settings.share_twitter and settings.social_twitter_link %}
+      <a target="_blank" href="{{ settings.social_twitter_link }}" class="share-twitter" title="{{ 'general.social.alt_text.share_on_twitter' | t }}">
+        <span class="icon icon-twitter" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_twitter' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+      </a>
+    {% endif %}
+  
+    {% if settings.share_pinterest and settings.social_pinterest_link %}
+      <a target="_blank" href="{{ settings.social_pinterest_link }}" class="share-pinterest" title="{{ 'general.social.alt_text.share_on_pinterest' | t }}">
+        <span class="icon icon-pinterest" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_pinterest' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+      </a>
+    {% endif %}
+  
+    {% if settings.share_instagram and settings.social_instagram_link %}
+      <a target="_blank" href="{{ settings.social_instagram_link }}" class="share-instagram" title="{{ 'general.social.alt_text.share_on_instagram' | t }}">
+        <span class="icon icon-instagram" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_instagram' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_instagram' | t }}</span>
+      </a>
+    {% endif %}
+
+    {% if settings.share_snapchat and settings.social_snapchat_link %}
+      <a target="_blank" href="{{ settings.social_snapchat_link }}" class="share-snapchat" title="{{ 'general.social.alt_text.share_on_snapchat' | t }}">
+        <span class="icon icon-snapchat" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_snapchat' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_snapchat' | t }}</span>
+      </a>
+    {% endif %}
+
+    {% if settings.share_google_plus and settings.social_google_plus_link %}
+      <a target="_blank" href="{{ settings.social_google_plus_link }}" class="share-google_plus" title="{{ 'general.social.alt_text.share_on_google_plus' | t }}">
+        <span class="icon icon-google_plus" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_google_plus' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_google_plus' | t }}</span>
+      </a>
+    {% endif %}
+
+    {% if settings.share_tumblr and settings.social_tumblr_link %}
+      <a target="_blank" href="{{ settings.social_tumblr_link }}" class="share-tumblr" title="{{ 'general.social.alt_text.share_on_tumblr' | t }}">
+        <span class="icon icon-tumblr" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_tumblr' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_tumblr' | t }}</span>
+      </a>
+    {% endif %}
+
+    {% if settings.share_youtube and settings.social_youtube_link %}
+      <a target="_blank" href="{{ settings.social_youtube_link }}" class="share-youtube" title="{{ 'general.social.alt_text.share_on_youtube' | t }}">
+        <span class="icon icon-youtube" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_youtube' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_youtube' | t }}</span>
+      </a>
+    {% endif %}
+
+    {% if settings.share_vimeo and settings.social_vimeo_link %}
+      <a target="_blank" href="{{ settings.social_vimeo_link }}" class="share-vimeo" title="{{ 'general.social.alt_text.share_on_vimeo' | t }}">
+        <span class="icon icon-vimeo" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_vimeo' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_vimeo' | t }}</span>
+      </a>
+    {% endif %}
+
+    {% if settings.share_fancy and settings.social_fancy_link %}
+      <a target="_blank" href="{{ settings.social_fancy_link }}" class="share-fancy" title="{{ 'general.social.alt_text.share_on_fancy' | t }}">
+        <span class="icon icon-pinterest" aria-hidden="true"></span>
+        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_fancy' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_fancy' | t }}</span>
+      </a>
+    {% endif %}
+  </div>

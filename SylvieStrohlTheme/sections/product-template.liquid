@@ -213,40 +213,14 @@
 
       {%comment%} Zone des produits associes {%endcomment%}
       <div class="product_associate">
-
         <button id="show_Product_Associate" onclick="show_Associate_Product()" class="show_Product_Associate"><h2 class="h2">Produits associés</h2><i class="fas fa-plus"></i></button>
           {% assign associate_products = product.collections | first%}
 
           {% for one_product in associate_products.products %}
-            {% if one_product.available  and one_product.id != product.id %}
-              {% capture _ %} {% increment i %} {% endcapture %}
-              {% if i < 8 %}  
-                <div onmouseout="notice_Info_Out({{ i }})" onmouseover="notice_Info({{ i }})" id="one_product_associate" class="one_product_associate">
-                  
-                  <a href="{{ one_product.url }}">
-                    <div id="product_Info_1-{{ i }}" class="product_Info_1">
-                      <img class="img_one_product_associate" src={{ one_product.featured_image | img_url: '150x150' }} alt="{{ one_product.featured_image.alt }}">
-                    </div>
-                    <div id="product_Info_2-{{ i }}" class="product_Info_2">
-                      <h3 class="h2" >{{ one_product.title }}</h3>
-                      {% if section.settings.show_vendor %}
-                        <p class="product-item__vendor small--text-center">{{ one_product.vendor }}</p>
-                      {% endif %}
-                      {{ one_product.price | money_without_trailing_zeros }}
-                    </div>
-                  </a>
-
-                  {% form "product", one_product %}
-                      <div class="button_product_associate" id="button_product_associate-{{ i }}">
-                          <input type="hidden" name="id" data-productid="{{ one_product.id }}" class="product-select" value="{{ one_product.selected_or_first_available_variant.id }}" data-variant-title="{{ one_product.selected_or_first_available_variant.title }}" />
-                          <button id="AddToCart-{{ section.id }}" type="submit" name="add" class="btn btn--add-to-cart">
-                            <span class="btn__text">{{ 'products.product.add_to_cart' | t }}</span>
-                          </button>
-                        </div>
-                  {% endform %}
-
-                </div>
-              {% endif %}
+            {% if one_product.available and one_product.id != product.id %}
+              <div id="one_product_associate" class="one_product_associate">
+                {% include 'product-grid-item' with product_image_spacing: false, vendor_enable: false %}
+              </div>
             {% endif %}
           {% endfor %}
       </div>

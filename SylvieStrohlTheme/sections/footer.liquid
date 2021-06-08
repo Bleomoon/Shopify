@@ -6,13 +6,7 @@
 <footer class="footer">
     <div class="reseaux">
         <div class="iconesReseaux">
-        {% for block in section.blocks %}
-            {% if block.type == 'iconsReseaux' %}
-                <a style="grid-row:1;" class="aRef" href="{{ block.settings.reseauUrl }}">
-                    <img alt="{{ block.settings.reseauIcon }}" src={{ block.settings.reseauIcon | img_url: '50x50'}}>
-                </a>
-            {% endif %}
-        {% endfor %}
+            {% include 'social-link', share_title: product.title, share_permalink: product.url, share_image: product %}
         </div>
         <p>©2021 SYLVIE STROHL</p>
         <p></p>

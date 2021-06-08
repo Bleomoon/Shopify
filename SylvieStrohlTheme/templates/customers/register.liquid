@@ -20,17 +20,20 @@
         <label for="Email" class="label--hidden">{{ 'customer.register.email' | t }}</label>
         <input type="email" name="customer[email]" id="Email" class="input-full {% if form.errors contains 'email' %} input--error{% endif %}" placeholder="{{ 'customer.register.email' | t }}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
 
-        <label for="CreatePassword" class="label--hidden">{{ 'customer.register.password' | t }}</label>
-        <input type="password" name="customer[password]" id="CreatePassword" class="input-full {% if form.errors contains 'password' %} input--error{% endif %}" placeholder="{{ 'customer.register.password' | t }}">
-
+        <span>
+          <label for="CreatePassword" class="label--hidden">{{ 'customer.register.password' | t }}</label>
+          <input type="password" name="customer[password]" id="CreatePassword" class="input-full {% if form.errors contains 'password' %} input--error{% endif %}" placeholder="{{ 'customer.register.password' | t }}">
+          <span onclick="show_Password('unmask', 'CreatePassword');" class="unmask" id="unmask">
+            <i class="fas fa-eye-slash"></i>
+          </span>
+        </span>
         <p>
           <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
         </p>
         <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
 
       {% endform %}
+      
     </div>
-
   </div>
-
 </div>
