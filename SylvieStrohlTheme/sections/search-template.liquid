@@ -13,6 +13,27 @@
   {% if search.performed %}
     {% if search.results_count == 0 %}
       <h1 class="search-title h2">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
+    {% else %}
+      <h1 class="visually-hidden">{{ search.terms }}</h1>
+      <div style="margin:25px;">
+        {% comment %} nombre de résultats {% endcomment %}
+        <span style="text-align:start;"> 
+          {{ 'general.search.results_with_count' | t: count: search.results_count, term: search.terms }} 
+        </span>
+        
+        {% comment %} nombre de page de résultats {% endcomment %}
+        <span style="position:absolute; right:0;">
+          Nombre de pages de résultats : {{ search.types | size }} - {{ search.types | split: ',' }}
+        </span> 
+      </div>
+      {% comment %} nombre de résultats par page {% endcomment %}
+      <div style="margin:25px;">
+        Nombre de résultats par page : <br>
+        {% for type in  search.types %}
+          - Type : {{ type }}, Résultats : {{ search.results | where: "object_type" , type | size }} - <br>
+        {% endfor %}
+      </div>
+
     {% endif %}
   {% else %}
     {% assign product_count = shop.products_count %}

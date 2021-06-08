@@ -1,0 +1,20 @@
+<script>
+  document.querySelector('#delete_account').addEventListener('click', function(e) {
+    var id = {{ customer.id | json }};
+    customerDelete(id);
+  });
+
+  jQuery.mutation customerDelete($input: CustomerDeleteInput!) {
+    customerDelete(input: $input) {
+      deletedCustomerId
+      shop {
+        id
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+</script>
+<button id="delete_account"> Supprimer mon compte </button>
