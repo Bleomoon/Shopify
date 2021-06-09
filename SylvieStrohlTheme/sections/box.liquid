@@ -1,0 +1,125 @@
+{% comment %} Ici l'affectation des variables {% endcomment %}
+{% assign bg_color = section.settings.couleurFond %}
+{% assign title_color = section.settings.couleurTitle %}
+{% assign text_color = section.settings.couleurTexte %}
+{% assign title_size = section.settings.tailleTitre | append: 'px' %}
+{% assign text_size = section.settings.tailleTexte | append: 'px' %}
+
+{% comment %} Ici le html d'affichage {% endcomment %}
+<h2 class="visually-hidden">Lots</h2>
+<div class="package">
+    {% for block in section.blocks %}
+        <a href="{{ block.settings.url_to_box }}">
+            <div class="one_package">
+                <img src="{{ block.settings.image | img_url: 'small' }}" alt="{{ block.settings.image.alt }}">
+                <h3 class="one_package_title">{{ block.settings.subTitle }}</h3>
+                <p class="one_package_text">{{ block.settings.texte_package }}</p>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+{% comment %} Ici le schéma  {% endcomment %}
+{% schema %}
+{
+  "name":"package",
+  "settings":[
+    {
+      "type": "color",
+      "id": "couleurFond",
+      "label": "Couleur du fond",
+      "default": "#ffffff"
+    },
+    {
+        "type": "color",
+        "id": "couleurTitle",
+        "label": "Couleur du titre",
+        "default": "#d35400"
+    },
+    {
+        "type": "text",
+        "id": "tailleTitre",
+        "label": "taille du titre",
+        "default": "20"
+    },
+    {
+        "type": "color",
+        "id": "couleurTexte",
+        "label": "Couleur du texte",
+        "default": "#d35400"
+    },
+    {
+        "type": "text",
+        "id": "tailleTexte",
+        "label": "taille du texte",
+        "default": "15"
+    }
+  ],
+  "max_blocks":6,
+  "blocks":[
+    {
+        "type":"compose_package",
+        "name":"Un paquet",
+        "settings":[
+            {
+                "id":"subTitle",
+                "type":"text",
+                "label":"Titre du package",
+                "default":"Mon titre"
+            },
+            {
+                "id":"image",
+                "type":"image_picker",
+                "label":"Mon image"
+            },
+            {
+                "id":"texte_package",
+                "type":"text",
+                "label":"Texte du package",
+                "default":"Mon texte"
+            },
+            {
+                "id": "url_to_box",
+                "type": "url",
+                "label": "Lien vers la page de box"
+            }
+        ]
+    }],
+    "presets":[
+    {
+      "category":"Ventes",
+      "name":"Votre Box"
+    }
+  ]
+}
+{% endschema %}
+
+
+{% comment %} Ici le style css{% endcomment %}
+{% style %} 
+    .package{
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        background-color: {{ bg_color }};
+        margin:25px;
+    }
+
+    .one_package{
+        grid-column:auto;
+        display:grid;
+        justify-content:center;
+        text-align:center;
+    }
+
+    .one_package_text{
+        color: {{ text_color }};
+        font-size: {{ text_size }};
+    }
+
+    .one_package_title{
+        color: {{ title_color }};
+        font-size: {{ title_size }};
+    }
+{% endstyle %}
+
+{% comment %} Ici le js {% endcomment %}

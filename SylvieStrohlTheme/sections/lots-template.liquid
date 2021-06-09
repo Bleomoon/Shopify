@@ -1,0 +1,235 @@
+{% comment %} Ici l'affectation des variables {% endcomment %}
+{% assign bg_color = section.settings.couleurFond %}
+{% assign title_color = section.settings.couleurTitle %}
+{% assign title_size = section.settings.tailleTitre | append: 'px' %}
+
+{% comment %} Ici le html d'affichage {% endcomment %}
+<div class="my_box">
+    {% for block in section.blocks %}
+        {% capture _ %} {% increment id %} {% endcapture %}
+        <div id ="one_product-{{ id }}" class="one_product">
+            <h3 class="one_product_title"> {{ block.settings.title_product }}</h3>
+            {% if block.settings.product_id == blank %}
+                <button id="one_product_button-{{ id }}" class="one_product_button" onclick="open_products('{{ id }}')"> {{ block.settings.text_button }} </button>
+                <div>
+                    <img id="one_product_image-{{ id }}" src="{{ section.settings.image | img_url: 'small' }}" alt="{{ section.settings.image.alt }}">
+                </div>
+            {% else %}
+                {% assign product = all_products[block.settings.product_id] %}
+                <script>
+                    window.addEventListener("load", function(event) {
+                        var product_id = {{ product.id | json }};
+                        var product_image_src = {{ product.featured_image | img_url: 'small' | json }};
+                        var product_image_alt = {{ product.featured_image.alt | json }};
+                        add_Product_To_Box(product_id, product_image_alt, product_image_src);
+                        console.log('product id = ' + product_id);
+                    });
+                </script>
+                <div>
+                    <img id="one_product_image-{{ id }}" src="{{ product.featured_image | img_url: 'small' }}" alt="{{ product.featured_image.alt }}">
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+<div onclick="add_Box_To_Cart()" class="add_to_cart_box">
+    ajouter la box au panier
+</div>
+
+<input type="hidden" name="id" data-productid="{{ product.id }}" 
+class="product-select" value="{{ product.selected_or_first_available_variant.id }}" 
+data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
+
+{% for block in section.blocks %}
+    {% capture _ %} {% increment box_id %} {% endcapture %}
+    <div id="one_box-{{ box_id }}" class="one_box">
+        {% if block.settings.collection_id != blank %}
+            {% assign my_collection = block.settings.collection_id %}
+            {% for product in  collections[my_collection].products %}
+                {{ product.id }}
+                <div class="product">
+                    <img src="{{ product.featured_image | img_url: 'small' }}" alt="{{ product.featured_image.alt }}">
+                    <h3>{{ product.title }}</h3>
+                    <button onclick="add_Product_To_Box('{{ product.id }}', '{{ product.featured_image.alt }}', '{{ product.featured_image | img_url: 'small' }}')">
+                        ajouter à ma boite
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% comment %} Ici le schéma  {% endcomment %}
+{% schema %}
+{
+  "name":"Ma boite personnalisé",
+  "settings":[
+    {
+      "type": "color",
+      "id": "couleurFond",
+      "label": "Couleur du fond",
+      "default": "#ffffff"
+    },
+    {
+        "type": "color",
+        "id": "couleurTitle",
+        "label": "Couleur du titre",
+        "default": "#d35400"
+    },
+    {
+        "type": "text",
+        "id": "tailleTitre",
+        "label": "taille du titre",
+        "default": "20"
+    },
+    {
+        "id":"image",
+        "type":"image_picker",
+        "label":"Mon image si produit vide"
+    }
+  ],
+  "max_blocks":50,
+  "blocks":[
+    {
+        "type":"my_box",
+        "name":"Une box personnalisé",
+        "settings":[
+            {
+                "id":"title_product",
+                "type":"text",
+                "label":"Titre d'un produit",
+                "default":"Mon titre"
+            },
+            {
+                "id":"text_button",
+                "type":"text",
+                "label":"Texte du boutton du produit",
+                "default":"Choisissez un produit"
+            },
+            {
+                "type": "collection",
+                "id": "collection_id",
+                "label": "Collection pour ce produit",
+                "info": "L'utilisateur aura le choix de sélectionner un produit dans la collection"
+            },
+            {
+                "type": "product",
+                "id": "product_id",
+                "label": "Produit spécifique",
+                "info": "L'utilisateur aura ce produit de présélectionné"
+             }
+        ]
+    }]
+}
+{% endschema %}
+
+
+{% comment %} Ici le style css{% endcomment %}
+{% style %} 
+    .my_box{
+        display:grid;
+        grid-template-columns: repeat(4,1fr);
+        background-color: {{ bg_color }};
+        margin:25px;
+    }
+
+    .one_product{
+        grid-column:auto;
+        display:grid;
+        justify-content:center;
+        text-align:center;
+        margin:10px;
+        border:solid;
+    }
+
+    .one_product_title{
+        color: {{ title_color }};
+        font-size: {{ title_size }};
+    }
+
+    .add_to_cart_box{
+        border:solid;
+        cursor:pointer;
+        background:none;
+        border-color:black;
+    }
+
+    .add_to_cart_box:hover{
+        background-color:black;
+        border-color:white;
+    }
+
+    .one_box{
+        display:none;
+    }
+{% endstyle %}
+
+<script>
+    const items = [];
+    const max_id = {{ id | json }};
+
+    function open_products(id)
+    {
+        var my_product = document.getElementById('one_product-' + id);
+        var my_box = document.getElementById('one_box-' + id);
+        console.log('product = ' + my_product);
+        console.log('my_box = ' + my_box);
+
+        if(my_box.style.display != 'block')
+        {
+            for (i = 1; i <= max_id; i++)
+            {
+                document.getElementById('one_box-' + i).style.display = 'none';
+                console.log('one_box-' + i);
+            }
+            my_box.style.display = 'block';
+        }
+    }
+
+    function add_Product_To_Box(product_id, alt_image, url_image)
+    {
+        for (i = 1; i <= max_id; i++)
+        {
+            if(document.getElementById('one_box-' + i).style.display != 'none')
+                var my_id = i;
+        }
+        var my_product = document.getElementById('one_product-' + my_id);
+        var my_product_img = document.getElementById('one_product_image-' + my_id);
+        my_product_img.src = url_image;
+        my_product_img.alt = alt_image;
+        items[my_id] = { quantity: 1, product_id};
+    }
+
+    function add_Box_To_Cart()
+    {
+
+        for (i = 1; i <= max_id; i++)
+        {
+            if(!items[i])
+                var box_Incomplete = true;
+            console.log('oui  = ' + items[i]);
+        }
+
+        if(!box_Incomplete)
+        {
+            const xhr = new XMLHttpRequest();
+            const data = {
+                items: [
+                    {
+                        quantity: 1,
+                        id: 6714145210539
+                    },
+                    {
+                        quantity: 2,
+                        id: 6714145013931
+                    }
+                ]
+            };
+            xhr.open('POST', '/cart/add.js', true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+            xhr.send(JSON.stringify(data));
+        }
+    }
+</script>
+
