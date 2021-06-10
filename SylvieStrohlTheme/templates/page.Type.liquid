@@ -1,9 +1,0 @@
-{% comment %}
-Au chargement de la page renvoie à une collection filtrer par le type du nom de la page
-{% endcomment %}
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    window.location.href = '{{ page.title | url_for_type }}';
-    
-  });
-</script>

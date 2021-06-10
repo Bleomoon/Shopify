@@ -3,6 +3,7 @@
 {% assign texte_size = section.settings.tailleTexte | append: 'px' %}
 
 {% comment %} Le html de la page {% endcomment %}
+<h2 class="visually-hidden">Footer</h2>
 <footer class="footer">
     <div class="reseaux">
         <div class="iconesReseaux">
@@ -150,29 +151,12 @@
                     "default":"VISA"
                 }
             ]
-        },
-        {
-            "type":"iconsReseaux",
-            "name":"Icones Reseau",
-			"limit":6,
-            "settings":[
-                {
-                    "type":"image_picker",
-                    "id":"reseauIcon",
-                    "label":"Icone du réseau"
-                },
-                {
-                    "type":"url",
-                    "id":"reseauUrl",
-                    "label":"Lien vers le réseaux social"
-                }
-            ]
         }
     ],
     "presets":[
         {
-            "category":"Footertest",
-            "name": "FooterTeste"
+            "category":"Footer",
+            "name": "Footer"
         }
     ]
 }

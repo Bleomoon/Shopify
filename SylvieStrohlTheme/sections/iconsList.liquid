@@ -1,7 +1,7 @@
 {% comment %} Ici l'attribution des valeur du schéma {% endcomment %}
 {% assign h2_font_size = section.settings.tailleTitre | append:'px' %}
 {% assign h2_text_align = section.settings.titre_alignment %}
-{% assign h2_color = section.settings.couleurTitle %}
+{% assign h2_color = section.settings.couleurTitre %}
 {% assign bg_color = section.settings.couleurFond %}
 {% assign icone_h3_color = section.settings.couleurListTitre %}
 {% assign icone_h3_font_size = section.settings.listTailleTitre | append:'px' %}
@@ -179,6 +179,7 @@ Un blocs qui a de plusieurs settings composé d'icones et de title {%endcomment%
     color: {{ h2_color }};
     text-align: {{ h2_text_align }};
     display : {{ displayTitre }};
+    margin-top:25px;
   }
 
   .icons{

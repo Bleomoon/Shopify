@@ -1,9 +1,10 @@
 
 {% comment %} Initialisation des variables {% endcomment %}
+{% assign size_text = section.settings.size_text_bar | append: 'px' %}
 {% if bar_bg_under_menu == blank %}
     {% assign bg_color = "wheat" %}
 {% else %}
-    {% assign bg_color = bar_bg_under_menu %}
+    {% assign bg_color = section.settings.bar_bg_under_menu %}
 {% endif %}
 {% comment %} Ici le menu de navigation {% endcomment %}
 <nav>
@@ -21,7 +22,7 @@
       		{% else %}
       			{% assign under_Menu = "no_drop_down" %}
       		{% endif %}
-            <li class={{ under_Menu }}><a class="drawer-nav__link h2 a-main-menu" href="{{ special_url }}">{{ link.title }}</a>
+            <li class={{ under_Menu }}><a class="drawer-nav__link a-main-menu" href="{{ special_url }}">{{ link.title }}</a>
                 {% if link.levels > 0%}
                 <ul class="under_menu">
                     {% for sub_link in link.links %}
@@ -60,12 +61,14 @@ nav{
 
 nav ul{
     list-style-type: none;
+    width:max-content;
 }
 
 nav ul li{
     float: left;
     text-align: center;
     position: relative;
+    font-size : {{ size_text }};
 }
 
 nav ul li a{

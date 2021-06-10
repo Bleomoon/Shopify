@@ -56,22 +56,22 @@
 			
 			{% if customer %}
 				<div style="cursor:pointer;" class="site-header__link site-header__user">
-					<span id="customer-span-Bigscreen" onclick="showUser('isCustomer', 'Bigscreen')" class="icon"><i class="fas fa-user "></i></span>
+					<span id="customer-span-Bigscreen" onclick="showUser('isCustomer', 'Bigscreen')" class="icon a-main-menu"><i class="fas fa-user "></i></span>
 				</div>
 			{% else %}
 				<div style="cursor:pointer;" class="site-header__link site-header__user">
-					<span id="customer-span-Bigscreen" onclick="showUser('isnotCustomer', 'Bigscreen')" class="icon"><i class="fas fa-user"></i></span>
+					<span id="customer-span-Bigscreen" onclick="showUser('isnotCustomer', 'Bigscreen')" class="icon a-main-menu"><i class="fas fa-user"></i></span>
 				</div>
 			{% endif %}
 		{% endif %}
 		
 		<a href="{{ routes.search_url }}" class="site-header__link site-header__search js-drawer-open-top">
-			<span class="icon icon-search" aria-hidden="true"></span>
+			<span class="icon icon-search a-main-menu" aria-hidden="true"></span>
 			<span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
 		</a>
 
 		<a href="{{ routes.cart_url }}" class="site-header__link site-header__cart cart-link{% if settings.cart_type == 'drawer' %} js-drawer-open-right{% endif %}{% if cart.item_count > 0 %} cart-bubble--visible{% endif %}">
-		  <span class="icon icon-cart" aria-hidden="true"></span>
+		  <span class="icon icon-cart a-main-menu" aria-hidden="true"></span>
 		  <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
 		</a>
 	  </div>
@@ -87,26 +87,26 @@
 			
 			{% if customer %}
 				<div style="cursor:pointer;" class="site-header__link site-header__user">
-					<span id="customer-span-Smallscreen" onclick="showUser('isCustomer', 'Smallscreen')" class="icon"><i class="fas fa-user"></i></span>
+					<span id="customer-span-Smallscreen" onclick="showUser('isCustomer', 'Smallscreen')" class="icon a-main-menu"><i class="fas fa-user"></i></span>
 				</div>
 			{% else %}
 				<div style="cursor:pointer;" class="site-header__link site-header__user">
-					<span id="customer-span-Smallscreen" onclick="showUser('isnotCustomer', 'Smallscreen')" class="icon"><i class="fas fa-user"></i></span>
+					<span id="customer-span-Smallscreen" onclick="showUser('isnotCustomer', 'Smallscreen')" class="icon a-main-menu"><i class="fas fa-user"></i></span>
 				</div>
 			{% endif %}
 		{% endif %}
 		
 		<a href="{{ routes.search_url }}" class="site-header__link site-header__search js-drawer-open-top">
-			<span class="icon icon-search" aria-hidden="true"></span>
+			<span class="icon icon-search a-main-menu" aria-hidden="true"></span>
 			<span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
 		</a>
 
 		<a href="{{ routes.cart_url }}" class="site-header__link site-header__cart cart-link{% if settings.cart_type == 'drawer' %} js-drawer-open-right{% endif %}{% if cart.item_count > 0 %} cart-bubble--visible{% endif %}">
-		  <span class="icon icon-cart" aria-hidden="true"></span>
+		  <span class="icon icon-cart a-main-menu" aria-hidden="true"></span>
 		  <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
 		</a>
 		<button type="button" class="site-header__link text-link site-header__toggle-nav js-drawer-open-left">
-		  <span class="icon icon-hamburger" aria-hidden="true"></span>
+		  <span class="icon icon-hamburger a-main-menu" aria-hidden="true"></span>
 		  <span class="icon__fallback-text">{{ 'layout.navigation.menu' | t }}</span>
 		</button>
 	  </div>
@@ -313,6 +313,12 @@
 		"id":"bg_under_Menu",
 		"label":"Couleur du fond du sous menu",
 		"default": "#f5deb3"
+	  },
+	  {
+		"type":"text",
+		"id":"size_text_bar",
+		"label":"Taille du texte de la bar de menu",
+		"default": "15"
 	  }
 	]
   }

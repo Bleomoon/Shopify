@@ -1,6 +1,1449 @@
 {
-  "current": "Default",
+  "current": {
+    "color_body_bg": "#ffffff",
+    "color_body_headings": "#1a1a1a",
+    "color_body_text": "#666666",
+    "color_body_links": "#1a1a1a",
+    "color_button_bg": "#1a1a1a",
+    "color_button_text": "#fff",
+    "color_sale_badge": "#dac08e",
+    "color_borders": "#eeeeee",
+    "color_nav_bg": "#ffffff",
+    "color_nav_text": "#1a1a1a",
+    "color_action_bar_bg": "#1a1a1a",
+    "color_action_bar_text": "#ffffff",
+    "color_action_bar_text_active": "#ffffff",
+    "color_drawer_bg": "#ffffff",
+    "color_drawer_text": "#1a1a1a",
+    "type_header_family": "helvetica_n4",
+    "type_header_base_size": "25px",
+    "type_button_base_size": "16px",
+    "type_header_transform": false,
+    "type_header_spacing": "0.05em",
+    "type_base_family": "source_sans_pro_n4",
+    "type_base_size": "15px",
+    "cart_type": "drawer",
+    "cart_notes_enable": true,
+    "social_facebook_link": "https:\/\/fr-fr.facebook.com\/pages\/category\/Interest\/Fabeook-1136598563028237\/",
+    "social_twitter_link": "https:\/\/twitter.com\/?lang=fr",
+    "social_pinterest_link": "https:\/\/www.pinterest.fr\/",
+    "share_facebook": false,
+    "share_twitter": false,
+    "share_pinterest": false,
+    "share_instagram": false,
+    "share_snapchat": false,
+    "share_google_plus": false,
+    "share_Tumblr": false,
+    "share_youtube": false,
+    "share_vimeo": false,
+    "share_fancy": false,
+    "show_breadcrumb_nav": true,
+    "checkout_header_image": "shopify:\/\/shop_images\/thin-plant-stems-in-sun.jpg",
+    "checkout_logo_image": "shopify:\/\/shop_images\/grey-cabin-nestled-in-the-wood.jpg",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#1a1a1a",
+    "checkout_button_color": "#1a1a1a",
+    "checkout_error_color": "#de2a2a",
+    "color_footer_bg": "#f9f9f9",
+    "color_footer_text": "#5c5c5c",
+    "checkout_logo": "",
+    "checkout_use_body_background_image": false,
+    "checkout_use_header_image": false,
+    "checkout_use_sidebar_background_image": false,
+    "color_drawer_inputs": "#ffffff",
+    "favicon_enable": false,
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "show_announcement": true,
+          "home_page_only": true,
+          "text": "Announce something here",
+          "color_bg": "#dbc18b",
+          "color_text": "#ffffff"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/logo.png",
+          "logo_slideshow": "shopify:\/\/shop_images\/logo.png",
+          "logo_width": "280",
+          "color_En_tete": "#eab088",
+          "bg_under_Menu": "#2aefba"
+        }
+      },
+      "slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "slider-0": {
+            "type": "image",
+            "settings": {
+              "hero_slide": "shopify:\/\/shop_images\/slider_4.jpg",
+              "image_position": "center center",
+              "hero_title": "Sylvie Strohl",
+              "button_label": ""
+            }
+          },
+          "12418333-fc9e-4bd7-a31e-725d3c621d9d": {
+            "type": "image",
+            "settings": {
+              "hero_slide": "shopify:\/\/shop_images\/slider_sylvie_marteau.jpg",
+              "image_position": "center center",
+              "hero_title": "Sylvie Strohl",
+              "button_label": ""
+            }
+          }
+        },
+        "block_order": [
+          "slider-0",
+          "12418333-fc9e-4bd7-a31e-725d3c621d9d"
+        ],
+        "settings": {
+          "hero_home_height": "full",
+          "hero_home_auto": true,
+          "hero_home_auto_speed": 3,
+          "hero_icons_color": "#ffffff",
+          "hero_overlay_color": "#000000",
+          "hero_overlay_amount": 20
+        }
+      },
+      "rich-text": {
+        "type": "rich-text",
+        "settings": {
+          "home_page_full_width": true,
+          "section_title": "Sacs a Main intemporels et Urbains",
+          "text": "<p>Sylvie Strohl votre créatrive de sacs à mains...<\/p>",
+          "text_size": "large"
+        }
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "home_featured_products": "carre",
+          "collection_showImage": true,
+          "myImage_showImage": true,
+          "myImage": "shopify:\/\/shop_images\/carre-noir.jpg",
+          "collection_showImage_texte": false,
+          "collection_showImage_color_texte": "#222222",
+          "product_image_type": "landscape",
+          "product_image_size": "medium",
+          "product_image_spacing": false,
+          "vendor_enable": false
+        }
+      },
+      "newsletter-signup": {
+        "type": "newsletter-signup",
+        "settings": {
+          "heading": "Subscribe to our newsletter",
+          "subheading": "<p>Promotions, new products and sales. Directly to your inbox.<\/p>"
+        }
+      },
+      "sidebar-menu": {
+        "type": "sidebar-menu",
+        "settings": {
+          "sidebar_top_link_list": "main-menu",
+          "sidebar_bottom_link_list": ""
+        }
+      },
+      "action-bar": {
+        "type": "action-bar",
+        "settings": {
+          "action_bar_link_list": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "934a2246-9b40-46de-ac93-706f21fd2529": {
+            "type": "newsletter",
+            "settings": {
+              "newsText": "Newsletter"
+            }
+          },
+          "2c4d91a4-1441-4efe-836d-dc2849b8fcb2": {
+            "type": "liens",
+            "settings": {
+              "lienTitre": "Liens rapide",
+              "menu": "footer"
+            }
+          },
+          "7cfbc46c-2a31-4f6b-bcaa-145ddca1075b": {
+            "type": "oneTexte",
+            "settings": {
+              "paragrapheTitre": "Parlez de votre entreprise",
+              "paragraphe": "<p>Bonjour<\/p>"
+            }
+          },
+          "52499b38-e553-4e8a-b7bb-7f76d5a38559": {
+            "type": "iconsPaiement",
+            "settings": {
+              "paiementIcon": "shopify:\/\/shop_images\/CB.jpg",
+              "paiementTitre": "VISA"
+            }
+          },
+          "c097240c-898a-4cdd-84c2-faf8ce5971b6": {
+            "type": "iconsPaiement",
+            "settings": {
+              "paiementIcon": "shopify:\/\/shop_images\/paypal.png",
+              "paiementTitre": "PAYPAL"
+            }
+          },
+          "02950930-085e-46ac-b2ba-d0186a51fa8f": {
+            "type": "iconsPaiement",
+            "settings": {
+              "paiementIcon": "shopify:\/\/shop_images\/visa.png",
+              "paiementTitre": "VISA"
+            }
+          },
+          "b2174a91-ecfb-4e2c-8959-e6fd9701b991": {
+            "type": "iconsPaiement",
+            "settings": {
+              "paiementIcon": "shopify:\/\/shop_images\/mastercard.png",
+              "paiementTitre": "Mastercard"
+            }
+          }
+        },
+        "block_order": [
+          "934a2246-9b40-46de-ac93-706f21fd2529",
+          "2c4d91a4-1441-4efe-836d-dc2849b8fcb2",
+          "7cfbc46c-2a31-4f6b-bcaa-145ddca1075b",
+          "52499b38-e553-4e8a-b7bb-7f76d5a38559",
+          "c097240c-898a-4cdd-84c2-faf8ce5971b6",
+          "02950930-085e-46ac-b2ba-d0186a51fa8f",
+          "b2174a91-ecfb-4e2c-8959-e6fd9701b991"
+        ],
+        "settings": {
+          "couleurTexte": "#090909",
+          "tailleTexte": "15"
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "show_vendor": true,
+          "show_quantity_selector": true,
+          "social_sharing_products": true,
+          "notice_weight": false,
+          "enable_payment_button": true,
+          "product_form_width": "large"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "filter_options": true,
+          "filter_types": true,
+          "filter_vendors": false,
+          "filter_available": true,
+          "product_image_type": "portrait",
+          "product_image_size": "medium",
+          "product_image_spacing": false,
+          "vendor_enable": true,
+          "collection_sort_enable": true,
+          "collection_tags_enable": true,
+          "pagination_type": "numbers"
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {
+          "show_product_recommendations": true,
+          "heading": "VOUS AIMEREZ AUSSI...",
+          "vendor_enable": true
+        }
+      },
+      "entretien": {
+        "type": "entretien",
+        "blocks": {
+          "52348d3d-764b-4e4e-a343-82ec9018fec8": {
+            "type": "unParagraphe",
+            "settings": {
+              "unParagrapheText": "<p><strong>Vous avez acheté un sac Sylvie Strohl dont l’une des spécificités est l’association de textiles et de cuirs.<\/strong><\/p><p><strong>Ces deux matières ne se nettoient pas de la même manière.<\/strong><\/p><p><strong>En sortie d’atelier, votre sac est traité avec un spray anti tâche sur toutes les surfaces de tissus et de cuirs. <\/strong><\/p><p><strong>Il nous semble opportun donc de vous apporter quelques conseils d’entretien :<\/strong><\/p>",
+              "paragrapheCouleurtexte": "#000000",
+              "paragrapheTailletexte": "15",
+              "paragrapheTexte_alignment": "Left",
+              "paragrapheCouleurFond": "#ffffff",
+              "cadre": false
+            }
+          },
+          "f8253ec7-ec3b-47ee-a91f-d7b71c15f4dc": {
+            "type": "deuxParagraphes",
+            "settings": {
+              "deuxParagraphesText1": "<p>Evitez le contact avec l’eau, la graisseSi votre sac venait à être mouillé, tamponnez le cuir avec un tissu doux et clair pour absorber le liquide.Evitez toute exposition prolongée à la chaleur ou à des sources de lumières intensesLorsque vous n’utilisez pas votre sac, rangez le dans sa poche de protection et conservez le dans un endroit tempéré, sec et ventilé.<\/p>",
+              "deuxParagraphesTitre1": "Les bons réflexes à adopter :",
+              "deuxParagraphesText2": "<p>Votre sac a été imperméabilisé avec le spray Anti Tâche TEXGUARD. Nous vous conseillons de renouveler cette opération tous les 2\/3 mois. Nous vous recommandons <a href=\"http:\/\/www.texguard.com\/texguard-produit-impermeabilisant-anti-tache-anti-salissure\/\"><strong>le spray Anti tâche TEXGUARD :<\/strong><\/a><\/p><p>     Pour le nettoyer, nous vous proposons quelques recommandations spécifiques aux matières.<\/p>",
+              "deuxParagraphesTitre2": "Nos conseils :",
+              "deuxparagrapheCouleurtexte": "#000000",
+              "deuxparagrapheCouleurTitre": "#000000",
+              "deuxparagrapheTailletexte": "15",
+              "deuxparagrapheTailletitre": "20",
+              "deuxparagrapheTexte_alignmentTexte": "Left",
+              "deuxparagrapheTexte_alignmentTitre": "Left",
+              "deuxparagrapheCouleurFond": "#ffffff",
+              "deuxparagrapheCadre": true
+            }
+          },
+          "57fd0888-5d06-477e-b49a-63786024a6ea": {
+            "type": "IconeTexte",
+            "settings": {
+              "IconeTexteImage": "shopify:\/\/shop_images\/cuir.png",
+              "IconeTexte": "<p>Mon texte<\/p>",
+              "IconeTitre": "Mon titre",
+              "IconeCouleurtexte": "#000000",
+              "IconeCouleurTitre": "#000000",
+              "IconeTailletexte": "15",
+              "IconeTailletitre": "25",
+              "IconeTexte_alignmentTexte": "Center",
+              "IconeTexte_alignmentTitre": "Center",
+              "IconeTexte_alignmentIcone": "Center",
+              "IconeTexteCouleurFond": "#ffffff",
+              "IconeTexteCadre": false
+            }
+          },
+          "7cba8a14-d0bf-4200-8fc9-17a3d9dd9a22": {
+            "type": "IconeTexte",
+            "settings": {
+              "IconeTexteImage": "shopify:\/\/shop_images\/tissus.png",
+              "IconeTexte": "<p>Mon texte<\/p>",
+              "IconeTitre": "Mon titre",
+              "IconeCouleurtexte": "#000000",
+              "IconeCouleurTitre": "#000000",
+              "IconeTailletexte": "15",
+              "IconeTailletitre": "25",
+              "IconeTexte_alignmentTexte": "Center",
+              "IconeTexte_alignmentTitre": "Center",
+              "IconeTexte_alignmentIcone": "Center",
+              "IconeTexteCouleurFond": "#ffffff",
+              "IconeTexteCadre": false
+            }
+          },
+          "853aa8b2-4156-4d74-8398-73cdc845fc2d": {
+            "type": "deuxIconeTexte",
+            "settings": {
+              "deuxIconeTexteImage1": "shopify:\/\/shop_images\/fermoirs.png",
+              "deuxIconeTexteImage2": "shopify:\/\/shop_images\/entoilage.png",
+              "deuxIconeTexte1": "<p>Mon texte<\/p>",
+              "deuxIconeTexte2": "<p>Mon texte<\/p>",
+              "deuxIconeTexteTitre1": "Mon deuxieme titre",
+              "deuxIconeTexteTitre2": "Mon premier titre",
+              "deuxIconeTexteCouleurtexte": "#222222",
+              "deuxIconeTexteCouleurTitre": "#222222",
+              "deuxIconeTexteTailletexte": "15",
+              "deuxIconeTexteTailletitre": "25",
+              "deuxIconeTexte_alignmentTexte": "Center",
+              "deuxIconeTexte_alignmentTitre": "Center",
+              "deuxIconeTexte_alignmentIcone": "Center",
+              "deuxIconeTexteCouleurFond": "#ffffff",
+              "deuxIconeTexteCadre": true
+            }
+          }
+        },
+        "block_order": [
+          "52348d3d-764b-4e4e-a343-82ec9018fec8",
+          "f8253ec7-ec3b-47ee-a91f-d7b71c15f4dc",
+          "57fd0888-5d06-477e-b49a-63786024a6ea",
+          "7cba8a14-d0bf-4200-8fc9-17a3d9dd9a22",
+          "853aa8b2-4156-4d74-8398-73cdc845fc2d"
+        ],
+        "settings": {
+          "couleurFond": "#ffffff",
+          "title": "Comment entretenir votre sac Sylvie Strohl",
+          "couleurTitle": "#222222",
+          "tailleTitre": "25",
+          "titre_alignment": "Center",
+          "subtitle": "Prolongez la durée de votre sac préféré",
+          "couleursubTitle": "#222222",
+          "taillesubTitre": "20",
+          "subtitle_alignment": "Center"
+        }
+      },
+      "title": {
+        "type": "title",
+        "settings": {
+          "title": "Nous souhaitons que votre sac vous accompagne pendant de longues années et qu’il vous donne entière satisfaction.",
+          "couleurTitle": "#222222",
+          "tailleTitre": "20",
+          "titre_alignment": "Center"
+        }
+      },
+      "texteCadre": {
+        "type": "texteCadre",
+        "blocks": {
+          "063e3949-984f-4483-bfb7-093e91139d58": {
+            "type": "oneParagraphe",
+            "settings": {
+              "text": "Vous redonnerez une nouvelle jeunesse à votre sac.",
+              "couleurtexte": "#222222",
+              "tailletexte": "15",
+              "texte_position": "Center",
+              "oneImage": "shopify:\/\/shop_images\/tissus.png",
+              "anImage": true,
+              "image_position": "Apres"
+            }
+          },
+          "131e81b7-603b-47f0-a5da-de6499ccb581": {
+            "type": "oneParagraphe",
+            "settings": {
+              "text": "Votre sac ne passe pas à la machine.",
+              "couleurtexte": "#222222",
+              "tailletexte": "25",
+              "texte_position": "Left",
+              "anImage": false,
+              "image_position": "Apres"
+            }
+          }
+        },
+        "block_order": [
+          "063e3949-984f-4483-bfb7-093e91139d58",
+          "131e81b7-603b-47f0-a5da-de6499ccb581"
+        ],
+        "settings": {
+          "couleurFond": "#ffffff"
+        }
+      },
+      "livraisons_retours": {
+        "type": "livraisons_retours",
+        "blocks": {
+          "71d4ddc8-51c5-471d-b6ec-1526faeb088a": {
+            "type": "oneParagraphe",
+            "settings": {
+              "Texte": "<p>Les colis sont généralement expédiés en 48h après réception de votre paiement. Le mode d’expédition standard est le Colissimo suivi, remis sans signature. Si vous souhaitez une remise avec signature, un coût supplémentaire s’applique, merci de nous contacter. Quel que soit le mode d’expédition choisi, nous vous fournirons dès que possible un lien qui vous permettra de suivre en ligne la livraison de votre colis.<\/p>",
+              "Couleurtexte": "#222222",
+              "Tailletexte": "15",
+              "Texte_alignment": "Left",
+              "couleurFondParagraphe": "#ffffff"
+            }
+          },
+          "668edaf3-d7fa-4539-becd-393f2dfd162f": {
+            "type": "oneParagraphe",
+            "settings": {
+              "Texte": "<p>Les frais d’expédition comprennent l’emballage, la manutention et les frais postaux. Ils peuvent contenir une partie fixe et une partie variable en fonction du prix ou du poids de votre commande. Nous vous conseillons de regrouper vos achats en une unique commande. Nous ne pouvons pas grouper deux commandes distinctes et vous devrez vous acquitter des frais de port pour chacune d’entre elles. Votre colis est expédié à vos propres risques, un soin particulier est apporté au colis contenant des produits fragiles..<\/p>",
+              "Couleurtexte": "#222222",
+              "Tailletexte": "15",
+              "Texte_alignment": "Left",
+              "couleurFondParagraphe": "#ffffff"
+            }
+          },
+          "24163908-c1b7-4600-b1ad-73983bdfea7f": {
+            "type": "oneParagraphe",
+            "settings": {
+              "Texte": "<p>Les colis sont surdimensionnés et protégés.<\/p>",
+              "Couleurtexte": "#ff0000",
+              "Tailletexte": "15",
+              "Texte_alignment": "Left",
+              "couleurFondParagraphe": "#ffffff"
+            }
+          }
+        },
+        "block_order": [
+          "71d4ddc8-51c5-471d-b6ec-1526faeb088a",
+          "668edaf3-d7fa-4539-becd-393f2dfd162f",
+          "24163908-c1b7-4600-b1ad-73983bdfea7f"
+        ],
+        "settings": {
+          "title": "LIVRAISONS et RETOUR",
+          "couleurTitle": "#222222",
+          "tailleTitre": "20",
+          "titre_alignment": "Center",
+          "couleurFond": "#ffffff"
+        }
+      },
+      "conditions-generales": {
+        "type": "conditions-generales",
+        "blocks": {
+          "9a901812-e8a3-4bac-ae88-e1e0913f5a26": {
+            "type": "uneCondition",
+            "settings": {
+              "subtitle": "ARTICLE 1 – DÉFINITIONS",
+              "texte": "<p>\t\t\t\t \t\t\t\t\t\t<\/p><p>Les termes et expressions identifiés par une majuscule dans les Conditions Générales de Vente ont la signification indiquée ci-après (qu’ils soient employés au singulier ou au pluriel).. « Conditions Générales de Vente » : désignent le présent document, soit les termes et conditions s’appliquant dans les relations entre <em>Sylvie Strohl, Sacs &amp; Accessoires<\/em>,  et le Client ;<\/p><p> « Commande » : désigne l’ordre d’achat du Client portant sur un ou plusieurs Produit(s) passé par utilisation du Site Internet ou via le Service Client :<\/p><p>. « Site Internet » : désigne le site Internet accessible à l’adresse www.strohl-sylvie.com édité par <em>Sylvie Strohl, Sacs &amp; Accessoires<\/em>, et\/ou à toute autre adresse ayant une extension différente ;<\/p><p> « Produit » : désigne un produit offert à la vente sur le Site Internet;<\/p><p> « Client » : désigne une personne physique majeure consommateur qui utilise le Site Internet et acquiert un ou plusieurs Produit(s), pour ses besoins personnels, par le biais du site internet en ayant préalablement adhéré aux Conditions Générales de Vente.<\/p><p>\t\t\t  \t\t\t\t<\/p>"
+            }
+          },
+          "8831eb45-9c70-467a-81fb-b24c7cce3fcd": {
+            "type": "uneCondition",
+            "settings": {
+              "subtitle": "ARTICLE 2 – OBJET",
+              "texte": "<p>\t\t\t\t \t\t\t\t\t\t<\/p><p>Les Conditions Générales de Vente définissent les droits et obligations de <em>Sylvie Strohl, Sacs &amp; Accessoires<\/em> et du Client dans le cadre de la vente de Produits par <em>Sylvie Strohl, Sacs &amp; Accessoires<\/em> sur le Site Internet.<\/p><p>Toute utilisation du Site Internet et toute passation de Commande d’un ou plusieurs Produit(s) par le biais du Site Internet implique l’acceptation pure et simple de l’intégralité des Conditions Générales de Vente.<\/p><p>Les Conditions Générales de Vente sont réservées aux acheteurs et consommateurs.<\/p><p>Seules les personnes juridiquement capables de souscrire des contrats concernant les Produits proposés à la vente sur le Site peuvent passer Commande sur le Site Internet. Lors de la passation de la Commande, le Client garantit avoir la pleine capacité juridique pour adhérer aux Conditions Générales de Vente de vente, passer Commande et conclure une vente.<\/p><p>\t\t\t  \t\t\t\t<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "9a901812-e8a3-4bac-ae88-e1e0913f5a26",
+          "8831eb45-9c70-467a-81fb-b24c7cce3fcd"
+        ],
+        "settings": {
+          "titre": "Condition générale de ventes",
+          "tailleTitre": "20"
+        }
+      },
+      "mentions_legales": {
+        "type": "mentions_legales",
+        "blocks": {
+          "008b6a50-ba6b-4ad4-bd58-7f6011723ffa": {
+            "type": "oneSubtitle",
+            "settings": {
+              "Subtitle": "1. Présentation de notre site web",
+              "CouleurSubtitle": "#222222",
+              "TailleSubtitle": "20",
+              "Subtitle_alignment": "Left"
+            }
+          },
+          "0f43cc1b-24cf-4b01-a083-2744d6c0a9f6": {
+            "type": "oneParagraphe",
+            "settings": {
+              "Texte": "<p>Conformément à la loi n° 2004-2005 du 21 juin 2004 pour la confiance dans l’économie numérique, notre site web créé par <a href=\"http:\/\/www.sylvie-strohl.com\">www.sylvie-strohl.com<\/a> , propriétaire du site : Sylvie Strohl, met à disposition du public les informations concernant notre entreprise.<\/p><p>Eventuellement modifiables, nous vous invitons donc à consulter nos mentions légales le plus souvent possible, de manière à en prendre connaissance fréquemment<\/p><p> <\/p><p>Le site <a href=\"http:\/\/www.sylvie-strohl.com\">www.sylvie-strohl.com<\/a> appartient à Sylvie Strohl – Auto Entrepreneur sous le n° de SIRET : 811.208.941.000.21, dont le siège social est situé à l’adresse suivante : <\/p><p>4 rue Saint Germain-86000 Poitiers. Tél : 06.78.50.75.21<\/p><p>Personne physique ou morale, Sylvie Strohl est responsable de la publication, dont l’adresse e-mail est la suivante : contact@sylvie-strohl.com<\/p><p>Le webmaster, Poppa est responsable de l’administration du site, dont l’adresse e-mail est la suivante <strong>: benjamin.rivat@gmail.com<\/strong><\/p><p>Le site <a href=\"http:\/\/www.sylvie-strohl.com\">www.sylvie-strohl.com<\/a> est hébergé par OVH SAS dont le siège social est localisé à l’adresse suivante : 2 rue Kellermann-59100 ROUBAIX<\/p>",
+              "Couleurtexte": "#222222",
+              "Tailletexte": "15",
+              "Texte_alignment": "Left"
+            }
+          },
+          "46d60ca4-976f-40c2-8c24-062a67262890": {
+            "type": "oneSubtitle",
+            "settings": {
+              "Subtitle": "2. Conditions générales d’utilisation du site et des services proposés",
+              "CouleurSubtitle": "#222222",
+              "TailleSubtitle": "20",
+              "Subtitle_alignment": "Left"
+            }
+          },
+          "103c9226-ee53-40f3-b768-fa7280ea4f8b": {
+            "type": "oneParagraphe",
+            "settings": {
+              "Texte": "<p>En utilisant notre site web www.sylvie-strohl.com, vous acceptez pleinement et entièrement les conditions générales d’utilisation précisées dans nos mentions légales. Accessible à tout type de visiteurs, il est important de préciser toutefois qu’une interruption pour maintenance du site web peut-être décidée par Sylvie Strohl. Les dates et heures d’interruptions seront néanmoins précisées à l’avance aux utilisateurs.<\/p>",
+              "Couleurtexte": "#222222",
+              "Tailletexte": "15",
+              "Texte_alignment": "Left"
+            }
+          }
+        },
+        "block_order": [
+          "008b6a50-ba6b-4ad4-bd58-7f6011723ffa",
+          "0f43cc1b-24cf-4b01-a083-2744d6c0a9f6",
+          "46d60ca4-976f-40c2-8c24-062a67262890",
+          "103c9226-ee53-40f3-b768-fa7280ea4f8b"
+        ],
+        "settings": {
+          "title": "Mentions Légales",
+          "couleurTitle": "#222222",
+          "tailleTitre": "25",
+          "titre_alignment": "Center",
+          "couleurFond": "#ffffff"
+        }
+      },
+      "imageTexte-1": {
+        "type": "imageTexte-1",
+        "blocks": {
+          "fbec5b49-1dd7-49e3-809a-3995520d7bfb": {
+            "type": "composeTexte",
+            "settings": {
+              "text": "<p><strong>Sylvie Strohl<\/strong> (Paris 1961) a étudié la couture au sein de l’atelier privé <a href=\"http:\/\/edwigebridonneau.com\/\" target=\"_blank\">Edwige Bridonneau<\/a> à Angers.Formée à la <strong>méthode artisanale<\/strong> et très inspirée par les  collections Sportwear des Années 40 et 50, elle y crée sa 1ère collection de vêtement.  Elle y intègre par évidence des <strong>sacs à main<\/strong>…<em>Son style reflète une recherche de l’élégance dans le mouvement.<\/em>Son amour pour les<strong> belles matières textiles<\/strong> de tout horizon qu’elle associe par contraste matière ou couleur répond  à sa recherche de créativité.Elle affirme son goût pour la forme trapézoïdale.En 2013, elle produit sa 1ere <strong>collection de sacs à main<\/strong> qu’<strong>elle expose à la London Fair de <\/strong><a href=\"http:\/\/www.selvedge.org\/pages\/exhibitions\/exhibitor.aspx?id=400\" target=\"_blank\" title=\"Selvedge\"><strong>Selvedge<\/strong><\/a><strong>.<\/strong>100% textile, cette collection associe des <strong>toiles brutes<\/strong> comme le <em>jeans<\/em> à des <em>étoffes de laines<\/em> sophistiquées comme les <em>flanelles<\/em>, les <em>baratheas<\/em>.Elle aime retrouver dans ses sacs le contraste des <strong>étoffes élégantes<\/strong> et des <strong>toiles décontractées<\/strong> des tenues vestimentaires.C’est le commencement de la signature <strong>Sylvie Strohl<\/strong>.<\/p>",
+              "couleurTexte": "#000000",
+              "tailleTexte": "15",
+              "text_alignment": "Left"
+            }
+          }
+        },
+        "block_order": [
+          "fbec5b49-1dd7-49e3-809a-3995520d7bfb"
+        ],
+        "settings": {
+          "title": "La créatrice",
+          "couleurTitle": "#000000",
+          "tailleTitre": "25",
+          "image": "shopify:\/\/shop_images\/sylvie.jpg",
+          "rightLeft": false,
+          "couleurFond": "#ffffff"
+        }
+      },
+      "imageTexte-2": {
+        "type": "imageTexte-2",
+        "blocks": {
+          "3a59c256-e064-4ce2-b118-8eaffef5514a": {
+            "type": "composeSubTitle",
+            "settings": {
+              "subTitle": "Fabriqué à la main en France",
+              "couleurSubTitle": "#000000",
+              "tailleSubTitre": "20",
+              "subtitre_alignment": "Left"
+            }
+          },
+          "7516dc1f-8a0b-4243-9df4-33a4ef424ad9": {
+            "type": "composeTexte",
+            "settings": {
+              "text": "<p><em>Chaque sac est dessiné par Sylvie Strohl.<\/em>20 pièces de patrons sont nécessaires et sont validées par un prototype.Chaque pièce du sac sera découpée, entoilée, assemblée à l’atelier.<em>Chaque sac nécessite entre 7 à 8 heures de travail pour arriver à une pièce unique.<\/em>Il sera ensuite traité anti tâche, numéroté et emballé pour protection.<\/p>",
+              "couleurTexte": "#000000",
+              "tailleTexte": "15",
+              "text_alignment": "Left"
+            }
+          }
+        },
+        "block_order": [
+          "3a59c256-e064-4ce2-b118-8eaffef5514a",
+          "7516dc1f-8a0b-4243-9df4-33a4ef424ad9"
+        ],
+        "settings": {
+          "title": "La production",
+          "couleurTitle": "#000000",
+          "tailleTitre": "25",
+          "image": "shopify:\/\/shop_images\/couture.jpg",
+          "rightLeft": true,
+          "couleurFond": "#ffffff"
+        }
+      },
+      "iconsList": {
+        "type": "iconsList",
+        "blocks": {
+          "256266ba-bd7b-46a9-ad15-af82c2e6374d": {
+            "type": "Icons",
+            "settings": {
+              "listTitre": "TISSUS",
+              "icons": "shopify:\/\/shop_images\/tissus.png",
+              "showTexte": true,
+              "listTexte": "<p>Tissus en matière naturelle : lainage, velours, toile de jeans, coton, lin.Les achats sont faits par coupon de 1 à 2 mètres.Ils proviennent également du monde entier, Japon, de l’Afrique, de l’Angleterre…<\/p>"
+            }
+          },
+          "83b81863-ee83-4c88-996b-0ed86545f5d1": {
+            "type": "Icons",
+            "settings": {
+              "listTitre": "ENTOILAGE",
+              "icons": "shopify:\/\/shop_images\/entoilage.png",
+              "showTexte": true,
+              "listTexte": "<p>Pour son maintien et sa solidité, il a été choisi l’alliage d’un entoilage dont l’aspect s’apparente au cuir,  très résistant à la déchirure et le moelleux d’un molleton pur coton.<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "256266ba-bd7b-46a9-ad15-af82c2e6374d",
+          "83b81863-ee83-4c88-996b-0ed86545f5d1"
+        ],
+        "settings": {
+          "VerticalHorizontal": false,
+          "titre": "TISSUS & MATIÈRES",
+          "showTitle": true,
+          "couleurTitre": "#222222",
+          "tailleTitre": "25",
+          "titre_alignment": "Center",
+          "couleurFond": "#ffffff",
+          "listTailleTitre": "20",
+          "couleurListTitre": "#222222",
+          "listTailleTexte": "15",
+          "couleurListTexte": "#222222"
+        }
+      },
+      "showLocations": {
+        "type": "showLocations",
+        "blocks": {
+          "8fb8c511-ef80-4c91-9c69-4fa361998883": {
+            "type": "uneLocation",
+            "settings": {
+              "Ville": "Châtellerault",
+              "adresse": "Rue de l’Arceau",
+              "NumDep": "86100 Châtellerault",
+              "pays": "France"
+            }
+          },
+          "33af4179-7da7-4daf-ba8a-88bf9c97f2ef": {
+            "type": "uneLocation",
+            "settings": {
+              "Ville": "Richelieu",
+              "adresse": "9 Place Louis XIII",
+              "NumDep": "37000 Richelieu",
+              "pays": "France"
+            }
+          }
+        },
+        "block_order": [
+          "8fb8c511-ef80-4c91-9c69-4fa361998883",
+          "33af4179-7da7-4daf-ba8a-88bf9c97f2ef"
+        ],
+        "settings": {
+          "title": "LES POINTS DE VENTE",
+          "couleurTitle": "#222222",
+          "tailleTitre": "25",
+          "titre_alignment": "Center",
+          "couleurFond": "#ffffff",
+          "Couleurtexte": "#222222",
+          "Tailletexte": "15"
+        }
+      },
+      "slideshow-2": {
+        "type": "slideshow-2",
+        "blocks": {
+          "d6d3e6f7-3436-4512-9874-82c4c988eef8": {
+            "type": "image",
+            "settings": {
+              "hero_slide": "shopify:\/\/shop_images\/slider_sylvie_marteau.jpg",
+              "image_position": "center center",
+              "hero_title": "",
+              "button_label": ""
+            }
+          },
+          "953c67ac-7bd6-49b5-84a3-fe0a7fa3348b": {
+            "type": "image",
+            "settings": {
+              "hero_slide": "shopify:\/\/shop_images\/slider_images_sacs.jpg",
+              "image_position": "center center",
+              "hero_title": "",
+              "button_label": ""
+            }
+          }
+        },
+        "block_order": [
+          "d6d3e6f7-3436-4512-9874-82c4c988eef8",
+          "953c67ac-7bd6-49b5-84a3-fe0a7fa3348b"
+        ],
+        "settings": {
+          "hero_home_height": "full",
+          "hero_home_auto": true,
+          "hero_home_auto_speed": 5,
+          "hero_icons_color": "#fafafa",
+          "hero_overlay_color": "#000000",
+          "hero_overlay_amount": 20
+        }
+      },
+      "162158560825029135": {
+        "type": "collection-list",
+        "blocks": {
+          "162158560825029135-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "rapport1"
+            }
+          },
+          "162158560825029135-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "classique"
+            }
+          },
+          "162158560825029135-2": {
+            "type": "collection",
+            "settings": {
+              "collection": "nature"
+            }
+          }
+        },
+        "block_order": [
+          "162158560825029135-0",
+          "162158560825029135-1",
+          "162158560825029135-2"
+        ],
+        "settings": {
+          "title": "Mes collections",
+          "show_text_over_image": true,
+          "show_number_products": false,
+          "alignment": "center left",
+          "background_color": "#ffffff"
+        }
+      },
+      "1621585682920b31c5": {
+        "type": "featured-blog",
+        "settings": {
+          "title": "Tendances",
+          "blog": "je-suis-un-titre-de-blog",
+          "post_limit": 3,
+          "blog_show_date": false,
+          "blog_show_author": false,
+          "blog_show_image": true,
+          "blog_show_excerpt": true,
+          "show_view_all": true
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "blocks": {
+          "b7f47fed-4c9a-46d0-ac42-31cc282d5cf7": {
+            "type": "oneBlog",
+            "settings": {
+              "myBlog": "infos"
+            }
+          },
+          "7fdd3ece-df2e-4dc2-b7b7-46aa3cd02f70": {
+            "type": "oneBlog",
+            "settings": {
+              "myBlog": "je-suis-un-titre-de-blog"
+            }
+          }
+        },
+        "block_order": [
+          "b7f47fed-4c9a-46d0-ac42-31cc282d5cf7",
+          "7fdd3ece-df2e-4dc2-b7b7-46aa3cd02f70"
+        ],
+        "settings": {
+          "titre_text_align": "center"
+        }
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "settings": {
+          "display_type": "all",
+          "sort": "alphabetical",
+          "collection_image_type": "landscape",
+          "collection_image_size": "small"
+        }
+      },
+      "produits-filtre": {
+        "type": "produits-filtre",
+        "settings": {
+          "collection_filter": false,
+          "products_filter_tags": true,
+          "products_filter_tag": true,
+          "products_filter_type": true,
+          "products_filter_options": true,
+          "products_filter_option": true,
+          "zone_filter": true,
+          "collection_options_filter": true,
+          "distributeur_filter": true,
+          "available_products": true
+        }
+      },
+      "162220846237afb2d2": {
+        "type": "featured-collection",
+        "settings": {
+          "home_featured_products": "carre",
+          "collection_showImage": false,
+          "myImage_showImage": true,
+          "myImage": "shopify:\/\/shop_images\/carre-moderne.jpg",
+          "collection_showImage_texte": false,
+          "collection_showImage_color_texte": "#e69611",
+          "tailleTitre1": "30",
+          "collection_showImage_color_texte2": "#eab088",
+          "tailleTitre2": "45",
+          "collection_showImage_color_boutton": "#dbc18b",
+          "tailleTitre3": "20",
+          "product_image_type": "portrait",
+          "product_image_size": "medium",
+          "product_image_spacing": false,
+          "vendor_enable": false
+        }
+      },
+      "1623070951baa5de1d": {
+        "type": "iconsList",
+        "blocks": {
+          "dd5e3737-fb1f-42e2-8d87-23cb441f856c": {
+            "type": "Icons",
+            "settings": {
+              "listTitre": "Mon titre",
+              "icons": "shopify:\/\/shop_images\/thin-plant-stems-in-sun.jpg",
+              "showTexte": true,
+              "listTexte": "<p>Description de mon icone<\/p>"
+            }
+          },
+          "19f44e9c-d88c-46e9-a4ed-5b71056e7314": {
+            "type": "Icons",
+            "settings": {
+              "listTitre": "Mon titre",
+              "icons": "shopify:\/\/shop_images\/sac-fleur.jpg",
+              "showTexte": true,
+              "listTexte": "<p>Description de mon icone<\/p>"
+            }
+          },
+          "56168c1c-cc34-42c9-a61b-a3bffd273e91": {
+            "type": "Icons",
+            "settings": {
+              "listTitre": "Mon titre",
+              "icons": "shopify:\/\/shop_images\/U-bleu.jpg",
+              "showTexte": true,
+              "listTexte": "<p>Description de mon icone<\/p>"
+            }
+          },
+          "37f14847-ef4e-4e43-894e-1050d258378f": {
+            "type": "Icons",
+            "settings": {
+              "listTitre": "Mon titre",
+              "icons": "shopify:\/\/shop_images\/trap-serieux.jpg",
+              "showTexte": true,
+              "listTexte": "<p>Description de mon icone<\/p>"
+            }
+          },
+          "be8b2176-2f72-4558-bf92-e2185fb6f2bb": {
+            "type": "Icons",
+            "settings": {
+              "listTitre": "Mon titre",
+              "icons": "shopify:\/\/shop_images\/trap-militaire.jpg",
+              "showTexte": true,
+              "listTexte": "<p>Description de mon icone<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "dd5e3737-fb1f-42e2-8d87-23cb441f856c",
+          "19f44e9c-d88c-46e9-a4ed-5b71056e7314",
+          "56168c1c-cc34-42c9-a61b-a3bffd273e91",
+          "37f14847-ef4e-4e43-894e-1050d258378f",
+          "be8b2176-2f72-4558-bf92-e2185fb6f2bb"
+        ],
+        "settings": {
+          "VerticalHorizontal": true,
+          "titre": "Mon titre",
+          "showTitle": true,
+          "couleurTitre": "#1a1a1a",
+          "tailleTitre": "25",
+          "titre_alignment": "Center",
+          "couleurFond": "#ffffff",
+          "listTailleTitre": "15",
+          "couleurListTitre": "#1a1a1a",
+          "listTailleTexte": "15",
+          "couleurListTexte": "#222222"
+        }
+      },
+      "1623070973f361ed73": {
+        "type": "bandeauJs",
+        "blocks": {
+          "7441f6e8-bc10-4ed0-999b-9221cd161b47": {
+            "type": "oneSlide",
+            "settings": {
+              "sliderImage": "shopify:\/\/shop_images\/grey-cabin-nestled-in-the-wood.jpg",
+              "sliderTitre": "Je suis un titre",
+              "sliderCouleurTitre": "#0b74f2",
+              "sliderTailleTitre": "25",
+              "sliderTitre_alignment": "Left"
+            }
+          },
+          "669cd04c-0b3b-420c-98fb-43cc572d06c8": {
+            "type": "oneSlide",
+            "settings": {
+              "sliderImage": "shopify:\/\/shop_images\/thin-plant-stems-in-sun.jpg",
+              "sliderTitre": "Je suis un titre",
+              "sliderCouleurTitre": "#1058ed",
+              "sliderTailleTitre": "25",
+              "sliderTitre_alignment": "Right"
+            }
+          },
+          "3d33f7ee-6e34-4586-974f-42c98f3ef622": {
+            "type": "oneSlide",
+            "settings": {
+              "sliderImage": "shopify:\/\/shop_images\/grey-cabin-nestled-in-the-wood.jpg",
+              "sliderTitre": "Je suis un titre",
+              "sliderCouleurTitre": "#1a60d9",
+              "sliderTailleTitre": "25",
+              "sliderTitre_alignment": "Center"
+            }
+          }
+        },
+        "block_order": [
+          "7441f6e8-bc10-4ed0-999b-9221cd161b47",
+          "669cd04c-0b3b-420c-98fb-43cc572d06c8",
+          "3d33f7ee-6e34-4586-974f-42c98f3ef622"
+        ],
+        "settings": {
+        }
+      },
+      "162307099297ecda62": {
+        "type": "featured-collection",
+        "settings": {
+          "home_featured_products": "carre",
+          "collection_showImage": false,
+          "myImage_showImage": false,
+          "myImage": "shopify:\/\/shop_images\/thin-plant-stems-in-sun.jpg",
+          "collection_showImage_texte": false,
+          "collection_showImage_color_texte": "#222222",
+          "tailleTitre1": "20",
+          "collection_showImage_color_texte2": "#222222",
+          "tailleTitre2": "25",
+          "collection_showImage_color_boutton": "#222222",
+          "tailleTitre3": "20",
+          "product_image_type": "landscape",
+          "product_image_size": "small",
+          "product_image_spacing": false,
+          "vendor_enable": false
+        }
+      },
+      "162307104850c0856f": {
+        "type": "feature-row",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/Hori-Fleur.jpg",
+          "layout": "left",
+          "title": "Image avec texte",
+          "text": "<p>Ajoutez une image à un long paragraphe de texte pour mettre l'accent sur un produit de votre choix, une collection, ou un article de blog. Ajoutez des détails sur la disponibilité, le style, ou mettez un commentaire client en avant.<\/p>",
+          "button_label": "Decouvrir",
+          "button_link": "shopify:\/\/products\/sac-fleurit"
+        }
+      },
+      "1623071133f75389f6": {
+        "type": "featured-video",
+        "settings": {
+          "heading": "Vidéo",
+          "video_url": "https:\/\/www.youtube.com\/watch?v=sqz1hzC4NSw"
+        }
+      },
+      "1623071261ee355e0f": {
+        "type": "map",
+        "settings": {
+          "map_title": "Notre boutique",
+          "address": "<p>123 rue inventée<br\/>Paris, France<\/p><p>Lun. - ven., 10 h - 21 h<br\/>Samedi, 11 h - 21 h<br\/>Dimanche, 11 h - 17 h<\/p>",
+          "map_address": "80 Spadina Ave, Toronto",
+          "button": "Obtenir un itinéraire",
+          "show_pin": true,
+          "api_key": "",
+          "image": "shopify:\/\/shop_images\/Hori-Classe.jpg",
+          "position": "center center"
+        }
+      },
+      "1623071283dc1c4ce6": {
+        "type": "featured-product",
+        "settings": {
+          "featured_product": "sac-sobre-en-velour",
+          "show_vendor": true,
+          "show_quantity_selector": true,
+          "show_share_buttons": true,
+          "enable_payment_button": true
+        }
+      },
+      "1623071408c0850342": {
+        "type": "Produits-Vedettes",
+        "blocks": {
+          "7ab7ea19-91d3-47e3-8080-918615eace3d": {
+            "type": "monProduit",
+            "settings": {
+              "id": "carre-noir"
+            }
+          },
+          "4923845c-e347-4a50-9d7f-a244c5b086d2": {
+            "type": "monProduit",
+            "settings": {
+              "id": "carre-sobre"
+            }
+          },
+          "16274577-5ec3-457a-b71a-b8862d768830": {
+            "type": "monProduit",
+            "settings": {
+              "id": "carre-serieux"
+            }
+          },
+          "a9be618f-512e-45c5-bba2-288b7a412649": {
+            "type": "monProduit",
+            "settings": {
+              "id": "carre-a-motifs"
+            }
+          },
+          "caca5d7e-d8d0-400c-a965-4f43f0bd388c": {
+            "type": "monProduit",
+            "settings": {
+              "id": "mini-sac-moderne"
+            }
+          }
+        },
+        "block_order": [
+          "7ab7ea19-91d3-47e3-8080-918615eace3d",
+          "4923845c-e347-4a50-9d7f-a244c5b086d2",
+          "16274577-5ec3-457a-b71a-b8862d768830",
+          "a9be618f-512e-45c5-bba2-288b7a412649",
+          "caca5d7e-d8d0-400c-a965-4f43f0bd388c"
+        ],
+        "settings": {
+          "produitVedetteTitre": "Je suis un titre accrocheur",
+          "couleurTitle": "#090909",
+          "tailleTitre": "25",
+          "titre_alignment": "Center",
+          "product_image_spacing": false,
+          "vendor_enable": false,
+          "product_image_type": "portrait",
+          "product_image_size": "large"
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {
+          "social_sharing_blog": false
+        }
+      },
+      "162323106875ec70f6": {
+        "type": "box",
+        "blocks": {
+          "1b83a56f-664d-4906-9c4a-be5077ecc618": {
+            "type": "compose_package",
+            "settings": {
+              "subTitle": "Mon titre",
+              "image": "shopify:\/\/shop_images\/grey-cabin-nestled-in-the-wood.jpg",
+              "texte_package": "Lien vers ma première boite",
+              "url_to_box": "shopify:\/\/pages\/composez-et-personnalisez-votre-box"
+            }
+          },
+          "738888e8-ed73-4383-b8fa-9ef93cb15c93": {
+            "type": "compose_package",
+            "settings": {
+              "subTitle": "Mon titre",
+              "image": "shopify:\/\/shop_images\/hiking-though-giants.jpg",
+              "texte_package": "Lien vers ma deuxieme boite",
+              "url_to_box": "shopify:\/\/pages\/composez-et-personnalisez-votre-box-1"
+            }
+          },
+          "f43ba1e3-43fd-4b28-9ba4-9d3b3f77729b": {
+            "type": "compose_package",
+            "settings": {
+              "subTitle": "Mon titre",
+              "image": "shopify:\/\/shop_images\/thin-plant-stems-in-sun.jpg",
+              "texte_package": "Lien vers ma troisieme boit",
+              "url_to_box": "shopify:\/\/pages\/composez-et-personnalisez-votre-box-2"
+            }
+          },
+          "f08f178f-f7d4-4c58-b9a4-547940e6bea5": {
+            "type": "compose_package",
+            "settings": {
+              "subTitle": "Mon titre",
+              "image": "shopify:\/\/shop_images\/thin-plant-stems-in-sun.jpg",
+              "texte_package": "Mon texte"
+            }
+          },
+          "74b3382c-22ce-438a-a930-f0ab60aa245f": {
+            "type": "compose_package",
+            "settings": {
+              "subTitle": "Mon titre",
+              "texte_package": "Mon texte",
+              "url_to_box": "shopify:\/\/pages\/composez-et-personnalisez-votre-box-2"
+            }
+          }
+        },
+        "block_order": [
+          "1b83a56f-664d-4906-9c4a-be5077ecc618",
+          "738888e8-ed73-4383-b8fa-9ef93cb15c93",
+          "f43ba1e3-43fd-4b28-9ba4-9d3b3f77729b",
+          "f08f178f-f7d4-4c58-b9a4-547940e6bea5",
+          "74b3382c-22ce-438a-a930-f0ab60aa245f"
+        ],
+        "settings": {
+          "couleurFond": "#ffffff",
+          "couleurTitle": "#d35400",
+          "tailleTitre": "20",
+          "couleurTexte": "#d35400",
+          "tailleTexte": "15"
+        }
+      },
+      "lots-template": {
+        "type": "lots-template",
+        "blocks": {
+          "5b6c5014-b439-4b3e-be73-7c0716acaee0": {
+            "type": "my_box",
+            "settings": {
+              "title_product": "Premier produit",
+              "text_button": "Choisissez un produit",
+              "collection_id": "nature",
+              "product_id": ""
+            }
+          },
+          "a0c0050a-c44f-4ebd-9994-0d18b5f8769c": {
+            "type": "my_box",
+            "settings": {
+              "title_product": "Deuxieme produit",
+              "text_button": "Choisissez un produit",
+              "collection_id": "carre",
+              "product_id": ""
+            }
+          },
+          "a95fc334-f038-4bb8-88f8-5f8f1d78e49b": {
+            "type": "my_box",
+            "settings": {
+              "title_product": "Troisieme produit",
+              "text_button": "Choisissez un produit",
+              "collection_id": "",
+              "product_id": "carre-a-motifs"
+            }
+          }
+        },
+        "block_order": [
+          "5b6c5014-b439-4b3e-be73-7c0716acaee0",
+          "a0c0050a-c44f-4ebd-9994-0d18b5f8769c",
+          "a95fc334-f038-4bb8-88f8-5f8f1d78e49b"
+        ],
+        "settings": {
+          "couleurFond": "#fafafa",
+          "couleurTitle": "#f3aa14",
+          "tailleTitre": "20",
+          "image": "shopify:\/\/shop_images\/imageMarket.png"
+        }
+      }
+    },
+    "content_for_index": [
+      "rich-text",
+      "162158560825029135",
+      "1621585682920b31c5",
+      "162220846237afb2d2",
+      "1623070951baa5de1d",
+      "1623070973f361ed73",
+      "162307099297ecda62",
+      "162307104850c0856f",
+      "1623071133f75389f6",
+      "1623071261ee355e0f",
+      "1623071283dc1c4ce6",
+      "1623071408c0850342",
+      "162323106875ec70f6"
+    ]
+  },
   "presets": {
-    "Default": { }
+    "Black & white": {
+      "cart_type": "drawer",
+      "cart_notes_enable": false,
+      "checkout_accent_color": "#1a1a1a",
+      "checkout_body_background_color": "#fff",
+      "checkout_body_font": "Helvetica Neue",
+      "checkout_button_color": "#1a1a1a",
+      "checkout_error_color": "#de2a2a",
+      "checkout_heading_font": "Helvetica Neue",
+      "checkout_input_background_color_mode": "white",
+      "checkout_logo": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_use_body_background_image": false,
+      "checkout_use_header_image": false,
+      "checkout_use_sidebar_background_image": false,
+      "color_action_bar_bg": "#1a1a1a",
+      "color_action_bar_text": "#ffffff",
+      "color_action_bar_text_active": "#ffffff",
+      "color_body_bg": "#ffffff",
+      "color_body_headings": "#1a1a1a",
+      "color_body_links": "#1a1a1a",
+      "color_body_text": "#666666",
+      "color_borders": "#eeeeee",
+      "color_button_bg": "#1a1a1a",
+      "color_button_text": "#fff",
+      "color_drawer_bg": "#ffffff",
+      "color_drawer_inputs": "#ffffff",
+      "color_drawer_text": "#1a1a1a",
+      "color_footer_bg": "#f9f9f9",
+      "color_footer_text": "#5c5c5c",
+      "color_nav_bg": "#ffffff",
+      "color_nav_text": "#1a1a1a",
+      "color_sale_badge": "#dac08e",
+      "favicon_enable": false,
+      "share_facebook": true,
+      "share_pinterest": true,
+      "share_twitter": true,
+      "type_base_family": "open_sans_n4",
+      "type_base_size": "15px",
+      "type_button_base_size": "16px",
+      "type_header_base_size": "25px",
+      "type_header_family": "karla_n7",
+      "type_header_spacing": "0.05em",
+      "type_header_transform": false,
+      "sections": {
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "settings": {
+            "show_announcement": true,
+            "color_bg": "#dbc18b"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "logo_width": "180"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slider-0": {
+              "type": "image",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "slider-0"
+          ],
+          "settings": {
+            "hero_icons_color": "#ffffff",
+            "hero_overlay_color": "#000000"
+          }
+        },
+        "rich-text": {
+          "type": "rich-text",
+          "settings": {
+          }
+        },
+        "featured-collection": {
+          "type": "featured-collection",
+          "settings": {
+            "home_featured_products": "frontpage",
+            "product_image_type": "portrait",
+            "product_image_size": "medium",
+            "product_image_spacing": false
+          }
+        },
+        "newsletter-signup": {
+          "type": "newsletter-signup",
+          "settings": {
+          }
+        },
+        "sidebar-menu": {
+          "type": "sidebar-menu",
+          "settings": {
+            "sidebar_top_link_list": "main-menu",
+            "sidebar_bottom_link_list": "footer"
+          }
+        },
+        "action-bar": {
+          "type": "action-bar",
+          "settings": {
+            "action_bar_link_list": "main-menu"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "product_image_type": "portrait",
+            "product_image_size": "medium",
+            "product_image_spacing": false
+          }
+        }
+      },
+      "content_for_index": [
+        "rich-text",
+        "featured-collection",
+        "newsletter-signup"
+      ]
+    },
+    "Vibrant": {
+      "cart_type": "drawer",
+      "cart_notes_enable": false,
+      "checkout_accent_color": "#f26241",
+      "checkout_body_background_color": "#fff",
+      "checkout_body_font": "Helvetica Neue",
+      "checkout_button_color": "#1b100e",
+      "checkout_error_color": "#b01919",
+      "checkout_heading_font": "Helvetica Neue",
+      "checkout_input_background_color_mode": "white",
+      "checkout_logo": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_sidebar_background_color": "#f4f4f4",
+      "checkout_use_body_background_image": false,
+      "checkout_use_header_image": false,
+      "checkout_use_sidebar_background_image": false,
+      "color_action_bar_bg": "#1b100e",
+      "color_action_bar_text": "#fff",
+      "color_action_bar_text_active": "#f26241",
+      "color_body_bg": "#ffffff",
+      "color_body_headings": "#1b100e",
+      "color_body_links": "#f26241",
+      "color_body_text": "#1b100e",
+      "color_borders": "#eceff1",
+      "color_button_bg": "#1b100e",
+      "color_button_text": "#fff",
+      "color_drawer_bg": "#f6f6f6",
+      "color_drawer_inputs": "#ffffff",
+      "color_drawer_text": "#3e3e3e",
+      "color_footer_bg": "#f4f4f4",
+      "color_footer_text": "#4a4a4a",
+      "color_nav_bg": "#f26241",
+      "color_nav_text": "#ffffff",
+      "color_sale_badge": "#f26241",
+      "favicon_enable": false,
+      "share_facebook": true,
+      "share_pinterest": true,
+      "share_twitter": true,
+      "type_base_family": "open_sans_n4",
+      "type_base_size": "16px",
+      "type_button_base_size": "16px",
+      "type_header_base_size": "24px",
+      "type_header_family": "quantico_n7",
+      "type_header_spacing": "0.1em",
+      "type_header_transform": true,
+      "sections": {
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "settings": {
+            "show_announcement": true,
+            "color_bg": "#f6602f"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "logo_width": "180"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slider-0": {
+              "type": "image",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "slider-0"
+          ],
+          "settings": {
+            "hero_icons_color": "#ffffff",
+            "hero_overlay_color": "#000"
+          }
+        },
+        "rich-text": {
+          "type": "rich-text",
+          "settings": {
+          }
+        },
+        "featured-collection": {
+          "type": "featured-collection",
+          "settings": {
+            "home_featured_products": "frontpage",
+            "product_image_type": "landscape",
+            "product_image_size": "large",
+            "product_image_spacing": true
+          }
+        },
+        "newsletter-signup": {
+          "type": "newsletter-signup",
+          "settings": {
+          }
+        },
+        "sidebar-menu": {
+          "type": "sidebar-menu",
+          "settings": {
+            "sidebar_top_link_list": "main-menu",
+            "sidebar_bottom_link_list": "footer"
+          }
+        },
+        "action-bar": {
+          "type": "action-bar",
+          "settings": {
+            "action_bar_link_list": "main-menu"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "product_image_type": "landscape",
+            "product_image_size": "large",
+            "product_image_spacing": true
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+          }
+        }
+      },
+      "content_for_index": [
+        "rich-text",
+        "featured-collection",
+        "newsletter-signup"
+      ]
+    }
   }
 }

@@ -205,11 +205,13 @@
       </div>
 
       {%comment%} Zone des réseaux sociaux {%endcomment%}
-      <div class="product_social">
-          {% if section.settings.social_sharing_products %}
-              {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-          {% endif %}
-      </div>
+      {% if settings.share_facebook or settings.share_fancy or settings.share_vimeo or settings.share_youtube or settings.share_tumblr or settings.share_snapchat or settings.share_google_plus or settings.share_twitter or settings.share_pinterest or settings.share_instagram %}
+        <div class="product_social">
+            {% if section.settings.social_sharing_products %}
+                {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+            {% endif %}
+        </div>
+      {% endif %}
 
       {%comment%} Zone des produits associes {%endcomment%}
       <div class="product_associate">

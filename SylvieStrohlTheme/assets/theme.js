@@ -3099,3 +3099,30 @@ function show_Filter(id_show, id_filters){
     filters.style.display = 'block';
   }
 }
+
+type Mutation {
+  customerDelete($input: my_id) {
+    customerDelete(input: $input) {
+      deletedCustomerId
+      shop {
+        id
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+}
+mutation customerDelete($input: my_id) {
+  customerDelete(input: $input) {
+    deletedCustomerId
+    shop {
+      id
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

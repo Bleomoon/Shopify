@@ -63,3 +63,41 @@
 
   
 </div>
+
+<button onclick="delete_account({{ customer.id }})">
+  supprimer le compte
+</button>
+
+<script>
+  function delete_account(my_id)
+  {
+    mutation customerDelete($input: my_id) {
+      customerDelete(input: $input) {
+        deletedCustomerId
+        shop {
+          id
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  }
+
+  type Mutation {
+  setMessage(message: String): String
+}
+
+var fakeDatabase = {};
+var root = {
+  setMessage: ({message}) => {
+    fakeDatabase.message = message;
+    return message;
+  },
+  getMessage: () => {
+    return fakeDatabase.message;
+  }
+};
+</script>
+

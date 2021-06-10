@@ -17,14 +17,14 @@
             <div class="oneBlog">
                 {% for article in theblog.articles %}
                     <div class="oneArticle">
-                        <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                        <h3 class="h3"><a href="{{ article.url }}">{{ article.title }}</a></h3>
 
                         <div class="articleContenu">
                             {% if article.image %}
                                 <p>
-                                <a href="{{ article.url }}">
-                                    {{ article | img_url: 'medium' | img_tag: article.title }}
-                                </a>
+                                  <a href="{{ article.url }}">
+                                      {{ article | img_url: 'medium' | img_tag: article.title }}
+                                  </a>
                                 </p>
                             {% endif %}
 

@@ -8,7 +8,7 @@
   {% for block in section.blocks %}
     {% capture _ %} {% increment intervalle %} {% endcapture %}
     <div id="oneSlide-{{ intervalle }}" class="oneSlide" alt="{{ block.settings.sliderTitre }}" style="display: none; background-image: url('{{ block.settings.sliderImage | img_url: '5760x5760' }}');">
-      <h2  class="oneSlideH2" style="font-size: {{ block.settings.sliderTailleTitre | append: 'px' }}; text-align: {{ block.settings.sliderTitre_alignment }}; color: {{ block.settings.sliderCouleurTitre }};">
+      <h2  class="oneSlideH2 h2" style="font-size: {{ block.settings.sliderTailleTitre | append: 'px' }}; text-align: {{ block.settings.sliderTitre_alignment }}; color: {{ block.settings.sliderCouleurTitre }};">
         {{ block.settings.sliderTitre }}
       </h2>
     </div>

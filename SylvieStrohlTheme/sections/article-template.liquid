@@ -56,7 +56,7 @@
 
   {% if section.settings.social_sharing_blog %}
     <hr class="hr--clear">
-    <h3 class="h2">{{ 'blogs.article.share_this_post' | t }}</h3>
+    <h2 class="h2">{{ 'blogs.article.share_this_post' | t }}</h2>
     {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
   {% endif %}
 
@@ -73,7 +73,7 @@
             {% comment %}
               #AddCommentTitle is used simply as an anchor link when a comment error exists
             {% endcomment %}
-            <h3 id="AddCommentTitle" class="h2">{{ 'blogs.comments.title' | t }}</h3>
+            <h2 id="AddCommentTitle" class="h2">{{ 'blogs.comments.title' | t }}</h2>
 
             {{ form.errors | default_errors }}
 
@@ -96,7 +96,7 @@
       </div>
       <div class="grid__item large-up--one-half">
         {% if number_of_comments > 0 %}
-          <h3 class="h2">{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
+          <h2 class="h2">{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h2>
         {% endif %}
         {% paginate article.comments by 5 %}
 

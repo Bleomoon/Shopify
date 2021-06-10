@@ -1,7 +1,6 @@
 {% comment %} Ici l'affectation des variables {% endcomment %}
 {% assign bg_color = section.settings.couleurFond %}
 {% assign title_color = section.settings.couleurTitle %}
-{% assign title_size = section.settings.tailleTitre | append: 'px' %}
 
 {% comment %} Ici le html d'affichage {% endcomment %}
 <div class="my_box">
@@ -9,19 +8,23 @@
         {% capture _ %} {% increment id %} {% endcapture %}
         <div id ="one_product-{{ id }}" class="one_product">
             <h3 class="one_product_title"> {{ block.settings.title_product }}</h3>
+            
             {% if block.settings.product_id == blank %}
                 <button id="one_product_button-{{ id }}" class="one_product_button" onclick="open_products('{{ id }}')"> {{ block.settings.text_button }} </button>
                 <div>
                     <img id="one_product_image-{{ id }}" src="{{ section.settings.image | img_url: 'small' }}" alt="{{ section.settings.image.alt }}">
                 </div>
+                <p id="one_product_price-{{ id }}" class="one_product_price"></p>
             {% else %}
                 {% assign product = all_products[block.settings.product_id] %}
+                <p id="one_product_price-{{ id }}" class="one_product_price"> {{ product.price }}</p>
                 <script>
                     window.addEventListener("load", function(event) {
-                        var product_id = {{ product.id | json }};
+                        var product_id = {{ product.selected_or_first_available_variant.id | json }};
                         var product_image_src = {{ product.featured_image | img_url: 'small' | json }};
                         var product_image_alt = {{ product.featured_image.alt | json }};
-                        add_Product_To_Box(product_id, product_image_alt, product_image_src);
+                        var product_price = {{ product.price | money_with_currency | json }};
+                        add_Product_To_Box(product_id, product_image_alt, product_image_src, product_price);
                         console.log('product id = ' + product_id);
                     });
                 </script>
@@ -33,13 +36,13 @@
     {% endfor %}
 </div>
 
-<div onclick="add_Box_To_Cart()" class="add_to_cart_box">
+<button class="add_to_cart_box" onclick="add_Box_To_Cart()" type="submit" id="add-{{ collections['Frontpage'].id }}">
     ajouter la box au panier
-</div>
+</button>
 
-<input type="hidden" name="id" data-productid="{{ product.id }}" 
-class="product-select" value="{{ product.selected_or_first_available_variant.id }}" 
-data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
+<button onclick="add_to_Cart_test()">
+    Click me
+</button>
 
 {% for block in section.blocks %}
     {% capture _ %} {% increment box_id %} {% endcapture %}
@@ -47,11 +50,11 @@ data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
         {% if block.settings.collection_id != blank %}
             {% assign my_collection = block.settings.collection_id %}
             {% for product in  collections[my_collection].products %}
-                {{ product.id }}
+                {{ product.selected_or_first_available_variant.id }}
                 <div class="product">
                     <img src="{{ product.featured_image | img_url: 'small' }}" alt="{{ product.featured_image.alt }}">
-                    <h3>{{ product.title }}</h3>
-                    <button onclick="add_Product_To_Box('{{ product.id }}', '{{ product.featured_image.alt }}', '{{ product.featured_image | img_url: 'small' }}')">
+                    <h3 class="h3">{{ product.title }}</h3>
+                    <button onclick="add_Product_To_Box('{{ product.selected_or_first_available_variant.id }}', '{{ product.featured_image.alt }}', '{{ product.featured_image | img_url: 'small' }}', '{{ product.price | money_with_currency }}')">
                         ajouter à ma boite
                     </button>
                 </div>
@@ -76,12 +79,6 @@ data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
         "id": "couleurTitle",
         "label": "Couleur du titre",
         "default": "#d35400"
-    },
-    {
-        "type": "text",
-        "id": "tailleTitre",
-        "label": "taille du titre",
-        "default": "20"
     },
     {
         "id":"image",
@@ -118,6 +115,11 @@ data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
                 "id": "product_id",
                 "label": "Produit spécifique",
                 "info": "L'utilisateur aura ce produit de présélectionné"
+             },
+             {
+                "type": "checkbox",
+                "id": "free_product",
+                "label": "Produit gratuit ?"
              }
         ]
     }]
@@ -145,7 +147,7 @@ data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
 
     .one_product_title{
         color: {{ title_color }};
-        font-size: {{ title_size }};
+        font-size: 14px;
     }
 
     .add_to_cart_box{
@@ -162,6 +164,11 @@ data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
 
     .one_box{
         display:none;
+        grid-template-columns: repeat(4,1fr);
+    }
+
+    .product{
+        grid-column:auto;
     }
 {% endstyle %}
 
@@ -176,60 +183,112 @@ data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
         console.log('product = ' + my_product);
         console.log('my_box = ' + my_box);
 
-        if(my_box.style.display != 'block')
+        if(my_box.style.display != 'grid')
         {
-            for (i = 1; i <= max_id; i++)
+            for (var i = 1; i <= max_id; i++)
             {
                 document.getElementById('one_box-' + i).style.display = 'none';
                 console.log('one_box-' + i);
             }
-            my_box.style.display = 'block';
+            my_box.style.display = 'grid';
         }
     }
 
-    function add_Product_To_Box(product_id, alt_image, url_image)
+    function add_Product_To_Box(product_id, alt_image, url_image, product_price)
     {
-        for (i = 1; i <= max_id; i++)
+        for (var i = 1; i <= max_id; i++)
         {
             if(document.getElementById('one_box-' + i).style.display != 'none')
                 var my_id = i;
         }
         var my_product = document.getElementById('one_product-' + my_id);
         var my_product_img = document.getElementById('one_product_image-' + my_id);
+        var my_product_price =  document.getElementById('one_product_price-' + my_id);
         my_product_img.src = url_image;
         my_product_img.alt = alt_image;
-        items[my_id] = { quantity: 1, product_id};
+        my_product_price.innerHTML = product_price;
+        items[my_id] = product_id;
     }
 
     function add_Box_To_Cart()
     {
 
-        for (i = 1; i <= max_id; i++)
+        for (var i = 1; i <= max_id; i++)
         {
             if(!items[i])
                 var box_Incomplete = true;
-            console.log('oui  = ' + items[i]);
         }
 
         if(!box_Incomplete)
         {
-            const xhr = new XMLHttpRequest();
-            const data = {
-                items: [
+            Shopify.queue = [];
+            var quantity = {{ cart.item_count }} ;
+            var newArray = items;
+            for (var i = 1; i <= max_id; i++) 
+            {
+                product = newArray[i];
+                Shopify.queue.push(
+                {
+                    variantId: product
+                });
+            }
+            Shopify.moveAlong = function() 
+            {
+                // If we still have requests in the queue, let's process the next one.
+                if (Shopify.queue.length) 
+                {
+                    var request = Shopify.queue.shift();
+                    var data = 'id='+ request.variantId + '&quantity=1';
+                    console.log('data ? : ' + data);
+                    $.ajax(
                     {
-                        quantity: 1,
-                        id: 6714145210539
-                    },
-                    {
-                        quantity: 2,
-                        id: 6714145013931
-                    }
-                ]
+                        type: 'POST',
+                        url: '/cart/add.js',
+                        dataType: 'json',
+                        data: data,
+                        success: function(res)
+                        {
+                            Shopify.moveAlong();
+                            quantity += 1;
+                        },
+                        error: function()
+                        {
+                            // if it's not last one Move Along else update the cart number with the current quantity
+                            if (Shopify.queue.length)
+                            {
+                                Shopify.moveAlong();
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    });
+                }
+                // If the queue is empty, we add 1 to cart
+                else 
+                {
+                    quantity += 1;
+                }
             };
-            xhr.open('POST', '/cart/add.js', true);
-            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-            xhr.send(JSON.stringify(data));
+            Shopify.moveAlong();
         }
+    }
+
+    function add_to_Cart_test()
+    {
+        var cart = document.getElementById('CartContainer');
+        console.log('myccart = ' + cart );
+        // document.querySelector() finds, and returns, the first element
+        // matching the supplied selector (or null, if no element is found):
+        var el1 = document.getElementsByClassName('drawer__header');
+        console.log('el1 = ' + el1 );
+
+        // here we create an adjacent element from the string of HTML,
+        // the 'afterend' argument states that this adjacent element
+        // follows the el1 node, rather than preceding it or appearing
+        // within:
+        el1.insertAdjacentHTML('afterend', '<div class="extra">Ceci est un test OUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</div>');
     }
 </script>
 
