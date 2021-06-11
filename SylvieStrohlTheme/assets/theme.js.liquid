@@ -3083,7 +3083,8 @@ function show_Password(id_Button, id_Input)
   }
 }
 
-function show_Filter(id_show, id_filters){
+function show_Filter(id_show, id_filters)
+{
   var filter_div = document.getElementById(id_show);
   var filters = document.getElementById(id_filters);
   if (filter_div.classList.contains('open'))
@@ -3100,29 +3101,55 @@ function show_Filter(id_show, id_filters){
   }
 }
 
-type Mutation {
-  customerDelete($input: my_id) {
-    customerDelete(input: $input) {
-      deletedCustomerId
-      shop {
-        id
-      }
-      userErrors {
-        field
-        message
-      }
-    }
+function switchMenu(numero)
+{
+  var menuDesc = document.getElementById("menuButton-Description");
+  var menuInfo = document.getElementById("menuButton-Informations");
+  var infoDesc = document.getElementById("info-Description");
+  var infoInfo = document.getElementById("info-Informations");
+
+  if (numero < 2)
+  {
+    menuDesc.style.color = "gray";
+    menuInfo.style.color = "black";
+    infoInfo.style.display= "none";
+    infoDesc.style.display = "grid";
+  }
+  else
+  {
+    menuInfo.style.color = "gray";
+    menuDesc.style.color = "black";
+    infoInfo.style.display = "grid";
+    infoDesc.style.display = "none";
   }
 }
-mutation customerDelete($input: my_id) {
-  customerDelete(input: $input) {
-    deletedCustomerId
-    shop {
-      id
-    }
-    userErrors {
-      field
-      message
-    }
+
+function changeImageProduct(src)
+{
+  var bigImg = document.getElementById("ficheProduit-BigImg");
+  bigImg.src = src;
+}
+
+function nextImage(src)
+{
+  var bigImg = document.getElementById("ficheProduit-BigImg");
+  bigImg.src = src;
+}
+
+function show_Associate_Product(){
+  var button = document.getElementById("show_Product_Associate");
+  var products = document.querySelectorAll("[id='one_product_associate']");
+
+  if (button.classList.contains('open'))
+  {
+    button.classList.remove('open');
+    button.innerHTML = '<h2 class="h2">Produits associés</h2><i class="fas fa-plus"></i>';
+    products.forEach(element =>  element.style.display = "none");
+  }
+  else
+  {
+    button.classList.add('open');
+    button.innerHTML = '<h2 class="h2">Produits associés</h2><i class="fas fa-minus"></i>';
+    products.forEach(element =>  element.style.display = "grid");
   }
 }

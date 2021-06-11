@@ -40,7 +40,7 @@
     {% else %}
         {% if collection.id != collections.all.id %}
             <span class="sep"> &gt; </span>
-            <a class="arianeText" href="{{ routes.collections_url }}" > {{ collectionPageName }}</a>
+            <a class="arianeText" href="{{ routes.collections_url }}" >Collections</a>
         {% endif %}
   		<span class="sep"> &gt; </span>
       	<a class="arianeText" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
@@ -80,7 +80,7 @@
         <a class="arianeText" href="{{ routes.account_addresses_url }}" aria-current="page">Adresses</a>
       {% endcase %}
     {% else %}
-      <a class="arianeText" href="{{ request.path }}" aria-current="page">{{ request.path }}</a>
+      <a class="arianeText" href="{{ request.path }}" aria-current="page">{{ request.page_type }}</a>
     {% endif %}
   {% endcase %}
   </div>
@@ -93,7 +93,7 @@
   .breadcrumb{
     background-color: #1a1a1a;
     display:block;
-	  padding:15px;
+	padding:15px;
   }
 
   .contentBreadcrumb{

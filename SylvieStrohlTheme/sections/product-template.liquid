@@ -1,79 +1,3 @@
-{% comment %} Ici le javascript {% endcomment %}
-<script>
-  function switchMenu(numero)
-  {
-    var menuDesc = document.getElementById("menuButton-Description");
-    var menuInfo = document.getElementById("menuButton-Informations");
-    var infoDesc = document.getElementById("info-Description");
-    var infoInfo = document.getElementById("info-Informations");
-    
-    if (numero < 2)
-    {
-        menuDesc.style.color = "gray";
-        menuInfo.style.color = "black";
-        infoInfo.style.display= "none";
-        infoDesc.style.display = "grid";
-    }
-    else
-    {
-        menuInfo.style.color = "gray";
-        menuDesc.style.color = "black";
-        infoInfo.style.display = "grid";
-        infoDesc.style.display = "none";
-    }
-  }
-
-  function changeImageProduct(src)
-  {
-    var bigImg = document.getElementById("ficheProduit-BigImg");
-    bigImg.src = src;
-  }
-
-  function nextImage(src)
-  {
-    var bigImg = document.getElementById("ficheProduit-BigImg");
-    bigImg.src = src;
-  }
-
-  function show_Associate_Product(){
-    var button = document.getElementById("show_Product_Associate");
-    var products = document.querySelectorAll("[id='one_product_associate']");
-
-    if (button.classList.contains('open'))
-    {
-      button.classList.remove('open');
-      button.innerHTML = '<h2 class="h2">Produits associés</h2><i class="fas fa-plus"></i>';
-      products.forEach(element =>  element.style.display = "none");
-    }
-    else
-    {
-      button.classList.add('open');
-      button.innerHTML = '<h2 class="h2">Produits associés</h2><i class="fas fa-minus"></i>';
-      products.forEach(element =>  element.style.display = "grid");
-    }
-  }
-
-  function notice_Info(index)
-  {
-    var img = document.getElementById("product_Info_1-" + index);
-    var content = document.getElementById("product_Info_2-" + index);
-    var button = document.getElementById("button_product_associate-" + index);
-    img.style.opacity = 0.33;
-    content.style.opacity = 1;
-    button.style.opacity = 1;
-  }
-
-  function notice_Info_Out(index){
-    var img = document.getElementById("product_Info_1-" + index);
-    var content = document.getElementById("product_Info_2-" + index);
-    var button = document.getElementById("button_product_associate-" + index);
-    img.style.opacity = 1;
-    content.style.opacity = 0;
-    button.style.opacity = 0;
-  }
-
-
-</script>
 
 <div itemscope itemtype="http://schema.org/Product" data-section-id="{{ section.id }}" data-section-type="product" data-history-state>
   {% comment %}
@@ -222,30 +146,17 @@
             {% if one_product.available and one_product.id != product.id %}
               {% capture _ %} {% increment i %} {% endcapture %}
               {% if i < 8 %}  
-                <div onmouseout="notice_Info_Out({{ i }})" onmouseover="notice_Info({{ i }})" id="one_product_associate" class="one_product_associate">
+                <div id="one_product_associate" class="one_product_associate">
                   
                   <a href="{{ one_product.url }}">
-                    <div id="product_Info_1-{{ i }}" class="product_Info_1">
+                    <div class="product_Info_1">
                       <img class="img_one_product_associate" src={{ one_product.featured_image | img_url: '150x150' }} alt="{{ one_product.featured_image.alt }}">
                     </div>
-                    <div id="product_Info_2-{{ i }}" class="product_Info_2">
-                      <h3 class="h2" >{{ one_product.title }}</h3>
-                      {% if section.settings.show_vendor %}
-                        <p class="product-item__vendor small--text-center">{{ one_product.vendor }}</p>
-                      {% endif %}
-                      {{ one_product.price | money_without_trailing_zeros }}
+                    <div class="product_Info_2">
+                      <h3 class="h6" >{{ one_product.title }}</h3>
+                      <p>{{ one_product.price | money_with_currency }}</p>
                     </div>
                   </a>
-
-                  {% form "product", one_product %}
-                      <div class="button_product_associate" id="button_product_associate-{{ i }}">
-                          <input type="hidden" name="id" data-productid="{{ one_product.id }}" class="product-select" value="{{ one_product.selected_or_first_available_variant.id }}" data-variant-title="{{ one_product.selected_or_first_available_variant.title }}" />
-                          <button id="AddToCart-{{ section.id }}" type="submit" name="add" class="btn btn--add-to-cart">
-                            <span class="btn__text">{{ 'products.product.add_to_cart' | t }}</span>
-                          </button>
-                        </div>
-                  {% endform %}
-
                 </div>
               {% endif %}
             {% endif %}
@@ -253,6 +164,7 @@
       </div>
     </div>
 </div>
+
 {% comment %} Les informations sur le produit : sa description et ces informations complémentaires qui sont : 
 - Variants, Poids, balises, type, Modèle  {% endcomment %}
 <div class="infosComplementairesProduct">
@@ -275,7 +187,7 @@
     <div id="info-Informations" class="info-Informations">
         <div class="info-Contenu">
             {% if product.selected_variant %}
-              {% assign variant = product.selected_variant%}
+              {% assign variant = product.selected_variant %}
 
               {% for option in variant.options %}
                 {% for product_option in product.options_with_values %}

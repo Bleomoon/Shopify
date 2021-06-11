@@ -8,6 +8,15 @@
   
   <h2>{{ 'customer.account.details' | t }}</h2>
   Ici les détails du compte
+  {% if customer.first_name %}
+    <textarea id="t_last_name">{{ customer.first_name }}</textarea>
+  {% else %}
+    <textarea id="t_last_name">Pas de nom enregistré</textarea>
+  {% endif %}
+  
+  <textarea id="t_first_name">{{ customer.last_name }}</textarea>
+  <textarea id="t_email">{{ customer.email }}</textarea>
+  <p>{{ customer.addresses_count }}</p>
 
   <h2>{{ 'customer.orders.title' | t }}</h2>
 
@@ -64,40 +73,56 @@
   
 </div>
 
-<button onclick="delete_account({{ customer.id }})">
+<script>
+  var customer_id = {{ customer.id }};
+  var target="https://5d21e2ddc56b33c485f34c29a4851987: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@gracietboutiquetpetest.myshopify.com/admin/api/2021-04/customers/" + customer_id + ".json";
+
+  function delete_account()
+  { 
+    Shopify.postLink(target, {
+      parameters: { _method: 'DELETE' }
+    });
+
+    window.location.href = "{{ shop.url }}";
+  }
+
+  function change_account()
+  {
+    var c_last_name = document.getElementById("t_last_name").value;
+    var c_first_name = document.getElementById("t_first_name").value;
+    var c_email = document.getElementById("t_email").value;
+    console.log("c_last_name = " + c_last_name);
+    console.log("c_first_name = " + c_first_name);
+    console.log("c_email = " + c_email);
+    var  customerdata = {
+      "customer": {
+        "id": {{ customer.id }},
+        "email": c_email,
+        "note": "Customer is a great guy"
+      }
+    };
+    jQuery.ajax({
+      url: target,
+      type: "PUT",
+      data: customerdata,
+      dataType: "json",
+      beforeSend: function(x) {
+        if (x && x.overrideMimeType) {
+          x.overrideMimeType("application/j-son;charset=UTF-8");
+        }
+      },
+      success: function(result) {
+        window.location.href = "{{ routes.account_url }}";
+      }
+    }); 
+  }
+</script>
+
+<button onclick="delete_account()">
   supprimer le compte
 </button>
 
-<script>
-  function delete_account(my_id)
-  {
-    mutation customerDelete($input: my_id) {
-      customerDelete(input: $input) {
-        deletedCustomerId
-        shop {
-          id
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-  }
-
-  type Mutation {
-  setMessage(message: String): String
-}
-
-var fakeDatabase = {};
-var root = {
-  setMessage: ({message}) => {
-    fakeDatabase.message = message;
-    return message;
-  },
-  getMessage: () => {
-    return fakeDatabase.message;
-  }
-};
-</script>
+<button onclick="change_account()">
+  modifier le compte
+</button>
 

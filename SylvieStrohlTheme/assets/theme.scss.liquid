@@ -4928,7 +4928,7 @@ $slick-opacity-not-active: 0.25;
   }
 }
 
-@media screen and (min-width:0px) and (max-width:900px)
+@media screen and (min-width:0px) and (max-width:1300px)
 {
   .product_template{
     grid-template-columns:repeat(1,1fr);
@@ -4953,7 +4953,7 @@ $slick-opacity-not-active: 0.25;
   }
 }
 
-@media screen and (min-width:900px)
+@media screen and (min-width:1300px)
 {
   .product_template{
     grid-template-columns:repeat(2,1fr);
@@ -5045,8 +5045,21 @@ $slick-opacity-not-active: 0.25;
 /* Zone des produits associés */
 .product_associate{
   display:grid;
-  grid-template-columns: repeat(4,1fr);
   margin-top:15px;
+}
+
+@media screen and (min-width:1200px)
+{
+  .product_associate{
+    grid-template-columns: repeat(4,1fr);
+  }
+}
+
+@media screen and (max-width:700px)
+{
+  .product_associate{
+    grid-template-columns: repeat(2,1fr);
+  }
 }
 
 .show_Product_Associate{
@@ -5074,10 +5087,10 @@ $slick-opacity-not-active: 0.25;
 
 .one_product_associate{
   width:100%;
-  max-height:150px;
+  min-height:150px;
+  min-width:150px;
   height:auto;
   display:none;
-  max-width:150px;
 }
 
 .product_Info_1{
@@ -5089,26 +5102,22 @@ $slick-opacity-not-active: 0.25;
 
 .product_Info_2{
   opacity:0;
-  position:absolute;
   text-align:center;
   display:grid;
-}
-
-.button_product_associate{
-  border:none;
-  background:none;
-  text-align:end;
-  margin-top:50%;
-  opacity:0;
-}
-.button_product_associate:hover{
-  background-color:black;
-  color:white;
+  margin-top:15%;
 }
 
 .img_one_product_associate{
   width:100%;
   height:auto;
+}
+
+.one_product_associate:hover .product_Info_1{
+  opacity:0.33;
+}
+
+.one_product_associate:hover .product_Info_2{
+  opacity:1;
 }
 
 /* Zone des informations complémentaires du produits */
@@ -5119,6 +5128,13 @@ $slick-opacity-not-active: 0.25;
   margin-left:10%;
   margin-top:5%;
   margin-bottom:5%;
+}
+
+@media screen and (min-width:0px) and (max-width:1200px)
+{
+  .infosComplementairesProduct{
+    margin-top:25%;
+  }
 }
 
 .menu-infosComplementairesProduct{
@@ -5320,8 +5336,7 @@ shopify-payment-terms {
 }
 
 .filter_show{
-  border:solid;
-  border-color:black;
+  border:none;
   margin:25px;
   padding:5px;
   width:max-content;
