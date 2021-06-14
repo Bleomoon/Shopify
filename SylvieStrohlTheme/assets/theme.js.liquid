@@ -3090,13 +3090,13 @@ function show_Filter(id_show, id_filters)
   if (filter_div.classList.contains('open'))
   {
     filter_div.classList.remove('open');
-    filter_div.innerHTML = 'Afficher les filtres <i class="fas fa-plus"></i>';
+    filter_div.innerHTML = 'Afficher les filtres <i class="fas fa-chevron-down"></i>';
     filters.style.display = 'none';
   }
   else
   {
     filter_div.classList.add('open');
-    filter_div.innerHTML = 'Enlever les filtres <i class="fas fa-minus"></i>';
+    filter_div.innerHTML = 'Enlever les filtres <i class="fas fa-chevron-up"></i>';
     filters.style.display = 'block';
   }
 }

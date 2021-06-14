@@ -1,10 +1,10 @@
 
 {% comment %} Initialisation des variables {% endcomment %}
 {% assign size_text = section.settings.size_text_bar | append: 'px' %}
-{% if bar_bg_under_menu == blank %}
+{% if section.settings.bg_under_Menu == blank %}
     {% assign bg_color = "wheat" %}
 {% else %}
-    {% assign bg_color = section.settings.bar_bg_under_menu %}
+    {% assign bg_color = section.settings.bg_under_Menu %}
 {% endif %}
 {% comment %} Ici le menu de navigation {% endcomment %}
 <nav>
@@ -66,7 +66,7 @@ nav ul{
 
 nav ul li{
     float: left;
-    text-align: center;
+    text-align: start;
     position: relative;
     font-size : {{ size_text }};
 }
@@ -93,7 +93,6 @@ nav > ul li:hover .under_menu{
 
 .under_under_menu{
 	display: none;
-    position: absolute;
     width: max-content;
     z-index: 1000;
     top:100%;
@@ -114,11 +113,7 @@ nav > ul li:hover .under_menu{
 
 .under_drop_down{
     width:100%;
-    display:flex;
-}
-
-.under_menu li{
-    width: max-content;
+    display:inline-block;
 }
 
 .under_under_menu li{

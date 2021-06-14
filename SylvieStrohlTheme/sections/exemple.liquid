@@ -1,0 +1,95 @@
+{% comment %} L'initialisation des valeurs {% endcomment %}
+{% assign color_title = section.settings.title_color %}
+{% assign font_title = section.settings.title_font %}
+{% assign font_style = font_title.style %}
+{% assign font_weight = font_title.weight  %}
+{% assign font_family = font_title.family %}
+
+
+{% if section.blocks %}
+    {% comment %} Le titre {% endcomment %}
+    <h2 class="title_exemple"> {{ section.settings.title_text }} </h2>
+    <div class="exemple">
+        {% comment %} On boucle sur les blocks {% endcomment %}
+        {% for block in section.blocks %}
+            {% comment %} Ici on retrouve le produit, c'est le même fonctionnement pour les collection
+            collections[block.settings.id_collection].quelquechose {% endcomment %}
+            {% assign my_product = all_products[block.settings.product_id] %}
+            <div class="exemple_product">
+                <h3> {{ my_product.title }} </h3>{% comment %} on voit le .title dans le tutoriel sur les objets {% endcomment %}
+                {% comment %} on voit | img_url dans le tutoriel sur les filtres {% endcomment %}
+                <img src="{{ my_product.featured_image | img_url: 'medium' }}" alt="{{ my_product.featured_image.alt }}">
+                <p> {{ block.settings.text_produit }} </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% comment %} Le schéma  {% endcomment %}
+{% schema %}
+  {
+    "name": "Exemple",
+    "settings": [
+        {
+            "type":"text",
+            "id":"title_text",
+            "label":"Le titre",
+            "default":"Je suis le titre"
+        },
+        {
+            "type": "color",
+            "id": "title_color",
+            "label": "Couleur du titre",
+            "default": "#222222"
+        },
+        {
+            "type": "font_picker",
+            "label": "Le style du text",
+            "id": "title_font",
+            "default": "work_sans_n6"
+         }
+    ],
+    "max_blocks":12,
+	"blocks": [
+        {
+            "type":"Produit",
+            "name":"Produit",
+            "settings":[
+                {
+                    "type": "product",
+                    "id": "product_id",
+                    "label": "Mon produit"
+                },
+                {
+                    "type":"text",
+                    "id":"text_produit",
+                    "label":"Ecrivez votre description",
+                    "default":"Description du produit"
+                }
+            ]
+        }
+    ]
+  }
+{% endschema %}
+
+{% style %}
+  .title_exemple{
+    color: {{ color_title }};
+    font-family: {{ font_title.family }};
+    font-style: {{ font_title.style }};
+    font-bold: {{ font_title.bold }};
+	text-align:center;
+  }
+
+  .exemple{
+    display:grid;
+	grid-template-columns: repeat(4,1fr);
+	text-align:center;
+  }
+
+  .exemple_product{
+    display:grid;
+	grid-column:auto;
+    justify-content:center;
+  }
+{% endstyle %}

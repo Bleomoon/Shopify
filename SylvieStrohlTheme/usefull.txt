@@ -1,6 +1,3 @@
-product.Quoi? :
-https://www.shopify.com/partners/blog/89205510-how-to-use-all_products-in-a-shopify-theme
-
 langage liquid:
 https://shopify.github.io/liquid/tags/iteration/
 
@@ -10,13 +7,6 @@ https://www.shopify.com/partners/shopify-cheat-sheet
 Les types sur les schema:
 https://shopify.dev/docs/themes/settings
 
-https://polaris.shopify.com/
-App?:
-clé API: e2457420aee05cd8bd800c8ff51ac8c3
-clé secrète api : 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
-
-https://shopify.dev/concepts/shopify-introduction
-
 crée une application:
 https://shopify.dev/tutorials/build-a-shopify-app-with-node-and-react/build-your-user-interface-with-polaris
 
@@ -24,24 +14,8 @@ réglé les images:
 https://www.shopify.com/partners/blog/img-url-filter
 
 product-recommendations:
-	pour la section: https://shopify.dev/tutorials/develop-theme-recommended-products-using-liquid#theme-editor-considerations
-	pour le produit: https://shopify.dev/tutorials/develop-theme-recommended-products-using-json-api
-
-dev ton app:
-https://shopify.dev/tutorials/build-a-shopify-app-with-node-and-react/build-your-user-interface-with-polaris
-
-
-filtres:
-https://shopify.dev/tutorials/customize-theme-filter-collections-with-product-tags
-https://gist.github.com/garrettmac/7a536ec1dd40c69bac9dffbb715902ac
-
-
-shopify filter by option :
-https://gracietboutiquetpetest.myshopify.com/collections/types?constraint=coton&q=SACS+A+MAIN&sort_by=Grand
-https://gracietboutiquetpetest.myshopify.com/collections/all&sort_by=Grand
+pour la section: https://shopify.dev/tutorials/develop-theme-recommended-products-using-liquid#theme-editor-considerations
+pour le produit: https://shopify.dev/tutorials/develop-theme-recommended-products-using-json-api
 
 update customer data :
 https://shopify.dev/tutorials/update-customer-data-with-storefront-api#activating-customers
-
-Icon for Infinite Options by ShopPad
-Infinite Options by ShopPad

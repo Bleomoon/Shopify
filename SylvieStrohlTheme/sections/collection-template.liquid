@@ -24,7 +24,7 @@
 
 {% if collection.products_count > 0 %}
   <div class="filters" id="filters">
-  {%- if section.settings.collection_sort_enable or section.settings.collection_tags_enable -%}
+  {%- if section.settings.collection_sort_enable or section.settings.collection_tags_enable or section.settings.filter_types or section.settings.filter_vendors or section.settings.filter_options-%}
     <div class="action-bar-secondary filter_bar">
       {% comment %} Zone des filtres des tags {% endcomment %}
       {%- if section.settings.collection_tags_enable and collection.all_tags.size > 1 -%}
@@ -184,34 +184,6 @@
   },
   "class": "collection-template-section",
   "settings": [
-    {
-      "type": "header",
-      "content":"Filtres"
-    },
-    {
-      "type":"checkbox",
-      "id":"filter_options",
-      "default":true,
-      "label":"Afficher les filtres sur les options de produits"
-    },
-    {
-      "type":"checkbox",
-      "id":"filter_types",
-      "default":true,
-      "label":"Afficher les filtres sur les types"
-    },
-    {
-      "type":"checkbox",
-      "id":"filter_vendors",
-      "default":false,
-      "label":"Afficher les filtres sur les vendeurs"
-    },
-    {
-      "type":"checkbox",
-      "id":"filter_available",
-      "default":true,
-      "label":"Afficher les produits indisponible ?"
-    },
     {
       "type": "header",
       "content": {
@@ -534,6 +506,30 @@
       }
     },
     {
+      "type":"checkbox",
+      "id":"filter_options",
+      "default":true,
+      "label":"Afficher les filtres sur les options de produits"
+    },
+    {
+      "type":"checkbox",
+      "id":"filter_types",
+      "default":true,
+      "label":"Afficher les filtres sur les types"
+    },
+    {
+      "type":"checkbox",
+      "id":"filter_vendors",
+      "default":false,
+      "label":"Afficher les filtres sur les vendeurs"
+    },
+    {
+      "type":"checkbox",
+      "id":"filter_available",
+      "default":true,
+      "label":"Afficher les produits indisponible ?"
+    },
+    {
       "type": "checkbox",
       "id": "collection_sort_enable",
       "label": {
@@ -543,7 +539,7 @@
         "en": "Show sorting options",
         "es": "Mostrar las opciones de clasificación",
         "fi": "Näytä lajitteluvaihtoehdot",
-        "fr": "Afficher les options de tri",
+        "fr": "Afficher les options de tri des collections",
         "it": "Mostra opzioni ordinamento",
         "ja": "並べ替えオプションを表示する",
         "ko": "정렬 옵션 표시",
