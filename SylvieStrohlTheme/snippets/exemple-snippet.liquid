@@ -1,0 +1,9 @@
+{% comment %} Ici on retrouve le produit, c'est le même fonctionnement pour les collection
+collections[block.settings.id_collection].quelquechose {% endcomment %}
+{% assign my_product = all_products[block.settings.product_id] %}
+<div class="exemple_product">
+    <h3> {{ my_product.title }} </h3>{% comment %} on voit le .title dans le tutoriel sur les objets {% endcomment %}
+    {% comment %} on voit | img_url dans le tutoriel sur les filtres {% endcomment %}
+    <img src="{{ my_product.featured_image | img_url: 'medium' }}" alt="{{ my_product.featured_image.alt }}">
+    <p> {{ block.settings.text_produit }} </p>
+</div>
