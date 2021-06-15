@@ -7,16 +7,13 @@
   </header>
   
   <h2>{{ 'customer.account.details' | t }}</h2>
+  en développement :
   Ici les détails du compte
-  {% if customer.first_name %}
-    <textarea id="t_last_name">{{ customer.first_name }}</textarea>
-  {% else %}
-    <textarea id="t_last_name">Pas de nom enregistré</textarea>
-  {% endif %}
-  
-  <textarea id="t_first_name">{{ customer.last_name }}</textarea>
+  <textarea id="t_first_name">{{ customer.first_name }}</textarea>
+  <textarea id="t_last_name">{{ customer.last_name }}</textarea>
   <textarea id="t_email">{{ customer.email }}</textarea>
-  <p>{{ customer.addresses_count }}</p>
+  <textarea id ="t_phone">{{ customer.phone }}</textarea>
+  <p>Nombre d'achat : {{ customer.orders_count }}</p>
 
   <h2>{{ 'customer.orders.title' | t }}</h2>
 
@@ -75,15 +72,17 @@
 
 <script>
   var customer_id = {{ customer.id }};
-  var target="https://5d21e2ddc56b33c485f34c29a4851987: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@gracietboutiquetpetest.myshopify.com/admin/api/2021-04/customers/" + customer_id + ".json";
-
+  var target = "https://5d21e2ddc56b33c485f34c29a4851987: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@gracietboutiquetpetest.myshopify.com/admin/api/2020-04/customers/" + {{ customer.id }} + ".json";
+  
+  
   function delete_account()
-  { 
+  {
+    
     Shopify.postLink(target, {
       parameters: { _method: 'DELETE' }
     });
 
-    window.location.href = "{{ shop.url }}";
+   
   }
 
   function change_account()
@@ -91,17 +90,50 @@
     var c_last_name = document.getElementById("t_last_name").value;
     var c_first_name = document.getElementById("t_first_name").value;
     var c_email = document.getElementById("t_email").value;
+    var c_phone = document.getElementById("t_phone").value;
+    
     console.log("c_last_name = " + c_last_name);
     console.log("c_first_name = " + c_first_name);
-    console.log("c_email = " + c_email);
+     console.log("c_last_name = " + c_email);
+    console.log("c_phone = " + c_phone);
+
     var  customerdata = {
       "customer": {
-        "id": {{ customer.id }},
-        "email": c_email,
-        "note": "Customer is a great guy"
+        "id" : "gid://shopify/Customer/" + customer_id,
+        "firstName" : c_first_name,
+        "lastName" : c_last_name,
+        "phone" : c_phone,
+        "email" : c_email
       }
     };
-    jQuery.ajax({
+
+    globals.makeGraphQLRequest('graphql', {
+      query: `mutation customerUpdate($input: CustomerInput!) {
+        customerUpdate(input: $input) {
+          customer {
+            id
+          }
+          userErrors {
+            field
+            message
+          }
+        } 
+      }`,
+      variables:{
+        "input": {
+          "id" : "gid://shopify/Customer/5299558547627",
+          "firstName" : "nouveauRemi",
+          "lastName" : "nouveauOrveau",
+          "phone" : "0549878963",
+          "email" : "remi86.orveau@gmail.com"
+        }
+      }
+    });
+    
+  }
+  
+  /* 
+  $.ajax({
       url: target,
       type: "PUT",
       data: customerdata,
@@ -112,10 +144,58 @@
         }
       },
       success: function(result) {
-        window.location.href = "{{ routes.account_url }}";
+        window.location.href = "/account/logout";
+      },
+      error: function(xhr, status, error){
+        console.log('raté');
       }
     }); 
+  
+  Customer delete :
+  mutation customerDelete($input: CustomerDeleteInput!) {
+  customerDelete(input: $input) {
+    deletedCustomerId
+    shop {
+      id
+    }
+    userErrors {
+      field
+      message
+    }
   }
+}
+
+  query variable :
+  {
+  "input": {
+    "id" : "gid://shopify/Customer/" + customer_id
+  }
+}
+
+Customer Update :
+mutation customerUpdate($input: CustomerInput!) {
+  customerUpdate(input: $input) {
+    customer {
+      id
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+
+query variable :
+  {
+  "input": {
+    "id" : "gid://shopify/Customer/5299558547627",
+    "firstName" : "nouveauRemi",
+    "lastName" : "nouveauOrveau",
+    "phone" : "0549878963",
+    "email" : "remi86.orveau@gmail.com"
+  }
+}
+  */
 </script>
 
 <button onclick="delete_account()">
