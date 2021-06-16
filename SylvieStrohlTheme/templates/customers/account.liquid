@@ -6,14 +6,36 @@
     <h1>{{ 'customer.account.title' | t }}</h1>
   </header>
   
-  <h2>{{ 'customer.account.details' | t }}</h2>
-  en développement :
-  Ici les détails du compte
-  <textarea id="t_first_name">{{ customer.first_name }}</textarea>
-  <textarea id="t_last_name">{{ customer.last_name }}</textarea>
-  <textarea id="t_email">{{ customer.email }}</textarea>
-  <textarea id ="t_phone">{{ customer.phone }}</textarea>
+  <h2>Informations de l'utilisateur</h2>
+  <div class="div_message" id="div_message"></div>
+  <div class="user_data">
+    <span>
+      <label for="first_name"> Prénom </label>
+      <textarea name="first_name" id="t_first_name">{{ customer.first_name }}</textarea>  
+    </span>
+   
+    <span>
+      <label for="last_name"> Nom </label>
+      <textarea name="last_name" id="t_last_name">{{ customer.last_name }}</textarea>
+    </span>
+   
+    <span>
+      <label for="email"> Email</label>
+      <textarea name="email" id="t_email">{{ customer.email }}</textarea>
+    </span>
+    
+    <span>
+      <label for="phone"> Numéro de téléphone </label>
+      <textarea name="phone" id ="t_phone">{{ customer.phone }}</textarea>
+    </span>
+  </div>
   <p>Nombre d'achat : {{ customer.orders_count }}</p>
+
+  <div class="btn_Account">
+    <button class="btn" onclick="change_account()">
+      Modifier le compte
+    </button>
+  </div>
 
   <h2>{{ 'customer.orders.title' | t }}</h2>
 
@@ -66,23 +88,56 @@
   {{ customer.default_address | format_address }}
 
   <p><a href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
-
   
+  <div class="btn_Account">
+    <button class="btn" onclick="delete_account()">
+      Supprimer le compte
+    </button>
+  </div>>
 </div>
+
+{% style %}
+  .div_message{
+    background-color: green;
+    height: 150px;
+    color: white;
+    display:none;
+  }
+
+  .user_data{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+  }
+
+  .user_data span{
+    grid-column: auto;
+    margin:5px;
+    display: grid;
+  }
+
+  .btn_Account{
+    text-align:end;
+  }
+{% endstyle %}
 
 <script>
   var customer_id = {{ customer.id }};
-  var target = "https://5d21e2ddc56b33c485f34c29a4851987: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@gracietboutiquetpetest.myshopify.com/admin/api/2020-04/customers/" + {{ customer.id }} + ".json";
-  
+  var target = 'https://gracietboutiquetpetest.myshopify.com//admin/api/2020-04/customers/' + customer_id + '.json';
   
   function delete_account()
   {
-    
-    Shopify.postLink(target, {
-      parameters: { _method: 'DELETE' }
-    });
+    const deleteMethod = {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+        'X-Shopify-Access-Token' : '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'
+      }
+    }
 
-   
+    fetch(target, deleteMethod) 
+    .then(response => response.json())
+    .then(data => window.location.href = "{{ shop.url }}") 
+    .catch(err => div_Message_Change("red", "Error in delete"))
   }
 
   function change_account()
@@ -91,118 +146,45 @@
     var c_first_name = document.getElementById("t_first_name").value;
     var c_email = document.getElementById("t_email").value;
     var c_phone = document.getElementById("t_phone").value;
-    
-    console.log("c_last_name = " + c_last_name);
-    console.log("c_first_name = " + c_first_name);
-     console.log("c_last_name = " + c_email);
-    console.log("c_phone = " + c_phone);
 
-    var  customerdata = {
-      "customer": {
-        "id" : "gid://shopify/Customer/" + customer_id,
-        "firstName" : c_first_name,
-        "lastName" : c_last_name,
-        "phone" : c_phone,
-        "email" : c_email
-      }
-    };
-
-    globals.makeGraphQLRequest('graphql', {
-      query: `mutation customerUpdate($input: CustomerInput!) {
-        customerUpdate(input: $input) {
-          customer {
-            id
-          }
-          userErrors {
-            field
-            message
-          }
-        } 
-      }`,
-      variables:{
-        "input": {
-          "id" : "gid://shopify/Customer/5299558547627",
-          "firstName" : "nouveauRemi",
-          "lastName" : "nouveauOrveau",
-          "phone" : "0549878963",
-          "email" : "remi86.orveau@gmail.com"
+    if (c_email.includes('@') && (c_email.includes('.fr') || c_email.includes('.com')))
+    {
+      var customerdata = {
+        "customer": {
+          "id": customer_id ,
+          "first_name": c_first_name,
+          "last_name": c_last_name,
+          "email": c_email,
+          "phone" : c_phone
         }
+      };
+
+      const putMethod = {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+          'X-Shopify-Access-Token' : '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'
+        },
+        body: JSON.stringify(customerdata)
       }
-    });
-    
-  }
-  
-  /* 
-  $.ajax({
-      url: target,
-      type: "PUT",
-      data: customerdata,
-      dataType: "json",
-      beforeSend: function(x) {
-        if (x && x.overrideMimeType) {
-          x.overrideMimeType("application/j-son;charset=UTF-8");
-        }
-      },
-      success: function(result) {
-        window.location.href = "/account/logout";
-      },
-      error: function(xhr, status, error){
-        console.log('raté');
-      }
-    }); 
-  
-  Customer delete :
-  mutation customerDelete($input: CustomerDeleteInput!) {
-  customerDelete(input: $input) {
-    deletedCustomerId
-    shop {
-      id
-    }
-    userErrors {
-      field
-      message
-    }
-  }
-}
 
-  query variable :
+      fetch(target, putMethod)
+      .then(response => response.json())
+      .then(data => div_Message_Change("green", "Sucessfully Change"))
+      .catch(err => div_Message_Change("red", "Error in change"))
+    }
+    else
+    {
+      div_Message_Change("red", "Wrong e_mail format");
+    }
+  }
+
+  function div_Message_Change(color, message)
   {
-  "input": {
-    "id" : "gid://shopify/Customer/" + customer_id
-  }
-}
+    var div_message = document.getElementById("div_message");
 
-Customer Update :
-mutation customerUpdate($input: CustomerInput!) {
-  customerUpdate(input: $input) {
-    customer {
-      id
-    }
-    userErrors {
-      field
-      message
-    }
+    div_message.style.display = "block";
+    div_message.style.backgroundColor = color;
+    div_message.innerHTML = message;
   }
-}
-
-query variable :
-  {
-  "input": {
-    "id" : "gid://shopify/Customer/5299558547627",
-    "firstName" : "nouveauRemi",
-    "lastName" : "nouveauOrveau",
-    "phone" : "0549878963",
-    "email" : "remi86.orveau@gmail.com"
-  }
-}
-  */
 </script>
-
-<button onclick="delete_account()">
-  supprimer le compte
-</button>
-
-<button onclick="change_account()">
-  modifier le compte
-</button>
-

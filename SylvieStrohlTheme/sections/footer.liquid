@@ -21,8 +21,8 @@
                   	<p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p>
                   {% else %}
                     <h3>{{ block.settings.newsText }}</h3>
-                    <label for="Email" class="newsletter__label label--hidden">{{ 'general.newsletter_form.email_placeholder' | t }}</label>
-                    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" name="contact[email]" id="Email" class="contactText" autocorrect="off" autocapitalize="off">
+                    <label for="Email-newsletter" class="newsletter__label label--hidden">{{ 'general.newsletter_form.email_placeholder' | t }}</label>
+                    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" name="contact[email]" id="Email-newsletter" class="contactText" autocorrect="off" autocapitalize="off">
                     <input class="contactSubmit" type="submit"  name="commit" id="Subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
                   {% endif %}
       			{% endform %}

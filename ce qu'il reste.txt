@@ -1,2 +1,5 @@
-opquast
+Règles opquast
 
+Les boxes cadeaux en application
+La suppression et modificaiton du compte d'un utilisateur.
+Pour une raison que j'ignore Shopify ne dispose pas de méthode pour le faire simplement donc Application.

@@ -27,3 +27,12 @@ alphie2610
 password : 
 
 https://community.shopify.com/c/Shopify-APIs-SDKs/Invalid-global-id/td-p/524989
+
+query getCustomer($id: ID!){
+  customer(id: $id){
+    id,
+    email,
+    displayName
+  }
+}
+{"id": "gid://shopify/Customer/5306955006123"}
