@@ -1,35 +1,18 @@
 <label for="types_select" style="margin:auto;">Types :</label>
-<select id="types_select" name="types_select" class="types_select">
+<select onchange="select_change();" id="select_item" name="types_select" class="types_select">
     <option value="disabled" disabled> Types de produits </option>
     <option value="Tous">Tous</option>
-    {% for product_type in shop.types %}
+    {% for product in my_products %}
+        {% if my_types %}
+            {% assign my_types = my_types | append: ', ' | append: product.type %}
+        {% else %}
+            {% assign my_types = my_types | append: product.type %}
+        {% endif %}
+    {% endfor %}
+    {% assign all_types = my_types | split: ', ' | uniq %}
+    {% for type in all_types %}
         {%if product_type != '' %}
-            <option value="{{ product_type| url_for_type }}"{% if current_type contains product_type %} selected="selected"{% endif %}>{{ product_type }}</option>
+            <option value="{{ type }}">{{ type }}</option>
         {% endif %}
     {% endfor %}
 </select>
-
-
-<script>
-    document.querySelector('#types_select').addEventListener('change', function(e) {
-        var selected_Type_Value = document.getElementById("types_select");
-        if(selected_Type_Value.value == 'Tous')
-        {
-            {% if collection.handle %}
-                window.location.href = "/collections/{{ collection.handle }}{% if collection.sort_by %}?sort_by={{ collection.sort_by }}{% endif %}";
-            {% elsif collection.current_type %}
-                window.location.href = "{{ collection.current_type | url_for_type | sort_by: collection.sort_by }}";
-            {% elsif collection.current_vendor %}
-                window.location.href = "{{ collection.current_vendor | url_for_vendor | sort_by: collection.sort_by }}";
-            {% endif %}
-        }
-        else if(selected_Type_Value.value != 'disabled')
-        {
-            var actual_Type = '{{ collection.current_type | json }}';
-            if(actual_Type != selected_Type_Value.options[selected_Type_Value.selectedIndex].text)
-            {
-                window.location.href = selected_Type_Value.value;
-            }
-        }
-    });
-</script>

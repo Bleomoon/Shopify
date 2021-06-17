@@ -1,36 +1,35 @@
-
-{% paginate collection.products by 24 %}
-
-<h1 class="collection-heading h2">
-  <span role="text">
-    <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
-    {{ collection.title }}
-  </span>
-</h1>
-
-{% if collection.description != blank %}
-  <div class="rte rte--description">
-    {{ collection.description }}
-  </div>
-{% endif %}
+{% assign my_collection = collections.all %}
 
 {% comment %} Zone des filtres {% endcomment %}
 <h2 class="visually-hidden">Zone de filtres</h2>
-{% if collection.products_count > 0 %}
+{% if my_collection.products_count > 0 %}
   <div class="filter_show" id="filter_show" onclick="show_Filter('filter_show','filters')">
     Afficher les filtres <i class="fas fa-chevron-down"></i>
   </div>
 {% endif %}
 
-{% if collection.products_count > 0 %}
+{% assign my_products = my_collection.products %}
+
+{% if section.settings.id_type != blank %}
+  {% assign my_products = my_products | where: "type",  section.settings.id_type %}
+{% endif %}
+
+{% if section.settings.filter_available == false %}
+  {% assign my_products = my_products | where: "available" %}
+{% endif %}
+
+{% if my_collection.products_count > 0 %}
   <div class="filters" id="filters">
   {%- if section.settings.collection_sort_enable or section.settings.collection_tags_enable or section.settings.filter_types or section.settings.filter_options-%}
     <div class="action-bar-secondary filter_bar">
       {% comment %} Zone des filtres des tags {% endcomment %}
-      {%- if section.settings.collection_tags_enable and collection.all_tags.size > 1 -%}
-        <div class="action-bar-secondary__dropdown action-bar-secondary--left ">
-          {% include 'collection-sorting-tag' %}
-        </div>
+      {%- if section.settings.collection_tags_enable -%}
+      	{% assign nb_tags = my_products.tags | size %}
+        {% if nb_tags > 1%}
+          <div class="action-bar-secondary__dropdown action-bar-secondary--right">
+            {% include 'collection-sorting-tag' %}
+          </div>
+      	{% endif %}
       {%- endif -%}
 
       {% comment %} Zone des filtres des types {% endcomment %}
@@ -41,8 +40,8 @@
       {% endif %}
 
       {% comment %} Zone des filtres des options générales d'une collection {% endcomment %}
-      {%- if section.settings.collection_sort_enable and collection.products.size > 1 -%}
-        <div class="action-bar-secondary__dropdown action-bar-secondary--right">
+      {%- if section.settings.collection_sort_enable and my_collection.products_count > 0 -%}
+        <div class="action-bar-secondary__dropdown action-bar-secondary--left">
           {% include 'collection-sorting-general' %}
         </div>
       {%- endif -%}
@@ -51,25 +50,17 @@
 
     {% comment %} Zone des filtres des options {% endcomment %}
     {% if section.settings.filter_options == true %}
-        {% include 'collection-sorting-options' with my_collection: collection %}
+        {% include 'collection-sorting-options' %}
     {% endif %}
   </div>
 {% endif %}
 
-{% comment %}
-  Set grid item widths based on settings
-{% endcomment %}
 
 <h2 class="visually-hidden">Zone de produits</h2>
 {% include 'product-grid-width' with product_image_type: section.settings.product_image_type, product_image_size: section.settings.product_image_size %}
 
 <div class="grid collection-grid grid--uniform grid--no-gutters" data-section-id="{{ section.id }}" data-section-type="collection-template-section" data-sort-enabled="{{ section.settings.collection_sort_enable }}" data-tags-enabled="{{ section.settings.collection_tags_enable }}">
-  {% if section.settings.filter_available == false %}
-    {% assign myProducts = collection.products | where: "available" %}
-  {% else %}
-    {% assign myProducts = collection.products %}
-  {% endif %}
-  {% for product in myProducts %}
+  {% for product in my_products %}
       {% assign price = product.price | money_without_trailing_zeros %}
       {% include 'product-grid-item' with product_image_spacing: section.settings.product_image_spacing, vendor_enable: section.settings.vendor_enable %}
   {% else %}
@@ -128,37 +119,16 @@
   {% endif %}
 {% endif %}
 
-{% endpaginate %}
-
-
-
 {% schema %}
 {
-  "name": {
-    "cs": "Kolekce",
-    "da": "Kollektion",
-    "de": "Kategorie",
-    "en": "Collection",
-    "es": "Colección",
-    "fi": "Kokoelma",
-    "fr": "Collection",
-    "it": "Collezione",
-    "ja": "コレクション",
-    "ko": "컬렉션",
-    "nb": "Samling",
-    "nl": "Collectie",
-    "pl": "Kolekcja",
-    "pt-BR": "Coleção",
-    "pt-PT": "Coleção",
-    "sv": "Produktserie",
-    "th": "คอลเลกชัน",
-    "tr": "Koleksiyon",
-    "vi": "Bộ sưu tập",
-    "zh-CN": "收藏",
-    "zh-TW": "商品系列"
-  },
+  "name": "ACCESSOIRES",
   "class": "collection-template-section",
   "settings": [
+    {
+      "type":"text",
+      "id":"id_type",
+      "label":"nom du type à filtrer"
+    },
     {
       "type": "header",
       "content": {

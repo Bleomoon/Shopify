@@ -1,0 +1,8 @@
+<label for="SortTags" class="label--hidden">{{ 'collections.general.tags' | t }}</label>
+<label style="margin:auto;">Balises :</label>
+<select onchange="select_change();" name="SortTags" id="select_item" aria-describedby="a11y-refresh-page-message a11y-selection-message">
+  <option value="Tous">Tous</option>
+  {%- for tag in my_products.tags -%}
+    <option value="{{ tag }}">{{ tag }}</option>
+  {%- endfor -%}
+</select>

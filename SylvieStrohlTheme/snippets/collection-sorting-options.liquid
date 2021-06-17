@@ -1,7 +1,7 @@
 {% comment %} la zone de filtre d'options {% endcomment %}
 <div id="productFilter" class="action-bar-secondary filter_bar">
     {%comment%} Ici on boucle pour récupéré tous les noms d'options {%endcomment%}
-        {% for product in my_collection.products %} 
+        {% for product in my_products %} 
             {% for product_option in product.options_with_values %}
                 {% assign myOptions = myOptions | append: ', ' | append: product_option.name %}
             {% endfor %}
@@ -15,7 +15,7 @@
               <label for="{{ oneOption }}"> Trie par {{ oneOption }} : </label>
               <select onChange="select_change();" class="oneFilter" id="select_item" name={{ oneOption }}>
               <option value="Tous">Tous</option>
-                  {% for product in my_collection.products %}
+                  {% for product in my_products %}
                       {% for product_option in product.options_with_values %}
                           {% if product_option.name == oneOption %} {%comment%} alors on regarde les val voir si elle sont dedans {%endcomment%}
                               {% for value in product_option.values %}
@@ -34,50 +34,3 @@
         {%endif%}
     {%endfor%}
 </div>
-
-{% comment %} la zone de gestion de filtres, on récupère les produits des filtres et on les supprime si il ne correspondent pas à un filtre {% endcomment %}
-<script>
-    function select_change()
-    {
-        // On récupère les produits et les selects
-        var all_products = document.querySelectorAll('[id=product_item]');
-        var all_selects = document.querySelectorAll('[id=select_item]');
-
-         //on boucle sur les produits pour tous les rafficher
-        all_products.forEach(function(productValue, productIndex, product_listObj)
-        {
-            if (productValue.classList.contains('hidden'))
-                productValue.classList.remove('hidden');
-        });
-
-        //on boucle sur les produits pour enlever ceux a cacher
-        all_products.forEach(function(productValue, productIndex, product_listObj)
-        {
-            var show_Product = true;
-            //on boucle sur les selects pour regarder les Tous
-            all_selects.forEach(function(selectValue, selectIndex, select_listObj)
-            {
-                if(selectValue.value != 'Tous')
-                {
-                    if (productValue.classList.contains(selectValue.value))
-                    {
-                        if (productValue.classList.contains('hidden') && show_Product == true)
-                            productValue.classList.remove('hidden');
-                    }
-                    else
-                    {
-                        show_Product = false;
-                        if (productValue.classList.contains('hidden') == false)
-                            productValue.classList.add('hidden');
-                    }
-                }
-            });
-        });
-    }
-</script>
-
-{% style %}
-    .hidden{
-        display:none;
-    }
-{% endstyle %}

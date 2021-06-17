@@ -1,5 +1,5 @@
 {% comment %} Nous allons ici géré les variants en les rajoutant dans la classe {% endcomment %}
-<div id="product_item"  class="{% for variant in product.variants %}{% if variant.available %}{{ variant.title }} {% endif %}{% endfor %} product-item grid__item {{ grid_item_width }}">
+<div id="product_item"  class="{% for variant in product.variants %}{% if variant.available %}{{ variant.title }} {% endif %}{% endfor %} {% for tag in product.tags %} tag:{{ tag }} {% endfor %} type:{{ product.type }} product-item grid__item {{ grid_item_width }}">
   <div class="product-item__link-wrapper">
     <a class="product-item__link{% if product_image_spacing %} product-item__image--margins{% endif %}" href="{{ product.url }}">
       <span class="image-wrapper">

@@ -10,13 +10,6 @@
     <ul class="drawer-nav">
       {% for link in linklists[section.settings.sidebar_top_link_list].links %}
         {% assign outerLoopIndex = forloop.index %}
-        {% assign little_title = link.title | downcase %}
-      
-        {% if little_title == 'accessoires' or little_title == 'sacs a main' %}
-            {% assign special_url = link.title | url_for_type %}
-        {% else %}
-            {% assign special_url = link.url %}
-        {% endif %}
       
         {% if link.links != blank %}
           {% assign has_active_link = false %}
@@ -27,7 +20,7 @@
   
           <li class="drawer-nav__item{% unless request.page_type == 'index' %}{% if link.active %} drawer-nav__item--active{% endif %}{% endunless %}" aria-haspopup="true">
             <div class="drawer-nav__has-sublist{% if has_active_link %} drawer-nav--expanded{% endif %}">
-              <a href="{{ special_url }}" class="drawer-nav__link h2"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+              <a href="{{ link.url }}" class="drawer-nav__link h2"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
               <div class="drawer-nav__toggle">
                 <button type="button" class="drawer-nav__toggle-button" aria-expanded="{{ has_active_link }}" aria-label="{{ link.title }} {{ 'layout.navigation.menu' | t }}" aria-controls="Submenu-{{ outerLoopIndex }}">
                   <span class="icon {% if has_active_link %}icon-minus{% else %}icon-plus{% endif %}" aria-hidden="true"></span>
@@ -70,7 +63,7 @@
           </li>
         {% else %}
           <li class="drawer-nav__item{% unless request.page_type == 'index' %}{% if link.active %} drawer-nav__item--active{% endif %}{% endunless %}">
-            <a href="{{ special_url }}" class="drawer-nav__link h2"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+            <a href="{{ link.url }}" class="drawer-nav__link h2"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
           </li>
         {% endif %}
       {% endfor %}

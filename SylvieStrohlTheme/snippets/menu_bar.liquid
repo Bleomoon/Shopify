@@ -10,19 +10,12 @@
 <nav>
     <ul>
         {% for link in linklists.main-menu.links %}
-            {% assign little_title = link.title | downcase %}
-            
-            {% if little_title == 'accessoires' or little_title == 'sacs a main' %}
-                {% assign special_url = link.title | url_for_type %}
-            {% else %}
-                {% assign special_url = link.url %}
-            {% endif %}
       		{% if link.levels > 0%}
       			{% assign under_Menu = "drop_down" %}
       		{% else %}
       			{% assign under_Menu = "no_drop_down" %}
       		{% endif %}
-            <li class={{ under_Menu }}><a class="drawer-nav__link a-main-menu" href="{{ special_url }}">{{ link.title }}</a>
+            <li class={{ under_Menu }}><a class="drawer-nav__link a-main-menu" href="{{ link.url }}">{{ link.title }}</a>
                 {% if link.levels > 0%}
                 <ul class="under_menu">
                     {% for sub_link in link.links %}
