@@ -3153,3 +3153,22 @@ function show_Associate_Product(){
     products.forEach(element =>  element.style.display = "grid");
   }
 }
+
+function change_big_Img(src, small_img)
+{
+  var big_Img = document.getElementById('big_img');
+  var small_img = document.getElementById(small_img);
+
+  var si_data_src = small_img.getAttribute('data-src');
+  var si_srcset = small_img.getAttribute('srcset');
+  var si_sizes = small_img.getAttribute('sizes');
+  var si_data_srcset = small_img.getAttribute('data-srcset');
+  var si_alt =  small_img.getAttribute('alt');
+
+  big_Img.setAttribute('src', src);
+  big_Img.setAttribute('alt', si_alt);
+  big_Img.setAttribute('data-src', si_data_src);
+  big_Img.setAttribute('srcset', si_srcset);
+  big_Img.setAttribute('sizes', si_sizes);
+  big_Img.setAttribute('data-srcset', si_data_srcset);
+}
